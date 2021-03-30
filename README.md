@@ -5,7 +5,7 @@ https://git-scm.com/download/win hier runterladen
 ## Git Befehle fur euer System
 
 1. Neuen Ordner machen auf eurem System, hier rechts klick, Kontextmenu >> Git Bash here klicken
-2. In der Konsole: `git clone https:// DEIN UDERNAME @bitbucket.org/CuteCrait/marsgodgames.git` und enter //paste in der konsole nur mit rechtsklick kontextmenu paste
+2. In der Konsole: `git clone <clone url>` und enter //paste in der konsole nur mit rechtsklick kontextmenu paste
 
 ---
 Ab hier musst du die Git Bash in dem neuen Ordner MarsGodGames benutzten
