@@ -39,6 +39,26 @@ public:
 
 private:
     // Hier ist Platz für Deine Vektoriaobjekte:
+
+	//lea START
+	CRoot m_zr;
+	CFrame m_zf;
+	CViewport m_zv;
+	COverlay m_zo;	//ui
+	CScene m_zs;	
+	CCamera m_zc;
+	CPlacement m_zpCamera;	
+	CImage m_zi;
+
+	//World Ground
+	CPlacement m_zpPlane;
+	CGeoGrid m_zgPlane;
+	CMaterial m_zmPlane;
+	CDeviceKeyboard m_zdk;
+
+	//Sun?
+	CLightParallel m_zlp;
 };
+//lea END
 
 
