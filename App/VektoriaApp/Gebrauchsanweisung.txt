@@ -1,0 +1,56 @@
+Benutzung StateManager
+
+1.)
+Wenn entsprechende Klasse nicht vorhanden:
+- Neue Kindklasse für Aktion(Action) erstellen (wie FollowPathAction)
+und/oder
+- Neue Kindklasse für Entscheidung(Decision) erstellen (wie DurationDecision)
+(entsprechende Referenzen setzen - wie FollowPathAction mit Zugriff auf SteeringBehavior-Klassen für Bewegung/Pathfinding)
+(Falls Referenzen nicht möglich sind, bitte melden)
+
+2.)
+Neue Variable von "Transition" initialisieren und Entscheidung und resultierender Zustand zuweisen
+Neue Variable von "State" initialisieren und gewünschte Aktionen und Übergängen zuweisen ()
+(Vor Zuweisung alle Variablen initialiseren)
+
+3.)
+wiederhole Schritt 2 bis gewünschter Baum erreicht
+
+4.)
+Neue Variable von "StateManager" in entsprechender Klasse initialisieren
+und ersten aktiven Zustand (in Konstruktor oder SetState(State*) ) zuweisen 
+
+5.)
+StateManager->Update(deltaTime) per Tick ausführen
+
+
+Beispiel (Nur anschaulich - keine richtige Funktion)
+
+	//States
+	State* followPath = new State();
+	State* patrol = new State();
+
+	//StateManager
+	StateManager* sm = new StateManager(patrol);
+	//oder
+	StateManager* sm = new StateManager();
+	sm->SetState(patrol);
+
+	//Actions
+	FollowPathAction* followPathAction = new FollowPathAction();
+	PatrolAction* patrolAction = new PatrolAction();
+
+	//Desicions
+	TimedDecision* followPathDecision = new TimedDecision(10);
+	TimedDecision* patrolDecision = new TimedDecision(4);
+
+	//Transition
+	Transition* toPatrol = new Transition(patrolDecision, patrol);
+	Transition* toFollowPath = new Transition(followPathDecision, followPath);
+
+	//Setup states
+	followPath->AddAction(followPathAction);
+	followPath->AddTransition(toPatrol);
+
+	patrol->AddAction(patrolAction);
+	patrol->AddTransition(toFollowPath);

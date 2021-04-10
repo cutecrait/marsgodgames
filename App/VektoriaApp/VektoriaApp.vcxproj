@@ -148,12 +148,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Action.h" />
+    <ClInclude Include="Decision.h" />
+    <ClInclude Include="FollowPathAction.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="NodeManager.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="RobotBase.h" />
+    <ClInclude Include="State.h" />
+    <ClInclude Include="StateManager.h" />
+    <ClInclude Include="States.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TimedDecision.h" />
+    <ClInclude Include="Transition.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Action.cpp" />
+    <ClCompile Include="Decision.cpp" />
+    <ClCompile Include="FollowPathAction.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Node.cpp" />
+    <ClCompile Include="NodeManager.cpp" />
+    <ClCompile Include="RobotBase.cpp" />
+    <ClCompile Include="State.cpp" />
+    <ClCompile Include="StateManager.cpp" />
+    <ClCompile Include="States.cpp" />
+    <ClCompile Include="TimedDecision.cpp" />
+    <ClCompile Include="Transition.cpp" />
     <ClCompile Include="VektoriaApp.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +183,9 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VektoriaApp.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Gebrauchsanweisung.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -13,6 +13,36 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Robot">
+      <UniqueIdentifier>{12d84f29-d1e0-46a8-b81b-3d0b4abbc08e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Robot\AI">
+      <UniqueIdentifier>{fb83c6d0-5b54-4739-8c97-b27a5e81c4c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Robot\AI\Action">
+      <UniqueIdentifier>{705f1fe4-9dba-4255-9008-2b6e2e2f9c7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Robot\AI\Transition">
+      <UniqueIdentifier>{3ad403e3-2c88-43da-a2ae-8980f56beada}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Robot\AI\Decision">
+      <UniqueIdentifier>{158dcd3c-c809-49a7-8f06-06a9628b1f96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Robot\AI\State">
+      <UniqueIdentifier>{1654e227-cc3c-49ea-8754-fb0b331ef705}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Robot\Animator">
+      <UniqueIdentifier>{f9fefce7-32d2-464c-a4eb-4d4cd63c3038}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Robot\SteeringBehavior">
+      <UniqueIdentifier>{7a97e44e-bc16-4b67-a035-ad12a9231ecc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Robot\Pathfinding">
+      <UniqueIdentifier>{176146d8-a990-481f-aaca-9ac98d0cfedb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Robot\Pathfinding\Node">
+      <UniqueIdentifier>{402050f3-550e-4124-b49a-ea3853dd055a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -24,6 +54,39 @@
     <ClInclude Include="targetver.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Action.h">
+      <Filter>Robot\AI\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="Decision.h">
+      <Filter>Robot\AI\Decision</Filter>
+    </ClInclude>
+    <ClInclude Include="Transition.h">
+      <Filter>Robot\AI\Transition</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Robot\AI\State</Filter>
+    </ClInclude>
+    <ClInclude Include="StateManager.h">
+      <Filter>Robot\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="FollowPathAction.h">
+      <Filter>Robot\AI\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="RobotBase.h">
+      <Filter>Robot</Filter>
+    </ClInclude>
+    <ClInclude Include="TimedDecision.h">
+      <Filter>Robot\AI\Decision</Filter>
+    </ClInclude>
+    <ClInclude Include="States.h">
+      <Filter>Robot\AI\State</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeManager.h">
+      <Filter>Robot\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Robot\Pathfinding\Node</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -31,6 +94,39 @@
     </ClCompile>
     <ClCompile Include="VektoriaApp.cpp">
       <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Action.cpp">
+      <Filter>Robot\AI\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="Decision.cpp">
+      <Filter>Robot\AI\Decision</Filter>
+    </ClCompile>
+    <ClCompile Include="Transition.cpp">
+      <Filter>Robot\AI\Transition</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>Robot\AI\State</Filter>
+    </ClCompile>
+    <ClCompile Include="StateManager.cpp">
+      <Filter>Robot\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="FollowPathAction.cpp">
+      <Filter>Robot\AI\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="RobotBase.cpp">
+      <Filter>Robot</Filter>
+    </ClCompile>
+    <ClCompile Include="TimedDecision.cpp">
+      <Filter>Robot\AI\Decision</Filter>
+    </ClCompile>
+    <ClCompile Include="States.cpp">
+      <Filter>Robot\AI\State</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeManager.cpp">
+      <Filter>Robot\Pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>Robot\Pathfinding\Node</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -42,5 +138,10 @@
     <ResourceCompile Include="VektoriaApp.rc">
       <Filter>Ressourcendateien</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Gebrauchsanweisung.txt">
+      <Filter>Robot\AI</Filter>
+    </Text>
   </ItemGroup>
 </Project>
