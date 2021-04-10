@@ -2,7 +2,7 @@
 
 RobotBase::RobotBase()
 {
-	_sm = new AI::StateManager();
+	_stateManager = new AI::StateManager();
 	_placementRoot = new Vektoria::CPlacement();
 	
 	CreateMesh();
@@ -15,7 +15,7 @@ RobotBase::~RobotBase()
 void RobotBase::Update(float timeDelta)
 {
 	//Update AI
-	_sm->Update(timeDelta);
+	_stateManager->Update(timeDelta);
 }
 
 Vektoria::CPlacement* RobotBase::GetPlacement()
