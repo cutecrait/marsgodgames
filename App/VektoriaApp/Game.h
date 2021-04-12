@@ -21,6 +21,7 @@
 
 
 #include "Vektoria\Root.h"
+#include "CTerrain.h"
 
 using namespace Vektoria;
 
@@ -38,19 +39,24 @@ public:
 	void WindowReSize(int iNewWidth, int iNewHeight);											// Wird immer dann aufgerufen, wenn der Benutzer die Fenstergröße verändert hat
 
 private:
-    // Hier ist Platz für Deine Vektoriaobjekte:
+	// Hier ist Platz für Deine Vektoriaobjekte:
 
 	//lea START
 	CRoot m_zr;
 	CFrame m_zf;
 	CViewport m_zv;
 	COverlay m_zo;	//ui
-	CScene m_zs;	
+	CScene m_zs;
 	CCamera m_zc;
-	CPlacement m_zpCamera;	
+	CPlacement m_zpCamera;
 	CImage m_zi;
 
-	//World Ground
+	//World Ground || Karo START
+	CTerrain m_zTerrain;
+	CPlacement m_zTerrainPlacement;
+	CGeoTerrains m_zCollisionTerrain;
+	// Karo END
+
 	CPlacement m_zpPlane;
 	CGeoGrid m_zgPlane;
 	CMaterial m_zmPlane;
