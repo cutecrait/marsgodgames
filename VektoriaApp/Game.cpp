@@ -13,7 +13,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 {
 	// Hier die Initialisierung Deiner Vektoria-Objekte einf�gen:
 	m_zr.Init(psplash);
-	//m_zf.SetApiRender(eApiRender_DirectX12);
+	m_zf.SetApiRender(eApiRender_DirectX12);
 	m_zf.Init(hwnd, procOS);
 	m_zv.InitFull(&m_zc);	//with adresse of camera bcoz viewport
 	m_zo.InitFull(&m_zi);
