@@ -21,6 +21,7 @@
 
 
 #include "Vektoria\Root.h"
+#include "clickmanager.h"
 
 using namespace Vektoria;
 
@@ -58,7 +59,18 @@ private:
 
 	//Sun?
 	CLightParallel m_zlp;
+	//lea END
+	// 
+	//hendrik start:
+	std::vector <CMaterial*> allMatsPtr;
+	CDeviceCursor einCursor;
+	clickmanager derManager;
+	CWritingFont einsFont;
+	CMaterial mat1;
+	CMaterial mat2;
+	CMaterial mat3;
+	//hendrik end
 };
-//lea END
+
 
 

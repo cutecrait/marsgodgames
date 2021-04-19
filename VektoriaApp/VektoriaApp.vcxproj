@@ -151,10 +151,17 @@
   <ItemGroup>
     <ClInclude Include="Action.h" />
     <ClInclude Include="AStarAlgorithm.h" />
+    <ClInclude Include="clickmanager.h" />
     <ClInclude Include="Connection.h" />
     <ClInclude Include="Decision.h" />
     <ClInclude Include="FollowPathAction.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GuiButton.h" />
+    <ClInclude Include="GuiElement.h" />
+    <ClInclude Include="GuiImageColorPicker.h" />
+    <ClInclude Include="GuiSelect.h" />
+    <ClInclude Include="GuiSlider.h" />
+    <ClInclude Include="GuiUtils.h" />
     <ClInclude Include="IPathSearchAlgorithm.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="resource.h" />
@@ -168,10 +175,16 @@
   <ItemGroup>
     <ClCompile Include="Action.cpp" />
     <ClCompile Include="AStarAlgorithm.cpp" />
+    <ClCompile Include="clickmanager.cpp" />
     <ClCompile Include="Connection.cpp" />
     <ClCompile Include="Decision.cpp" />
     <ClCompile Include="FollowPathAction.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GuiButton.cpp" />
+    <ClCompile Include="GuiElement.cpp" />
+    <ClCompile Include="GuiImageColorPicker.cpp" />
+    <ClCompile Include="GuiSelect.cpp" />
+    <ClCompile Include="GuiSlider.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="RobotBase.cpp" />
     <ClCompile Include="State.cpp" />
