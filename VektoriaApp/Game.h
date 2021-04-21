@@ -21,6 +21,7 @@
 
 
 #include "Vektoria\Root.h"
+#include "MapSquare.h"
 
 using namespace Vektoria;
 
@@ -55,6 +56,8 @@ private:
 	CGeoGrid m_zgPlane;
 	CMaterial m_zmPlane;
 	CDeviceKeyboard m_zdk;
+	CDeviceCursor m_zdc;
+	vector<MapSquare*> squares;
 
 	//Sun?
 	CLightParallel m_zlp;

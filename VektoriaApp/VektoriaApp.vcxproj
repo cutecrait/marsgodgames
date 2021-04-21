@@ -156,6 +156,7 @@
     <ClInclude Include="FollowPathAction.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="IPathSearchAlgorithm.h" />
+    <ClInclude Include="MapSquare.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="RobotBase.h" />
@@ -172,6 +173,7 @@
     <ClCompile Include="Decision.cpp" />
     <ClCompile Include="FollowPathAction.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="MapSquare.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="RobotBase.cpp" />
     <ClCompile Include="State.cpp" />

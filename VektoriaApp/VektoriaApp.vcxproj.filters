@@ -84,6 +84,9 @@
     <ClInclude Include="Connection.h">
       <Filter>Robot\Pathfinding\Map</Filter>
     </ClInclude>
+    <ClInclude Include="MapSquare.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -124,6 +127,9 @@
     </ClCompile>
     <ClCompile Include="Transition.cpp">
       <Filter>Robot\AI\Transition</Filter>
+    </ClCompile>
+    <ClCompile Include="MapSquare.cpp">
+      <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
