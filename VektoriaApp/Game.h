@@ -22,6 +22,7 @@
 
 #include "Vektoria\Root.h"
 #include "MapSquare.h"
+#include "clickmanager.h"
 
 using namespace Vektoria;
 
@@ -33,13 +34,13 @@ public:
 	~CGame(void);																				// Wird nach Ende einmal aufgerufen (Destruktor)
 
 	void Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CSplash * psplash);	// Wird zu Begin einmal aufgerufen
-	void Tick(float fTime, float fTimeDelta);													// Wird während der Laufzeit bei jedem Bildaufbau aufgerufen
+	void Tick(float fTime, float fTimeDelta);													// Wird wï¿½hrend der Laufzeit bei jedem Bildaufbau aufgerufen
 	void Fini();																				// Wird am Ende einmal aufgerufen
 
-	void WindowReSize(int iNewWidth, int iNewHeight);											// Wird immer dann aufgerufen, wenn der Benutzer die Fenstergröße verändert hat
+	void WindowReSize(int iNewWidth, int iNewHeight);											// Wird immer dann aufgerufen, wenn der Benutzer die Fenstergrï¿½ï¿½e verï¿½ndert hat
 
 private:
-    // Hier ist Platz für Deine Vektoriaobjekte:
+    // Hier ist Platz fï¿½r Deine Vektoriaobjekte:
 
 	//lea START
 	CRoot m_zr;
@@ -50,18 +51,25 @@ private:
 	CCamera m_zc;
 	CPlacement m_zpCamera;	
 	CImage m_zi;
+	CDeviceKeyboard m_zdk;
 
 	//World Ground
-	CPlacement m_zpPlane;
-	CGeoGrid m_zgPlane;
-	CMaterial m_zmPlane;
-	CDeviceKeyboard m_zdk;
-	CDeviceCursor m_zdc;
 	CPlacements squares;
 
 	//Sun?
 	CLightParallel m_zlp;
+	//lea END
+	// 
+	//hendrik start:
+	std::vector <CMaterial*> allMatsPtr;
+	CDeviceCursor einCursor;
+	clickmanager derManager;
+	CWritingFont einsFont;
+	CMaterial mat1;
+	CMaterial mat2;
+	CMaterial mat3;
+	//hendrik end
 };
-//lea END
+
 
 

@@ -37,6 +37,9 @@
     <Filter Include="Robot\Pathfinding\Map">
       <UniqueIdentifier>{e9cc218c-997f-4f2b-bbf8-cd906631ec02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Gui">
+      <UniqueIdentifier>{2e64a55c-1d9b-445b-807d-5627dc717fe4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -86,6 +89,26 @@
     </ClInclude>
     <ClInclude Include="MapSquare.h">
       <Filter>Headerdateien</Filter>
+    <ClInclude Include="GuiButton.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiElement.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiSelect.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="clickmanager.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiUtils.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiSlider.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiImageColorPicker.h">
+      <Filter>Gui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +153,23 @@
     </ClCompile>
     <ClCompile Include="MapSquare.cpp">
       <Filter>Quelldateien</Filter>
+    <ClCompile Include="GuiButton.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiElement.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiSelect.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="clickmanager.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiSlider.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiImageColorPicker.cpp">
+      <Filter>Gui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
