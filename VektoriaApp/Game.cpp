@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "MapSquare.h"
 
 CGame::CGame(void)
 {
@@ -42,7 +43,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 		{
 			auto sqr = new MapSquare(ix, 0.0, iz, 2);
 			m_zs.AddPlacement(sqr);
-			squares.push_back(sqr);
+			squares.Add(sqr);
 		}
 	}
 
@@ -54,7 +55,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	//Cam is looking on the plane in a 45' angle
 	m_zpCamera.Translate(10, 10, 10);
 	//m_zpCamera.SetPointing(&CHVector(0, 0, 0));
-	m_zpCamera.SetPointing(squares.front());
+	m_zpCamera.SetPointing(squares.m_applacement[0]);
 
 	m_zmPlane.MakeTextureDiffuse("textures//ENV.jpg");
 }
@@ -69,9 +70,11 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 
 
 	// deselect others
-	for (auto const square : squares)
+	for (int i = 0; i<squares.m_iPlacements; i++)
 	{
-		square->Deselect();
+		auto sqr = static_cast<MapSquare*>(squares.m_applacement[i]);
+		if(sqr)
+			sqr->Deselect();
 	}
 
 	// raytest

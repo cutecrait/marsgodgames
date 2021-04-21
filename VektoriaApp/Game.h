@@ -57,7 +57,7 @@ private:
 	CMaterial m_zmPlane;
 	CDeviceKeyboard m_zdk;
 	CDeviceCursor m_zdc;
-	vector<MapSquare*> squares;
+	CPlacements squares;
 
 	//Sun?
 	CLightParallel m_zlp;
