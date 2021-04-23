@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "MapSquare.h"
+#include "CCameraController.h"
 
 CGame::CGame(void)
 {
@@ -11,15 +12,15 @@ CGame::~CGame(void)
 
 void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CSplash * psplash)	//psplash is splash screen
 {
-	// ROOT
+	// ROOT--------------------------------
 	m_zr.Init(psplash);
 	m_zr.AddScene(&m_zs);
-	m_zf.SetApiRender(eApiRender_DirectX12);
+	//m_zf.SetApiRender(eApiRender_DirectX12);
 	m_zf.Init(hwnd, procOS);
 	m_zr.AddFrame(&m_zf);
 
 
-	// CAMERA & VIEWPORT
+	// CAMERA & VIEWPORT-------------------------------------------------------
 	m_zv.InitFull(&m_zc);	//with adresse of camera bcoz viewport
 	m_zo.InitFull(&m_zi);
 	m_zi.Init("textures\\ENV.jpg");	//double slash
@@ -27,19 +28,35 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_zs.AddPlacement(&m_zpCamera);
 	m_zpCamera.AddCamera(&m_zc);
 	m_zf.AddViewport(&m_zv);
-	
 
-	// INPUTS
+	m_zpCamera.RotateX(-QUARTERPI); //45°-Winkel
+	m_zpCamera.RotateYDelta(PI);
+	m_zpCamera.TranslateDelta(0, 5.f, 0);
+
+	//<Darius>
+	CameraController.AssignCameraPlacement(&m_zpCamera);
+	CameraController.AssignDeviceKeyboard(&m_zdk);
+	CameraController.AssignDeviceMouse(&m_zdm);
+	/*
+	Funktionsweise der Kamera:
+		WASD: Translieren der Kamera parallel zur XZ-Ebene
+		Mausrad: Zoomen (Bewegung in Blickrichtung)
+		rechter Mausbutton + Schwenken: Kamerarotation
+	*/
+	//</Darius>
+	
+	// INPUTS---------------------------------------------------
 	m_zf.AddDeviceCursor(&einCursor);
 	m_zf.AddDeviceKeyboard(&m_zdk);
+	m_zf.AddDeviceMouse(&m_zdm);
 
 
-	// LIGHTING
-	m_zlp.Init(CHVector(0.2f, -0.8f, -0.2f), CColor(1.0f, 1.0f, 0.0f));	//yellow sun?
+	// LIGHTING--------------------------------------
+	m_zlp.Init(CHVector(0.2f, 0.8f, 0.2f), CColor(1.0f, 1.0f, 0));	//yellow sun?
 	m_zs.AddLightParallel(&m_zlp);
 
 
-	// OVERLAY
+	// OVERLAY-----------------------------------------
 	mat1.MakeTextureSprite("textures\\ENV.jpg");
 	mat2.MakeTextureSprite("textures\\Des.jpg");
 	mat3.MakeTextureSprite("textures\\red_image.jpg");
@@ -62,7 +79,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_zv.AddOverlay(derManager.getSpecfic(4));
 	
 
-	// MAP SQUARES
+	// MAP SQUARES---------------------------------------
 	for (int iz = 0; iz < 10; iz++)
 	{
 		for (int ix = 0; ix < 10; ix++)
@@ -72,11 +89,6 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 			squares.Add(sqr);
 		}
 	}
-	//Cam is looking on the plane in a 45' angle
-	m_zpCamera.Translate(10, 10, 10);
-	//m_zpCamera.SetPointing(&CHVector(0, 0, 0));
-	m_zpCamera.SetPointing(squares.m_applacement[0]);
-
 
 }
 
@@ -84,13 +96,10 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 {
 	m_zr.Tick(fTimeDelta);
 
+	// CAMERA-----------------------------------
+	CameraController.UpdateCameraMovement(fTimeDelta); //Aktualisiert die Kamerabewegung
 
-	// CAMERA
-	auto faster = fTimeDelta * 4;
-	m_zdk.PlaceWASD(m_zpCamera, faster, true);
-
-
-	// MAP SQUARES
+	// MAP SQUARES---------------------------------------
 	// deselect other map squares
 	for (int i = 0; i<squares.m_iPlacements; i++)
 	{
@@ -98,17 +107,15 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 		if(sqr)
 			sqr->Deselect();
 	}
-	int mouseX, mouseY;
-	einCursor.GetAbsolute(mouseX, mouseY);
+	//int mouseX, mouseY;
+	//einCursor.GetAbsolute(mouseX, mouseY);
 	auto selectedPlace = einCursor.PickPlacement();
-	if(selectedPlace)
-		selectedPlace->m_pgeos->m_apgeo[0]->m_pmaterial->Translate(CColor(0.2, 1.0, 0.2));
+	if (selectedPlace)
+		selectedPlace->m_pgeos->m_apgeo[0]->m_pmaterial->Translate(CColor(0.2, 0.8, 0.2));
 
-
-	// UI
-	derManager.Click(fTimeDelta);
 	
-
+	// UI-----------------------------------
+	derManager.Click(fTimeDelta);
 }
 
 void CGame::Fini()

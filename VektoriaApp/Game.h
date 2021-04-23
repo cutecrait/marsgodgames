@@ -22,6 +22,7 @@
 
 #include "Vektoria\Root.h"
 #include "MapSquare.h"
+#include "CCameraController.h"
 #include "clickmanager.h"
 
 using namespace Vektoria;
@@ -52,6 +53,11 @@ private:
 	CPlacement m_zpCamera;	
 	CImage m_zi;
 	CDeviceKeyboard m_zdk;
+	CDeviceMouse m_zdm;
+
+	//<Darius>
+	CCameraController CameraController;
+	//</Darius>
 
 	//World Ground
 	CPlacements squares;
@@ -69,6 +75,7 @@ private:
 	CMaterial mat2;
 	CMaterial mat3;
 	//hendrik end
+
 };
 
 
