@@ -1,190 +1,67 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Quelldateien">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Headerdateien">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Ressourcendateien">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Robot">
-      <UniqueIdentifier>{8bcc2039-f08c-4712-b60b-ad2f9dfc861e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Robot\AI">
-      <UniqueIdentifier>{04ebad2b-ad54-4a21-8db5-ecbd8e8d26d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Robot\AI\State">
-      <UniqueIdentifier>{d3c5d00b-718b-4a38-96aa-2daed91ecb75}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Robot\AI\Transition">
-      <UniqueIdentifier>{b6210048-6435-4724-9c19-db9cfdc0e9c4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Robot\AI\Action">
-      <UniqueIdentifier>{3b93706b-d9dd-488e-a2ef-4b57379c4d43}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Robot\AI\Decision">
-      <UniqueIdentifier>{6ec8ae4a-e839-4a42-babd-3e41022a8b7c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Robot\Pathfinding">
-      <UniqueIdentifier>{2812474d-0c8c-4415-bc6b-072ec89aaad1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Robot\Pathfinding\Map">
-      <UniqueIdentifier>{e9cc218c-997f-4f2b-bbf8-cd906631ec02}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Gui">
-      <UniqueIdentifier>{2e64a55c-1d9b-445b-807d-5627dc717fe4}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="Action.cpp" />
+    <ClCompile Include="AStarAlgorithm.cpp" />
+    <ClCompile Include="CCameraController.cpp" />
+    <ClCompile Include="clickmanager.cpp" />
+    <ClCompile Include="Connection.cpp" />
+    <ClCompile Include="Decision.cpp" />
+    <ClCompile Include="FollowPathAction.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="MapSquare.cpp" />
+    <ClCompile Include="GuiButton.cpp" />
+    <ClCompile Include="GuiElement.cpp" />
+    <ClCompile Include="GuiImageColorPicker.cpp" />
+    <ClCompile Include="GuiSelect.cpp" />
+    <ClCompile Include="GuiSlider.cpp" />
+    <ClCompile Include="Node.cpp" />
+    <ClCompile Include="RobotBase.cpp" />
+    <ClCompile Include="State.cpp" />
+    <ClCompile Include="StateManager.cpp" />
+    <ClCompile Include="TimedDecision.cpp" />
+    <ClCompile Include="Transition.cpp" />
+    <ClCompile Include="VektoriaApp.cpp" />
+    <ClCompile Include="CTerrain.cpp" />
+    <ClCompile Include="Load.cpp" />
+    <ClCompile Include="Save.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Action.h">
-      <Filter>Robot\AI\Action</Filter>
-    </ClInclude>
-    <ClInclude Include="AStarAlgorithm.h">
-      <Filter>Robot\Pathfinding</Filter>
-    </ClInclude>
-    <ClInclude Include="TimedDecision.h">
-      <Filter>Robot\AI\Decision</Filter>
-    </ClInclude>
-    <ClInclude Include="Decision.h">
-      <Filter>Robot\AI\Decision</Filter>
-    </ClInclude>
-    <ClInclude Include="StateManager.h">
-      <Filter>Robot\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="State.h">
-      <Filter>Robot\AI\State</Filter>
-    </ClInclude>
-    <ClInclude Include="Transition.h">
-      <Filter>Robot\AI\Transition</Filter>
-    </ClInclude>
-    <ClInclude Include="RobotBase.h">
-      <Filter>Robot\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="Node.h">
-      <Filter>Robot\Pathfinding\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="IPathSearchAlgorithm.h">
-      <Filter>Robot\Pathfinding</Filter>
-    </ClInclude>
-    <ClInclude Include="FollowPathAction.h">
-      <Filter>Robot\AI\Action</Filter>
-    </ClInclude>
-    <ClInclude Include="Connection.h">
-      <Filter>Robot\Pathfinding\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="MapSquare.h">
-      <Filter>Headerdateien</Filter>
-    <ClInclude Include="GuiButton.h">
-      <Filter>Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="GuiElement.h">
-      <Filter>Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="GuiSelect.h">
-      <Filter>Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="clickmanager.h">
-      <Filter>Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="GuiUtils.h">
-      <Filter>Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="GuiSlider.h">
-      <Filter>Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="GuiImageColorPicker.h">
-      <Filter>Gui</Filter>
-    </ClInclude>
+    <ClInclude Include="Action.h" />
+    <ClInclude Include="AStarAlgorithm.h" />
+    <ClInclude Include="CCameraController.h" />
+    <ClInclude Include="clickmanager.h" />
+    <ClInclude Include="Connection.h" />
+    <ClInclude Include="Decision.h" />
+    <ClInclude Include="FollowPathAction.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GuiButton.h" />
+    <ClInclude Include="GuiElement.h" />
+    <ClInclude Include="GuiImageColorPicker.h" />
+    <ClInclude Include="GuiSelect.h" />
+    <ClInclude Include="GuiSlider.h" />
+    <ClInclude Include="GuiUtils.h" />
+    <ClInclude Include="IPathSearchAlgorithm.h" />
+    <ClInclude Include="MapSquare.h" />
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="RobotBase.h" />
+    <ClInclude Include="State.h" />
+    <ClInclude Include="StateManager.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="TimedDecision.h" />
+    <ClInclude Include="Transition.h" />
+    <ClInclude Include="CTerrain.h" />
+    <ClInclude Include="Load.h" />
+    <ClInclude Include="Save.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="VektoriaApp.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Action.cpp">
-      <Filter>Robot\AI\Action</Filter>
-    </ClCompile>
-    <ClCompile Include="AStarAlgorithm.cpp">
-      <Filter>Robot\Pathfinding</Filter>
-    </ClCompile>
-    <ClCompile Include="Connection.cpp">
-      <Filter>Robot\Pathfinding\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="Decision.cpp">
-      <Filter>Robot\AI\Decision</Filter>
-    </ClCompile>
-    <ClCompile Include="FollowPathAction.cpp">
-      <Filter>Robot\AI\Action</Filter>
-    </ClCompile>
-    <ClCompile Include="Node.cpp">
-      <Filter>Robot\Pathfinding\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="RobotBase.cpp">
-      <Filter>Robot</Filter>
-    </ClCompile>
-    <ClCompile Include="State.cpp">
-      <Filter>Robot\AI\State</Filter>
-    </ClCompile>
-    <ClCompile Include="StateManager.cpp">
-      <Filter>Robot\AI</Filter>
-    </ClCompile>
-    <ClCompile Include="TimedDecision.cpp">
-      <Filter>Robot\AI\Decision</Filter>
-    </ClCompile>
-    <ClCompile Include="Transition.cpp">
-      <Filter>Robot\AI\Transition</Filter>
-    </ClCompile>
-    <ClCompile Include="MapSquare.cpp">
-      <Filter>Quelldateien</Filter>
-    <ClCompile Include="GuiButton.cpp">
-      <Filter>Gui</Filter>
-    </ClCompile>
-    <ClCompile Include="GuiElement.cpp">
-      <Filter>Gui</Filter>
-    </ClCompile>
-    <ClCompile Include="GuiSelect.cpp">
-      <Filter>Gui</Filter>
-    </ClCompile>
-    <ClCompile Include="clickmanager.cpp">
-      <Filter>Gui</Filter>
-    </ClCompile>
-    <ClCompile Include="GuiSlider.cpp">
-      <Filter>Gui</Filter>
-    </ClCompile>
-    <ClCompile Include="GuiImageColorPicker.cpp">
-      <Filter>Gui</Filter>
-    </ClCompile>
+    <ResourceCompile Include="VektoriaApp.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\VektoriaTest.ico">
-      <Filter>Ressourcendateien</Filter>
-    </None>
+    <None Include="res\VektoriaTest.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="VektoriaApp.rc">
-      <Filter>Ressourcendateien</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Gebrauchsanweisung.txt">
-      <Filter>Robot\AI</Filter>
-    </Text>
+    <Text Include="Gebrauchsanweisung.txt" />
   </ItemGroup>
 </Project>

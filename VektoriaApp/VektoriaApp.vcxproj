@@ -154,6 +154,7 @@
     <ClInclude Include="CCameraController.h" />
     <ClInclude Include="clickmanager.h" />
     <ClInclude Include="Connection.h" />
+    <ClInclude Include="CTerrain.h" />
     <ClInclude Include="Decision.h" />
     <ClInclude Include="FollowPathAction.h" />
     <ClInclude Include="Game.h" />
@@ -164,10 +165,12 @@
     <ClInclude Include="GuiSlider.h" />
     <ClInclude Include="GuiUtils.h" />
     <ClInclude Include="IPathSearchAlgorithm.h" />
+    <ClInclude Include="Load.h" />
     <ClInclude Include="MapSquare.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="RobotBase.h" />
+    <ClInclude Include="Save.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="targetver.h" />
@@ -180,9 +183,11 @@
     <ClCompile Include="CCameraController.cpp" />
     <ClCompile Include="clickmanager.cpp" />
     <ClCompile Include="Connection.cpp" />
+    <ClCompile Include="CTerrain.cpp" />
     <ClCompile Include="Decision.cpp" />
     <ClCompile Include="FollowPathAction.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Load.cpp" />
     <ClCompile Include="MapSquare.cpp" />
     <ClCompile Include="GuiButton.cpp" />
     <ClCompile Include="GuiElement.cpp" />
@@ -191,6 +196,7 @@
     <ClCompile Include="GuiSlider.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="RobotBase.cpp" />
+    <ClCompile Include="Save.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="TimedDecision.cpp" />

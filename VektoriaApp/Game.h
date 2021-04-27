@@ -24,6 +24,7 @@
 #include "MapSquare.h"
 #include "CCameraController.h"
 #include "clickmanager.h"
+#include "Load.h"
 
 using namespace Vektoria;
 
@@ -76,6 +77,8 @@ private:
 	CMaterial mat3;
 	//hendrik end
 
+	// Karo 
+	Load m_ldgame;
 };
 
 

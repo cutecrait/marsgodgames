@@ -89,7 +89,16 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 			squares.Add(sqr);
 		}
 	}
+	//Terrain
+	m_zs.AddPlacement(m_ldgame.LoadTerrain());
 
+	// Testcubes
+	/*
+	for (int i = 0; i < 100; i++)
+	{
+		m_zs.AddPlacement(m_ldgame.GetPlacements(i));
+	}
+	*/
 }
 
 void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
