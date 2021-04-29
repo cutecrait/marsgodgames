@@ -151,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="Action.h" />
     <ClInclude Include="AStarAlgorithm.h" />
+    <ClInclude Include="BeispielForGameObject.h" />
     <ClInclude Include="CCameraController.h" />
     <ClInclude Include="clickmanager.h" />
     <ClInclude Include="Connection.h" />
@@ -158,6 +159,7 @@
     <ClInclude Include="Decision.h" />
     <ClInclude Include="FollowPathAction.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="GuiButton.h" />
     <ClInclude Include="GuiElement.h" />
     <ClInclude Include="GuiImageColorPicker.h" />
@@ -181,6 +183,7 @@
   <ItemGroup>
     <ClCompile Include="Action.cpp" />
     <ClCompile Include="AStarAlgorithm.cpp" />
+    <ClCompile Include="BeispielForGameObject.cpp" />
     <ClCompile Include="CCameraController.cpp" />
     <ClCompile Include="clickmanager.cpp" />
     <ClCompile Include="Connection.cpp" />
@@ -188,6 +191,7 @@
     <ClCompile Include="Decision.cpp" />
     <ClCompile Include="FollowPathAction.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Load.cpp" />
     <ClCompile Include="MapSquare.cpp" />
     <ClCompile Include="GuiButton.cpp" />

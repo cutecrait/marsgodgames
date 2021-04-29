@@ -26,6 +26,8 @@
     <ClCompile Include="Load.cpp" />
     <ClCompile Include="Save.cpp" />
     <ClCompile Include="UI.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="BeispielForGameObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Action.h" />
@@ -56,6 +58,8 @@
     <ClInclude Include="Load.h" />
     <ClInclude Include="Save.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="BeispielForGameObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VektoriaApp.rc" />

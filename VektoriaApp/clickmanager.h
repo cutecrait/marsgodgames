@@ -3,7 +3,7 @@
 #include "UI.h"
 #include "GuiButton.h"
 #include "GuiSelect.h"
-
+#include "BeispielForGameObject.h"
 using namespace Vektoria;
 class clickmanager
 {
@@ -13,11 +13,10 @@ public:
 	
 	void Click(float);
 	void Init(UI* menu , CScene* zs) { m_menu = menu;
-	m_sphere.Init(0.5, nullptr, 10, 10);
-	einPlace.AddGeo(&m_sphere);
-	zs->AddPlacement(&einPlace);
+	MONKY.getPlacement()->SwitchOff();
+	zs->AddPlacement(MONKY.getPlacement());
 	}
-	void makeBuilding(CPlacement*);
+	void makeBuilding(CPlacement*, CDeviceCursor*);
 
 private:
 	
@@ -25,12 +24,12 @@ private:
 	
 	//std::vector <CMaterial*> m_MATbuildingKind;
 	int whatKind;
-	int WhatSpecific;
+	int WhatSpecific=1;
 	int unterschied=-1;
 	bool clicked = false;
-	CGeoSphere m_sphere;
-	CPlacement einPlace;
+	
 	UI* m_menu;
+	BeispielForGameObject MONKY;
 
 };
 

@@ -69,7 +69,7 @@ private:
 	//lea END
 	// 
 	//hendrik start:
-	std::vector <CMaterial*> allMatsPtr;
+	
 	CDeviceCursor einCursor;
 	clickmanager derManager;
 	CWritingFont einsFont;

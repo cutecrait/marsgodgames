@@ -8,10 +8,7 @@ CGame::CGame(void)
 
 CGame::~CGame(void)
 {
-	for (auto itO : allMatsPtr) {
-		delete itO;
-	}
-	allMatsPtr.clear();
+	
 }
 
 void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CSplash * psplash)	//psplash is splash screen
@@ -61,29 +58,14 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 
 
 	// OVERLAY-----------------------------------------
-	/*mat1.MakeTextureSprite("textures\\ENV.jpg");
-	mat2.MakeTextureSprite("textures\\Des.jpg");
-	mat3.MakeTextureSprite("textures\\red_image.jpg");
-	//der allMatsPtr muss noch bestückt werden hier erstmal nur 3 materials für insgesamt 27 buttons:
-
-	for (int i = 0; i < 9; i++) {
-		allMatsPtr.push_back(&mat1);
-		allMatsPtr.push_back(&mat2);
-		allMatsPtr.push_back(&mat3);
-	}*/
+	// texturen werden jetzt in UI erstellt. 
+	// UI = menu, derManager = click-event.
 	
 	einsFont.LoadPreset("LucidaConsoleBlack");
 	einsFont.SetChromaKeyingOn(); //hiermit hat die font keinen hässlichen hintergrund
 	menu.InitMenu(&einCursor, &einsFont, &m_zv);
 	derManager.Init(&menu, &m_zs);
-	//derManager.InitMenu(&einCursor, &einsFont, allMatsPtr, &m_zs);
-	/*m_zv.AddOverlay(derManager.getStart());
-	m_zv.AddOverlay(derManager.getBuildingKind());
-	m_zv.AddOverlay(derManager.getSpecfic(0));
-	m_zv.AddOverlay(derManager.getSpecfic(1));
-	m_zv.AddOverlay(derManager.getSpecfic(2));
-	m_zv.AddOverlay(derManager.getSpecfic(3));
-	m_zv.AddOverlay(derManager.getSpecfic(4));*/
+	
 	
 
 	// MAP SQUARES---------------------------------------
@@ -127,14 +109,14 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 	//einCursor.GetAbsolute(mouseX, mouseY);
 	auto selectedPlace = einCursor.PickPlacement();
 	if (selectedPlace)
-		selectedPlace->m_pgeos->m_apgeo[0]->m_pmaterial->Translate(CColor(0.2, 0.8, 0.2));
+		//selectedPlace->m_pgeos->m_apgeo[0]->m_pmaterial->Translate(CColor(0.2, 0.8, 0.2));
 	
 	
 	// UI-----------------------------------
 	derManager.Click(fTimeDelta);
 
 	
-	derManager.makeBuilding(selectedPlace);
+	derManager.makeBuilding(selectedPlace,&einCursor);
 }
 
 void CGame::Fini()
