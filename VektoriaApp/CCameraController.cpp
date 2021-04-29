@@ -59,9 +59,9 @@ void CCameraController::UpdateCameraMovement(float deltaTime)
 	if (m != 0)
 	{
 		if (m > 0)
-			m_zpcamera->TranslateDelta(Camera_Direction * deltaTime * TRANSLATEFACTOR * 5.f);
+			m_zpcamera->TranslateDelta(Camera_Direction * deltaTime * TRANSLATEFACTOR * 100.f);
 
-		else m_zpcamera->TranslateDelta(-Camera_Direction * deltaTime * TRANSLATEFACTOR * 5.f);
+		else m_zpcamera->TranslateDelta(-Camera_Direction * deltaTime * TRANSLATEFACTOR * 100.f);
 	}
 
 

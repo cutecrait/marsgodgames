@@ -1,6 +1,6 @@
 #pragma once
 #include "CTerrain.h"
-#include "GameObject.h"
+//#include "GameObject.h"
 
 #include "Vektoria\Root.h"
 #include <map>

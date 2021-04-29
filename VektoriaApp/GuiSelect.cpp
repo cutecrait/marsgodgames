@@ -9,7 +9,11 @@ namespace Vektoria
 			delete itO;
 		}
 		m_vOptions.clear();
-		
+
+		for (auto itO : m_zmOptionInactive) {
+			delete itO;
+		}
+		m_zmOptionInactive.clear();
 	}
 
 	void CGuiSelect::Init(CDeviceCursor* deviceCursor, CWritingFont* font)
@@ -231,9 +235,9 @@ namespace Vektoria
 		}
 	}
 	//sucht sich die materialien aus den groﬂen materialen vektor aus gamecpp 
-	void CGuiSelect::makeInactiveMats(CMaterial* mattis[]) {
+	void CGuiSelect::makeInactiveMats(CMaterial* mattis) {
 		for (int i = 0; i < sizeof(mattis); i++) {
-			m_zmOptionInactive.push_back(mattis[i]);
+			m_zmOptionInactive.push_back(&mattis[i]);
 		}
 		
 	}

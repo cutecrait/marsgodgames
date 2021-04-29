@@ -25,6 +25,7 @@
 #include "CCameraController.h"
 #include "clickmanager.h"
 #include "Load.h"
+#include "UI.h"
 
 using namespace Vektoria;
 
@@ -75,6 +76,8 @@ private:
 	CMaterial mat1;
 	CMaterial mat2;
 	CMaterial mat3;
+	CPlacement dummyPlace;
+	UI menu;
 	//hendrik end
 
 	// Karo 

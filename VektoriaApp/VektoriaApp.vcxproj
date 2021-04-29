@@ -176,6 +176,7 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TimedDecision.h" />
     <ClInclude Include="Transition.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Action.cpp" />
@@ -201,6 +202,7 @@
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="TimedDecision.cpp" />
     <ClCompile Include="Transition.cpp" />
+    <ClCompile Include="UI.cpp" />
     <ClCompile Include="VektoriaApp.cpp" />
   </ItemGroup>
   <ItemGroup>

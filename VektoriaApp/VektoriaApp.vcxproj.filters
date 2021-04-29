@@ -25,6 +25,7 @@
     <ClCompile Include="CTerrain.cpp" />
     <ClCompile Include="Load.cpp" />
     <ClCompile Include="Save.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Action.h" />
@@ -54,6 +55,7 @@
     <ClInclude Include="CTerrain.h" />
     <ClInclude Include="Load.h" />
     <ClInclude Include="Save.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VektoriaApp.rc" />
@@ -63,5 +65,10 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Gebrauchsanweisung.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{05999732-5541-4b9f-9d57-5ad71a3ca26e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
