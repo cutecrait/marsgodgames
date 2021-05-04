@@ -170,11 +170,13 @@
     <ClInclude Include="Load.h" />
     <ClInclude Include="MapSquare.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="NodeController.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="RobotBase.h" />
     <ClInclude Include="Save.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateManager.h" />
+    <ClInclude Include="SteeringManager.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TimedDecision.h" />
     <ClInclude Include="Transition.h" />
@@ -200,10 +202,12 @@
     <ClCompile Include="GuiSelect.cpp" />
     <ClCompile Include="GuiSlider.cpp" />
     <ClCompile Include="Node.cpp" />
+    <ClCompile Include="NodeController.cpp" />
     <ClCompile Include="RobotBase.cpp" />
     <ClCompile Include="Save.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateManager.cpp" />
+    <ClCompile Include="SteeringManager.cpp" />
     <ClCompile Include="TimedDecision.cpp" />
     <ClCompile Include="Transition.cpp" />
     <ClCompile Include="UI.cpp" />

@@ -8,7 +8,9 @@ namespace Pathfinding
 	{
 	public:
 
+		AStarAlgorithm();
 		virtual void Compute(Node* startnode, Node* goalnode) override;
+		virtual std::vector<Node*> GetPath() override;
 
 	private:
 
@@ -23,10 +25,10 @@ namespace Pathfinding
 		/// <para>Key: aktueller Knoten</para>
 		/// <para>Value: Vorläufer von Key</para>
 		/// </summary>
-		std::multimap<Node*, Node*> _closed;
+		std::map<Node*, Node*> _closed;
 
-		Node*& _startnode;
-		Node*& _goalnode;
+		Node* _startnode;
+		Node* _goalnode;
 
 		void AddOpenNode(Node* const& node);
 		void TryAddOpenNode(Node* const& node);

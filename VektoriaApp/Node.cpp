@@ -4,11 +4,13 @@
 
 namespace Pathfinding
 {
-	Node::Node(float x, float y, float z)
+	Node::Node(Vektoria::CHVector* vector)
 	{
-		_x = x;
-		_y = y;
-		_z = z;
+		_posVector = vector;
+	}
+
+	Node::Node(Vektoria::CPlacement* position) : Node(&(position->GetPos()))
+	{
 	}
 
 	void Node::AddConnection(Connection*& connection)
@@ -16,20 +18,22 @@ namespace Pathfinding
 		_connections.push_back(connection);
 	}
 
+	void Node::RemoveConnection(Connection* connection)
+	{
+		std::vector<Connection*>::iterator pos = std::find(_connections.begin(), _connections.end(), connection);
+		if (pos != _connections.end()) // pos == .end() => element not found
+		{
+			delete *pos;
+			_connections.erase(pos);
+		}
+	}
+
 	std::vector<Connection*> Node::GetConnections()
 	{
 		return _connections;
 	}
-	float Node::GetX()
+	Vektoria::CHVector* Node::GetPosVector()
 	{
-		return _x;
-	}
-	float Node::GetY()
-	{
-		return _y;
-	}
-	float Node::GetZ()
-	{
-		return _z;
+		return _posVector;
 	}
 }
