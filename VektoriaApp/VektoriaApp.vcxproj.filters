@@ -84,6 +84,9 @@
     <ClCompile Include="BeispielForGameObject.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="CAudioManager.cpp">
+      <Filter>Audio</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -176,6 +179,9 @@
     <ClInclude Include="BeispielForGameObject.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="CAudioManager.h">
+      <Filter>Audio</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VektoriaApp.rc" />
@@ -231,6 +237,9 @@
     </Filter>
     <Filter Include="GameObject">
       <UniqueIdentifier>{fc839222-26fc-4318-8847-f2201a86027d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio">
+      <UniqueIdentifier>{9fb97b74-6487-4725-97df-81656f1b7276}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

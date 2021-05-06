@@ -32,6 +32,8 @@ namespace Vektoria
 
 		// Overlay display order
 		SetLayerGui();
+
+		
 	}
 
 	bool CGuiElement::IsHovered()

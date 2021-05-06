@@ -67,14 +67,17 @@ void clickmanager::Click(float ftimedelta)
 
 void clickmanager::makeBuilding(CPlacement* selected,CDeviceCursor* cursor)
 {
-	if (cursor->ButtonPressedLeft()) {
+	if (cursor->ButtonDownLeft()) {
 		clicked = true;
+		
 		if (m_menu->getSpecificSelect(1)->GetActivePosition() >= 0 && selected && clicked) {
 
 			MONKY.getPlacement()->Translate(selected->GetPos());
 			//MONKY.getPlacement()->Translate(selected->GetPos());
 			MONKY.getPlacement()->SwitchOn();
-			if (cursor->ButtonPressedLeft()) {
+
+			Building_Sound->Start();
+			if (cursor->ButtonDownLeft()) {
 				clicked = false;
 			}
 		}

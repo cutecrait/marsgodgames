@@ -152,6 +152,7 @@
     <ClInclude Include="Action.h" />
     <ClInclude Include="AStarAlgorithm.h" />
     <ClInclude Include="BeispielForGameObject.h" />
+    <ClInclude Include="CAudioManager.h" />
     <ClInclude Include="CCameraController.h" />
     <ClInclude Include="clickmanager.h" />
     <ClInclude Include="Connection.h" />
@@ -186,6 +187,7 @@
     <ClCompile Include="Action.cpp" />
     <ClCompile Include="AStarAlgorithm.cpp" />
     <ClCompile Include="BeispielForGameObject.cpp" />
+    <ClCompile Include="CAudioManager.cpp" />
     <ClCompile Include="CCameraController.cpp" />
     <ClCompile Include="clickmanager.cpp" />
     <ClCompile Include="Connection.cpp" />

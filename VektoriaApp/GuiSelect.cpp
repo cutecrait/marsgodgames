@@ -4,7 +4,7 @@ namespace Vektoria
 {
 	CGuiSelect::~CGuiSelect()
 	{
-		// delete all option pointers
+		//delete all option pointers
 		for (auto itO : m_vOptions) {
 			delete itO;
 		}
@@ -100,7 +100,6 @@ namespace Vektoria
 		m_vOptions.back()->Init(m_pdc, m_pwfFont);
 		m_vOptions.back()->SetLabel(name);
 		m_vOptions.back()->SetInnerOn();
-		
 		m_vOptions.back()->SetMaterial(m_zmOptionInactive.at(WhereAmI));
 		
 		m_vOptions.back()->SetLabelRect(CFloatRect(0.05f, 0.15f, 0.9f, 0.7f));

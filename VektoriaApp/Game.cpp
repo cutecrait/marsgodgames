@@ -45,17 +45,20 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 		rechter Mausbutton + Schwenken: Kamerarotation
 	*/
 	//</Darius>
-	
+
+
 	// INPUTS---------------------------------------------------
 	m_zf.AddDeviceCursor(&einCursor);
 	m_zf.AddDeviceKeyboard(&m_zdk);
 	m_zf.AddDeviceMouse(&m_zdm);
 
+	// AUDIO------------------------------------------------
+	AudioManager.Init(&m_zs);
+	
 
 	// LIGHTING--------------------------------------
 	m_zlp.Init(CHVector(0.2f, 0.8f, 0.2f), CColor(1.0f, 1.0f, 0));	//yellow sun?
 	m_zs.AddLightParallel(&m_zlp);
-
 
 	// OVERLAY-----------------------------------------
 	// texturen werden jetzt in UI erstellt. 
@@ -64,9 +67,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	einsFont.LoadPreset("LucidaConsoleBlack");
 	einsFont.SetChromaKeyingOn(); //hiermit hat die font keinen hässlichen hintergrund
 	menu.InitMenu(&einCursor, &einsFont, &m_zv);
-	derManager.Init(&menu, &m_zs);
-	
-	
+	derManager.Init(&menu, &m_zs, &AudioManager);
 
 	// MAP SQUARES---------------------------------------
 	for (int iz = 0; iz < 10; iz++)
@@ -88,6 +89,10 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 		m_zs.AddPlacement(m_ldgame.GetPlacements(i));
 	}
 	*/
+
+
+	
+
 }
 
 void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
@@ -96,7 +101,7 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 
 	// CAMERA-----------------------------------
 	CameraController.UpdateCameraMovement(fTimeDelta); //Aktualisiert die Kamerabewegung
-
+	
 	// MAP SQUARES---------------------------------------
 	// deselect other map squares
 	for (int i = 0; i<squares.m_iPlacements; i++)
@@ -107,14 +112,13 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 	}
 	//int mouseX, mouseY;
 	//einCursor.GetAbsolute(mouseX, mouseY);
-	auto selectedPlace = einCursor.PickPlacement();
+	auto selectedPlace = einCursor.PickPlacementPreselected(squares);
 	if (selectedPlace)
-		//selectedPlace->m_pgeos->m_apgeo[0]->m_pmaterial->Translate(CColor(0.2, 0.8, 0.2));
+		selectedPlace->m_pgeos->m_apgeo[0]->m_pmaterial->Translate(CColor(0.2, 0.8, 0.2));
 	
 	
 	// UI-----------------------------------
 	derManager.Click(fTimeDelta);
-
 	
 	derManager.makeBuilding(selectedPlace,&einCursor);
 }

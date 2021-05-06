@@ -2,6 +2,7 @@
 #include "Vektoria\Root.h"
 #include <string>
 #include <iostream> //DEBUG
+#include "CAudioManager.h"
 
 //--------------------------------------------------------------------------------------------
 // CGuiElement
@@ -139,6 +140,7 @@ namespace Vektoria
 
 	private:
 		bool m_bFirstTick = true;
+		CAudio* Click_Sound;
 	};
 }
 

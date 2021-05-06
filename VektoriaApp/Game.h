@@ -24,6 +24,7 @@
 #include "MapSquare.h"
 #include "CCameraController.h"
 #include "clickmanager.h"
+#include "CAudioManager.h"
 #include "Load.h"
 #include "UI.h"
 
@@ -59,6 +60,7 @@ private:
 
 	//<Darius>
 	CCameraController CameraController;
+	CAudioManager AudioManager;
 	//</Darius>
 
 	//World Ground
