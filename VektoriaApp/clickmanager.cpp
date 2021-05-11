@@ -18,9 +18,20 @@ clickmanager::~clickmanager()
 
 void clickmanager::Click(float ftimedelta, CPlacement* selected, CDeviceCursor* cursor)
 {
-	
-	if (m_menu->m_confirm.IsClicked()) {
-		isclicked = true;
+	//ich muss ne if abfrage machen, dass nicht selected == true sein muss.
+	if (m_menu->m_confirm.IsClicked() ) {
+		menuOFF();
+		m_menu->m_confirm.SwitchOff();
+		m_menu->m_cancel.SwitchOff();
+		Wohnung[WohnungNr]->getPlacement()->Translate(MONKY.getPlacement()->GetPos()); // richtiges model
+		Wohnung[WohnungNr]->getPlacement()->SwitchOn();
+		WohnungNr++;
+		MONKY.getPlacement()->SwitchOff();
+		Building_Sound->Start();
+		isclicked = false;
+		clicked = false;
+		m_playerStats->setWohnung(1);
+		m_menu->getWohnung()->SetLabel("Wohnungen: " + std::to_string(m_playerStats->getWohnung()));
 	}
 	if (m_menu->getStart()->IsClicked()) {
 		if (WhatSpecific == 2) {
@@ -64,28 +75,11 @@ void clickmanager::Click(float ftimedelta, CPlacement* selected, CDeviceCursor* 
 	if (m_menu->getPlayer()->IsClicked()) {
 		m_menu->getStatistic()->SwitchOn();
 	}
-
-	
 	
 	if (m_menu->getSpecificSelect(1)->GetActivePosition() == 0 && selected /*&& clicked*/) {
 		MONKY.getPlacement()->SwitchOn(); // pseudo model
 		clicked = true;
-		if (isclicked) {
-			menuOFF();
-			m_menu->m_confirm.SwitchOff();
-			m_menu->m_cancel.SwitchOff();
-
-			Wohnung[WohnungNr]->getPlacement()->Translate(MONKY.getPlacement()->GetPos()); // richtiges model
-			Wohnung[WohnungNr]->getPlacement()->SwitchOn();
-			WohnungNr++;
-			MONKY.getPlacement()->SwitchOff();
-			Building_Sound->Start();
-			isclicked = false;
-			clicked = false;
-			m_playerStats->setWohnung(1);
-			m_menu->getWohnung()->SetLabel("Wohnungen: " + std::to_string(m_playerStats->getWohnung()));
-
-		}
+		
 		if (cursor->ButtonPressedLeft()) {
 			MONKY.getPlacement()->Translate(selected->GetPos());
 		}
