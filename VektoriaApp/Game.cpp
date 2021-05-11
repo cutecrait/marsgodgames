@@ -66,8 +66,8 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	
 	einsFont.LoadPreset("LucidaConsoleBlack");
 	einsFont.SetChromaKeyingOn(); //hiermit hat die font keinen hässlichen hintergrund
-	menu.InitMenu(&einCursor, &einsFont, &m_zv);
-	derManager.Init(&menu, &m_zs, &AudioManager);
+	menu.InitMenu(&einCursor, &einsFont, &m_zv, &m_player);
+	derManager.Init(&menu, &m_zs, &AudioManager, &m_player);
 
 	// MAP SQUARES---------------------------------------
 	for (int iz = 0; iz < 10; iz++)
@@ -118,9 +118,9 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 	
 	
 	// UI-----------------------------------
-	derManager.Click(fTimeDelta);
+	derManager.Click(fTimeDelta, selectedPlace,&einCursor);
 	
-	derManager.makeBuilding(selectedPlace,&einCursor);
+	//derManager.makeBuilding(selectedPlace,&einCursor);
 }
 
 void CGame::Fini()

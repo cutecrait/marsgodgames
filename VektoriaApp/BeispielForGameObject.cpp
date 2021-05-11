@@ -2,7 +2,7 @@
 
 BeispielForGameObject::BeispielForGameObject()
 {
-	setModel("textures\\monkey.obj");
+	setModel("models\\monkey.obj");
 	getPlacement()->Translate(0, 0, 0);
 	getPlacement()->AddGeo(getModel());
 }

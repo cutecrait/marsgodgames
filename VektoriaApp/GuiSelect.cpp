@@ -1,19 +1,21 @@
 #include "GuiSelect.h"
 
 namespace Vektoria
-{
+{ // try to fix mit nem array[6] -> 6 weil größtes und die i wird ja nie drüber laufen. (bzw pseudo mats machen.)
 	CGuiSelect::~CGuiSelect()
 	{
 		//delete all option pointers
+		for (auto itO : m_zmOptionInactive) {
+			delete itO;
+		}
+		m_zmOptionInactive.clear();
+
 		for (auto itO : m_vOptions) {
 			delete itO;
 		}
 		m_vOptions.clear();
 
-		for (auto itO : m_zmOptionInactive) {
-			delete itO;
-		}
-		m_zmOptionInactive.clear();
+		
 	}
 
 	void CGuiSelect::Init(CDeviceCursor* deviceCursor, CWritingFont* font)

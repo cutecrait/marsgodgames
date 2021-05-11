@@ -16,10 +16,12 @@ clickmanager::~clickmanager()
 
 
 
-void clickmanager::Click(float ftimedelta)
+void clickmanager::Click(float ftimedelta, CPlacement* selected, CDeviceCursor* cursor)
 {
 	
-	
+	if (m_menu->m_confirm.IsClicked()) {
+		isclicked = true;
+	}
 	if (m_menu->getStart()->IsClicked()) {
 		if (WhatSpecific == 2) {
 			//wenn ich nochmal start drücke nachdem ich schon mal start gedrückt habe dann mach alles wieder aus.
@@ -49,17 +51,56 @@ void clickmanager::Click(float ftimedelta)
 		// wenn keine position aktive ist wird 2tes menü off
 		m_menu->getSpecificSelect(0)->SwitchOff();
 		m_menu->getSpecificSelect(0)->SetActivePosition(-1);
-		m_menu->getSpecificSelect(0)->SwitchOff();
-		m_menu->getSpecificSelect(0)->SetActivePosition(-1);
-		m_menu->getSpecificSelect(0)->SwitchOff();
-		m_menu->getSpecificSelect(0)->SetActivePosition(-1);
-		m_menu->getSpecificSelect(0)->SwitchOff();
-		m_menu->getSpecificSelect(0)->SetActivePosition(-1);
-		m_menu->getSpecificSelect(0)->SwitchOff();
-		m_menu->getSpecificSelect(0)->SetActivePosition(-1);
+		m_menu->getSpecificSelect(1)->SwitchOff();
+		m_menu->getSpecificSelect(1)->SetActivePosition(-1);
+		m_menu->getSpecificSelect(2)->SwitchOff();
+		m_menu->getSpecificSelect(2)->SetActivePosition(-1);
+		m_menu->getSpecificSelect(3)->SwitchOff();
+		m_menu->getSpecificSelect(3)->SetActivePosition(-1);
+		m_menu->getSpecificSelect(4)->SwitchOff();
+		m_menu->getSpecificSelect(4)->SetActivePosition(-1);
 	}
 	
+	if (m_menu->getPlayer()->IsClicked()) {
+		m_menu->getStatistic()->SwitchOn();
+	}
 
+	
+	
+	if (m_menu->getSpecificSelect(1)->GetActivePosition() == 0 && selected /*&& clicked*/) {
+		MONKY.getPlacement()->SwitchOn(); // pseudo model
+		clicked = true;
+		if (isclicked) {
+			menuOFF();
+			m_menu->m_confirm.SwitchOff();
+			m_menu->m_cancel.SwitchOff();
+
+			Wohnung[WohnungNr]->getPlacement()->Translate(MONKY.getPlacement()->GetPos()); // richtiges model
+			Wohnung[WohnungNr]->getPlacement()->SwitchOn();
+			WohnungNr++;
+			MONKY.getPlacement()->SwitchOff();
+			Building_Sound->Start();
+			isclicked = false;
+			clicked = false;
+			m_playerStats->setWohnung(1);
+			m_menu->getWohnung()->SetLabel("Wohnungen: " + std::to_string(m_playerStats->getWohnung()));
+
+		}
+		if (cursor->ButtonPressedLeft()) {
+			MONKY.getPlacement()->Translate(selected->GetPos());
+		}
+		if (clicked) {
+			m_menu->m_confirm.SwitchOn(); // confirm
+			m_menu->m_cancel.SwitchOn(); // cancel
+			clicked = false;
+		}
+		
+	}
+	if (m_menu->m_cancel.IsClicked()) {
+		menuOFF();
+		m_menu->m_cancel.SwitchOff();
+		m_menu->m_confirm.SwitchOff();
+	}
 
 }
 
@@ -67,19 +108,35 @@ void clickmanager::Click(float ftimedelta)
 
 void clickmanager::makeBuilding(CPlacement* selected,CDeviceCursor* cursor)
 {
+
 	if (cursor->ButtonDownLeft()) {
 		clicked = true;
 		
-		if (m_menu->getSpecificSelect(1)->GetActivePosition() >= 0 && selected && clicked) {
+		if (m_menu->getSpecificSelect(1)->GetActivePosition() == 0 && selected /*&& clicked*/) {
+			m_menu->m_confirm.SwitchOn(); // confirm
+			m_menu->m_confirm.SwitchOn(); // cancel
 
+			
 			MONKY.getPlacement()->Translate(selected->GetPos());
 			//MONKY.getPlacement()->Translate(selected->GetPos());
 			MONKY.getPlacement()->SwitchOn();
-
 			Building_Sound->Start();
+
+			if (m_menu->m_confirm.IsClicked()) {
+				
+				MONKY.getPlacement()->SwitchOff();
+
+				
+				WohnungNr++;
+
+				m_menu->getSpecificSelect(1)->SetActivePosition(-1);
+			}
 			if (cursor->ButtonDownLeft()) {
 				clicked = false;
 			}
+			m_playerStats->setWohnung(1);
+			m_menu->getWohnung()->SetLabel("Wohnungen: " + std::to_string(m_playerStats->getWohnung()));
+			
 		}
 
 	}
@@ -92,5 +149,22 @@ void clickmanager::makeBuilding(CPlacement* selected,CDeviceCursor* cursor)
 	
 	
 }
+void clickmanager::menuOFF() {
+	m_menu->getSpecificSelect(0)->SwitchOff();
+	m_menu->getSpecificSelect(0)->SetActivePosition(-1);
+	m_menu->getSpecificSelect(1)->SwitchOff();
+	m_menu->getSpecificSelect(1)->SetActivePosition(-1);
+	m_menu->getSpecificSelect(2)->SwitchOff();
+	m_menu->getSpecificSelect(2)->SetActivePosition(-1);
+	m_menu->getSpecificSelect(3)->SwitchOff();
+	m_menu->getSpecificSelect(3)->SetActivePosition(-1);
+	m_menu->getSpecificSelect(4)->SwitchOff();
+	m_menu->getSpecificSelect(4)->SetActivePosition(-1);
+
+	m_menu->getMainSelect()->SwitchOff();
+	m_menu->getMainSelect()->SetActivePosition(-1);
+}
+
+
 
 

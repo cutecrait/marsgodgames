@@ -172,6 +172,7 @@
     <ClInclude Include="MapSquare.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="NodeController.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="RobotBase.h" />
     <ClInclude Include="Save.h" />
@@ -205,6 +206,7 @@
     <ClCompile Include="GuiSlider.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="NodeController.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="RobotBase.cpp" />
     <ClCompile Include="Save.cpp" />
     <ClCompile Include="State.cpp" />
