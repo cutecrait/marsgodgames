@@ -63,7 +63,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	// OVERLAY-----------------------------------------
 	// texturen werden jetzt in UI erstellt. 
 	// UI = menu, derManager = click-event.
-	
+	m_player.initPlayer(1000, 1000, 1000);
 	einsFont.LoadPreset("LucidaConsoleWhite");
 	einsFont.SetChromaKeyingOn(); //hiermit hat die font keinen hässlichen hintergrund
 	menu.InitMenu(&einCursor, &einsFont, &m_zv, &m_player);
@@ -112,13 +112,14 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 	}
 	//int mouseX, mouseY;
 	//einCursor.GetAbsolute(mouseX, mouseY);
+	
 	auto selectedPlace = einCursor.PickPlacementPreselected(squares);
 	if (selectedPlace)
 		selectedPlace->m_pgeos->m_apgeo[0]->m_pmaterial->Translate(CColor(0.2, 0.8, 0.2));
-	
+	derManager.Click(fTimeDelta, selectedPlace,&einCursor);
 	
 	// UI-----------------------------------
-	derManager.Click(fTimeDelta, selectedPlace,&einCursor);
+	
 	
 	//derManager.makeBuilding(selectedPlace,&einCursor);
 }

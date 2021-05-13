@@ -17,20 +17,26 @@ public:
 	void Click(float, CPlacement*, CDeviceCursor*);
 	void Init(UI* menu, CScene* zs, CAudioManager* am, Player* player) {
 		m_menu = menu;
+		MONKY.Init(100, 100, 100);
 		MONKY.getPlacement()->SwitchOff();
 		zs->AddPlacement(MONKY.getPlacement());
 		for (int i = 0; i < 20; i++) {
 			Wohnung[i] = new BeispielForGameObject();
 			Wohnung[i]->getPlacement()->SwitchOff();
 			zs->AddPlacement(Wohnung[i]->getPlacement());
-			
+
 		}
 
 		Building_Sound = &(am->Ambient_Building_Sound);
 		m_playerStats = player;
 	}
-	void makeBuilding(CPlacement*, CDeviceCursor*);
+	void makeBuilding(CPlacement*, CPlacement*);
+	bool enoughRes(GameObject*);
 
+	void confirmClicked();
+
+	void cancelClicked(GameObject*);
+	
 private:
 
 

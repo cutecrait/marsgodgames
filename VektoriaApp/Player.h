@@ -5,6 +5,8 @@ public:
 	Player();
 	~Player();
 
+	void initPlayer(int, int, int);
+
 	void setRessource1(int i) { ressource1 += i; }
 	void setRessource2(int i) { ressource2 += i; }
 	void setRessource3(int i) { ressource3 += i; }
@@ -23,9 +25,9 @@ public:
 	void setWohnung(int i) { WohnungKapa += i; }
 
 private:
-	int ressource1 =0;
-	int ressource2 = 0;
-	int ressource3 = 0;
+	int ressource1;
+	int ressource2;
+	int ressource3;
 
 	int zufriedenheit1;
 	int zufriedenheit2;

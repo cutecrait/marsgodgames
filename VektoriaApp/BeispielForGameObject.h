@@ -7,7 +7,8 @@ public:
     BeispielForGameObject();
     ~BeispielForGameObject();
 
-    void Init();
+    void Init(int ,int,int);
     
+   
 };
 
