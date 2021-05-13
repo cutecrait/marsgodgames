@@ -5,14 +5,20 @@
 Load::Load()
 {
 	pos_id = 0;
+	obj_cnt = 0;
+	//*m_placements = new CPlacement[100];
+	for (int i = 0; i < 100; i++)
+	{
+		m_placements[i] = new CPlacement();
+	}
+
 	*pos_arr = new float[100];
 	cube_mat = new CMaterial();
 	cube_mat->Init();
 	cube_mat->MakeTextureDiffuse("textures\\ENV.jpg");
-	m_placecube = new CPlacement();
 	m_cube.Init(0.2f, cube_mat, 1.0f);
 	this->SetGeos();
-	for (int iz = 0; iz < 10; iz++)
+	/*for (int iz = 0; iz < 10; iz++)
 	{
 		for (int ix = 0; ix < 10; ix++)
 		{
@@ -31,10 +37,9 @@ Load::Load()
 		}
 	}
 	
-	m_placements[50]->AddGeo(&m_cube);
+	m_placements[50]->AddGeo(&m_cube);*/	
 
-	m_placecube->AddGeo(&m_cube);
-	m_placecube->Translate(pos_arr[4][0], pos_arr[4][1], pos_arr[4][2]);
+	
 }
 
 Load::~Load()
@@ -63,11 +68,43 @@ void Load::AttachGeos()
 {
 }
 
+bool Load::fileExists(const char* file_name)
+{
+	if (FILE* file = fopen(file_name, "r")) {
+		fclose(file);
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
 void Load::setPosArray(float x, float y, float z)
 {
 	
 
 	
+}
+
+void Load::SetPlacement(float x, float z, CGeo* geo)
+{
+	//m_placements[obj_cnt] = new CPlacement();
+	m_placements[obj_cnt]->Translate(x, 0.5f, z);
+	m_placements[obj_cnt]->AddGeo(geo);
+}
+
+CGeo *Load::getObj(std::string obj_name)
+{
+	
+	/*if (obj_name == std::string("CGeoCube"))
+	{*/
+		//((CGeoCube* cube = new CGeoCube();
+		
+		return geo_arr[this->getObjCount()];
+	/*}
+
+	else
+	return nullptr;*/
 }
 
 CPlacement* Load::LoadTerrain()
@@ -77,15 +114,47 @@ CPlacement* Load::LoadTerrain()
 	return m_lterrain.getPlacement();
 }
 
-CPlacement* Load::TestCube() 
-{
-	
-	return m_placecube;
-}
 
 CPlacement* Load::GetPlacements(int i)
 {
-	return m_placements[i];
+	if (this->getObjCount() > 0)
+		return m_placements[i];
+
+	else
+		return nullptr;
+}
+
+void Load::readPos()
+{
+		std::fstream file;
+		file.open("Positions.txt", std::ios::out);
+		std::string tp;
+		size_t pos = 0; 
+		while (getline(file, tp)) {
+			
+			std::string del = ", ";
+			pos = tp.find(del);
+			std::string obj = tp.substr(0, pos);
+			tp.erase(0, pos + del.length());
+			std::string x_valstr = tp.substr(0, pos);
+			float x_val = std::stof(x_valstr);
+			tp.erase(0, pos + del.length());
+			std::string z_valstr = tp.substr(0, pos);
+			float z_val = std::stof(z_valstr);
+			tp.erase(0, pos + del.length());
+
+			this->SetPlacement(x_val, z_val, this->getObj(obj));
+			
+			obj_cnt++;
+		}
+
+		file.close();
+	
+}
+
+int Load::getObjCount()
+{
+	return obj_cnt;
 }
 
 CGeo* Load::GetGeos(int i)
@@ -97,15 +166,7 @@ void Load::SetGeos()
 {
 	for (int i = 0; i < 100; i++)
 	{
-		if ((i % 2) == 0){
-			geo_arr[i] = new CGeo();
-		geo_arr[i] = &m_cube;
-	}
-		else {
-			geo_arr[i] = new CGeo();
-			geo_arr[i] = nullptr;
-		}
-			
-
+			geo_arr[i] = new CGeoCube();
+			geo_arr[i]->Init(1.0f, cube_mat, 1.0f, false);
 	}
 }

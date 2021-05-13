@@ -64,7 +64,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	// texturen werden jetzt in UI erstellt. 
 	// UI = menu, derManager = click-event.
 	
-	einsFont.LoadPreset("LucidaConsoleBlack");
+	einsFont.LoadPreset("LucidaConsoleWhite");
 	einsFont.SetChromaKeyingOn(); //hiermit hat die font keinen hässlichen hintergrund
 	menu.InitMenu(&einCursor, &einsFont, &m_zv, &m_player);
 	derManager.Init(&menu, &m_zs, &AudioManager, &m_player);

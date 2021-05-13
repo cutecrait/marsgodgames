@@ -3,8 +3,9 @@
 //#include "GameObject.h"
 
 #include "Vektoria\Root.h"
-#include <map>
 #include <iostream>
+#include <fstream>
+#include <string>
 #include <array>
 
 using namespace Vektoria;
@@ -19,14 +20,14 @@ private:
 	CTerrain m_lterrain;
 	CGeoTerrains m_lcollisionterr;
 	
-	CGeo* geo_arr[100];
+	CGeoCube* geo_arr[100];
 	// TestCube
 	CGeoCube m_cube;
 	CMaterial* cube_mat;
 	CPlacement* m_placements[100];
 	int pos_id;
 	float* pos_arr[100];
-
+	int obj_cnt;
 	CGeo* GetGeos(int i);
 	void SetGeos();
 
@@ -36,11 +37,15 @@ public:
 	void LoadPlacements(CScene scene); //erstellt Placements
 	void AttachGeos();
 	void getGoID();
+	bool fileExists(const char * file_name );
 	void setPosArray(float x, float y, float z);
+	void SetPlacement(float x, float z, CGeo *geo);
+	CGeo *getObj(std::string obj_name);
 	CPlacement *LoadTerrain();
-	CPlacement* m_placecube;
 	CPlacement* TestCube();
 	CPlacement* GetPlacements(int i);
+	void readPos();
+	int getObjCount();
 
 
 };
