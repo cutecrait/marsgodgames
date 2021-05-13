@@ -72,8 +72,10 @@ void clickmanager::Click(float ftimedelta, CPlacement* selected, CDeviceCursor* 
 
 	if (m_menu->getSpecificSelect(1)->GetActivePosition() == 0 ) {
 		//tooltip anschalten
-		m_menu->tooltip(" Haus",MONKY.getRes1(),MONKY.getRes2(),MONKY.getRes3(),CFloatRect(0.3,0.2,0.2,0.2),cursor);
-
+		if (toolTipCreate) {
+			m_menu->tooltip(" Haus", MONKY.getRes1(), MONKY.getRes2(), MONKY.getRes3(), CFloatRect(0.3, 0.2, 0.2, 0.2), cursor);
+			toolTipCreate = false;
+		}
 		if (m_menu->m_confirm.IsClicked()) {
 			if (enoughRes(&MONKY)) {
 				confirmClicked();
@@ -154,8 +156,9 @@ void clickmanager::confirmClicked() {
 	m_playerStats->setRessource2(-MONKY.getRes2());
 	m_playerStats->setRessource3(-MONKY.getRes3());
 	
-
+	toolTipCreate = true;
 	m_menu->updatePlayer();
+	m_menu->m_toolTipBackGround.SwitchOff();
 }
 
 void clickmanager::cancelClicked(GameObject* model) {
@@ -164,5 +167,7 @@ void clickmanager::cancelClicked(GameObject* model) {
 	m_menu->m_confirm.SwitchOff();
 	m_menu->updatePlayer();
 	model->getPlacement()->SwitchOff();
+	toolTipCreate = true;
+	m_menu->m_toolTipBackGround.SwitchOff();
 }
 

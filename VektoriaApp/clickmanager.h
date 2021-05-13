@@ -46,6 +46,7 @@ private:
 	int WhatSpecific = 1;
 	int unterschied = -1;
 	int WohnungNr = 0;
+	bool toolTipCreate = true;
 	bool clicked = false;
 	bool isclicked = false;
 	CAudio* Building_Sound;

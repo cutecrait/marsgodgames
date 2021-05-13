@@ -46,11 +46,11 @@ private:
 	CViewport* m_viewport;
 	CGuiElement m_tooltip;
 	CGuiElement m_kosten;
-	COverlay m_toolTipBackGround;
+	
 public:
 	COverlay m_statsBack;
 	COverlay m_resBack;
-
+	COverlay m_toolTipBackGround;
 	CGuiElement m_res1;
 	CGuiElement m_res1Minus;
 	CGuiElement m_res2;
