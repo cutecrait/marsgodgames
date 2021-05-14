@@ -25,7 +25,10 @@ public:
 
 	void updatePlayer();
 
-	void tooltip(std::string, int,int,int,CFloatRect, CDeviceCursor*);
+	void InitToolTip();
+
+	void tooltip(std::string headline, int res1, int res2, int res3, int anzahl, std::string whatHappens);
+
 	
 
 private:
@@ -44,9 +47,26 @@ private:
 	CGuiSelect m_specificSelect[4];
 	CGuiButton m_statistic;
 	CViewport* m_viewport;
-	CGuiElement m_tooltip;
-	CGuiElement m_kosten;
 	
+
+	COverlay m_headline;
+	CWriting m_headlineW;
+	
+	COverlay m_kosten1;
+	CWriting m_kosten1W;
+
+	COverlay m_kosten2;
+	CWriting m_kosten2W;
+
+	COverlay m_kosten3;
+	CWriting m_kosten3W;
+
+	CMaterial m_descMaterial;
+	COverlay m_description;
+	CWriting m_descriptionW1;
+	CWriting m_descriptionW2;
+	CWriting m_descriptionW3;
+	CMaterial m_resMaterial;
 public:
 	COverlay m_statsBack;
 	COverlay m_resBack;

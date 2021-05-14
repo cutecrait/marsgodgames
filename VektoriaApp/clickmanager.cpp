@@ -73,7 +73,8 @@ void clickmanager::Click(float ftimedelta, CPlacement* selected, CDeviceCursor* 
 	if (m_menu->getSpecificSelect(1)->GetActivePosition() == 0 ) {
 		//tooltip anschalten
 		if (toolTipCreate) {
-			m_menu->tooltip(" Haus", MONKY.getRes1(), MONKY.getRes2(), MONKY.getRes3(), CFloatRect(0.3, 0.2, 0.2, 0.2), cursor);
+			m_menu->tooltip("Hotel", MONKY.getRes1(), MONKY.getRes2(), MONKY.getRes3(), 20, "Wohnungen hinzugefuegt"); //20 wird durch hotel.getWohnungen ersetzt
+
 			toolTipCreate = false;
 		}
 		if (m_menu->m_confirm.IsClicked()) {
@@ -81,20 +82,22 @@ void clickmanager::Click(float ftimedelta, CPlacement* selected, CDeviceCursor* 
 				confirmClicked();
 				makeBuilding(MONKY.getPlacement(), Wohnung[WohnungNr]->getPlacement());
 				WohnungNr++;
-				m_playerStats->setWohnung(1);
+				m_playerStats->setWohnung(1); //1 wird durch hotel.getWohungen
 				m_menu->getWohnung()->SetLabel("Wohnungen: " + std::to_string(m_playerStats->getWohnung()));
 			}
 		}
 
 		if (selected) {
-			MONKY.getPlacement()->SwitchOn();
-			m_menu->m_confirm.SwitchOn(); 
-			m_menu->m_cancel.SwitchOn();
-			m_menu->switchOnBuy(MONKY.getRes1(),MONKY.getRes2(),MONKY.getRes3());
-			
-				if (cursor->ButtonPressedLeft()) {
-					MONKY.getPlacement()->Translate(selected->GetPos());
-				}
+			if (!isclicked) {
+				MONKY.getPlacement()->SwitchOn();
+				m_menu->m_confirm.SwitchOn();
+				m_menu->m_cancel.SwitchOn();
+				m_menu->switchOnBuy(MONKY.getRes1(), MONKY.getRes2(), MONKY.getRes3());
+				isclicked = true;
+			}
+			if (cursor->ButtonPressedLeft()) {
+				MONKY.getPlacement()->Translate(selected->GetPos());
+			}
 		}
 		
 	}	
@@ -159,6 +162,7 @@ void clickmanager::confirmClicked() {
 	toolTipCreate = true;
 	m_menu->updatePlayer();
 	m_menu->m_toolTipBackGround.SwitchOff();
+	isclicked = false;
 }
 
 void clickmanager::cancelClicked(GameObject* model) {
@@ -169,5 +173,6 @@ void clickmanager::cancelClicked(GameObject* model) {
 	model->getPlacement()->SwitchOff();
 	toolTipCreate = true;
 	m_menu->m_toolTipBackGround.SwitchOff();
+	isclicked = false;
 }
 

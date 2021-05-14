@@ -45,6 +45,8 @@ void UI::InitMaterial()
 	m_matsForSelect5[5].MakeTextureSprite("textures\\Menu_Button.png");
 
 	m_matStats.MakeTextureSprite("textures\\Player_Stat_Window.png");
+	m_resMaterial.MakeTextureSprite("textures\\blue_image.jpg");
+	m_descMaterial.MakeTextureSprite("textures\\blue_image.jpg");
 	
 }
 
@@ -52,6 +54,7 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv,Playe
 {
 	m_viewport = zv;
 	InitMaterial();
+	InitToolTip();
 	m_playerStats = player;
 	m_start.Init(cursor, font, CFloatRect(0.f, 0.9, 0.15, 0.1));
 	m_start.SetLabel("bauen");
@@ -178,7 +181,6 @@ void UI::initPlayer(CDeviceCursor* cursor, CWritingFont* font) {
 	m_statsBack.SetLayer(0.98);
 	m_statsBack.SwitchOff();
 
-	
 
 	
 	m_res1Minus.SetInnerOn();
@@ -238,25 +240,85 @@ void UI::updatePlayer() {
 	m_res2Minus.SwitchOff();
 	m_res3Minus.SwitchOff();
 }
-void UI::tooltip(std::string name, int res1, int res2, int res3, CFloatRect pos, CDeviceCursor* cursor) {
-	m_tooltip.Init(cursor, &m_redFont, CFloatRect(0,0,1,0.7));
-	m_tooltip.SetLabel(name);
-	m_tooltip.SwitchOn();
-	m_tooltip.SetInnerOn();
-	m_tooltip.SetLayer(0.98);
-	
-
-	m_kosten.Init(cursor, &m_redFont, CFloatRect(0, 0.7, 1, 0.3));
-	m_kosten.SetLabel(std::to_string(res1) +" "+ std::to_string(res2) +" "+ std::to_string(res3));
-	m_kosten.SwitchOn();
-	m_kosten.SetInnerOn();
-	m_kosten.SetLayer(0.98);
-
-	m_toolTipBackGround.Init(&m_matStats, pos);
-	m_toolTipBackGround.SetLayer(0.97);
+void UI::InitToolTip() {
+	m_toolTipBackGround.Init(&m_matStats, CFloatRect(0.4, 0.6, 0.4, 0.4));
+	m_toolTipBackGround.SetLayer(0.99); // das setlayer(1) = man sieht den hintergrund nie! (aber gut um alles anzuschalten bzw aus)
 
 	m_viewport->AddOverlay(&m_toolTipBackGround);
-	m_toolTipBackGround.AddOverlay(&m_tooltip);
-	m_toolTipBackGround.AddOverlay(&m_kosten);
+	
 
+	//ueberschrift
+	m_headline.Init(&m_matStats, CFloatRect(0, 0, 0.25, 0.5));
+	m_headlineW.Init(CFloatRect(0, 0, 0.5, 0.5), 11, &m_redFont);
+	m_headline.SetInnerOn();
+	m_headline.SetLayer(0.98);
+	m_headlineW.SetInnerOn();
+	m_headlineW.SetLayer(0.97);
+
+	//ressource1
+	m_kosten1.Init(&m_resMaterial, CFloatRect(0, 0.75, 0.3, 0.25));
+	m_kosten1.SetLayer(0.98);
+	m_kosten1.SetInnerOn();
+	m_kosten1W.Init(CFloatRect(0, 0, 1, 1), 5, &m_redFont);
+	m_kosten1W.SetInnerOn();
+	m_kosten1W.SetLayer(0.97);
+
+	//ressource2
+	m_kosten2.Init(&m_resMaterial, CFloatRect(0.33, 0.75, 0.3, 0.25));
+	m_kosten2.SetLayer(0.98);
+	m_kosten2.SetInnerOn();
+	m_kosten2W.Init(CFloatRect(0, 0, 1, 1), 5, &m_redFont);
+	m_kosten2W.SetInnerOn();
+	m_kosten2W.SetLayer(0.97);
+
+	//ressource3
+	m_kosten3.Init(&m_resMaterial, CFloatRect(0.66, 0.75, 0.3, 0.25));
+	m_kosten3.SetLayer(0.98);
+	m_kosten3.SetInnerOn();
+	m_kosten3W.Init(CFloatRect(0, 0, 1, 1), 5, &m_redFont);
+	m_kosten3W.SetInnerOn();
+	m_kosten3W.SetLayer(0.97);
+
+	//description
+	m_description.Init(&m_descMaterial, CFloatRect(0.3, 0, 0.7, 0.65));
+	m_description.SetInnerOn();
+	m_description.SetLayer(0.98);
+
+	m_descriptionW1.Init(CFloatRect(0.1, 0.1, 1, 0.3), 20, &m_redFont);
+	m_descriptionW1.SetLayer(0.96);
+	m_descriptionW1.SetInnerOn();
+	m_descriptionW1.PrintString("beim kauf werden: ");
+
+	m_descriptionW2.Init(CFloatRect(0.4, 0.4, 1, 0.2), 20, &m_redFont);
+	m_descriptionW2.SetLayer(0.96);
+	m_descriptionW2.SetInnerOn();
+
+	m_descriptionW3.Init(CFloatRect(0.1, 0.6, 1, 0.3), 25, &m_redFont);
+	m_descriptionW3.SetLayer(0.96);
+	m_descriptionW3.SetInnerOn();
+
+	m_toolTipBackGround.AddWriting(&m_headlineW);
+	m_toolTipBackGround.AddOverlay(&m_kosten1);
+	m_kosten1.AddWriting(&m_kosten1W);
+	m_toolTipBackGround.AddOverlay(&m_kosten2);
+	m_kosten2.AddWriting(&m_kosten2W);
+	m_toolTipBackGround.AddOverlay(&m_kosten3);
+	m_kosten3.AddWriting(&m_kosten3W);
+	m_toolTipBackGround.AddOverlay(&m_description);
+	m_description.AddWriting(&m_descriptionW1);
+	m_description.AddWriting(&m_descriptionW2);
+	m_description.AddWriting(&m_descriptionW3);
+
+	m_toolTipBackGround.SwitchOff();
+}
+void UI::tooltip(std::string headline, int res1, int res2, int res3, int anzahl, std::string whatHappens) {
+	
+	m_headlineW.PrintString(&headline[0]);
+	m_kosten1W.PrintInt(res1);
+	m_kosten2W.PrintInt(res2);
+	m_kosten3W.PrintInt(res3);
+
+	m_descriptionW2.PrintInt(anzahl);
+	m_descriptionW3.PrintString(&whatHappens[0]);
+	m_toolTipBackGround.SwitchOn();
 }
