@@ -16,11 +16,23 @@ clickmanager::~clickmanager()
 
 
 
-void clickmanager::Click(float ftimedelta, CPlacement* selected, CDeviceCursor* cursor)
+void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor)
 {
 	//ich muss ne if abfrage machen, dass nicht selected == true sein muss.
-	
-	
+	if (cursor->PickOverlay() == NULL)
+	{
+		targetPos = cursor->PickPlacementPreselected(*mapsquares);
+		if (targetPos)
+		{
+			MapTile* tile = (MapTile*)targetPos;
+			tile->Select();
+		}
+
+		else  mapsquares->DeselectMapTile(NULL);
+	}
+
+	else  mapsquares->DeselectMapTile(NULL);
+
 	if (m_menu->getStart()->IsClicked()) {
 		if (WhatSpecific == 2) {
 			//wenn ich nochmal start drücke nachdem ich schon mal start gedrückt habe dann mach alles wieder aus.
@@ -71,58 +83,90 @@ void clickmanager::Click(float ftimedelta, CPlacement* selected, CDeviceCursor* 
 	
 
 	if (m_menu->getSpecificSelect(1)->GetActivePosition() == 0 ) {
+		
+		// Suche nach freiem Gebäude
+		toBeBuildObject = BuildingManager->lookForGameObject();
+
 		//tooltip anschalten
 		if (toolTipCreate) {
-			m_menu->tooltip("Hotel", MONKY.getRes1(), MONKY.getRes2(), MONKY.getRes3(), 20, "Wohnungen hinzugefuegt"); //20 wird durch hotel.getWohnungen ersetzt
+			m_menu->tooltip(
+				"Hotel", 
+				toBeBuildObject->getGameObject()->getRessources().Sauerstoff_per_Build,			// Ehemals Res1
+				toBeBuildObject->getGameObject()->getRessources().Stein_per_Build,				// Ehemals Res2
+				toBeBuildObject->getGameObject()->getRessources().Strom_per_Build,				// Ehemals Res3
+				20, 
+				"Anzahl gebaut");
 
+			
+			// Tooltip wird so nur einmal gebaut
 			toolTipCreate = false;
 		}
+
+	
 		if (m_menu->m_confirm.IsClicked()) {
-			if (enoughRes(&MONKY)) {
+
+			if (enoughRes(toBeBuildObject->getGameObject())) {
+				
 				confirmClicked();
-				makeBuilding(MONKY.getPlacement(), Wohnung[WohnungNr]->getPlacement());
-				WohnungNr++;
-				m_playerStats->setWohnung(1); //1 wird durch hotel.getWohungen
+				makeBuilding(toBeBuildObject);
+				targetPos = NULL;
+				m_playerStats->setWohnung(1);
 				m_menu->getWohnung()->SetLabel("Wohnungen: " + std::to_string(m_playerStats->getWohnung()));
 			}
 		}
 
-		if (selected) {
-			if (!isclicked) {
-				MONKY.getPlacement()->SwitchOn();
+		if(targetPos) {
+			if (!isclicked)
+			{
+				toBeBuildObject->SwitchOn();
 				m_menu->m_confirm.SwitchOn();
 				m_menu->m_cancel.SwitchOn();
-				m_menu->switchOnBuy(MONKY.getRes1(), MONKY.getRes2(), MONKY.getRes3());
+				m_menu->switchOnBuy(toBeBuildObject->getGameObject()->getRessources().Sauerstoff_per_Build,
+					toBeBuildObject->getGameObject()->getRessources().Stein_per_Build,
+					toBeBuildObject->getGameObject()->getRessources().Strom_per_Build);
+
 				isclicked = true;
 			}
-			if (cursor->ButtonPressedLeft()) {
-				MONKY.getPlacement()->Translate(selected->GetPos());
-			}
+				if (cursor->ButtonPressedLeft()) {
+					toBeBuildObject->Translate(targetPos->GetPos());
+				}
+				
 		}
 		
 	}	
 	
 	if (m_menu->m_cancel.IsClicked()) {
-		cancelClicked((&MONKY));
+
+		cancelClicked(toBeBuildObject);
 	}
 
 }
 
 
 
-void clickmanager::makeBuilding(CPlacement* selected,CPlacement* modelPlace)
+void clickmanager::makeBuilding(CGameObjectPlacement* buildingObject)
 {
-	
+	// Confirm- und Cancel-Button werden ausgeschaltet
 	m_menu->m_confirm.SwitchOff();
 	m_menu->m_cancel.SwitchOff();
-	selected->SwitchOff();
+
 	Building_Sound->Start();
-	modelPlace->Translate(selected->GetPos());
-	modelPlace->SwitchOn();
+
+	if (targetPos)
+	{
+		buildingObject->Translate(targetPos->GetPos());
+	}
+	buildingObject->SwitchOn();
+
+	BuildingManager->IncreaseNrOfBuildings();
+	buildingObject->setBuildStatus(true);
+	buildingObject = NULL;
 
 	
 }
+
 void clickmanager::menuOFF() {
+
 	m_menu->getSpecificSelect(0)->SwitchOff();
 	m_menu->getSpecificSelect(0)->SetActivePosition(-1);
 	m_menu->getSpecificSelect(1)->SwitchOff();
@@ -143,34 +187,43 @@ void clickmanager::menuOFF() {
 
 bool clickmanager::enoughRes(GameObject* hi) {
 
-	if (hi->getRes1() <= m_playerStats->getRessource1() && hi->getRes2() <= m_playerStats->getRessource2() && hi->getRes3() <= m_playerStats->getRessource3()) {
-
+	// Prüfe, ob genug Ressourcen vorhanden sind
+	if (hi->getRessources().Sauerstoff_per_Build <= m_playerStats->getRessource1() &&
+		hi->getRessources().Stein_per_Build <= m_playerStats->getRessource2()	   &&
+		hi->getRessources().Strom_per_Build <= m_playerStats->getRessource3()) 
+	{
 		return true;
 	}
 	
 }
 
 void clickmanager::confirmClicked() {
+
 	menuOFF();
 	m_menu->m_cancel.SwitchOff();
 	m_menu->m_confirm.SwitchOff();
 
-	m_playerStats->setRessource1(-MONKY.getRes1());
-	m_playerStats->setRessource2(-MONKY.getRes2());
-	m_playerStats->setRessource3(-MONKY.getRes3());
+	m_playerStats->setRessource1(-toBeBuildObject->getGameObject()->getRessources().Sauerstoff_per_Build);
+	m_playerStats->setRessource2(-toBeBuildObject->getGameObject()->getRessources().Stein_per_Build);
+	m_playerStats->setRessource3(-toBeBuildObject->getGameObject()->getRessources().Strom_per_Build);
 	
+	// Tooltip kann jetzt wieder angezeigt werden
 	toolTipCreate = true;
+
 	m_menu->updatePlayer();
 	m_menu->m_toolTipBackGround.SwitchOff();
 	isclicked = false;
 }
 
-void clickmanager::cancelClicked(GameObject* model) {
+void clickmanager::cancelClicked(CGameObjectPlacement* buildObject) {
+
 	menuOFF();
 	m_menu->m_cancel.SwitchOff();
 	m_menu->m_confirm.SwitchOff();
+
 	m_menu->updatePlayer();
-	model->getPlacement()->SwitchOff();
+
+	buildObject->SwitchOff();
 	toolTipCreate = true;
 	m_menu->m_toolTipBackGround.SwitchOff();
 	isclicked = false;

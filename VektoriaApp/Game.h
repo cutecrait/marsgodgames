@@ -21,10 +21,11 @@
 
 
 #include "Vektoria\Root.h"
-#include "MapSquare.h"
+#include "MapTile.h"
 #include "CCameraController.h"
 #include "clickmanager.h"
 #include "CAudioManager.h"
+#include "CBuildingManager.h"
 #include "Load.h"
 #include "UI.h"
 
@@ -61,10 +62,11 @@ private:
 	//<Darius>
 	CCameraController CameraController;
 	CAudioManager AudioManager;
+	CBuildingManager BuildingManager;
 	//</Darius>
 
 	//World Ground
-	CPlacements squares;
+	MapSquare mapSquare;
 
 	//Sun?
 	CLightParallel m_zlp;

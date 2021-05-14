@@ -4,7 +4,9 @@
 #include "GuiButton.h"
 #include "GuiSelect.h"
 #include "BeispielForGameObject.h"
+#include "MapTile.h"
 #include "CAudioManager.h"
+#include "CBuildingManager.h"
 
 using namespace Vektoria;
 class clickmanager
@@ -14,28 +16,30 @@ public:
 	~clickmanager();
 
 	void menuOFF();
-	void Click(float, CPlacement*, CDeviceCursor*);
-	void Init(UI* menu, CScene* zs, CAudioManager* am, Player* player) {
+	void Click(float,  CDeviceCursor*);
+	void Init(UI* menu, CScene* zs, CAudioManager* am, Player* player, CBuildingManager* bm, MapSquare* squares) {
+		
+		//Übergebe die UI
 		m_menu = menu;
-		MONKY.Init(100, 100, 100);
-		MONKY.getPlacement()->SwitchOff();
-		zs->AddPlacement(MONKY.getPlacement());
-		for (int i = 0; i < 20; i++) {
-			Wohnung[i] = new BeispielForGameObject();
-			Wohnung[i]->getPlacement()->SwitchOff();
-			zs->AddPlacement(Wohnung[i]->getPlacement());
 
-		}
-
+		// Übergebe den Bau-Sounds
 		Building_Sound = &(am->Ambient_Building_Sound);
+
+		// Übergebe die Spielerstatistik
 		m_playerStats = player;
+
+		// Übergebe den BuildingManager (Zugriff auf die Gebäude im Spiel)
+		BuildingManager = bm;
+
+		mapsquares = squares;
 	}
-	void makeBuilding(CPlacement*, CPlacement*);
+
+	void makeBuilding(CGameObjectPlacement*);
 	bool enoughRes(GameObject*);
 
 	void confirmClicked();
 
-	void cancelClicked(GameObject*);
+	void cancelClicked(CGameObjectPlacement* );
 	
 private:
 
@@ -45,15 +49,21 @@ private:
 	int whatKind;
 	int WhatSpecific = 1;
 	int unterschied = -1;
-	int WohnungNr = 0;
 	bool toolTipCreate = true;
 	bool clicked = false;
 	bool isclicked = false;
 	CAudio* Building_Sound;
+
+	// Objekt, das gebaut werden soll (bzw. im Moment platziert werden kann)
+	CGameObjectPlacement* toBeBuildObject;
+	CBuildingManager* BuildingManager;
+	MapSquare* mapsquares;
+	CPlacement* targetPos;
 	Player* m_playerStats;
 	UI* m_menu;
-	BeispielForGameObject MONKY;
-	BeispielForGameObject* Wohnung[20];
+
+	/*BeispielForGameObject MONKY;
+	BeispielForGameObject* Wohnung[20];*/
 
 };
 

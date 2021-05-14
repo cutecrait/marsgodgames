@@ -88,6 +88,15 @@
       <Filter>Audio</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="CGameObjectPlacement.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="MapTile.cpp">
+      <Filter>Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="CBuildingManager.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -184,6 +193,15 @@
       <Filter>Audio</Filter>
     </ClInclude>
     <ClInclude Include="Player.h" />
+    <ClInclude Include="CGameObjectPlacement.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="MapTile.h">
+      <Filter>Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="CBuildingManager.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VektoriaApp.rc" />

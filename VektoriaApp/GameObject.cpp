@@ -17,6 +17,27 @@ void GameObject::Init(char* model, char* material,int res1,int res2,int res3)
 	m_res3 = res3;
 }
 
+void GameObject::Update(float deltaTime)
+{
+	
+}
+
+void GameObject::TransformGeo()
+{
+	// Verschiebe die Geo in Y-Richtung, damit Objekt korrekt auf dem Boden steht
+	CHMat m;
+	m.TranslateY(CalculateHeight());
+	if (m_model)
+	{
+		m_model->Transform(m);
+	}
+}
+
+GameObject::Ressources_Data& GameObject::getRessources()
+{
+	return ressources;
+}
+
 void GameObject::setModel(char* modelpfad)
 {
 	m_model = m_modelPfad.LoadGeo(modelpfad);
@@ -25,4 +46,12 @@ void GameObject::setModel(char* modelpfad)
 void GameObject::setMaterial(char* matPfad)
 {
 	m_material.MakeTextureSprite(matPfad);
+
+	
+}
+
+float GameObject::CalculateHeight()
+{
+	if (m_model)
+		return m_model->m_aabb.GetSize().m_fy / 2.f;
 }

@@ -181,6 +181,7 @@ void UI::initPlayer(CDeviceCursor* cursor, CWritingFont* font) {
 	m_statsBack.SetLayer(0.98);
 	m_statsBack.SwitchOff();
 
+	
 
 	
 	m_res1Minus.SetInnerOn();
@@ -240,12 +241,23 @@ void UI::updatePlayer() {
 	m_res2Minus.SwitchOff();
 	m_res3Minus.SwitchOff();
 }
+void UI::tooltip(std::string headline, int res1, int res2, int res3, int anzahl, std::string whatHappens) {
+	m_headlineW.PrintString(&headline[0]);
+	m_kosten1W.PrintInt(res1);
+	m_kosten2W.PrintInt(res2);
+	m_kosten3W.PrintInt(res3);
+
+	m_descriptionW2.PrintInt(anzahl);
+	m_descriptionW3.PrintString(&whatHappens[0]);
+	m_toolTipBackGround.SwitchOn();
+
+}
+
 void UI::InitToolTip() {
 	m_toolTipBackGround.Init(&m_matStats, CFloatRect(0.4, 0.6, 0.4, 0.4));
 	m_toolTipBackGround.SetLayer(0.99); // das setlayer(1) = man sieht den hintergrund nie! (aber gut um alles anzuschalten bzw aus)
 
 	m_viewport->AddOverlay(&m_toolTipBackGround);
-	
 
 	//ueberschrift
 	m_headline.Init(&m_matStats, CFloatRect(0, 0, 0.25, 0.5));
@@ -310,15 +322,4 @@ void UI::InitToolTip() {
 	m_description.AddWriting(&m_descriptionW3);
 
 	m_toolTipBackGround.SwitchOff();
-}
-void UI::tooltip(std::string headline, int res1, int res2, int res3, int anzahl, std::string whatHappens) {
-	
-	m_headlineW.PrintString(&headline[0]);
-	m_kosten1W.PrintInt(res1);
-	m_kosten2W.PrintInt(res2);
-	m_kosten3W.PrintInt(res3);
-
-	m_descriptionW2.PrintInt(anzahl);
-	m_descriptionW3.PrintString(&whatHappens[0]);
-	m_toolTipBackGround.SwitchOn();
 }

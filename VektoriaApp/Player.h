@@ -25,6 +25,7 @@ public:
 	void setWohnung(int i) { WohnungKapa += i; }
 
 private:
+
 	int ressource1;
 	int ressource2;
 	int ressource3;

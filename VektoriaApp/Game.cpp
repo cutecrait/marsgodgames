@@ -67,18 +67,21 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	einsFont.LoadPreset("LucidaConsoleWhite");
 	einsFont.SetChromaKeyingOn(); //hiermit hat die font keinen hässlichen hintergrund
 	menu.InitMenu(&einCursor, &einsFont, &m_zv, &m_player);
-	derManager.Init(&menu, &m_zs, &AudioManager, &m_player);
+	derManager.Init(&menu, &m_zs, &AudioManager, &m_player, &BuildingManager, &mapSquare);
 
 	// MAP SQUARES---------------------------------------
 	for (int iz = 0; iz < 10; iz++)
 	{
 		for (int ix = 0; ix < 10; ix++)
 		{
-			auto sqr = new MapSquare(ix, 0.0, iz, 2);
+			auto sqr = new MapTile(ix, 0.0, iz, 2, &mapSquare);
 			m_zs.AddPlacement(sqr);
-			squares.Add(sqr);
+			mapSquare.Add(sqr);
 		}
 	}
+
+	BuildingManager.Init(&m_zs);
+
 	//Terrain
 	m_zs.AddPlacement(m_ldgame.LoadTerrain());
 
@@ -102,21 +105,8 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 	// CAMERA-----------------------------------
 	CameraController.UpdateCameraMovement(fTimeDelta); //Aktualisiert die Kamerabewegung
 	
-	// MAP SQUARES---------------------------------------
-	// deselect other map squares
-	for (int i = 0; i<squares.m_iPlacements; i++)
-	{
-		auto sqr = static_cast<MapSquare*>(squares.m_applacement[i]);
-		if(sqr)
-			sqr->Deselect();
-	}
-	//int mouseX, mouseY;
-	//einCursor.GetAbsolute(mouseX, mouseY);
-	
-	auto selectedPlace = einCursor.PickPlacementPreselected(squares);
-	if (selectedPlace)
-		selectedPlace->m_pgeos->m_apgeo[0]->m_pmaterial->Translate(CColor(0.2, 0.8, 0.2));
-	derManager.Click(fTimeDelta, selectedPlace,&einCursor);
+
+	derManager.Click(fTimeDelta, &einCursor);
 	
 	// UI-----------------------------------
 	
