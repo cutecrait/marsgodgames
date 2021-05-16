@@ -13,15 +13,15 @@ namespace Vektoria
 		CGuiElement::Init(deviceCursor, font, floatRect);
 		m_acName = "CGuiButton";
 
-		m_zmBase.MakeTextureSprite("textures\\ENV.jpg");
+		m_zmBase.MakeTextureSprite("textures\\Button.png");
 		m_zmBase.SetTransparencyOn();
 		m_zmBase.SetTransparency(0.0f);
 
-		m_zmHover.MakeTextureSprite("textures\\green_image.jpg");
+		m_zmHover.MakeTextureSprite("textures\\Button_Hover.png");
 		m_zmHover.SetTransparencyOn();
 		m_proot->AddMaterial(&m_zmHover);
 
-		m_zmClick.MakeTextureSprite("textures\\blue_image.jpg");
+		m_zmClick.MakeTextureSprite("textures\\Button_Click.png");
 		m_zmClick.SetTransparencyOn();
 		m_proot->AddMaterial(&m_zmClick);
 

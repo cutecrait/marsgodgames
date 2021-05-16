@@ -1,19 +1,18 @@
 #include "GuiSelect.h"
 
 namespace Vektoria
-{
+{ // try to fix mit nem array[6] -> 6 weil grˆﬂtes und die i wird ja nie dr¸ber laufen. (bzw pseudo mats machen.)
 	CGuiSelect::~CGuiSelect()
 	{
-		// delete all option pointers
+		//delete all option pointers
+		
+
 		for (auto itO : m_vOptions) {
 			delete itO;
 		}
 		m_vOptions.clear();
 
-		for (auto itO : m_zmOptionInactive) {
-			delete itO;
-		}
-		m_zmOptionInactive.clear();
+		
 	}
 
 	void CGuiSelect::Init(CDeviceCursor* deviceCursor, CWritingFont* font)
@@ -35,7 +34,7 @@ namespace Vektoria
 		m_acName = "CGuiSelect";
 
 		// Styling base overlay
-		m_zmBase.MakeTextureSprite("textures\\ENV.jpg");  // hier ist der hintergrund f¸r den jeweiligen select.
+		m_zmBase.MakeTextureSprite("textures\\Base_Tex.png");  // hier ist der hintergrund f¸r den jeweiligen select.
 		
 		// Styling Interactable
 		m_zoInteractable.SetRect(CFloatRect(0.05f, 0.25f, 0.9f, 0.7f));
@@ -51,18 +50,18 @@ namespace Vektoria
 		m_zfrOptionBase = CFloatRect(0.0f, 0.0f, 0.8f, 1.0f / m_iOptionsVisible);
 
 		// Option active states
-		m_zmOptionActive.MakeTextureSprite("textures\\green_image.jpg"); 
+		m_zmOptionActive.MakeTextureSprite("textures\\Button_Click.png"); 
 		m_zmOptionActive.SetTransparencyOn();
 		m_zmOptionActive.SetTransparency(0.2f);
 		m_proot->AddMaterial(&m_zmOptionActive);
 		
+		m_zmOptionInactive.MakeTextureSprite("textures\\Menu_Button.png");
 		
-		for (int i = 0; i < optionsVisible; i++) {
-			m_proot->AddMaterial(m_zmOptionInactive.at(i));
-		}
+		m_proot->AddMaterial(&m_zmOptionInactive);
+		
 		//wenn man buttons zum hoch / runter scrollen haben mˆchte.
 		// Up/Down Button states 
-	/*	m_zmArrowButtonNormal.MakeTextureSprite("textures\\gui\\GuiSelect_UpButton_Normal.png");
+	    /*m_zmArrowButtonNormal.MakeTextureSprite("textures\\gui\\GuiSelect_UpButton_Normal.png");
 		m_zmArrowButtonNormal.SetTransparencyOn();
 		m_zmArrowButtonHover.MakeTextureSprite("textures\\gui\\GuiSelect_UpButton_Hover.png");
 		m_zmArrowButtonHover.SetTransparencyOn();
@@ -100,8 +99,7 @@ namespace Vektoria
 		m_vOptions.back()->Init(m_pdc, m_pwfFont);
 		m_vOptions.back()->SetLabel(name);
 		m_vOptions.back()->SetInnerOn();
-		
-		m_vOptions.back()->SetMaterial(m_zmOptionInactive.at(WhereAmI));
+		m_vOptions.back()->SetMaterial(&m_zmOptionInactive);
 		
 		m_vOptions.back()->SetLabelRect(CFloatRect(0.05f, 0.15f, 0.9f, 0.7f));
 		m_zoInteractable.AddOverlay(m_vOptions.back());
@@ -151,7 +149,7 @@ namespace Vektoria
 	{
 		if (pos == -1 || pos == m_iActive) {
 			if (m_iActive != -1) {
-				m_vOptions[m_iActive]->SetMaterial(m_zmOptionInactive.at(m_iActive));
+				m_vOptions[m_iActive]->SetMaterial(&m_zmOptionInactive);
 			}
 			m_iActive = -1;
 			m_bHasUpdated = true;
@@ -160,7 +158,7 @@ namespace Vektoria
 
 		if (pos != m_iActive && pos >= 0 && pos < m_vOptions.size()) {
 			if (m_iActive != -1) {
-				m_vOptions[m_iActive]->SetMaterial(m_zmOptionInactive.at(m_iActive));
+				m_vOptions[m_iActive]->SetMaterial(&m_zmOptionInactive);
 			}
 			m_vOptions[pos]->SetMaterial(&m_zmOptionActive);
 
@@ -235,11 +233,11 @@ namespace Vektoria
 		}
 	}
 	//sucht sich die materialien aus den groﬂen materialen vektor aus gamecpp 
-	void CGuiSelect::makeInactiveMats(CMaterial* mattis) {
+	/*void CGuiSelect::makeInactiveMats(CMaterial* mattis) {
 		for (int i = 0; i < sizeof(mattis); i++) {
 			m_zmOptionInactive.push_back(&mattis[i]);
 		}
 		
-	}
+	}*/
 	
 }

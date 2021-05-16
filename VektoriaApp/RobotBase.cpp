@@ -1,10 +1,11 @@
 #include "RobotBase.h"
 
-RobotBase::RobotBase()
+RobotBase::RobotBase(Vektoria::CPlacement* placement, float maximumVelocity, float rotationSpeed)
 {
 	_stateManager = new AI::StateManager();
-	_placementRoot = new Vektoria::CPlacement();
-	
+	_placementRoot = placement;
+	_steeringManager = new Movement::SteeringManager(_placementRoot, maximumVelocity, rotationSpeed);
+
 	CreateMesh();
 }
 
@@ -17,6 +18,11 @@ void RobotBase::Update(float timeDelta)
 {
 	//Update AI
 	_stateManager->Update(timeDelta);
+	//Update Movement
+	_steeringManager->Update(timeDelta);
+
+	//TODO Wann/Wie bekommt Robot seinen "Auftrag" für Pathfinding -> Neue Methode SetPath(vector<Node*>) in FollowPathAction? 
+	//-> Wann wird diese Aufgerufen -> JobSystem?
 }
 
 Vektoria::CPlacement* RobotBase::GetPlacement()

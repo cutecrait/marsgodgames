@@ -2,6 +2,12 @@
 
 namespace Pathfinding
 {
+	AStarAlgorithm::AStarAlgorithm()
+	{
+		_startnode = nullptr;
+		_goalnode = nullptr;
+	}
+
 	void AStarAlgorithm::Compute(Node* startnode, Node* goalnode)
 	{
 		//Node-Values:
@@ -40,6 +46,22 @@ namespace Pathfinding
 		}
 	}
 
+	std::vector<Node*> AStarAlgorithm::GetPath()
+	{
+		std::vector<Node*> path;
+
+		Node* node = _goalnode;
+
+		while (node != _startnode)
+		{
+			Node* next = _closed[node];
+			path.insert(path.begin(), next);
+			node = next;
+		};
+
+		return path;
+	}
+
 	void AStarAlgorithm::AddOpenNode(Node* const& node)
 	{
 		_open.insert(std::pair<float, Node*>(Distance(_startnode, node) + Distance(node, _goalnode), node));
@@ -61,6 +83,8 @@ namespace Pathfinding
 
 	float AStarAlgorithm::Distance(Node* const& node1, Node* const& node2)
 	{
-		return pow(node2->GetX() - node1->GetX(), 2) + pow(node2->GetY() - node1->GetY(), 2) + pow(node2->GetZ() - node1->GetZ(), 2);
+		Vektoria::CHVector* vec1 = node1->GetPosVector();
+		Vektoria::CHVector* vec2 = node1->GetPosVector();
+		return vec1->Dist(*vec2);
 	}
 }

@@ -3,6 +3,8 @@
 #include "Action.h"
 #include "Vektoria\Root.h"
 #include <vector>
+#include "SteeringManager.h"
+#include "Node.h"
 
 namespace AI
 {
@@ -22,10 +24,11 @@ namespace AI
 		/// <summary>
 		/// Konstruktor
 		/// </summary>
+		/// <param name="steeringManager">Verbindung zur Steuerung der Bewegung</param>
 		/// <param name="path">Referenz auf Pfad</param>
-		/// <param name="trigger">TODO ?</param>
+		/// <param name="stopDistance">Haltedistanz zum Ziel</param>
 		/// <param name="repeat">Optional - True: wiederhole Pfad, wenn Ende erreicht</param>
-		FollowPathAction(std::vector<Vektoria::C2Vector*> path, float trigger, bool repeat = false);
+		FollowPathAction(Movement::SteeringManager* steeringManager, std::vector<Pathfinding::Node*> path, float stopDistance,  bool repeat = false);
 
 		/// <summary>
 		/// Gibt an, welcher Knoten besucht werden soll und wertet Distanz aus
@@ -39,13 +42,17 @@ namespace AI
 
 	protected:
 		/// <summary>
+		/// Verbindung zur Steuerung der Bewegung
+		/// </summary>
+		Movement::SteeringManager* _steeringManager;
+		/// <summary>
 		/// Zu besuchender Knoten
 		/// </summary>
-		Vektoria::C2Vector* _node;
+		Pathfinding::Node* _node;
 		/// <summary>
 		/// Knotenliste des Pfads
 		/// </summary>
-		std::vector<Vektoria::C2Vector*> _path;
+		std::vector<Pathfinding::Node*> _path;
 
 		/// <summary>
 		/// Index aktueller Knoten
@@ -53,9 +60,9 @@ namespace AI
 		int _i;
 
 		/// <summary>
-		/// TODO *
+		/// Haltedistanz zum Ziel
 		/// </summary>
-		float _trigger;
+		float _stopDistance;
 		/// <summary>
 		/// Gibt an, ob Pfad wiederholt werden soll
 		/// </summary>

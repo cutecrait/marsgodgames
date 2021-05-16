@@ -9,6 +9,7 @@ namespace Pathfinding
 	public:
 
 		virtual void Compute(Node* startnode, Node* goalnode) = 0;
+		virtual std::vector<Node*> GetPath() = 0;
 
 	protected:
 

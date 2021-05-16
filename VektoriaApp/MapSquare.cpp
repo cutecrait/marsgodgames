@@ -33,3 +33,4 @@ void MapSquare::Deselect()
 	selected = false;
 	MainGeo->m_pmaterial->SetTransparencyOn();
 }
+// Definitionen sind in der MapTile.cpp

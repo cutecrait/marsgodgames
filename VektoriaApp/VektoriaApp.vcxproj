@@ -152,6 +152,8 @@
     <ClInclude Include="Action.h" />
     <ClInclude Include="AStarAlgorithm.h" />
     <ClInclude Include="BeispielForGameObject.h" />
+    <ClInclude Include="CAudioManager.h" />
+    <ClInclude Include="CBuildingManager.h" />
     <ClInclude Include="CCameraController.h" />
     <ClInclude Include="clickmanager.h" />
     <ClInclude Include="Connection.h" />
@@ -160,6 +162,7 @@
     <ClInclude Include="FollowPathAction.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="CGameObjectPlacement.h" />
     <ClInclude Include="GuiButton.h" />
     <ClInclude Include="GuiElement.h" />
     <ClInclude Include="GuiImageColorPicker.h" />
@@ -170,12 +173,16 @@
     <ClInclude Include="LightingManager.h" />
     <ClInclude Include="Load.h" />
     <ClInclude Include="MapSquare.h" />
+    <ClInclude Include="MapTile.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="NodeController.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="RobotBase.h" />
     <ClInclude Include="Save.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateManager.h" />
+    <ClInclude Include="SteeringManager.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TimedDecision.h" />
     <ClInclude Include="Transition.h" />
@@ -185,6 +192,8 @@
     <ClCompile Include="Action.cpp" />
     <ClCompile Include="AStarAlgorithm.cpp" />
     <ClCompile Include="BeispielForGameObject.cpp" />
+    <ClCompile Include="CAudioManager.cpp" />
+    <ClCompile Include="CBuildingManager.cpp" />
     <ClCompile Include="CCameraController.cpp" />
     <ClCompile Include="clickmanager.cpp" />
     <ClCompile Include="Connection.cpp" />
@@ -194,6 +203,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="LightingManager.cpp" />
+    <ClCompile Include="CGameObjectPlacement.cpp" />
     <ClCompile Include="Load.cpp" />
     <ClCompile Include="MapSquare.cpp" />
     <ClCompile Include="GuiButton.cpp" />
@@ -201,11 +211,15 @@
     <ClCompile Include="GuiImageColorPicker.cpp" />
     <ClCompile Include="GuiSelect.cpp" />
     <ClCompile Include="GuiSlider.cpp" />
+    <ClCompile Include="MapTile.cpp" />
     <ClCompile Include="Node.cpp" />
+    <ClCompile Include="NodeController.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="RobotBase.cpp" />
     <ClCompile Include="Save.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateManager.cpp" />
+    <ClCompile Include="SteeringManager.cpp" />
     <ClCompile Include="TimedDecision.cpp" />
     <ClCompile Include="Transition.cpp" />
     <ClCompile Include="UI.cpp" />

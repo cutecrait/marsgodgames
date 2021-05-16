@@ -67,7 +67,7 @@ namespace Vektoria
 		///<summary>Sets the distance from viewport.</summary>
 		///<param name="layer">Distance from viewport, less means closer, range: ]0;1[.</param>
 		virtual void SetLayerGui(float layer = GUI_DEFAULT_LAYER) override;
-		void makeInactiveMats(CMaterial* mattis);
+		//void makeInactiveMats(CMaterial* mattis);
 	protected:
 		bool m_bHasUpdated = false;
 
@@ -78,7 +78,7 @@ namespace Vektoria
 		CMaterial m_zmOptionActive;
 		
 		int WhereAmI = 0;
-		std::vector<CMaterial*> m_zmOptionInactive;
+		CMaterial m_zmOptionInactive;
 		std::vector<CGuiElement*> m_vOptions;
 		CFloatRect m_zfrOptionBase;
 

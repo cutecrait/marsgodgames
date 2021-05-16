@@ -45,30 +45,34 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 		rechter Mausbutton + Schwenken: Kamerarotation
 	*/
 	//</Darius>
-	
+
+
 	// INPUTS---------------------------------------------------
 	m_zf.AddDeviceCursor(&einCursor);
 	m_zf.AddDeviceKeyboard(&m_zdk);
 	m_zf.AddDeviceMouse(&m_zdm);
 
+	// AUDIO------------------------------------------------
+	AudioManager.Init(&m_zs);
+	
 
 	// LIGHTING--------------------------------------
 	lightingManager.Init(&m_zs, &m_zpCamera);
 
-
 	// OVERLAY-----------------------------------------
 	// texturen werden jetzt in UI erstellt. 
 	// UI = menu, derManager = click-event.
-	
-	einsFont.LoadPreset("LucidaConsoleBlack");
+	m_player.initPlayer(1000, 1000, 1000);
+	einsFont.LoadPreset("LucidaConsoleWhite");
 	einsFont.SetChromaKeyingOn(); //hiermit hat die font keinen hässlichen hintergrund
-	menu.InitMenu(&einCursor, &einsFont, &m_zv);
-	derManager.Init(&menu, &m_zs);
-	
-	
+	menu.InitMenu(&einCursor, &einsFont, &m_zv, &m_player);
+	derManager.Init(&menu, &m_zs, &AudioManager, &m_player, &BuildingManager, &mapSquare);
 
 	// MAP SQUARES---------------------------------------
 	MakeMapSquares(&m_zs);
+	
+
+	BuildingManager.Init(&m_zs);
 
 	//Terrain
 	m_zs.AddPlacement(m_ldgame.LoadTerrain());
@@ -80,6 +84,10 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 		m_zs.AddPlacement(m_ldgame.GetPlacements(i));
 	}
 	*/
+
+
+	
+
 }
 
 void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
@@ -107,11 +115,13 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 		selectedPlace->m_pgeos->m_apgeo[0]->m_pmaterial->Translate(CColor(0.2, 0.8, 0.2));
 	 
 	
-	// UI-----------------------------------
-	derManager.Click(fTimeDelta);
 
+	derManager.Click(fTimeDelta, &einCursor);
 	
-	derManager.makeBuilding(selectedPlace,&einCursor);
+	// UI-----------------------------------
+	
+	
+	//derManager.makeBuilding(selectedPlace,&einCursor);
 }
 
 void CGame::MakeMapSquares(CScene* m_zs)

@@ -10,7 +10,7 @@ namespace AI
 
 	bool TimedDecision::Decide()
 	{
-		//TODO current + timeDelta
+		//TODO current + timeDelta -- wie an current kommen?
 		if (_duration < _current)
 			return true;
 		return false;

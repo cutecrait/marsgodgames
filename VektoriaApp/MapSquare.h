@@ -4,11 +4,12 @@
 using namespace Vektoria;
 using namespace std;
 
-class MapSquare : public CPlacement
+class MapTile;
+
+class MapSquare : public CPlacements
 {
 public:
 	MapSquare();
-	MapSquare(float x, float y, float z, float size);
 	~MapSquare();
 
 	bool Free = true;
@@ -16,10 +17,15 @@ public:
 	CGeoGrid* MainGeo = nullptr;
 
 	//void AddAsChild(CScene* parent);
-	void Select();
-	void Deselect();
+	//void Select();
+
+	void DeselectMapTile(MapTile*);
 
 private:
+
 	bool selected = false;
+
+	// Pointer auf das letzte selektierte Element
+	MapTile* lastSelected = NULL;
 };
 

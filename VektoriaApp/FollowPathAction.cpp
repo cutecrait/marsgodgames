@@ -2,20 +2,26 @@
 
 namespace AI
 {
-	FollowPathAction::FollowPathAction(std::vector<Vektoria::C2Vector*> path, float trigger, bool repeat) : Action()
+	FollowPathAction::FollowPathAction(Movement::SteeringManager* steeringManager, std::vector<Pathfinding::Node*> path, float stopDistance, bool repeat) : Action()
 	{
+		_steeringManager = steeringManager;
 		HasReachedEnd = false;
 		_path = path;
+		_stopDistance = stopDistance;
 		_repeat = repeat;
-		_trigger = trigger;
 	}
 
 	void FollowPathAction::Act()
 	{
-		//TODO Go to Node (Tell Agent to go to node)
-
-		//TODO If (Distance CurrentVector to NodeVector < trigger)
-		NextNode();
+		//TODO Logik?
+		if (_steeringManager->GetPosition()->Dist(*(_path[_i]->GetPosVector())) < _stopDistance)
+		{
+			NextNode();
+		}
+		if (_node)
+		{
+			_steeringManager->SetTarget(_node->GetPosVector());
+		}
 	}
 
 	void FollowPathAction::NextNode()

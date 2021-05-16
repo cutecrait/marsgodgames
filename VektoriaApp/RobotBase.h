@@ -2,12 +2,13 @@
 
 #include "Vektoria\Root.h"
 #include "StateManager.h"
+#include "SteeringManager.h"
 
 class RobotBase
 {
 public:
 
-	RobotBase();
+	RobotBase(Vektoria::CPlacement* placement, float maximumVelocity, float rotationSpeed);
 	~RobotBase();
 
 	void Update(float timeDelta);
@@ -20,8 +21,9 @@ protected:
 
 	Vektoria::CPlacement* _placementRoot;
 	AI::StateManager* _stateManager;
+	Movement::SteeringManager* _steeringManager;
 
-	void CreateMesh(); //TODO Rename?
+	void CreateMesh(); //TODO nur Test
 
 };
 
