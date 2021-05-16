@@ -28,6 +28,7 @@
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="BeispielForGameObject.cpp" />
+    <ClCompile Include="LightingManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Action.h" />
@@ -60,6 +61,7 @@
     <ClInclude Include="UI.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="BeispielForGameObject.h" />
+    <ClInclude Include="LightingManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VektoriaApp.rc" />

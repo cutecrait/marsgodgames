@@ -3,12 +3,14 @@
 MapSquare::MapSquare(float x, float y, float z, float size)
 {
 	MainGeo = new CGeoGrid();
-	MainGeo->Init(size, size, new CMaterial(), 2, 2);
+	CMaterial* mat = new CMaterial();
+	mat->Init();
+	MainGeo->Init(size, size, mat, 2, 2);
 	AddGeo(MainGeo);
 	Translate(x, y, z);
-	MainGeo->m_pmaterial->LoadPreset("CarpetFluffy");
-	MainGeo->m_pmaterial->Translate(CColor(0.6, 0.0, 0.0));
 	MainGeo->Center();
+	mat->SetTransparencyOn();
+	mat->SetTransparency(0.4f);
 }
 
 MapSquare::MapSquare()
@@ -22,11 +24,12 @@ MapSquare::~MapSquare()
 void MapSquare::Select()
 {
 	selected = true;
-	MainGeo->m_pmaterial->Translate(CColor(0.2, 1.0, 0.2));
+	MainGeo->m_pmaterial->SetTransparencyOff();
+	MainGeo->m_pmaterial->SetTransparency(0.0f);
 }
 
 void MapSquare::Deselect()
 {
 	selected = false;
-	MainGeo->m_pmaterial->Translate(CColor(0.6, 0.0, 0.0));
+	MainGeo->m_pmaterial->SetTransparencyOn();
 }

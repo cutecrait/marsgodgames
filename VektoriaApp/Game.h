@@ -24,6 +24,7 @@
 #include "MapSquare.h"
 #include "CCameraController.h"
 #include "clickmanager.h"
+#include "LightingManager.h"
 #include "Load.h"
 #include "UI.h"
 
@@ -38,6 +39,7 @@ public:
 
 	void Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CSplash * psplash);	// Wird zu Begin einmal aufgerufen
 	void Tick(float fTime, float fTimeDelta);													// Wird w�hrend der Laufzeit bei jedem Bildaufbau aufgerufen
+	void MakeMapSquares(CScene* m_zs);
 	void Fini();																				// Wird am Ende einmal aufgerufen
 
 	void WindowReSize(int iNewWidth, int iNewHeight);											// Wird immer dann aufgerufen, wenn der Benutzer die Fenstergr��e ver�ndert hat
@@ -66,6 +68,7 @@ private:
 
 	//Sun?
 	CLightParallel m_zlp;
+	LightingManager lightingManager;
 	//lea END
 	// 
 	//hendrik start:

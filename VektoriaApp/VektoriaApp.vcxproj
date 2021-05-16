@@ -167,6 +167,7 @@
     <ClInclude Include="GuiSlider.h" />
     <ClInclude Include="GuiUtils.h" />
     <ClInclude Include="IPathSearchAlgorithm.h" />
+    <ClInclude Include="LightingManager.h" />
     <ClInclude Include="Load.h" />
     <ClInclude Include="MapSquare.h" />
     <ClInclude Include="Node.h" />
@@ -192,6 +193,7 @@
     <ClCompile Include="FollowPathAction.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="LightingManager.cpp" />
     <ClCompile Include="Load.cpp" />
     <ClCompile Include="MapSquare.cpp" />
     <ClCompile Include="GuiButton.cpp" />

@@ -31,7 +31,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_zf.AddViewport(&m_zv);
 
 	m_zpCamera.RotateX(-QUARTERPI); //45°-Winkel
-	m_zpCamera.RotateYDelta(PI);
+	m_zpCamera.RotateYDelta(PI + QUARTERPI);
 	m_zpCamera.TranslateDelta(0, 5.f, 0);
 
 	//<Darius>
@@ -53,8 +53,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 
 
 	// LIGHTING--------------------------------------
-	m_zlp.Init(CHVector(0.2f, 0.8f, 0.2f), CColor(1.0f, 1.0f, 0));	//yellow sun?
-	m_zs.AddLightParallel(&m_zlp);
+	lightingManager.Init(&m_zs, &m_zpCamera);
 
 
 	// OVERLAY-----------------------------------------
@@ -69,15 +68,8 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	
 
 	// MAP SQUARES---------------------------------------
-	for (int iz = 0; iz < 10; iz++)
-	{
-		for (int ix = 0; ix < 10; ix++)
-		{
-			auto sqr = new MapSquare(ix, 0.0, iz, 2);
-			m_zs.AddPlacement(sqr);
-			squares.Add(sqr);
-		}
-	}
+	MakeMapSquares(&m_zs);
+
 	//Terrain
 	m_zs.AddPlacement(m_ldgame.LoadTerrain());
 
@@ -97,6 +89,9 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 	// CAMERA-----------------------------------
 	CameraController.UpdateCameraMovement(fTimeDelta); //Aktualisiert die Kamerabewegung
 
+	// lighting
+	lightingManager.Tick(fTimeDelta);
+
 	// MAP SQUARES---------------------------------------
 	// deselect other map squares
 	for (int i = 0; i<squares.m_iPlacements; i++)
@@ -107,16 +102,29 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 	}
 	//int mouseX, mouseY;
 	//einCursor.GetAbsolute(mouseX, mouseY);
-	auto selectedPlace = einCursor.PickPlacement();
+	auto selectedPlace = einCursor.PickPlacementPreselected(squares);
 	if (selectedPlace)
-		//selectedPlace->m_pgeos->m_apgeo[0]->m_pmaterial->Translate(CColor(0.2, 0.8, 0.2));
-	
+		selectedPlace->m_pgeos->m_apgeo[0]->m_pmaterial->Translate(CColor(0.2, 0.8, 0.2));
+	 
 	
 	// UI-----------------------------------
 	derManager.Click(fTimeDelta);
 
 	
 	derManager.makeBuilding(selectedPlace,&einCursor);
+}
+
+void CGame::MakeMapSquares(CScene* m_zs)
+{
+	for (int iz = 0; iz < 10; iz++)
+	{
+		for (int ix = 0; ix < 10; ix++)
+		{
+			auto sqr = new MapSquare(ix, 0.0, iz, 2);
+			m_zs->AddPlacement(sqr);
+			squares.Add(sqr);
+		}
+	}
 }
 
 void CGame::Fini()
