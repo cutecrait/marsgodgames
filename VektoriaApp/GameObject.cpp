@@ -46,8 +46,6 @@ void GameObject::setModel(char* modelpfad)
 void GameObject::setMaterial(char* matPfad)
 {
 	m_material.MakeTextureSprite(matPfad);
-
-	
 }
 
 float GameObject::CalculateHeight()

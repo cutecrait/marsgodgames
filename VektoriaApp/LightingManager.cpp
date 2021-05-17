@@ -1,15 +1,16 @@
 #include "LightingManager.h"
-#include <iostream>
+//#include <iostream>
 
 void LightingManager::Init(CScene* scene, CPlacement* cameraPlacement)
 {
 	this->scene = scene;
 	sun.Init(sunStartDirection, sunColor);
-	scene->SetLightAmbient(CColor(0.6f, 0.3f, 1.0f));
-	scene->SetLightAmbient(0.3f);
 	scene->SetSkyOn(cameraPlacement);
-	scene->SetSkyCardinalDirection()
-	scene->m_psceneweather->m_azmSky->MakeTextureDiffuse("textures//marssky.png");
+	scene->SetSkyCardinalDirection(0);
+	scene->SetLightAmbient(CColor(0.6f, 0.3f, 1.0f));
+	scene->SetLightAmbient(1.f);
+	scene->m_psceneweather->m_azmSky->MakeTextureSky("textures//marssky.png");
+
 	// scene->AddLightParallel(&sun);
 	sunPlacement.Translate(sunStartDirection);
 
@@ -66,7 +67,7 @@ void LightingManager::Tick(float fTimeDelta)
 	}
 	else
 	{
-		sun.SetColor(CColor(0.0f, 0.0f, 0.0f));
+		sun.SetColor(CColor(0.1f, 0.1f, 0.1f));
 	}
 }
 

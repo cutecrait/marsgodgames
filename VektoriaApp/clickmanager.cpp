@@ -31,6 +31,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor)
 		else  mapsquares->DeselectMapTile(NULL);
 	}
 
+
 	else  mapsquares->DeselectMapTile(NULL);
 
 	if (m_menu->getStart()->IsClicked()) {

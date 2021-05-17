@@ -20,7 +20,7 @@ void CGameObjectPlacement::Init()
 	if (gameObject)
 	{
 		this->AddGeo(gameObject->getModel());
-		//this->m_pgeos->m_apgeo[0]->Init();
+		//this->m_pgeos->m_apgeo[0]->SetMaterial(gameObject->getMaterial());
 	}
 
 }

@@ -19,10 +19,13 @@ public:
     
     void Select();
 
+    // Lege normale (unselektierte, etc.) Textur an
+    void setOwnMaterial();
 
 private:
 
     MapSquare* m_mapPointer;
+    CMaterial* m_MaterialTile_Normal;
 
 };
 
