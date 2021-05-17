@@ -28,11 +28,13 @@ private:
 	const float anglePerSecond = -PI / duskTime;
 
 	CScene* scene;
+	CLightParallel nightLight;
 	CLightParallel sun;
 	CPlacement sunPlacement;
 	CHVector sunStartDirection = CHVector(-1.0f, 0.0f, 1.0f);
 	CHVector sunAxis = CHVector(1.0f, 0.0f, 1.0f, 0.0f);
 	CColor sunColor = CColor(1.0f, 0.9f, 0.9f);
+	CColor nightColor = CColor(0.5f, 0.3f, 0.8f);
 
 	void setSunDirection(CPlacement* p);
 };

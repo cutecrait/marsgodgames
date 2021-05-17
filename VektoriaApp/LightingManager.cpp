@@ -4,21 +4,23 @@
 void LightingManager::Init(CScene* scene, CPlacement* cameraPlacement)
 {
 	this->scene = scene;
-	sun.Init(sunStartDirection, sunColor);
+	nightLight.Init(CHVector(-0.5f, 1.0f, 0.0f), nightColor);
 	scene->SetLightAmbient(CColor(0.6f, 0.3f, 1.0f));
-	scene->SetLightAmbient(0.3f);
+	scene->AddLightParallel(&nightLight);
 	scene->SetSkyOn(cameraPlacement);
-	scene->SetSkyCardinalDirection()
+	scene->SetSkyCardinalDirection(-THREEQUARTERPI); // south is -X-Z, which is behind the camera
 	scene->m_psceneweather->m_azmSky->MakeTextureDiffuse("textures//marssky.png");
+	scene->SetSkyShadowResolution(10000, 10000);
+	scene->SetSkyTimeOfDay(0.3f);
+	scene->SetLightAmbient(0.2f);
 	// scene->AddLightParallel(&sun);
 	sunPlacement.Translate(sunStartDirection);
 
-	timeScale = 30.0f; // DEBUG - makes a day pass in 30 seconds instead of 15 minutes
+	timeScale = 2.0f; // DEBUG - makes a day pass in 30 seconds instead of 15 minutes
 }
 
 void LightingManager::Tick(float fTimeDelta)
 {
-	scene->SetSkyTimeOfDay(time / dayLength);
 
 	recalc = false;
 	float lightDelta = fTimeDelta * timeScale;
@@ -28,13 +30,14 @@ void LightingManager::Tick(float fTimeDelta)
 		SetTime(time - dayLength);
 	}
 
-	if (recalc || fTimeDelta > 1) // heavy lag occurred. re-calculate sun properties
-	{
-		recalc = true;
-	}
+	auto skyTime = 0.0f + time / (dayLength); // skytime is from 0.75(dawn) to 1.25(dusk)
+	scene->SetSkyTimeOfDay(skyTime);
+
 
 	if (time < duskTime)
 	{
+		
+
 		if (time < dawnFade)
 		{
 			float dawnProgress = time / dawnFade;
