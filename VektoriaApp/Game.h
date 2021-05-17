@@ -73,6 +73,7 @@ private:
 	//Sun?
 	CLightParallel m_zlp;
 	LightingManager lightingManager;
+
 	//lea END
 	// 
 	//hendrik start:

@@ -8,6 +8,8 @@ void LightingManager::Init(CScene* scene, CPlacement* cameraPlacement)
 	scene->SetLightAmbient(CColor(0.6f, 0.3f, 1.0f));
 	scene->SetLightAmbient(0.3f);
 	scene->SetSkyOn(cameraPlacement);
+	scene->SetSkyCardinalDirection()
+	scene->m_psceneweather->m_azmSky->MakeTextureDiffuse("textures//marssky.png");
 	// scene->AddLightParallel(&sun);
 	sunPlacement.Translate(sunStartDirection);
 

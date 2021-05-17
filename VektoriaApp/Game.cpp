@@ -70,8 +70,6 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 
 	// MAP SQUARES---------------------------------------
 	MakeMapSquares(&m_zs);
-	
-
 	BuildingManager.Init(&m_zs);
 
 	//Terrain
@@ -99,21 +97,6 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 
 	// lighting
 	lightingManager.Tick(fTimeDelta);
-
-	// MAP SQUARES---------------------------------------
-	// deselect other map squares
-	for (int i = 0; i<squares.m_iPlacements; i++)
-	{
-		auto sqr = static_cast<MapSquare*>(squares.m_applacement[i]);
-		if(sqr)
-			sqr->Deselect();
-	}
-	//int mouseX, mouseY;
-	//einCursor.GetAbsolute(mouseX, mouseY);
-	auto selectedPlace = einCursor.PickPlacementPreselected(squares);
-	if (selectedPlace)
-		selectedPlace->m_pgeos->m_apgeo[0]->m_pmaterial->Translate(CColor(0.2, 0.8, 0.2));
-	 
 	
 
 	derManager.Click(fTimeDelta, &einCursor);
@@ -130,9 +113,9 @@ void CGame::MakeMapSquares(CScene* m_zs)
 	{
 		for (int ix = 0; ix < 10; ix++)
 		{
-			auto sqr = new MapSquare(ix, 0.0, iz, 2);
+			auto sqr = new MapTile(ix, 0.0, iz, 2, &mapSquare);
 			m_zs->AddPlacement(sqr);
-			squares.Add(sqr);
+			mapSquare.Add(sqr);
 		}
 	}
 }

@@ -3,7 +3,6 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="VektoriaApp.cpp" />
-    <ClCompile Include="LightingManager.cpp" />
     <ClCompile Include="Action.cpp">
       <Filter>Robot\AI\Action</Filter>
     </ClCompile>
@@ -98,12 +97,14 @@
     <ClCompile Include="CBuildingManager.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="LightingManager.cpp">
+      <Filter>Environment</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="LightingManager.h" />
     <ClInclude Include="Action.h">
       <Filter>Robot\AI\Action</Filter>
     </ClInclude>
@@ -203,6 +204,9 @@
     </ClInclude>
     <ClInclude Include="CBuildingManager.h">
       <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="LightingManager.h">
+      <Filter>Environment</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

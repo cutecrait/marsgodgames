@@ -16,7 +16,7 @@ CTerrain::CTerrain()
 
 	m_zPerlinNoise = new CPerlin(
 		m_iSeed,							//zufallsseed
-		1.9f,						//Amplitude
+		0.3f,						//Amplitude
 		7.0,							//Oktaven
 		0.5f,						//Persistenz
 		6.0f,						//Frequenz
