@@ -8,7 +8,8 @@ class MapTile :
     public CPlacement
 {
 public:
-
+    static CColor defaultColor;
+    static CColor selectedColor;
     MapTile();
     MapTile(float x, float y, float z, float size, MapSquare*);
     ~MapTile();
@@ -21,8 +22,8 @@ public:
 
 
 private:
-
     MapSquare* m_mapPointer;
-
+    
+     
 };
 
