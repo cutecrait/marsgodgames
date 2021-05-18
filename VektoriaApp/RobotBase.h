@@ -8,14 +8,14 @@ class RobotBase
 {
 public:
 
-	RobotBase(Vektoria::CPlacement* placement, float maximumVelocity, float rotationSpeed);
+	RobotBase(float maximumVelocity, float rotationSpeed);
 	~RobotBase();
 
 	void Update(float timeDelta);
 
 	Vektoria::CPlacement* GetPlacement();
 
-	virtual void SetStates() = 0;
+	void SetStates(); //TODO abstract? (wanted to be used to set state runtime - with parameters)
 
 protected:
 
@@ -23,7 +23,10 @@ protected:
 	AI::StateManager* _stateManager;
 	Movement::SteeringManager* _steeringManager;
 
-	void CreateMesh(); //TODO nur Test
+	//TODO test only --> von GameObject erben
+	Vektoria::CGeo* _model;
+	Vektoria::CFileWavefront _modelPath;
+	void CreateMesh();
 
 };
 

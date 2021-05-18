@@ -170,6 +170,8 @@
     <ClInclude Include="GuiSlider.h" />
     <ClInclude Include="GuiUtils.h" />
     <ClInclude Include="IPathSearchAlgorithm.h" />
+    <ClInclude Include="Level.h" />
+    <ClInclude Include="LevelManager.h" />
     <ClInclude Include="LightingManager.h" />
     <ClInclude Include="Load.h" />
     <ClInclude Include="MapSquare.h" />
@@ -202,6 +204,8 @@
     <ClCompile Include="FollowPathAction.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Level.cpp" />
+    <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="LightingManager.cpp" />
     <ClCompile Include="CGameObjectPlacement.cpp" />
     <ClCompile Include="Load.cpp" />
