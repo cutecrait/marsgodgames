@@ -21,9 +21,14 @@ public:
 
 	void DeselectMapTile(MapTile*);
 
+	void setLevel(CDeviceKeyboard*);
+
+	CMaterial m_MaterialTile_Selected;
+
 private:
 
 	bool selected = false;
+	
 
 	// Pointer auf das letzte selektierte Element
 	MapTile* lastSelected = NULL;

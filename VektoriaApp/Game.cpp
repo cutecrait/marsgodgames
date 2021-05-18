@@ -1,6 +1,4 @@
 #include "Game.h"
-#include "MapSquare.h"
-#include "CCameraController.h"
 
 CGame::CGame(void)
 {
@@ -84,8 +82,6 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	*/
 
 
-	
-
 }
 
 void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
@@ -96,7 +92,7 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 	CameraController.UpdateCameraMovement(fTimeDelta); //Aktualisiert die Kamerabewegung
 
 	// lighting
-	lightingManager.Tick(fTimeDelta);
+	lightingManager.Tick(0);
 	
 
 	derManager.Click(fTimeDelta, &einCursor);
@@ -105,19 +101,27 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 	
 	
 	//derManager.makeBuilding(selectedPlace,&einCursor);
+
+
+	mapSquare.setLevel(&m_zdk);
 }
 
 void CGame::MakeMapSquares(CScene* m_zs)
 {
-	for (int iz = 0; iz < 10; iz++)
+	for (int iz = 0; iz < 18; iz++)
 	{
-		for (int ix = 0; ix < 10; ix++)
+		for (int ix = 0; ix < 18; ix++)
 		{
 			auto sqr = new MapTile(ix, 0.0, iz, 2, &mapSquare);
 			m_zs->AddPlacement(sqr);
 			mapSquare.Add(sqr);
+
+			// Schalte alle Tiles aus, die nicht im ersten Quadrat enthalten sind
+			if ((iz < 4 || iz > 13) || (ix < 4 || ix > 13))
+				sqr->SwitchOff();
 		}
 	}
+
 }
 
 void CGame::Fini()
@@ -130,5 +134,6 @@ void CGame::WindowReSize(int iNewWidth, int iNewHeight)
 {
 	// Windows ReSize wird immer automatisch aufgerufen, wenn die Fenstergr��e ver�ndert wurde.
 	// Hier kannst Du dann die Aufl�sung des Viewports neu einstellen:
+	m_zf.ReSize(iNewWidth, iNewHeight);
 }
 

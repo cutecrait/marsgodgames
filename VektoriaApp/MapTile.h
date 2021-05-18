@@ -8,8 +8,6 @@ class MapTile :
     public CPlacement
 {
 public:
-    static CColor defaultColor;
-    static CColor selectedColor;
     MapTile();
     MapTile(float x, float y, float z, float size, MapSquare*);
     ~MapTile();
@@ -20,10 +18,12 @@ public:
     
     void Select();
 
+    // Lege normale (unselektierte, etc.) Textur an
+    void setOwnMaterial();
 
 private:
     MapSquare* m_mapPointer;
-    
-     
+    CMaterial* m_MaterialTile_Normal;
+
 };
 

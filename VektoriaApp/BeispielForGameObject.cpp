@@ -3,6 +3,7 @@
 BeispielForGameObject::BeispielForGameObject()
 {
 	setModel("models\\monkey.obj");
+	setMaterial("");
 	ressources.Sauerstoff_per_Build = 100;
 	ressources.Stein_per_Build = 100;
 	ressources.Strom_per_Build = 100;

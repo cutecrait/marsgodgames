@@ -1,5 +1,5 @@
 #include "LightingManager.h"
-#include <iostream>
+//#include <iostream>
 
 void LightingManager::Init(CScene* scene, CPlacement* cameraPlacement)
 {
@@ -69,7 +69,7 @@ void LightingManager::Tick(float fTimeDelta)
 	}
 	else
 	{
-		sun.SetColor(CColor(0.0f, 0.0f, 0.0f));
+		sun.SetColor(CColor(0.1f, 0.1f, 0.1f));
 	}
 }
 
