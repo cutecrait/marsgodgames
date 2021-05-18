@@ -100,6 +100,12 @@
     <ClCompile Include="LightingManager.cpp">
       <Filter>Environment</Filter>
     </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>LevelSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelManager.cpp">
+      <Filter>LevelSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -208,6 +214,12 @@
     <ClInclude Include="LightingManager.h">
       <Filter>Environment</Filter>
     </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>LevelSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelManager.h">
+      <Filter>LevelSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VektoriaApp.rc" />
@@ -266,6 +278,9 @@
     </Filter>
     <Filter Include="Audio">
       <UniqueIdentifier>{9fb97b74-6487-4725-97df-81656f1b7276}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LevelSystem">
+      <UniqueIdentifier>{5abff615-f9f3-45b2-989c-cccbd55b8fa4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
