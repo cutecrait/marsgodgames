@@ -1,13 +1,13 @@
 #pragma once
 #include "CTerrain.h"
-//#include "GameObject.h"
-
+#include "GameObject.h"
+#include "BeispielForGameObject.h"
 #include "Vektoria\Root.h"
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <array>
-
+//Karo start
 using namespace Vektoria;
 class Load
 {
@@ -20,7 +20,9 @@ private:
 	CTerrain m_lterrain;
 	CGeoTerrains m_lcollisionterr;
 	
-	CGeoCube* geo_arr[100];
+	//GOs
+	BeispielForGameObject* beisforgamobj;
+	GameObject* geo_arr[100];
 	// TestCube
 	CGeoCube m_cube;
 	CMaterial* cube_mat;
@@ -28,8 +30,10 @@ private:
 	int pos_id;
 	float* pos_arr[100];
 	int obj_cnt;
-	CGeo* GetGeos(int i);
-	void SetGeos();
+	GameObject* GetGeos(int i);
+	void SetGeos(GameObject* GO, int id);
+
+
 
 public:
     Load();
@@ -39,14 +43,15 @@ public:
 	void getGoID();
 	bool fileExists(const char * file_name );
 	void setPosArray(float x, float y, float z);
-	void SetPlacement(float x, float z, CGeo *geo);
-	CGeo *getObj(std::string obj_name);
+	void SetPlacement(float x, float z, GameObject*geo);
+	GameObject *getObj(std::string obj_name);
 	CPlacement *LoadTerrain();
 	CPlacement* TestCube();
 	CPlacement* GetPlacements(int i);
 	void readPos();
 	int getObjCount();
-
-
+	int* LoadPlayerStats();
+	
+	//Karo end
 };
 

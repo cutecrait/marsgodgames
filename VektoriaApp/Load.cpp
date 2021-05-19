@@ -1,6 +1,6 @@
 #include "Load.h"
 
-
+//Karo start
 
 Load::Load()
 {
@@ -16,28 +16,12 @@ Load::Load()
 	cube_mat = new CMaterial();
 	cube_mat->Init();
 	cube_mat->MakeTextureDiffuse("textures\\ENV.jpg");
-	m_cube.Init(0.2f, cube_mat, 1.0f);
-	this->SetGeos();
-	/*for (int iz = 0; iz < 10; iz++)
-	{
-		for (int ix = 0; ix < 10; ix++)
-		{
-			m_placements[pos_id] = new CPlacement();
-			pos_arr[pos_id] = new float[3];
-			pos_arr[pos_id][0] = ix - 0.5f;
-			pos_arr[pos_id][1] = 0.2f;
-			pos_arr[pos_id][2] = iz - 0.5f;
-			
-			m_placements[pos_id]->Translate(pos_arr[pos_id][0], pos_arr[pos_id][1], pos_arr[pos_id][2]);
-			
-			
-			m_placements[pos_id]->AddGeo(this->GetGeos(pos_id));
 
-			pos_id += 1;
-		}
-	}
+
+	//if (this->fileExists("Positions.txt")) {
+		this->readPos();
+	//}
 	
-	m_placements[50]->AddGeo(&m_cube);*/	
 
 	
 }
@@ -48,20 +32,7 @@ Load::~Load()
 
 void Load::LoadPlacements(CScene scene)
 {
-	
-	
-	/*
-	for (int iz = 0; iz < 10; iz++)
-	{
-		for (int ix = 0; ix < 10; ix++)
-		{
-			m_lplace = new CPlacement();
-			m_lplace->Translate(ix, 0.0, iz);
-			auto sqr = new MapSquare(ix, 0.0, iz, 2);
-			m_zs.AddPlacement(sqr);
-			squares.Add(sqr);
-		}
-	}*/
+
 }
 
 void Load::AttachGeos()
@@ -86,25 +57,28 @@ void Load::setPosArray(float x, float y, float z)
 	
 }
 
-void Load::SetPlacement(float x, float z, CGeo* geo)
+void Load::SetPlacement(float x, float z, GameObject* geo)
 {
-	//m_placements[obj_cnt] = new CPlacement();
+	m_placements[obj_cnt] = new CPlacement();
 	m_placements[obj_cnt]->Translate(x, 0.5f, z);
-	m_placements[obj_cnt]->AddGeo(geo);
+	m_placements[obj_cnt]->AddGeo(geo->getModel());
 }
 
-CGeo *Load::getObj(std::string obj_name)
+GameObject *Load::getObj(std::string obj_name)
 {
 	
-	/*if (obj_name == std::string("CGeoCube"))
-	{*/
-		//((CGeoCube* cube = new CGeoCube();
-		
-		return geo_arr[this->getObjCount()];
-	/*}
+	
+	if (obj_name == std::string("BeispielForGameObject")) {
+		beisforgamobj = new BeispielForGameObject();
 
-	else
-	return nullptr;*/
+		this->SetGeos(beisforgamobj, this->getObjCount());
+		return geo_arr[this->getObjCount()];
+	}
+
+	else {
+		return nullptr;
+	}
+	
 }
 
 CPlacement* Load::LoadTerrain()
@@ -117,29 +91,45 @@ CPlacement* Load::LoadTerrain()
 
 CPlacement* Load::GetPlacements(int i)
 {
-	if (this->getObjCount() > 0)
+	if (this->getObjCount() > 0) {
 		return m_placements[i];
+	}
 
-	else
+	else {
 		return nullptr;
+	}
+		
 }
 
 void Load::readPos()
 {
-		std::fstream file;
-		file.open("Positions.txt", std::ios::out);
+		Vektoria::ULDebug("Searching for Save-File");
+		std::fstream file("Positions.txt");
+		if (file.is_open()) {
+			Vektoria::ULDebug("Save-File found");
+		}
+		
 		std::string tp;
 		size_t pos = 0; 
 		while (getline(file, tp)) {
-			
 			std::string del = ", ";
 			pos = tp.find(del);
+			std::string tempstring = tp;
 			std::string obj = tp.substr(0, pos);
+
 			tp.erase(0, pos + del.length());
+			pos = tp.find(del);
 			std::string x_valstr = tp.substr(0, pos);
+			tempstring = x_valstr;
+			Vektoria::ULDebug(tempstring.c_str());
+			
 			float x_val = std::stof(x_valstr);
+			Vektoria::ULDebug("Get Values");
 			tp.erase(0, pos + del.length());
 			std::string z_valstr = tp.substr(0, pos);
+			tempstring = z_valstr;
+			Vektoria::ULDebug(tempstring.c_str());
+			
 			float z_val = std::stof(z_valstr);
 			tp.erase(0, pos + del.length());
 
@@ -157,16 +147,62 @@ int Load::getObjCount()
 	return obj_cnt;
 }
 
-CGeo* Load::GetGeos(int i)
+int* Load::LoadPlayerStats()
+{
+	Vektoria::ULDebug("Searching for Player-Stats");
+	std::fstream file("Ressources.txt");
+	if (file.is_open()) {
+		Vektoria::ULDebug("Player-Stats found");
+	}
+
+	std::string tp;
+	size_t pos = 0;
+	int* arr = new int[3];
+	while (getline(file, tp)) {
+		std::string del = ", ";
+		pos = tp.find(del);
+		std::string tempstring = tp;
+
+		std::string resstr1 = tp.substr(0, pos);
+		Vektoria::ULDebug(resstr1.c_str());
+		int res1 = std::stoi(resstr1);
+		tp.erase(0, pos + del.length());
+		
+		pos = tp.find(del);
+		std::string resstr2 = tp.substr(0, pos);
+		Vektoria::ULDebug(resstr2.c_str());
+		int res2 = std::stoi(resstr2);
+		tp.erase(0, pos + del.length());
+
+		pos = tp.find(del);
+		std::string resstr3 = tp.substr(0, pos);
+		Vektoria::ULDebug(resstr3.c_str());
+		int res3 = std::stoi(resstr3);
+		tp.erase(0, pos + del.length());
+		
+		arr[0] = res1;
+		arr[1] = res2;
+		arr[2] = res3;
+	}
+
+	file.close();
+
+	return arr;
+
+}
+
+
+
+GameObject* Load::GetGeos(int i)
 {
 	return geo_arr[i];
 }
 
-void Load::SetGeos()
+void Load::SetGeos(GameObject * GO, int id)
 {
-	for (int i = 0; i < 100; i++)
-	{
-			geo_arr[i] = new CGeoCube();
-			geo_arr[i]->Init(1.0f, cube_mat, 1.0f, false);
-	}
+	geo_arr[id] = GO;
+
+	
+	
 }
+//Karo end

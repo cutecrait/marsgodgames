@@ -7,6 +7,7 @@
 #include "MapTile.h"
 #include "CAudioManager.h"
 #include "CBuildingManager.h"
+#include "Save.h"
 
 using namespace Vektoria;
 class clickmanager
@@ -64,6 +65,10 @@ private:
 
 	/*BeispielForGameObject MONKY;
 	BeispielForGameObject* Wohnung[20];*/
+
+	// Karo: Save um Checkpoint zu setzen
+	Save save;
+	bool saveable = true;
 
 };
 

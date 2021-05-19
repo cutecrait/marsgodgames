@@ -60,7 +60,12 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	// OVERLAY-----------------------------------------
 	// texturen werden jetzt in UI erstellt. 
 	// UI = menu, derManager = click-event.
-	m_player.initPlayer(1000, 1000, 1000);
+	if (m_ldgame.fileExists("Ressources.txt")) {
+		m_player.initPlayer(m_ldgame.LoadPlayerStats()[0], m_ldgame.LoadPlayerStats()[1], m_ldgame.LoadPlayerStats()[2]);
+	}
+	else {
+		m_player.initPlayer(1000, 1000, 1000);
+	}
 	einsFont.LoadPreset("LucidaConsoleWhite");
 	einsFont.SetChromaKeyingOn(); //hiermit hat die font keinen hässlichen hintergrund
 	menu.InitMenu(&einCursor, &einsFont, &m_zv, &m_player);
@@ -70,16 +75,15 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	MakeMapSquares(&m_zs);
 	BuildingManager.Init(&m_zs);
 
-	//Terrain
+	//LOAD TERRAIN---------------------------------------
 	m_zs.AddPlacement(m_ldgame.LoadTerrain());
 
-	// Testcubes
-	/*
-	for (int i = 0; i < 100; i++)
+	//LOAD CHECKPOINT------------------------------------
+	for (int i = 0; i < m_ldgame.getObjCount(); i++)
 	{
 		m_zs.AddPlacement(m_ldgame.GetPlacements(i));
 	}
-	*/
+
 
 
 }
