@@ -184,7 +184,7 @@ void UI::initPlayer(CDeviceCursor* cursor, CWritingFont* font) {
 	m_statistic.SetLabel("Player");
 	
 
-	m_statsBack.Init(&m_matRes, CFloatRect(0.8,0.1,0.2,0.8)); // hintergrund
+	m_statsBack.Init(&m_matStats, CFloatRect(0.8,0.1,0.2,0.8)); // hintergrund
 	m_statsBack.SetLayer(0.98);
 	m_statsBack.SwitchOff();
 
