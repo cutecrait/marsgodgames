@@ -10,7 +10,7 @@ public:
     ~BeispielForGameObject();
 
     void Init();
-    
+    CMaterial mat;
    
 };
 

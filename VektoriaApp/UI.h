@@ -34,6 +34,12 @@ public:
 private:
 	CMaterial m_matsForSelectMain[5];
 
+	//Tooltip-Mats
+	CMaterial m_matstein;
+	CMaterial m_matchrom;
+	CMaterial m_matstahl;
+
+
 	CMaterial m_matsForSelect1[3];
 	CMaterial m_matsForSelect2[4];
 	CMaterial m_matsForSelect3[4];
@@ -42,6 +48,7 @@ private:
 	CMaterial m_material;
 	CWritingFont m_redFont;
 	CMaterial m_matStats;
+	CMaterial m_matRes;
 	CGuiButton m_start;
 	CGuiSelect m_mainSelect;
 	CGuiSelect m_specificSelect[4];

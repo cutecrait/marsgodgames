@@ -31,9 +31,6 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor)
 		else  mapsquares->DeselectMapTile(NULL);
 	}
 
-
-	else  mapsquares->DeselectMapTile(NULL);
-
 	if (m_menu->getMainSelect()->GetActivePosition() == 4 && saveable) {
 
 		save.saveItAll();
@@ -42,6 +39,10 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor)
 		ULDebug("Saving...");
 		saveable = false;
 	}
+
+	else  mapsquares->DeselectMapTile(NULL);
+
+	
 
 	if (m_menu->getStart()->IsClicked()) {
 		if (WhatSpecific == 2) {
@@ -116,7 +117,13 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor)
 		if (m_menu->m_confirm.IsClicked()) {
 
 			if (enoughRes(toBeBuildObject->getGameObject())) {
-				
+				/*
+				saving stuff in the Array
+				*/
+				save.fillPosAr(toBeBuildObject->getGameObject(), toBeBuildObject->GetPos().GetX(), toBeBuildObject->GetPos().GetZ());
+				saveable = true;
+				// back to code
+
 				confirmClicked();
 				makeBuilding(toBeBuildObject);
 				targetPos = NULL;
@@ -223,6 +230,8 @@ void clickmanager::confirmClicked() {
 	m_menu->updatePlayer();
 	m_menu->m_toolTipBackGround.SwitchOff();
 	isclicked = false;
+
+	saveable = true;
 }
 
 void clickmanager::cancelClicked(CGameObjectPlacement* buildObject) {

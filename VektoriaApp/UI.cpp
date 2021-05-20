@@ -45,7 +45,13 @@ void UI::InitMaterial()
 	m_matsForSelect5[5].MakeTextureSprite("textures\\Menu_Button.png");
 
 	m_matStats.MakeTextureSprite("textures\\Player_Stat_Window.png");
+	m_matRes.MakeTextureSprite("textures\\Player_Res_Window.png");
 	m_resMaterial.MakeTextureSprite("textures\\blue_image.jpg");
+
+	m_matstein.MakeTextureSprite("textures\\Tooltip_stein_texture.png");
+	m_matchrom.MakeTextureSprite("textures\\Tooltip_chrom_texture.png");
+	m_matstahl.MakeTextureSprite("textures\\Tooltip_stahl_texture.png");
+
 	m_descMaterial.MakeTextureSprite("textures\\blue_image.jpg");
 	
 }
@@ -60,7 +66,7 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv,Playe
 	m_start.SetLabel("bauen");
 	
 	
-	m_resBack.Init(&m_matStats, CFloatRect(0.5,0,0.4,0.1));
+	m_resBack.Init(&m_matRes, CFloatRect(0.5,0,0.4,0.1));
 	m_resBack.SetLayer(0.98);
 	m_redFont.LoadPreset("LucidaConsoleRed");
 	m_redFont.SetChromaKeyingOn();
@@ -81,7 +87,7 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv,Playe
 	m_mainSelect.AddOption(" Wohnen");
 	m_mainSelect.AddOption(" Verpflegung");
 	m_mainSelect.AddOption(" Was anderes");
-	m_mainSelect.AddOption(" save");
+	m_mainSelect.AddOption(" Save");
 
 	std::vector <std::string> selectLabel;
 
@@ -159,13 +165,14 @@ void UI::initRessource() {
 
 	m_res1.SetInnerOn();
 	m_res1.SetLayer(1);
-	m_res1.SetLabel("Res1: " + std::to_string(m_playerStats->getRessource1()));
-	
-	m_res2.SetLabel("Res2: " + std::to_string(m_playerStats->getRessource2()));
+	m_res1.SetLabel("      " + std::to_string(m_playerStats->getRessource1()));
+
+
+	m_res2.SetLabel("      " + std::to_string(m_playerStats->getRessource2()));
 	m_res2.SetInnerOn();
 	m_res2.SetLayer(1);
 	
-	m_res3.SetLabel("Res3: " + std::to_string(m_playerStats->getRessource3()));
+	m_res3.SetLabel("      " + std::to_string(m_playerStats->getRessource3()));
 	m_res3.SetInnerOn();
 	m_res3.SetLayer(1);
 }
@@ -177,12 +184,12 @@ void UI::initPlayer(CDeviceCursor* cursor, CWritingFont* font) {
 	m_statistic.SetLabel("Player");
 	
 
-	m_statsBack.Init(&m_matStats, CFloatRect(0.8,0.1,0.2,0.8)); // hintergrund
+	m_statsBack.Init(&m_matRes, CFloatRect(0.8,0.1,0.2,0.8)); // hintergrund
 	m_statsBack.SetLayer(0.98);
 	m_statsBack.SwitchOff();
 
 	
-
+	
 	
 	m_res1Minus.SetInnerOn();
 	m_res1Minus.SetLayer(1);
@@ -221,19 +228,19 @@ void UI::switchOnBuy(int res1, int res2, int res3) {
 	m_res2.SwitchOff();
 	m_res3.SwitchOff();
 	m_res1Minus.SwitchOn();
-	m_res1Minus.SetLabel("Res1: " + std::to_string(m_playerStats->getRessource1() - res1));
+	m_res1Minus.SetLabel("      " + std::to_string(m_playerStats->getRessource1() - res1));
 	m_res2Minus.SwitchOn();
-	m_res2Minus.SetLabel("Res2: " + std::to_string(m_playerStats->getRessource2() - res2));
+	m_res2Minus.SetLabel("      " + std::to_string(m_playerStats->getRessource2() - res2));
 	m_res3Minus.SwitchOn();
-	m_res3Minus.SetLabel("Res3: " + std::to_string(m_playerStats->getRessource3() - res3));
+	m_res3Minus.SetLabel("      " + std::to_string(m_playerStats->getRessource3() - res3));
 
 }
 
 void UI::updatePlayer() {
 
-	m_res1.SetLabel("Res1: " + std::to_string(m_playerStats->getRessource1()));
-	m_res2.SetLabel("Res2: " + std::to_string(m_playerStats->getRessource2()));
-	m_res3.SetLabel("Res3: " + std::to_string(m_playerStats->getRessource3()));
+	m_res1.SetLabel("      " + std::to_string(m_playerStats->getRessource1()));
+	m_res2.SetLabel("      " + std::to_string(m_playerStats->getRessource2()));
+	m_res3.SetLabel("      " + std::to_string(m_playerStats->getRessource3()));
 	m_res3.SwitchOn();
 	m_res1.SwitchOn();
 	m_res2.SwitchOn();
@@ -268,7 +275,7 @@ void UI::InitToolTip() {
 	m_headlineW.SetLayer(0.97);
 
 	//ressource1
-	m_kosten1.Init(&m_resMaterial, CFloatRect(0, 0.75, 0.3, 0.25));
+	m_kosten1.Init(&m_matstein, CFloatRect(0, 0.75, 0.3, 0.25));
 	m_kosten1.SetLayer(0.98);
 	m_kosten1.SetInnerOn();
 	m_kosten1W.Init(CFloatRect(0, 0, 1, 1), 5, &m_redFont);
@@ -276,7 +283,7 @@ void UI::InitToolTip() {
 	m_kosten1W.SetLayer(0.97);
 
 	//ressource2
-	m_kosten2.Init(&m_resMaterial, CFloatRect(0.33, 0.75, 0.3, 0.25));
+	m_kosten2.Init(&m_matstahl, CFloatRect(0.33, 0.75, 0.3, 0.25));
 	m_kosten2.SetLayer(0.98);
 	m_kosten2.SetInnerOn();
 	m_kosten2W.Init(CFloatRect(0, 0, 1, 1), 5, &m_redFont);
@@ -284,7 +291,7 @@ void UI::InitToolTip() {
 	m_kosten2W.SetLayer(0.97);
 
 	//ressource3
-	m_kosten3.Init(&m_resMaterial, CFloatRect(0.66, 0.75, 0.3, 0.25));
+	m_kosten3.Init(&m_matchrom, CFloatRect(0.66, 0.75, 0.3, 0.25));
 	m_kosten3.SetLayer(0.98);
 	m_kosten3.SetInnerOn();
 	m_kosten3W.Init(CFloatRect(0, 0, 1, 1), 5, &m_redFont);
