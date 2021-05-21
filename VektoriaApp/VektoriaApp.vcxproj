@@ -152,6 +152,7 @@
     <ClInclude Include="Action.h" />
     <ClInclude Include="AStarAlgorithm.h" />
     <ClInclude Include="BeispielForGameObject.h" />
+    <ClInclude Include="Building.h" />
     <ClInclude Include="CAudioManager.h" />
     <ClInclude Include="CBuildingManager.h" />
     <ClInclude Include="CCameraController.h" />
@@ -178,10 +179,13 @@
     <ClInclude Include="MapTile.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="NodeController.h" />
+    <ClInclude Include="NuclearPowerPlant.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PowerPlant.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="RobotBase.h" />
     <ClInclude Include="Save.h" />
+    <ClInclude Include="SolarPowerPlant.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="SteeringManager.h" />
@@ -218,9 +222,12 @@
     <ClCompile Include="MapTile.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="NodeController.cpp" />
+    <ClCompile Include="NuclearPowerPlant.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PowerPlant.cpp" />
     <ClCompile Include="RobotBase.cpp" />
     <ClCompile Include="Save.cpp" />
+    <ClCompile Include="SolarPowerPlant.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="SteeringManager.cpp" />

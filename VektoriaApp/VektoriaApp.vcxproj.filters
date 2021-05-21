@@ -106,6 +106,15 @@
     <ClCompile Include="LevelManager.cpp">
       <Filter>LevelSystem</Filter>
     </ClCompile>
+    <ClCompile Include="PowerPlant.cpp">
+      <Filter>Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="NuclearPowerPlant.cpp">
+      <Filter>Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="SolarPowerPlant.cpp">
+      <Filter>Buildings</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -220,6 +229,18 @@
     <ClInclude Include="LevelManager.h">
       <Filter>LevelSystem</Filter>
     </ClInclude>
+    <ClInclude Include="Building.h">
+      <Filter>Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerPlant.h">
+      <Filter>Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="NuclearPowerPlant.h">
+      <Filter>Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="SolarPowerPlant.h">
+      <Filter>Buildings</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VektoriaApp.rc" />
@@ -281,6 +302,9 @@
     </Filter>
     <Filter Include="LevelSystem">
       <UniqueIdentifier>{5abff615-f9f3-45b2-989c-cccbd55b8fa4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildings">
+      <UniqueIdentifier>{2ba58d36-604a-49eb-ae64-1b8a643be130}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

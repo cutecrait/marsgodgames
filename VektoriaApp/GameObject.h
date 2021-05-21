@@ -28,6 +28,12 @@ public:
 
 	};
 
+	struct Resources {
+		int Steel = 0;
+		int Concrete = 0;
+		int Wood = 0;
+	};
+
 	//Aufbau der GameObjects
 
 	GameObject();
