@@ -19,16 +19,16 @@ public:
 	CGuiSelect* getSpecificSelect(int i) { return &m_specificSelect[i]; }
 	CGuiButton* getPlayer() {return &m_statistic; }
 	COverlay* getStatistic() { return &m_statsBack; }
-	CGuiElement* getWohnung() { return &m_wohnungen; }
+	CWriting* getWohnung() { return &m_wohnungenW; }
 	CGuiButton* getConfirm() { return &m_confirm; }
 	void switchOnBuy(int,int,int);
-
+	void buildMission(COverlay*, CWritingFont*);
 	void updatePlayer();
 
 	void InitToolTip();
-
+	void levelOverlay(COverlay*, CWritingFont*, CDeviceCursor*);
 	void tooltip(std::string headline, int res1, int res2, int res3, int anzahl, std::string whatHappens);
-
+	void updateWriting(std::string, CWriting*);
 	
 
 private:
@@ -74,6 +74,16 @@ private:
 	CWriting m_descriptionW2;
 	CWriting m_descriptionW3;
 	CMaterial m_resMaterial;
+
+	COverlay m_level;
+
+	COverlay levelFortschritt;
+	COverlay m_levelFortschritt;
+
+
+	float laenge = 0.5;
+
+	COverlay m_missi[5];
 public:
 	COverlay m_statsBack;
 	COverlay m_resBack;
@@ -84,10 +94,20 @@ public:
 	CGuiElement m_res2Minus;
 	CGuiElement m_res3;
 	CGuiElement m_res3Minus;
-	CGuiElement m_wohnungen;
+
+	CWriting m_levelW;
+	CWriting m_missiW[5];
+
+	COverlay m_wohnungen;
+	CWriting m_wohnungenW;
+
 	CGuiButton m_confirm;
 	CGuiButton m_cancel;
 
+	CWriting levelFortschrittW;
+	
+	CGuiButton m_missionen;
+	COverlay m_missionenBack;
 	Player* m_playerStats;
 	
 };

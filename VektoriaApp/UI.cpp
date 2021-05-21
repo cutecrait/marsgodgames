@@ -45,18 +45,15 @@ void UI::InitMaterial()
 	m_matsForSelect5[5].MakeTextureSprite("textures\\Menu_Button.png");
 
 	m_matStats.MakeTextureSprite("textures\\Player_Stat_Window.png");
-	m_matRes.MakeTextureSprite("textures\\Player_Res_Window.png");
+
 	m_resMaterial.MakeTextureSprite("textures\\blue_image.jpg");
 
-	m_matstein.MakeTextureSprite("textures\\Tooltip_stein_texture.png");
-	m_matchrom.MakeTextureSprite("textures\\Tooltip_chrom_texture.png");
-	m_matstahl.MakeTextureSprite("textures\\Tooltip_stahl_texture.png");
 
-	m_descMaterial.MakeTextureSprite("textures\\blue_image.jpg");
-	
+	m_descMaterial.MakeTextureSprite("textures\\green_image.jpg");
+
 }
 
-void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv,Player* player)
+void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv, Player* player)
 {
 	m_viewport = zv;
 	InitMaterial();
@@ -64,21 +61,21 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv,Playe
 	m_playerStats = player;
 	m_start.Init(cursor, font, CFloatRect(0.f, 0.9, 0.15, 0.1));
 	m_start.SetLabel("bauen");
-	
-	
-	m_resBack.Init(&m_matRes, CFloatRect(0.5,0,0.4,0.1));
+
+
+	m_resBack.Init(&m_matStats, CFloatRect(0.5, 0, 0.4, 0.1));
 	m_resBack.SetLayer(0.98);
 	m_redFont.LoadPreset("LucidaConsoleRed");
 	m_redFont.SetChromaKeyingOn();
 	m_res1.Init(cursor, font, CFloatRect(0, 0.1, 0.3, 0.75));
 	m_res2.Init(cursor, font, CFloatRect(0.33, 0.1, 0.3, 0.75));
 	m_res3.Init(cursor, font, CFloatRect(0.66, 0.1, 0.3, 0.75));
-	
+
 	m_res1Minus.Init(cursor, &m_redFont, CFloatRect(0, 0.1, 0.3, 0.75));
 	m_res2Minus.Init(cursor, &m_redFont, CFloatRect(0.33, 0.1, 0.3, 0.75));
 	m_res3Minus.Init(cursor, &m_redFont, CFloatRect(0.66, 0.1, 0.3, 0.75));
 	initRessource();
-	
+
 	//m_mainSelect.makeInactiveMats(m_matsForSelectMain);
 
 	m_mainSelect.Init(cursor, font, 5, CFloatRect(0.0f, 0.0f, 0.15, 0.9));
@@ -87,7 +84,7 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv,Playe
 	m_mainSelect.AddOption(" Wohnen");
 	m_mainSelect.AddOption(" Verpflegung");
 	m_mainSelect.AddOption(" Was anderes");
-	m_mainSelect.AddOption(" Save");
+	m_mainSelect.AddOption(" save");
 
 	std::vector <std::string> selectLabel;
 
@@ -154,71 +151,76 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv,Playe
 	m_resBack.AddOverlay(&m_res3Minus);
 }
 
-void UI::labelMaker(int a,int b,std::vector<std::string> label)
+void UI::labelMaker(int a, int b, std::vector<std::string> label)
 {
 	for (int i = 0; i < b; i++) {
 		m_specificSelect[a].AddOption(label.at(i));
 	}
 }
 void UI::initRessource() {
-	
+
 
 	m_res1.SetInnerOn();
 	m_res1.SetLayer(1);
-	m_res1.SetLabel("      " + std::to_string(m_playerStats->getRessource1()));
+	m_res1.SetLabel("Res1: " + std::to_string(m_playerStats->getRessource1()));
 
-
-	m_res2.SetLabel("      " + std::to_string(m_playerStats->getRessource2()));
+	m_res2.SetLabel("Res2: " + std::to_string(m_playerStats->getRessource2()));
 	m_res2.SetInnerOn();
 	m_res2.SetLayer(1);
-	
-	m_res3.SetLabel("      " + std::to_string(m_playerStats->getRessource3()));
+
+	m_res3.SetLabel("Res3: " + std::to_string(m_playerStats->getRessource3()));
 	m_res3.SetInnerOn();
 	m_res3.SetLayer(1);
-}
-void UI::initPlayer(CDeviceCursor* cursor, CWritingFont* font) {
 
-	std::string derString;
-	
-	m_statistic.Init(cursor, font, CFloatRect(0.9,0, 0.1,0.1));
-	m_statistic.SetLabel("Player");
-	
-
-	m_statsBack.Init(&m_matStats, CFloatRect(0.8,0.1,0.2,0.8)); // hintergrund
-	m_statsBack.SetLayer(0.98);
-	m_statsBack.SwitchOff();
-
-	
-	
-	
 	m_res1Minus.SetInnerOn();
 	m_res1Minus.SetLayer(1);
 	m_res1Minus.SwitchOff();
 
-	
-
-	
 	m_res2Minus.SetInnerOn();
 	m_res2Minus.SetLayer(1);
 	m_res2Minus.SwitchOff();
-
-	
 
 	m_res3Minus.SetInnerOn();
 	m_res3Minus.SetLayer(1);
 	m_res3Minus.SwitchOff();
 
-	m_wohnungen.Init(cursor, font, CFloatRect(0, 0.3, 1, 0.05));
-	m_wohnungen.SetLabel("Wohnungen: " + std::to_string(m_playerStats->getWohnung()));
+}
+void UI::initPlayer(CDeviceCursor* cursor, CWritingFont* font) {
+
+	std::string derString;
+
+	m_statistic.Init(cursor, font, CFloatRect(0.9, 0, 0.1, 0.1)); //button
+	m_statistic.SetLabel("Player");
+
+
+	m_statsBack.Init(&m_matStats, CFloatRect(0.8, 0.1, 0.2, 0.8)); // ganzer hintergrund
+	m_statsBack.SetLayer(0.98);
+	m_statsBack.SwitchOff();
+
+	m_level.Init(&m_matStats, CFloatRect(0, 0, 1, 0.3));
+	m_level.SetInnerOn();
+	m_level.SetLayer(0.97);
+	levelOverlay(&m_level, font, cursor);
+	//writing für level + variable für zahl
+	//overlay für fortschritt + writing für fortschritt
+	//button für missionen 
+
+	m_wohnungen.Init(&m_matStats, CFloatRect(0, 0.3, 1, 0.05));
 	m_wohnungen.SetInnerOn();
-	m_wohnungen.SetLayer(1);
+	m_wohnungen.SetLayer(0.97);
+	m_wohnungenW.Init(CFloatRect(), 20, font);
+	derString = "Wohnungen: " + std::to_string(m_playerStats->getWohnung());
+	m_wohnungenW.PrintString(&derString[0]);
+	m_wohnungenW.SetLayer(0.96);
+	m_wohnungenW.SetInnerOn();
 
 
-	
-	
+
+
 	m_statsBack.AddOverlay(&m_wohnungen);
+	m_wohnungen.AddWriting(&m_wohnungenW);
+	m_statsBack.AddOverlay(&m_level);
 
-	
 
 }
 
@@ -228,19 +230,21 @@ void UI::switchOnBuy(int res1, int res2, int res3) {
 	m_res2.SwitchOff();
 	m_res3.SwitchOff();
 	m_res1Minus.SwitchOn();
-	m_res1Minus.SetLabel("      " + std::to_string(m_playerStats->getRessource1() - res1));
+	m_res1Minus.SetLabel("Res1: " + std::to_string(m_playerStats->getRessource1() - res1));
 	m_res2Minus.SwitchOn();
-	m_res2Minus.SetLabel("      " + std::to_string(m_playerStats->getRessource2() - res2));
+	m_res2Minus.SetLabel("Res2: " + std::to_string(m_playerStats->getRessource2() - res2));
 	m_res3Minus.SwitchOn();
-	m_res3Minus.SetLabel("      " + std::to_string(m_playerStats->getRessource3() - res3));
+	m_res3Minus.SetLabel("Res3: " + std::to_string(m_playerStats->getRessource3() - res3));
 
 }
 
+
+
 void UI::updatePlayer() {
 
-	m_res1.SetLabel("      " + std::to_string(m_playerStats->getRessource1()));
-	m_res2.SetLabel("      " + std::to_string(m_playerStats->getRessource2()));
-	m_res3.SetLabel("      " + std::to_string(m_playerStats->getRessource3()));
+	m_res1.SetLabel("Res1: " + std::to_string(m_playerStats->getRessource1()));
+	m_res2.SetLabel("Res2: " + std::to_string(m_playerStats->getRessource2()));
+	m_res3.SetLabel("Res3: " + std::to_string(m_playerStats->getRessource3()));
 	m_res3.SwitchOn();
 	m_res1.SwitchOn();
 	m_res2.SwitchOn();
@@ -260,6 +264,7 @@ void UI::tooltip(std::string headline, int res1, int res2, int res3, int anzahl,
 
 }
 
+
 void UI::InitToolTip() {
 	m_toolTipBackGround.Init(&m_matStats, CFloatRect(0.4, 0.6, 0.4, 0.4));
 	m_toolTipBackGround.SetLayer(0.99); // das setlayer(1) = man sieht den hintergrund nie! (aber gut um alles anzuschalten bzw aus)
@@ -275,7 +280,7 @@ void UI::InitToolTip() {
 	m_headlineW.SetLayer(0.97);
 
 	//ressource1
-	m_kosten1.Init(&m_matstein, CFloatRect(0, 0.75, 0.3, 0.25));
+	m_kosten1.Init(&m_resMaterial, CFloatRect(0, 0.75, 0.3, 0.25));
 	m_kosten1.SetLayer(0.98);
 	m_kosten1.SetInnerOn();
 	m_kosten1W.Init(CFloatRect(0, 0, 1, 1), 5, &m_redFont);
@@ -283,7 +288,7 @@ void UI::InitToolTip() {
 	m_kosten1W.SetLayer(0.97);
 
 	//ressource2
-	m_kosten2.Init(&m_matstahl, CFloatRect(0.33, 0.75, 0.3, 0.25));
+	m_kosten2.Init(&m_resMaterial, CFloatRect(0.33, 0.75, 0.3, 0.25));
 	m_kosten2.SetLayer(0.98);
 	m_kosten2.SetInnerOn();
 	m_kosten2W.Init(CFloatRect(0, 0, 1, 1), 5, &m_redFont);
@@ -291,7 +296,7 @@ void UI::InitToolTip() {
 	m_kosten2W.SetLayer(0.97);
 
 	//ressource3
-	m_kosten3.Init(&m_matchrom, CFloatRect(0.66, 0.75, 0.3, 0.25));
+	m_kosten3.Init(&m_resMaterial, CFloatRect(0.66, 0.75, 0.3, 0.25));
 	m_kosten3.SetLayer(0.98);
 	m_kosten3.SetInnerOn();
 	m_kosten3W.Init(CFloatRect(0, 0, 1, 1), 5, &m_redFont);
@@ -330,3 +335,113 @@ void UI::InitToolTip() {
 
 	m_toolTipBackGround.SwitchOff();
 }
+
+void UI::levelOverlay(COverlay* background, CWritingFont* font, CDeviceCursor* cursor)
+{
+	laenge = 0.5;
+	std::string dummy;
+	dummy = "Level " + std::to_string(1);
+	m_levelW.Init(CFloatRect(0.1, 0.05, 0.7, 0.2), 8, &m_redFont);
+	m_levelW.PrintString(&dummy[0]);
+	m_levelW.SetInnerOn();
+	m_levelW.SetLayer(0.96);
+
+	levelFortschritt.Init(&m_resMaterial, CFloatRect(0.1, 0.3, 0.8, 0.1));
+	levelFortschritt.SetInnerOn();
+	levelFortschritt.SetLayer(0.97);
+
+	m_levelFortschritt.Init(&m_descMaterial, CFloatRect(0, 0, laenge, 1));
+	m_levelFortschritt.SetInnerOn();
+	m_levelFortschritt.SetLayer(0.96);
+
+	dummy = std::to_string(50) + "%";
+	levelFortschrittW.Init(CFloatRect(0.7, 0.25, 0.25, 0.5), 4, font);
+	levelFortschrittW.SetInnerOn();
+	levelFortschrittW.SetLayer(0.95);
+	levelFortschrittW.PrintString(&dummy[0]);
+
+	m_missionen.Init(cursor, font, CFloatRect(0, 0.5, 0.7, 0.4));
+	m_missionen.SetInnerOn();
+	m_missionen.SetLayer(0.97);
+	m_missionen.SetMaterialNormal(m_matStats);
+	m_missionen.SetLabel("Missionen: " + std::to_string(1) + "/" + std::to_string(5));
+
+	m_missionenBack.Init(&m_matStats, CFloatRect(0, 0.3, 1, 0.3));
+	m_missionenBack.SetInnerOn();
+	m_missionenBack.SetLayer(0.908);
+	m_missionenBack.SwitchOff();
+	buildMission(&m_missionenBack, font);
+
+
+	background->AddWriting(&m_levelW);
+	background->AddOverlay(&levelFortschritt);
+	levelFortschritt.AddOverlay(&m_levelFortschritt);
+	levelFortschritt.AddWriting(&levelFortschrittW);
+	background->AddOverlay(&m_missionen);
+
+	m_statsBack.AddOverlay(&m_missionenBack);
+
+}
+void UI::buildMission(COverlay* missions, CWritingFont* font)
+{
+	for (int i = 0; i < 5; i++) {
+		m_missi[i].Init(&m_matStats, CFloatRect());
+		m_missi[i].SetInnerOn();
+		m_missi[i].SetLayer(0.907);
+		m_missi[i].SwitchOff();
+
+		m_missiW[i].Init(CFloatRect(), 25, font);
+		m_missiW[i].SetInnerOn();
+		m_missiW[i].SetLayer(0.906);
+		m_missiW[i].SwitchOff();
+
+		missions->AddOverlay(&m_missi[i]);
+		m_missi[i].AddWriting(&m_missiW[i]);
+
+	}
+
+	/*float anteil = 1;
+	anteil = anteil / Anzahlmissions;
+	std::string dummy;
+	m_missi1.Init(&m_matStats, CFloatRect(0.02, 0.01, 0.8, anteil));
+	m_missi1.SetInnerOn();
+	m_missi1.SetLayer(0.907);
+	dummy = std::to_string(1) + ")Baue " + std::to_string(1) + " Bauroboter";
+	m_missi1W.Init(CFloatRect(0, 0.1, 1, 0.8), 25, font);
+	m_missi1W.SetInnerOn();
+	m_missi1W.SetLayer(0.906);
+	m_missi1W.PrintString(&dummy[0]);
+
+	m_missi2.Init(&m_matStats, CFloatRect(0.02, anteil, 0.8, anteil));
+	m_missi2.SetInnerOn();
+	m_missi2.SetLayer(0.907);
+	dummy = std::to_string(2) + ")Baue " + std::to_string(1) + " landwirtroboter";
+	m_missi2W.Init(CFloatRect(0, 0.1, 1, 0.8), 25, font);
+	m_missi2W.SetInnerOn();
+	m_missi2W.SetLayer(0.906);
+	m_missi2W.PrintString(&dummy[0]);
+
+	m_missi3.Init(&m_matStats, CFloatRect(0.02, anteil*2, 0.8, anteil));
+	m_missi3.SetInnerOn();
+	m_missi3.SetLayer(0.907);
+	dummy = std::to_string(3) + ")Baue " + std::to_string(1) + " minenroboter";
+	m_missi3W.Init(CFloatRect(0, 0.1, 1, 0.8), 25, font);
+	m_missi3W.SetInnerOn();
+	m_missi3W.SetLayer(0.906);
+	m_missi3W.PrintString(&dummy[0]);
+
+	missions->AddOverlay(&m_missi1);
+	missions->AddOverlay(&m_missi2);
+	missions->AddOverlay(&m_missi3);
+	m_missi1.AddWriting(&m_missi1W);
+	m_missi2.AddWriting(&m_missi2W);
+	m_missi3.AddWriting(&m_missi3W);*/
+
+}
+
+void UI::updateWriting(std::string label, CWriting* writing)
+{
+	writing->PrintString(&label[0]);
+}
+
+

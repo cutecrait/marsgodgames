@@ -1,0 +1,1 @@
+BeispielForGameObject, 4, 4
