@@ -41,13 +41,14 @@ public:
 	void confirmClicked();
 
 	void cancelClicked(CGameObjectPlacement* );
-	
+	bool createToolTip(int);
 private:
 
 
 
 	//std::vector <CMaterial*> m_MATbuildingKind;
 	int whatKind;
+	int activePosition = -1;
 	int WhatSpecific = 1;
 	int unterschied = -1;
 	bool toolTipCreate = true;

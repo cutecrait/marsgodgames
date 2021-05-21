@@ -31,18 +31,8 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor)
 		else  mapsquares->DeselectMapTile(NULL);
 	}
 
-	if (m_menu->getMainSelect()->GetActivePosition() == 4 && saveable) {
-
-		save.saveItAll();
-		save.deleteTxt();
-		save.writeCurrToTxt("Ressources.txt", m_playerStats->getRessource1(), m_playerStats->getRessource2(), m_playerStats->getRessource3());
-		ULDebug("Saving...");
-		saveable = false;
-	}
 
 	else  mapsquares->DeselectMapTile(NULL);
-
-	
 
 	if (m_menu->getStart()->IsClicked()) {
 		if (WhatSpecific == 2) {
@@ -60,6 +50,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor)
 			WhatSpecific = 2;
 		}
 	}
+
 	if (m_menu->getMainSelect()->GetActivePosition() >= 0) { // alles aus machen bis auf die aktive position.
 		m_menu->getSpecificSelect(0)->SwitchOff();
 		m_menu->getSpecificSelect(1)->SwitchOff();
@@ -82,7 +73,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor)
 		//m_menu->getSpecificSelect(4)->SwitchOff();
 		//m_menu->getSpecificSelect(4)->SetActivePosition(-1);
 	}
-	
+
 	if (m_menu->getPlayer()->IsClicked() && !clicked) {
 		m_menu->getStatistic()->SwitchOn();
 		clicked = true;
@@ -91,48 +82,43 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor)
 		m_menu->getStatistic()->SwitchOff();
 		clicked = false;
 	}
-	
 
-	if (m_menu->getSpecificSelect(1)->GetActivePosition() == 0 ) {
-		
+
+	//HAUS 
+
+	if (m_menu->getSpecificSelect(1)->GetActivePosition() == 0) {
+
 		// Suche nach freiem Gebäude
 		toBeBuildObject = BuildingManager->lookForGameObject();
 
-		//tooltip anschalten
-		if (toolTipCreate) {
+		//tooltip anschalten 
+		if (createToolTip(m_menu->getSpecificSelect(1)->GetActivePosition())) {
+			//tooltip wird so nur einmal gebaut (aber kann überschrieben werden)
+			activePosition = m_menu->getSpecificSelect(1)->GetActivePosition();
 			m_menu->tooltip(
-				"Hotel", 
+				"Haus",
 				toBeBuildObject->getGameObject()->getRessources().Sauerstoff_per_Build,			// Ehemals Res1
 				toBeBuildObject->getGameObject()->getRessources().Stein_per_Build,				// Ehemals Res2
 				toBeBuildObject->getGameObject()->getRessources().Strom_per_Build,				// Ehemals Res3
-				20, 
+				10,
 				"Anzahl gebaut");
-
-			
-			// Tooltip wird so nur einmal gebaut
-			toolTipCreate = false;
 		}
 
-	
 		if (m_menu->m_confirm.IsClicked()) {
 
 			if (enoughRes(toBeBuildObject->getGameObject())) {
-				/*
-				saving stuff in the Array
-				*/
-				save.fillPosAr(toBeBuildObject->getGameObject(), toBeBuildObject->GetPos().GetX(), toBeBuildObject->GetPos().GetZ());
-				saveable = true;
-				// back to code
 
 				confirmClicked();
 				makeBuilding(toBeBuildObject);
 				targetPos = NULL;
-				m_playerStats->setWohnung(1);
-				m_menu->getWohnung()->SetLabel("Wohnungen: " + std::to_string(m_playerStats->getWohnung()));
+				m_playerStats->setWohnung(0);
+				std::string einS;
+				einS = "Wohnungen: " + std::to_string(m_playerStats->getWohnung());
+				m_menu->getWohnung()->PrintString(&einS[0]);
 			}
 		}
 
-		if(targetPos) {
+		if (targetPos) {
 			if (!isclicked)
 			{
 				toBeBuildObject->SwitchOn();
@@ -144,20 +130,82 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor)
 
 				isclicked = true;
 			}
-				if (cursor->ButtonPressedLeft()) {
-					toBeBuildObject->Translate(targetPos->GetPos());
-				}
-				
+			if (cursor->ButtonPressedLeft()) {
+				toBeBuildObject->Translate(targetPos->GetPos());
+			}
+
 		}
-		
-	}	
-	
+
+	}
+
+	//Haus2
+	if (m_menu->getSpecificSelect(1)->GetActivePosition() == 1) {
+
+		// Suche nach freiem Gebäude
+		toBeBuildObject = BuildingManager->lookForGameObject();
+
+		//tooltip anschalten
+		if (createToolTip(m_menu->getSpecificSelect(1)->GetActivePosition())) {
+			activePosition = m_menu->getSpecificSelect(1)->GetActivePosition();
+			m_menu->tooltip(
+				"Hotel",
+				toBeBuildObject->getGameObject()->getRessources().Sauerstoff_per_Build,			// Ehemals Res1
+				toBeBuildObject->getGameObject()->getRessources().Stein_per_Build,				// Ehemals Res2
+				toBeBuildObject->getGameObject()->getRessources().Strom_per_Build,				// Ehemals Res3
+				20,
+				"Anzahl gebaut");
+
+
+			// Tooltip wird so nur einmal gebaut
+			//toolTipCreate = false;
+		}
+
+
+		if (m_menu->m_confirm.IsClicked()) {
+
+			if (enoughRes(toBeBuildObject->getGameObject())) {
+
+				confirmClicked();
+				makeBuilding(toBeBuildObject);
+				targetPos = NULL;
+				m_playerStats->setWohnung(20);
+				std::string einS;
+				einS = "Wohnungen: " + std::to_string(m_playerStats->getWohnung());
+				m_menu->getWohnung()->PrintString(&einS[0]);
+			}
+		}
+
+		if (targetPos) {
+			if (!isclicked)
+			{
+				toBeBuildObject->SwitchOn();
+				m_menu->m_confirm.SwitchOn();
+				m_menu->m_cancel.SwitchOn();
+				m_menu->switchOnBuy(toBeBuildObject->getGameObject()->getRessources().Sauerstoff_per_Build,
+					toBeBuildObject->getGameObject()->getRessources().Stein_per_Build,
+					toBeBuildObject->getGameObject()->getRessources().Strom_per_Build);
+
+				isclicked = true;
+			}
+			if (cursor->ButtonPressedLeft()) {
+				toBeBuildObject->Translate(targetPos->GetPos());
+			}
+
+		}
+
+	}
 	if (m_menu->m_cancel.IsClicked()) {
 
 		cancelClicked(toBeBuildObject);
 	}
+	if (m_menu->m_missionen.IsHovered()) {
+		m_menu->m_missionenBack.SwitchOn();
+	}
+	else
+		m_menu->m_missionenBack.SwitchOff();
 
 }
+
 
 
 
@@ -230,7 +278,7 @@ void clickmanager::confirmClicked() {
 	m_menu->updatePlayer();
 	m_menu->m_toolTipBackGround.SwitchOff();
 	isclicked = false;
-
+	m_menu->updateLevelUI(4,1,1);
 	saveable = true;
 }
 
@@ -248,3 +296,14 @@ void clickmanager::cancelClicked(CGameObjectPlacement* buildObject) {
 	isclicked = false;
 }
 
+bool clickmanager::createToolTip(int i)
+{
+	if (activePosition != i) {
+		toolTipCreate = true;
+	}
+	else {
+		toolTipCreate = false;
+	}
+
+	return toolTipCreate;
+}
