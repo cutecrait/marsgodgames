@@ -278,7 +278,7 @@ void clickmanager::confirmClicked() {
 	m_menu->updatePlayer();
 	m_menu->m_toolTipBackGround.SwitchOff();
 	isclicked = false;
-
+	m_menu->updateLevelUI(4,1,1);
 	saveable = true;
 }
 

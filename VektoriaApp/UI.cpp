@@ -335,7 +335,7 @@ void UI::InitToolTip() {
 
 	m_toolTipBackGround.SwitchOff();
 }
-
+//beim programmstart 
 void UI::levelOverlay(COverlay* background, CWritingFont* font, CDeviceCursor* cursor)
 {
 	laenge = 0.5;
@@ -350,12 +350,12 @@ void UI::levelOverlay(COverlay* background, CWritingFont* font, CDeviceCursor* c
 	levelFortschritt.SetInnerOn();
 	levelFortschritt.SetLayer(0.97);
 
-	m_levelFortschritt.Init(&m_descMaterial, CFloatRect(0, 0, laenge, 1));
+	m_levelFortschritt.Init(&m_descMaterial, CFloatRect(0, 0, 0, 1));
 	m_levelFortschritt.SetInnerOn();
 	m_levelFortschritt.SetLayer(0.96);
 
 	dummy = std::to_string(50) + "%";
-	levelFortschrittW.Init(CFloatRect(0.7, 0.25, 0.25, 0.5), 4, font);
+	levelFortschrittW.Init(CFloatRect(0.7, 0.25, 0.25, 0.5), 10, font);
 	levelFortschrittW.SetInnerOn();
 	levelFortschrittW.SetLayer(0.95);
 	levelFortschrittW.PrintString(&dummy[0]);
@@ -364,7 +364,7 @@ void UI::levelOverlay(COverlay* background, CWritingFont* font, CDeviceCursor* c
 	m_missionen.SetInnerOn();
 	m_missionen.SetLayer(0.97);
 	m_missionen.SetMaterialNormal(m_matStats);
-	m_missionen.SetLabel("Missionen: " + std::to_string(1) + "/" + std::to_string(5));
+	m_missionen.SetLabel("Missionen: " + std::to_string(0) + "/" + std::to_string(0));
 
 	m_missionenBack.Init(&m_matStats, CFloatRect(0, 0.3, 1, 0.3));
 	m_missionenBack.SetInnerOn();
@@ -384,6 +384,7 @@ void UI::levelOverlay(COverlay* background, CWritingFont* font, CDeviceCursor* c
 }
 void UI::buildMission(COverlay* missions, CWritingFont* font)
 {
+	std::string stringForMissi;
 	for (int i = 0; i < 5; i++) {
 		m_missi[i].Init(&m_matStats, CFloatRect());
 		m_missi[i].SetInnerOn();
@@ -399,6 +400,10 @@ void UI::buildMission(COverlay* missions, CWritingFont* font)
 		m_missi[i].AddWriting(&m_missiW[i]);
 
 	}
+	stringForMissi = "baue: " + std::to_string(2) + " Bauroboter";
+	//diese funktion muss am besten in der game cpp ausgeführt werden anstatt hier oder im clickmanager.
+	makeAllMissions(4,&stringForMissi[0], "ich bin die zweite", "und ich die dritte missi");
+
 
 	/*float anteil = 1;
 	anteil = anteil / Anzahlmissions;
@@ -444,4 +449,46 @@ void UI::updateWriting(std::string label, CWriting* writing)
 	writing->PrintString(&label[0]);
 }
 
+void UI::makeAMission(std::string bla, int missionNr)
+{
+	m_missiW[missionNr].PrintString(&bla[0]);
+}
+
+//standard missions macher
+//diese funktion wird am anfang an wenn man ein neues level ereicht ausgeführt 
+
+void UI::makeAllMissions(float missionAnzahl,std::string m1, std::string m2 , std::string m3, std::string m4, std::string m5)
+{
+	float y_pos =0.05;
+	std::string dummyArray[5] = { m1,m2,m3,m4,m5 };
+	std::string dummystring;
+	for (int i = 0; i < missionAnzahl; i++) {
+		dummystring = dummyArray[i];
+		m_missi[i].Init(&m_matStats, CFloatRect(0.05, y_pos, 0.8, 0.95 / missionAnzahl));
+		y_pos += 0.95f / missionAnzahl;
+		m_missi[i].SwitchOn();
+
+		m_missiW[i].Init(CFloatRect(0,0.1,1,0.8), 25, &m_redFont);
+		m_missiW[i].PrintString(&dummystring[0]);
+		m_missiW[i].SwitchOn();
+	}
+	
+}
+
+void UI::updateLevelUI(float anzahlMissGesamt, float anzahlAbgeschlossenerMiss, int welchesLevel) {
+	std::string dummy;
+	int dummyint = anzahlAbgeschlossenerMiss;
+	int dummyint1 = anzahlMissGesamt;
+	dummy = "Missionen: " +std::to_string(dummyint) +"/" +std::to_string(dummyint1);
+	m_missionen.SetLabel(&dummy[0]);
+
+	m_levelFortschritt.Init(&m_descMaterial, CFloatRect(0, 0, (1.0f / anzahlMissGesamt) * anzahlAbgeschlossenerMiss, 1));
+
+	//dummy = std::to_string((anzahlAbgeschlossenerMiss / anzahlMissGesamt) * 100) + "%";
+	dummyint = (anzahlAbgeschlossenerMiss / anzahlMissGesamt) * 100;
+	dummy = std::to_string(dummyint) + "%";
+	levelFortschrittW.PrintString(&dummy[0]);
+
+	
+}
 
