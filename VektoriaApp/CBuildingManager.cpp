@@ -5,6 +5,10 @@ CBuildingManager::CBuildingManager()
 	m_NrOfVersorgung = 0;
 	m_NrOfWohungen = 0;
 	m_NrOfTestObjects = 0;
+	m_NrOfNuclearPerPlants = 0;
+	m_NrOfSolarPowerPlants = 0;
+	m_NrOfDomes = 0;
+	m_NrOfWaterTanks = 0;
 }
 
 CBuildingManager::~CBuildingManager()
@@ -24,36 +28,101 @@ void CBuildingManager::Init(CScene* scene)
 		BeispielGameObjects[i].getGameObject()->TransformGeo();
 		m_zs->AddPlacement(&BeispielGameObjects[i]);
 	}
+
+	// Initialsierungsmethoden der Gebäude noch einfügen!
+	// ...
 }
 
 void CBuildingManager::UpdateBuildings(float deltaTime)
-{
-	for (int i = 0; i < m_NrOfTestObjects; i++)
-	{
-		BeispielGameObjects[i].Update(deltaTime);
-	}
-}
-
-void CBuildingManager::IncreaseNrOfBuildings()
-{
-	m_NrOfTestObjects++;
-}
-
-void CBuildingManager::DecreaseNrOfBuildings()
-{
-	m_NrOfTestObjects--;
-}
-
-CGameObjectPlacement* CBuildingManager::lookForGameObject()
 {
 	int y = 0;
 
 	for (int i = 0; i < 20; i++)
 	{
-		if (BeispielGameObjects[i].getBuildStatus() == false)
+		if (BeispielGameObjects[i].getBuildStatus() == true)
 		{
-			return &BeispielGameObjects[i];
+			BeispielGameObjects[i].Update(deltaTime);
+			y++;
+			if (y == m_NrOfTestObjects)
+				break;
 		}
+
+	}
+
+	y = 0;
+
+	// Update-Methoden der anderen Gebäude hier noch einfügen!
+	// ...
+}
+
+void CBuildingManager::IncreaseNrOfBuildings(Typ& typ)
+{
+	switch (typ)
+	{
+	case Typ::Test:
+		m_NrOfTestObjects++;
+
+		break;
+
+	case Typ::Dome:
+	case Typ::Hotel:
+	case Typ::NuclearPowerPlant:
+	case Typ::SolarPowerPlant:
+	case Typ::Villa:
+	case Typ::WaterTank:
+
+	default: break;
+
+	}
+	
+}
+
+void CBuildingManager::DecreaseNrOfBuildings(Typ& typ)
+{
+	switch (typ)
+	{
+	case Typ::Test:
+		m_NrOfTestObjects--;
+
+		break;
+
+	case Typ::Dome:
+	case Typ::Hotel:
+	case Typ::NuclearPowerPlant:
+	case Typ::SolarPowerPlant:
+	case Typ::Villa:
+	case Typ::WaterTank:
+
+	default: break;
+
+	}
+	
+}
+
+CGameObjectPlacement* CBuildingManager::lookForGameObject(Typ& typ)
+{
+	// Überprüft, welcher Typ übergeben wurde und sucht entspechendes Gebäude
+	switch (typ)
+	{
+		case Typ::Test:
+			for (int i = 0; i < 20; i++)
+			{
+				if (BeispielGameObjects[i].getBuildStatus() == false)
+				{
+					return &BeispielGameObjects[i];
+				}
+			}
+
+			break;
+		case Typ::Dome:
+		case Typ::Hotel:
+		case Typ::NuclearPowerPlant:
+		case Typ::SolarPowerPlant:
+		case Typ::Villa:
+		case Typ::WaterTank:
+
+		default: break;
+
 	}
 
 	// Maximale Anzahl an Gebäude-Typ verbaut

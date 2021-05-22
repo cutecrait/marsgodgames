@@ -31,7 +31,6 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor)
 		else  mapsquares->DeselectMapTile(NULL);
 	}
 
-
 	else  mapsquares->DeselectMapTile(NULL);
 
 	if (m_menu->getStart()->IsClicked()) {
@@ -85,11 +84,19 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor)
 
 
 	//HAUS 
+	// ----------------------------
+	// @Hendrik: Du kannst die if-Klammern, die die ActivePosition() abfragen, auch als switch-Anweisung implementieren ;)
+	// 	   Denn der folgende Rest ist ja auch prinzipiell immer der gleiche
+	// 
+	// 	   Die Tooltips am Besten auch vorgefertigt machen, sodass du nur Anhand der switch-Anweisung entscheiden musst,
+	// 	   welcher nen SwitchOn()-Befehl erhält
+	//------------------------------
 
 	if (m_menu->getSpecificSelect(1)->GetActivePosition() == 0) {
 
 		// Suche nach freiem Gebäude
-		toBeBuildObject = BuildingManager->lookForGameObject();
+		CBuildingManager::Typ typ = CBuildingManager::Typ::Test;
+		toBeBuildObject = BuildingManager->lookForGameObject(typ);
 
 		//tooltip anschalten 
 		if (createToolTip(m_menu->getSpecificSelect(1)->GetActivePosition())) {
@@ -142,7 +149,8 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor)
 	if (m_menu->getSpecificSelect(1)->GetActivePosition() == 1) {
 
 		// Suche nach freiem Gebäude
-		toBeBuildObject = BuildingManager->lookForGameObject();
+		CBuildingManager::Typ typ = CBuildingManager::Typ::Test;
+		toBeBuildObject = BuildingManager->lookForGameObject(typ);
 
 		//tooltip anschalten
 		if (createToolTip(m_menu->getSpecificSelect(1)->GetActivePosition())) {
@@ -223,7 +231,9 @@ void clickmanager::makeBuilding(CGameObjectPlacement* buildingObject)
 	}
 	buildingObject->SwitchOn();
 
-	BuildingManager->IncreaseNrOfBuildings();
+	// Exemplarisch, die Methode bekommt am Besten auch einfach den Gebäude-Typ übergeben
+	CBuildingManager::Typ typ = CBuildingManager::Typ::Test;
+	BuildingManager->IncreaseNrOfBuildings(typ);
 	buildingObject->setBuildStatus(true);
 	buildingObject = NULL;
 

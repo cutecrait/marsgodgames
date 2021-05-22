@@ -107,13 +107,13 @@
       <Filter>LevelSystem</Filter>
     </ClCompile>
     <ClCompile Include="PowerPlant.cpp">
-      <Filter>Buildings</Filter>
+      <Filter>GameObject\Buildings</Filter>
     </ClCompile>
     <ClCompile Include="NuclearPowerPlant.cpp">
-      <Filter>Buildings</Filter>
+      <Filter>GameObject\Buildings</Filter>
     </ClCompile>
     <ClCompile Include="SolarPowerPlant.cpp">
-      <Filter>Buildings</Filter>
+      <Filter>GameObject\Buildings</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -230,16 +230,16 @@
       <Filter>LevelSystem</Filter>
     </ClInclude>
     <ClInclude Include="Building.h">
-      <Filter>Buildings</Filter>
+      <Filter>GameObject\Buildings</Filter>
     </ClInclude>
     <ClInclude Include="PowerPlant.h">
-      <Filter>Buildings</Filter>
+      <Filter>GameObject\Buildings</Filter>
     </ClInclude>
     <ClInclude Include="NuclearPowerPlant.h">
-      <Filter>Buildings</Filter>
+      <Filter>GameObject\Buildings</Filter>
     </ClInclude>
     <ClInclude Include="SolarPowerPlant.h">
-      <Filter>Buildings</Filter>
+      <Filter>GameObject\Buildings</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -303,7 +303,7 @@
     <Filter Include="LevelSystem">
       <UniqueIdentifier>{5abff615-f9f3-45b2-989c-cccbd55b8fa4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Buildings">
+    <Filter Include="GameObject\Buildings">
       <UniqueIdentifier>{2ba58d36-604a-49eb-ae64-1b8a643be130}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

@@ -3,7 +3,7 @@
 BeispielForGameObject::BeispielForGameObject()
 {
 	setModel("models\\kraftwerk.obj");
-	this->setMaterial("textures\\green_image.jpg");
+	//this->setMaterial("textures\\green_image.jpg");
 	this->getModel()->SetMaterial(this->getMaterial());
 	ressources.Sauerstoff_per_Build = 100;
 	ressources.Stein_per_Build = 100;
