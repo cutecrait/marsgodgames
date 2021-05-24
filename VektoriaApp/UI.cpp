@@ -1,4 +1,5 @@
 #include "UI.h"
+#include "Player.h"
 
 UI::UI()
 {
@@ -53,15 +54,13 @@ void UI::InitMaterial()
 
 }
 
-void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv, Player* player)
+void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 {
 	m_viewport = zv;
 	InitMaterial();
 	InitToolTip();
-	m_playerStats = player;
 	m_start.Init(cursor, font, CFloatRect(0.f, 0.9, 0.15, 0.1));
 	m_start.SetLabel("bauen");
-
 
 	m_resBack.Init(&m_matStats, CFloatRect(0.5, 0, 0.4, 0.1));
 	m_resBack.SetLayer(0.98);
@@ -162,13 +161,13 @@ void UI::initRessource() {
 
 	m_res1.SetInnerOn();
 	m_res1.SetLayer(1);
-	m_res1.SetLabel("Res1: " + std::to_string(m_playerStats->getRessource1()));
+	m_res1.SetLabel("Res1: " + std::to_string(Player::Instance().getRessource1()));
 
-	m_res2.SetLabel("Res2: " + std::to_string(m_playerStats->getRessource2()));
+	m_res2.SetLabel("Res2: " + std::to_string(Player::Instance().getRessource2()));
 	m_res2.SetInnerOn();
 	m_res2.SetLayer(1);
 
-	m_res3.SetLabel("Res3: " + std::to_string(m_playerStats->getRessource3()));
+	m_res3.SetLabel("Res3: " + std::to_string(Player::Instance().getRessource3()));
 	m_res3.SetInnerOn();
 	m_res3.SetLayer(1);
 
@@ -209,7 +208,7 @@ void UI::initPlayer(CDeviceCursor* cursor, CWritingFont* font) {
 	m_wohnungen.SetInnerOn();
 	m_wohnungen.SetLayer(0.97);
 	m_wohnungenW.Init(CFloatRect(), 20, font);
-	derString = "Wohnungen: " + std::to_string(m_playerStats->getWohnung());
+	derString = "Wohnungen: " + std::to_string(Player::Instance().getWohnung());
 	m_wohnungenW.PrintString(&derString[0]);
 	m_wohnungenW.SetLayer(0.96);
 	m_wohnungenW.SetInnerOn();
@@ -230,11 +229,11 @@ void UI::switchOnBuy(int res1, int res2, int res3) {
 	m_res2.SwitchOff();
 	m_res3.SwitchOff();
 	m_res1Minus.SwitchOn();
-	m_res1Minus.SetLabel("Res1: " + std::to_string(m_playerStats->getRessource1() - res1));
+	m_res1Minus.SetLabel("Res1: " + std::to_string(Player::Instance().getRessource1() - res1));
 	m_res2Minus.SwitchOn();
-	m_res2Minus.SetLabel("Res2: " + std::to_string(m_playerStats->getRessource2() - res2));
+	m_res2Minus.SetLabel("Res2: " + std::to_string(Player::Instance().getRessource2() - res2));
 	m_res3Minus.SwitchOn();
-	m_res3Minus.SetLabel("Res3: " + std::to_string(m_playerStats->getRessource3() - res3));
+	m_res3Minus.SetLabel("Res3: " + std::to_string(Player::Instance().getRessource3() - res3));
 
 }
 
@@ -242,9 +241,9 @@ void UI::switchOnBuy(int res1, int res2, int res3) {
 
 void UI::updatePlayer() {
 
-	m_res1.SetLabel("Res1: " + std::to_string(m_playerStats->getRessource1()));
-	m_res2.SetLabel("Res2: " + std::to_string(m_playerStats->getRessource2()));
-	m_res3.SetLabel("Res3: " + std::to_string(m_playerStats->getRessource3()));
+	m_res1.SetLabel("Res1: " + std::to_string(Player::Instance().getRessource1()));
+	m_res2.SetLabel("Res2: " + std::to_string(Player::Instance().getRessource2()));
+	m_res3.SetLabel("Res3: " + std::to_string(Player::Instance().getRessource3()));
 	m_res3.SwitchOn();
 	m_res1.SwitchOn();
 	m_res2.SwitchOn();

@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Player.h"
 
 CGame::CGame(void)
 {
@@ -6,10 +7,10 @@ CGame::CGame(void)
 
 CGame::~CGame(void)
 {
-	
+
 }
 
-void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CSplash * psplash)	//psplash is splash screen
+void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CSplash* psplash)	//psplash is splash screen
 {
 	// ROOT--------------------------------
 	m_zr.Init(psplash);
@@ -17,7 +18,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	//m_zf.SetApiRender(eApiRender_DirectX12);
 	m_zf.Init(hwnd, procOS);
 	m_zr.AddFrame(&m_zf);
-	
+
 
 	// CAMERA & VIEWPORT-------------------------------------------------------
 	m_zv.InitFull(&m_zc);	//with adresse of camera bcoz viewport
@@ -52,7 +53,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 
 	// AUDIO------------------------------------------------
 	AudioManager.Init(&m_zs);
-	
+
 
 	// LIGHTING--------------------------------------
 	lightingManager.Init(&m_zs, &m_zpCamera);
@@ -61,15 +62,15 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	// texturen werden jetzt in UI erstellt. 
 	// UI = menu, derManager = click-event.
 	if (m_ldgame.fileExists("Ressources.txt")) {
-		m_player.initPlayer(m_ldgame.LoadPlayerStats()[0], m_ldgame.LoadPlayerStats()[1], m_ldgame.LoadPlayerStats()[2]);
+		Player::Instance().initPlayer(m_ldgame.LoadPlayerStats()[0], m_ldgame.LoadPlayerStats()[1], m_ldgame.LoadPlayerStats()[2]);
 	}
 	else {
-		m_player.initPlayer(1000, 1000, 1000);
+		Player::Instance().initPlayer(1000, 1000, 1000);
 	}
 	einsFont.LoadPreset("LucidaConsoleWhite");
 	einsFont.SetChromaKeyingOn(); //hiermit hat die font keinen hässlichen hintergrund
-	menu.InitMenu(&einCursor, &einsFont, &m_zv, &m_player);
-	derManager.Init(&menu, &m_zs, &AudioManager, &m_player, &BuildingManager, &mapSquare);
+	menu.InitMenu(&einCursor, &einsFont, &m_zv);
+	derManager.Init(&menu, &m_zs, &AudioManager, &BuildingManager, &mapSquare);
 
 	// MAP SQUARES---------------------------------------
 	MakeMapSquares(&m_zs);
@@ -97,13 +98,13 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 
 	// lighting
 	lightingManager.Tick(0);
-	
+
 
 	derManager.Click(fTimeDelta, &einCursor);
-	
+
 	// UI-----------------------------------
-	
-	
+
+
 	//derManager.makeBuilding(selectedPlace,&einCursor);
 
 
@@ -130,7 +131,7 @@ void CGame::MakeMapSquares(CScene* m_zs)
 
 void CGame::Fini()
 {
-	
+
 	// Hier die Finalisierung Deiner Vektoria-Objekte einf�gen
 }
 

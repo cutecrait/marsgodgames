@@ -86,7 +86,6 @@ private:
 	CMaterial mat3;
 	CPlacement dummyPlace;
 	UI menu;
-	Player m_player;
 	//hendrik end
 
 	// Karo 

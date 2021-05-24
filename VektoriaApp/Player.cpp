@@ -1,13 +1,5 @@
 #include "Player.h"
 
-Player::Player()
-{
-}
-
-Player::~Player()
-{
-}
-
 void Player::initPlayer(int res1, int res2, int res3)
 {
 	ressource1 = res1;
