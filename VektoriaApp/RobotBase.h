@@ -3,6 +3,7 @@
 #include "Vektoria\Root.h"
 #include "StateManager.h"
 #include "SteeringManager.h"
+#include "GameObject.h"
 
 class RobotBase
 {
@@ -15,7 +16,7 @@ public:
 
 	Vektoria::CPlacement* GetPlacement();
 
-	void SetStates(); //TODO abstract? (wanted to be used to set state runtime - with parameters)
+	void SetStates(); //TODO abstract? (if wanted to be used to set state runtime - with parameters)
 
 protected:
 
