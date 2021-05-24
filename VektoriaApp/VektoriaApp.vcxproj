@@ -177,6 +177,7 @@
     <ClInclude Include="Load.h" />
     <ClInclude Include="MapSquare.h" />
     <ClInclude Include="MapTile.h" />
+    <ClInclude Include="Mission.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="NodeController.h" />
     <ClInclude Include="NuclearPowerPlant.h" />
@@ -220,6 +221,7 @@
     <ClCompile Include="GuiSelect.cpp" />
     <ClCompile Include="GuiSlider.cpp" />
     <ClCompile Include="MapTile.cpp" />
+    <ClCompile Include="Mission.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="NodeController.cpp" />
     <ClCompile Include="NuclearPowerPlant.cpp" />

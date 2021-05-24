@@ -100,9 +100,6 @@
     <ClCompile Include="LightingManager.cpp">
       <Filter>Environment</Filter>
     </ClCompile>
-    <ClCompile Include="Level.cpp">
-      <Filter>LevelSystem</Filter>
-    </ClCompile>
     <ClCompile Include="LevelManager.cpp">
       <Filter>LevelSystem</Filter>
     </ClCompile>
@@ -114,6 +111,12 @@
     </ClCompile>
     <ClCompile Include="SolarPowerPlant.cpp">
       <Filter>GameObject\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>LevelSystem\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Mission.cpp">
+      <Filter>LevelSystem\Level</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -223,9 +226,6 @@
     <ClInclude Include="LightingManager.h">
       <Filter>Environment</Filter>
     </ClInclude>
-    <ClInclude Include="Level.h">
-      <Filter>LevelSystem</Filter>
-    </ClInclude>
     <ClInclude Include="LevelManager.h">
       <Filter>LevelSystem</Filter>
     </ClInclude>
@@ -240,6 +240,12 @@
     </ClInclude>
     <ClInclude Include="SolarPowerPlant.h">
       <Filter>GameObject\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>LevelSystem\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Mission.h">
+      <Filter>LevelSystem\Level</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -305,6 +311,9 @@
     </Filter>
     <Filter Include="GameObject\Buildings">
       <UniqueIdentifier>{2ba58d36-604a-49eb-ae64-1b8a643be130}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LevelSystem\Level">
+      <UniqueIdentifier>{28b888fe-3560-4051-a0ff-67b90516f26b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

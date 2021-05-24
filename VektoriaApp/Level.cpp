@@ -2,10 +2,25 @@
 
 namespace LevelSystem
 {
-	Level::Level(int maximumexperience)
+	Level::Level(std::string text, int maximumexperience)
 	{
+		_text = text;
 		_currentExperience = 0;
 		_maxExperience = maximumexperience;
+	}
+
+	void Level::AddMission(Mission* mission)
+	{
+		_missions.insert(mission);
+	}
+
+	void Level::UpdateMissions()
+	{
+		//TODO Mit Hendrick klären wie Missionen und UI updaten
+		// 
+		//std::set<Mission*>::iterator it;
+		//for (it = _missions.begin(); it != _missions.end(); it++)
+		//	(*it);
 	}
 
 	int Level::AddExperience(int experience)
@@ -24,4 +39,8 @@ namespace LevelSystem
 		return _lockedObjects;
 	}
 
+	std::string Level::GetText()
+	{
+		return _text;
+	}
 }
