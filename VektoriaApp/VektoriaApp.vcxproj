@@ -194,7 +194,6 @@
     <ClInclude Include="NodeController.h" />
     <ClInclude Include="NuclearPowerPlant.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="PowerPlant.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="RobotBase.h" />
     <ClInclude Include="Save.h" />
@@ -209,7 +208,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Action.cpp" />
-    <ClCompile Include="Apartment.cpp" />
     <ClCompile Include="AStarAlgorithm.cpp" />
     <ClCompile Include="BeispielForGameObject.cpp" />
     <ClCompile Include="CAudioManager.cpp" />
@@ -238,7 +236,6 @@
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="NodeController.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PowerPlant.cpp" />
     <ClCompile Include="RobotBase.cpp" />
     <ClCompile Include="Save.cpp" />
     <ClCompile Include="State.cpp" />
