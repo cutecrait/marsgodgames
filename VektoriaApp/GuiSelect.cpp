@@ -34,7 +34,7 @@ namespace Vektoria
 		m_acName = "CGuiSelect";
 
 		// Styling base overlay
-		m_zmBase.MakeTextureSprite("textures\\Base_Tex.png");  // hier ist der hintergrund für den jeweiligen select.
+		m_zmBase.MakeTextureSprite("textures\\Base_Tex2.png");  // hier ist der hintergrund für den jeweiligen select.
 		
 		// Styling Interactable
 		m_zoInteractable.SetRect(CFloatRect(0.05f, 0.25f, 0.9f, 0.7f));

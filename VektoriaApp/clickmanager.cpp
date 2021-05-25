@@ -33,6 +33,14 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor)
 
 	else  mapsquares->DeselectMapTile(NULL);
 
+	if (m_menu->getMainSelect()->GetActivePosition() == 4 && saveable) {
+		save.saveItAll();
+		save.deleteTxt();
+		save.writeCurrToTxt("Ressources.txt", m_playerStats->getRessource1(), m_playerStats->getRessource2(), m_playerStats->getRessource3());
+		ULDebug("Saving...");
+		saveable = false;
+	}
+
 	if (m_menu->getStart()->IsClicked()) {
 		if (WhatSpecific == 2) {
 			//wenn ich nochmal start drücke nachdem ich schon mal start gedrückt habe dann mach alles wieder aus.
