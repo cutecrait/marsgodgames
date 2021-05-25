@@ -18,16 +18,13 @@ public:
 
 	void menuOFF();
 	void Click(float,  CDeviceCursor*);
-	void Init(UI* menu, CScene* zs, CAudioManager* am, Player* player, CBuildingManager* bm, MapSquare* squares) {
+	void Init(UI* menu, CScene* zs, CAudioManager* am, CBuildingManager* bm, MapSquare* squares) {
 		
 		//Übergebe die UI
 		m_menu = menu;
 
 		// Übergebe den Bau-Sounds
 		Building_Sound = &(am->Ambient_Building_Sound);
-
-		// Übergebe die Spielerstatistik
-		m_playerStats = player;
 
 		// Übergebe den BuildingManager (Zugriff auf die Gebäude im Spiel)
 		BuildingManager = bm;
@@ -61,7 +58,6 @@ private:
 	CBuildingManager* BuildingManager;
 	MapSquare* mapsquares;
 	CPlacement* targetPos;
-	Player* m_playerStats;
 	UI* m_menu;
 
 	/*BeispielForGameObject MONKY;

@@ -60,7 +60,7 @@ void Load::setPosArray(float x, float y, float z)
 void Load::SetPlacement(float x, float z, GameObject* geo)
 {
 	m_placements[obj_cnt] = new CPlacement();
-	m_placements[obj_cnt]->Translate(x, 0.5f, z);
+	m_placements[obj_cnt]->Translate(x, 0.0f, z);
 	m_placements[obj_cnt]->AddGeo(geo->getModel());
 }
 

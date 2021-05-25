@@ -1,7 +1,6 @@
 #pragma once
 #include "Vektoria\root.h"
 #include "GuiSelect.h"
-#include "Player.h"
 using namespace Vektoria;
 class UI
 {
@@ -10,7 +9,7 @@ public:
 	~UI();
 
 	void InitMaterial();
-	void InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport*,Player*);
+	void InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport*);
 	void labelMaker(int,int, std::vector<std::string>);
 	void initRessource();
 	void initPlayer(CDeviceCursor*,CWritingFont*);
@@ -109,7 +108,6 @@ public:
 	
 	CGuiButton m_missionen;
 	COverlay m_missionenBack;
-	Player* m_playerStats;
 	
 };
 

@@ -11,8 +11,8 @@ public:
 
         Category = Living;
 
-        // set model
-        // set material
+        setModel("models\\Barrack.obj");
+	    this->getModel()->m_pmaterial->LoadPreset("Concrete");
     }
 
     Resources getBuildCost() {

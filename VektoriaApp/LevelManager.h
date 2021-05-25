@@ -27,13 +27,13 @@ namespace LevelSystem
 		/// <param name="xp">Erfahrung</param>
 		void GainXp(int experience);
 		/// <summary>
-		/// Gibt zurück, ob Objekt entsperrt ist
+		/// Gibt zurück, ob Objekt entsperrt ist (typeid(Typ))
 		/// </summary>
 		/// <param name="type">Typ</param>
 		/// <returns>Ensperrt</returns>
 		bool IsUnlocked(const type_info& typeinfo);
 		/// <summary>
-		/// Gibt zurück, ob Objekt entsperrt ist
+		/// Gibt zurück, ob Objekt entsperrt ist (typeid(Typ).name)
 		/// </summary>
 		/// <param name="type">Typname</param>
 		/// <returns>Ensperrt</returns>
