@@ -123,7 +123,10 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor)
 		if (m_menu->m_confirm.IsClicked()) {
 
 			if (enoughRes(toBeBuildObject->getGameObject())) {
-
+				// save game object in temporary array
+				save.fillPosAr(toBeBuildObject->getGameObject(), toBeBuildObject->GetPos().GetX(), toBeBuildObject->GetPos().GetZ());
+				saveable = true;
+				//
 				confirmClicked();
 				makeBuilding(toBeBuildObject);
 				targetPos = NULL;
