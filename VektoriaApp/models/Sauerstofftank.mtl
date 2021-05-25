@@ -1,0 +1,69 @@
+# Blender MTL File: 'Sauerstofftank_export.blend'
+# Material Count: 6
+
+newmtl Grey
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.059739 0.059739 0.059739
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl Leaves2
+Ns 207.587444
+Ka 1.000000 1.000000 1.000000
+Kd 0.325590 0.818537 0.099390
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd D:\\Blender Projekte\\Project Mars\\textures\\Moss004_2K-JPG\\Moss004_2K_Color.jpg
+
+newmtl Leaves_
+Ns 355.272916
+Ka 1.000000 1.000000 1.000000
+Kd 0.198672 0.731443 0.045362
+Ks 0.276316 0.276316 0.276316
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump D:\\Blender Projekte\\Project Mars\\textures\\Moss004_2K-JPG\\Moss004_2K_Normal.jpg
+map_Kd D:\\Blender Projekte\\Project Mars\\textures\\Moss004_2K-JPG\\Moss004_2K_Color.jpg
+map_Ns D:\\Blender Projekte\\Project Mars\\textures\\Moss004_2K-JPG\\Moss004_2K_Roughness.jpg
+
+newmtl Material
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.145667 0.040909 0.000390
+Ks 0.444079 0.444079 0.444079
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl Material.001
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl White
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.673851 0.673851 0.673851
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump D:\\Blender Projekte\\Project Mars\\textures\\Concrete034_2K-JPG\\Concrete034_2K_Normal.jpg
+map_Kd D:\\Blender Projekte\\Project Mars\\textures\\Concrete034_2K-JPG\\Concrete034_2K_Color.jpg
+map_Ns D:\\Blender Projekte\\Project Mars\\textures\\Concrete034_2K-JPG\\Concrete034_2K_Roughness.jpg

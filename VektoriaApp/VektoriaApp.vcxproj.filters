@@ -118,6 +118,9 @@
     <ClCompile Include="Mission.cpp">
       <Filter>LevelSystem\Level</Filter>
     </ClCompile>
+    <ClCompile Include="Apartment.cpp">
+      <Filter>GameObject\Buildings</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -246,6 +249,9 @@
     </ClInclude>
     <ClInclude Include="Mission.h">
       <Filter>LevelSystem\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Apartment.h">
+      <Filter>GameObject\Buildings</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

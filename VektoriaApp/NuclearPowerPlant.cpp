@@ -3,7 +3,7 @@
 NuclearPowerPlant::NuclearPowerPlant()
 {
 	power = 80000;
-	setModel("models\\kraftwerk.obj");
+	setModel("models\\kraftwerk1.obj");
 	this->getModel()->m_pmaterial->LoadPreset("Concrete");
 }
 
