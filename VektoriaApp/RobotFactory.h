@@ -1,24 +1,24 @@
 #pragma once
 #include "Building.h"
-class SolarPowerPlant :
+class RobotFactory :
     public Building
 {
 public:
-    SolarPowerPlant() {
-        PowerUse = -80;
+    RobotFactory() {
+        PowerUse = 5;
         WaterUse = 0;
         NutrientUse = 0;
 
         Category = Industry;
 
-        setModel("models\\kraftwerk.obj");
-        this->getModel()->m_pmaterial->LoadPreset("Concrete");
+        // set model
+        // set material
     }
 
     Resources getBuildCost() {
         Resources cost;
-        cost.Steel = 50;
-        cost.Concrete = 10;
+        cost.Steel = 20;
+        cost.Concrete = 5;
         cost.Wood = 0;
         return cost;
     }

@@ -109,12 +109,6 @@
     <ClCompile Include="PowerPlant.cpp">
       <Filter>Buildings</Filter>
     </ClCompile>
-    <ClCompile Include="NuclearPowerPlant.cpp">
-      <Filter>Buildings</Filter>
-    </ClCompile>
-    <ClCompile Include="SolarPowerPlant.cpp">
-      <Filter>Buildings</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -239,6 +233,42 @@
       <Filter>Buildings</Filter>
     </ClInclude>
     <ClInclude Include="SolarPowerPlant.h">
+      <Filter>Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Apartment.h">
+      <Filter>Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeFarm.h">
+      <Filter>Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Well.h">
+      <Filter>Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="FoodFarm.h">
+      <Filter>Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Mine.h">
+      <Filter>Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Foundry.h">
+      <Filter>Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="GravelPlant.h">
+      <Filter>Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlCenter.h">
+      <Filter>Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Launchpad.h">
+      <Filter>Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Hospital.h">
+      <Filter>Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Laboratory.h">
+      <Filter>Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="RobotFactory.h">
       <Filter>Buildings</Filter>
     </ClInclude>
   </ItemGroup>

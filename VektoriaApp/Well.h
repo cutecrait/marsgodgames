@@ -1,18 +1,18 @@
 #pragma once
 #include "Building.h"
-class SolarPowerPlant :
+class Well :
     public Building
 {
 public:
-    SolarPowerPlant() {
-        PowerUse = -80;
-        WaterUse = 0;
+    Well() {
+        PowerUse = 10;
+        WaterUse = -60;
         NutrientUse = 0;
 
-        Category = Industry;
+        Category = Farming;
 
-        setModel("models\\kraftwerk.obj");
-        this->getModel()->m_pmaterial->LoadPreset("Concrete");
+        // set model
+        // set material
     }
 
     Resources getBuildCost() {

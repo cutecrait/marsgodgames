@@ -48,6 +48,8 @@ public:
 	int getRes3() { return m_res3; }
 
 	// Gibt struct aus, der die Ressourcen Informationen enthält
+	// Momentan bitte nicht verwenden. Die Ressourcen kommen in die jeweiligen Buildings rein. 
+	// Andere GameObjects kosten erstmal nichts.
 	Ressources_Data& getRessources();
 
 	// Initialiserungmethode der GameObjects
