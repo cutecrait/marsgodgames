@@ -1,4 +1,5 @@
 #include "clickmanager.h"
+#include "Player.h"
 
 clickmanager::clickmanager()
 {
@@ -36,7 +37,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor)
 	if (m_menu->getMainSelect()->GetActivePosition() == 4 && saveable) {
 		save.saveItAll();
 		save.deleteTxt();
-		save.writeCurrToTxt("Ressources.txt", m_playerStats->getRessource1(), m_playerStats->getRessource2(), m_playerStats->getRessource3());
+		save.writeCurrToTxt("Ressources.txt",Player::Instance().getRessource1(), Player::Instance().getRessource2(), Player::Instance().getRessource3());
 		ULDebug("Saving...");
 		saveable = false;
 	}
@@ -126,9 +127,9 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor)
 				confirmClicked();
 				makeBuilding(toBeBuildObject);
 				targetPos = NULL;
-				m_playerStats->setWohnung(0);
+				Player::Instance().setWohnung(0);
 				std::string einS;
-				einS = "Wohnungen: " + std::to_string(m_playerStats->getWohnung());
+				einS = "Wohnungen: " + std::to_string(Player::Instance().getWohnung());
 				m_menu->getWohnung()->PrintString(&einS[0]);
 			}
 		}
@@ -184,9 +185,9 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor)
 				confirmClicked();
 				makeBuilding(toBeBuildObject);
 				targetPos = NULL;
-				m_playerStats->setWohnung(20);
+				Player::Instance().setWohnung(20);
 				std::string einS;
-				einS = "Wohnungen: " + std::to_string(m_playerStats->getWohnung());
+				einS = "Wohnungen: " + std::to_string(Player::Instance().getWohnung());
 				m_menu->getWohnung()->PrintString(&einS[0]);
 			}
 		}
@@ -271,9 +272,9 @@ void clickmanager::menuOFF() {
 bool clickmanager::enoughRes(GameObject* hi) {
 
 	// Prüfe, ob genug Ressourcen vorhanden sind
-	if (hi->getRessources().Sauerstoff_per_Build <= m_playerStats->getRessource1() &&
-		hi->getRessources().Stein_per_Build <= m_playerStats->getRessource2()	   &&
-		hi->getRessources().Strom_per_Build <= m_playerStats->getRessource3()) 
+	if (hi->getRessources().Sauerstoff_per_Build <= Player::Instance().getRessource1() &&
+		hi->getRessources().Stein_per_Build <= Player::Instance().getRessource2()	   &&
+		hi->getRessources().Strom_per_Build <= Player::Instance().getRessource3())
 	{
 		return true;
 	}
@@ -286,9 +287,9 @@ void clickmanager::confirmClicked() {
 	m_menu->m_cancel.SwitchOff();
 	m_menu->m_confirm.SwitchOff();
 
-	m_playerStats->setRessource1(-toBeBuildObject->getGameObject()->getRessources().Sauerstoff_per_Build);
-	m_playerStats->setRessource2(-toBeBuildObject->getGameObject()->getRessources().Stein_per_Build);
-	m_playerStats->setRessource3(-toBeBuildObject->getGameObject()->getRessources().Strom_per_Build);
+	Player::Instance().setRessource1(-toBeBuildObject->getGameObject()->getRessources().Sauerstoff_per_Build);
+	Player::Instance().setRessource2(-toBeBuildObject->getGameObject()->getRessources().Stein_per_Build);
+	Player::Instance().setRessource3(-toBeBuildObject->getGameObject()->getRessources().Strom_per_Build);
 	
 	// Tooltip kann jetzt wieder angezeigt werden
 	toolTipCreate = true;

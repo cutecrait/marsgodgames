@@ -150,6 +150,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Action.h" />
+    <ClInclude Include="Apartment.h" />
     <ClInclude Include="AStarAlgorithm.h" />
     <ClInclude Include="BeispielForGameObject.h" />
     <ClInclude Include="Building.h" />
@@ -177,6 +178,7 @@
     <ClInclude Include="Load.h" />
     <ClInclude Include="MapSquare.h" />
     <ClInclude Include="MapTile.h" />
+    <ClInclude Include="Mission.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="NodeController.h" />
     <ClInclude Include="NuclearPowerPlant.h" />
@@ -196,6 +198,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Action.cpp" />
+    <ClCompile Include="Apartment.cpp" />
     <ClCompile Include="AStarAlgorithm.cpp" />
     <ClCompile Include="BeispielForGameObject.cpp" />
     <ClCompile Include="CAudioManager.cpp" />
@@ -220,6 +223,7 @@
     <ClCompile Include="GuiSelect.cpp" />
     <ClCompile Include="GuiSlider.cpp" />
     <ClCompile Include="MapTile.cpp" />
+    <ClCompile Include="Mission.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="NodeController.cpp" />
     <ClCompile Include="NuclearPowerPlant.cpp" />

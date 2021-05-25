@@ -1,6 +1,8 @@
 #pragma once
+#include <set>
 #include <unordered_set>
 #include <string>
+#include "Mission.h"
 
 namespace LevelSystem
 {
@@ -12,7 +14,10 @@ namespace LevelSystem
 		/// Konstruktor
 		/// </summary>
 		/// <param name="maximumexperience">Erfahrung für nächsten Aufstieg</param>
-		Level(int maximumexperience);
+		Level(std::string text, int maximumexperience);
+
+		void AddMission(Mission* mission);
+		void UpdateMissions();
 
 		/// <summary>
 		/// Fügt Erfahrung hinzu - Gibt Überfluss der Erfahrung zurück zurück
@@ -33,10 +38,15 @@ namespace LevelSystem
 		/// <returns>zu entsperrende Objekte</returns>
 		std::unordered_set<std::string> GetLockedObjects();
 
+		
+		std::string GetText();
+
 	private:
 
+		std::set<Mission*> _missions;
 		std::unordered_set<std::string> _lockedObjects;
 
+		std::string _text;
 		int _currentExperience;
 		int _maxExperience;
 

@@ -2,8 +2,16 @@
 class Player
 {
 public:
-	Player();
-	~Player();
+
+	/// <summary>
+	/// Singleton - gibt Instanz zurück
+	/// </summary>
+	/// <returns>Instanz</returns>
+	static Player& Instance()
+	{
+		static Player _instance;
+		return _instance;
+	};
 
 	void initPlayer(int, int, int);
 
@@ -25,6 +33,8 @@ public:
 	void setWohnung(int i) { WohnungKapa += i; }
 
 private:
+
+	Player();
 
 	int ressource1;
 	int ressource2;
