@@ -14,13 +14,21 @@ namespace LevelSystem
 		_missions.insert(mission);
 	}
 
-	void Level::UpdateMissions()
+	void Level::UpdateMissions(std::string type, int count = 1)
 	{
-		//TODO Mit Hendrick klären wie Missionen und UI updaten
-		// 
-		//std::set<Mission*>::iterator it;
-		//for (it = _missions.begin(); it != _missions.end(); it++)
-		//	(*it);
+		std::set<Mission*>::iterator it;
+		for (it = _missions.begin(); it != _missions.end(); it++)
+			if ((*it)->GetType() == type)
+				(*it)->Add(count);
+	}
+
+	bool Level::IsCompleted()
+	{
+		std::set<Mission*>::iterator it;
+		for (it = _missions.begin(); it != _missions.end(); it++)
+			if (!((*it)->IsCompleted()))
+				return false;
+		return true;
 	}
 
 	int Level::AddExperience(int experience)

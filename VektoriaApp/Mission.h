@@ -7,15 +7,21 @@ namespace LevelSystem
 	{
 	public:
 
-		Mission(std::string text, const int& stat, int goal);
+		Mission(std::string text, std::string type, int value, int goal);
+		Mission(std::string text, std::string type, int goal);
+
+		void Add(int count = 1);
+		bool IsCompleted();
 
 		std::string GetText();
-		const int GetStat();
+		std::string GetType();
+		int GetValue();
 		int GetGoal();
 
 	private:
 
 		std::string _text;
+		std::string _type;
 		int _value;
 		int _goal;
 

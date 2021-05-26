@@ -2,18 +2,37 @@
 
 namespace LevelSystem
 {
-	Mission::Mission(std::string text, const int& stat, int goal)
+	Mission::Mission(std::string text, std::string type, int goal) : Mission(text, type, 0, goal)
+	{
+	}
+
+	void Mission::Add(int count = 1)
+	{
+		_value += count;
+	}
+
+	bool Mission::IsCompleted()
+	{
+		return _value >= _goal;
+	}
+
+	Mission::Mission(std::string text, std::string type, int value, int goal)
 	{
 		_text = text;
-		_value = stat;
+		_value = value;
 		_goal = goal;
+		_type = type;
 	}
 
 	std::string Mission::GetText()
 	{
 		return _text;
 	}
-	const int Mission::GetStat()
+	std::string Mission::GetType()
+	{
+		return _type;
+	}
+	int Mission::GetValue()
 	{
 		return _value;
 	}

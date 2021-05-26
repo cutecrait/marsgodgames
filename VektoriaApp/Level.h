@@ -17,7 +17,8 @@ namespace LevelSystem
 		Level(std::string text, int maximumexperience);
 
 		void AddMission(Mission* mission);
-		void UpdateMissions();
+		void UpdateMissions(std::string type, int count = 1);
+		bool IsCompleted();
 
 		/// <summary>
 		/// Fügt Erfahrung hinzu - Gibt Überfluss der Erfahrung zurück zurück
@@ -38,7 +39,7 @@ namespace LevelSystem
 		/// <returns>zu entsperrende Objekte</returns>
 		std::unordered_set<std::string> GetLockedObjects();
 
-		
+
 		std::string GetText();
 
 	private:
