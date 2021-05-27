@@ -14,7 +14,7 @@ namespace LevelSystem
 		_missions.insert(mission);
 	}
 
-	void Level::UpdateMissions(std::string type, int count = 1)
+	void Level::UpdateMissions(std::string type, int count)
 	{
 		std::set<Mission*>::iterator it;
 		for (it = _missions.begin(); it != _missions.end(); it++)

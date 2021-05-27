@@ -6,7 +6,7 @@ namespace LevelSystem
 	{
 	}
 
-	void Mission::Add(int count = 1)
+	void Mission::Add(int count)
 	{
 		_value += count;
 	}
