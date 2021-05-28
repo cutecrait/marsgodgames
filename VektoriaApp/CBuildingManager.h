@@ -3,6 +3,9 @@
 #include "GameObject.h"
 #include "BeispielForGameObject.h"
 #include "CGameObjectPlacement.h"
+#include "Apartment.h"
+#include "Building.h"
+
 
 using namespace Vektoria;
 
@@ -18,6 +21,7 @@ public:
 	enum class Typ {NuclearPowerPlant = 0,
 		SolarPowerPlant,
 		Hotel,
+		Apartment,
 		Villa,
 		WaterTank,
 		Dome,
@@ -46,7 +50,7 @@ private:
 
 	// Für jeden Gebäudetyp bzw. für jede Kategorie feste Anzahl an Gebäuden
 	// Muss noch erweitert werden!
-	CGameObjectPlacement Wohnungen[50];
+	CGameObjectPlacement Apartments[50];
 	CGameObjectPlacement Versorgung[50];
 	/*CGameObjectPlacement NuclearPowerPlant[20];
 	CGameObjectPlacement SolarPowerPlant[20];

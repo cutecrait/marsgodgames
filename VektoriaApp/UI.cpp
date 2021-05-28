@@ -48,7 +48,7 @@ void UI::InitMaterial()
 	m_matStats.MakeTextureSprite("textures\\Player_Stat_Window.png");
 	m_matRes.MakeTextureSprite("textures\\Player_Res_Window.png");
 
-	m_resMaterial.MakeTextureSprite("textures\\blue_image.jpg");
+	m_resMaterial.MakeTextureSprite("textures\\red_image.jpg");
 	m_matstein.MakeTextureSprite("textures\\Tooltip_stein_texture.png");
 	m_matchrom.MakeTextureSprite("textures\\Tooltip_chrom_texture.png");
 	m_matstahl.MakeTextureSprite("textures\\Tooltip_stahl_texture.png");
@@ -83,14 +83,14 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 
 	m_mainSelect.Init(cursor, font, 5, CFloatRect(0.0f, 0.2f, 0.15, 0.7));
 
-	m_mainSelect.AddOption(" Roboter");
+	m_mainSelect.AddOption(" Fabriken");
 	m_mainSelect.AddOption(" Wohnen");
 	m_mainSelect.AddOption(" Verpflegung");
 	m_mainSelect.AddOption(" Was anderes");
 	m_mainSelect.AddOption(" Save");
 	std::vector <std::string> selectLabel;
 
-	selectLabel.push_back(" Bauroboter"); selectLabel.push_back(" Minenroboter"); selectLabel.push_back(" Landwirtroboter");
+	selectLabel.push_back(" Roboterfabrik"); selectLabel.push_back(" FabrikNr2"); selectLabel.push_back(" FabrikNr3");
 	//m_specificSelect[0].makeInactiveMats(m_matsForSelect1);
 	m_specificSelect[0].Init(cursor, font, 3, CFloatRect(0.15, 0.4, 0.15, 0.5));
 
@@ -270,9 +270,9 @@ void UI::InitToolTip() {
 
 	//ueberschrift
 	m_headline.Init(&m_matStats, CFloatRect(0, 0, 0.25, 0.5));
-	m_headlineW.Init(CFloatRect(0, 0, 0.5, 0.5), 11, &m_redFont);
+	m_headlineW.Init(CFloatRect(0.1, 0.2, 1, 0.5), 11, &m_redFont);
 	m_headline.SetInnerOn();
-	m_headline.SetLayer(0.98);
+	m_headline.SetLayer(1);
 	m_headlineW.SetInnerOn();
 	m_headlineW.SetLayer(0.97);
 
@@ -318,7 +318,9 @@ void UI::InitToolTip() {
 	m_descriptionW3.SetLayer(0.96);
 	m_descriptionW3.SetInnerOn();
 
-	m_toolTipBackGround.AddWriting(&m_headlineW);
+
+	m_toolTipBackGround.AddOverlay(&m_headline);
+	m_headline.AddWriting(&m_headlineW);
 	m_toolTipBackGround.AddOverlay(&m_kosten1);
 	m_kosten1.AddWriting(&m_kosten1W);
 	m_toolTipBackGround.AddOverlay(&m_kosten2);
@@ -381,12 +383,17 @@ void UI::levelOverlay(COverlay* background, CWritingFont* font, CDeviceCursor* c
 }
 void UI::buildMission(COverlay* missions, CWritingFont* font)
 {
-	std::string stringForMissi;
+
 	for (int i = 0; i < 5; i++) {
 		m_missi[i].Init(&m_matStats, CFloatRect());
 		m_missi[i].SetInnerOn();
-		m_missi[i].SetLayer(0.907);
+		m_missi[i].SetLayer(1);
 		m_missi[i].SwitchOff();
+		
+		m_missiStatus[i].Init(&m_resMaterial, CFloatRect());
+		m_missiStatus[i].SetInnerOn();
+		m_missiStatus[i].SetLayer(0.8);
+		m_missiStatus[i].SwitchOff();
 
 		m_missiW[i].Init(CFloatRect(), 25, font);
 		m_missiW[i].SetInnerOn();
@@ -394,50 +401,13 @@ void UI::buildMission(COverlay* missions, CWritingFont* font)
 		m_missiW[i].SwitchOff();
 
 		missions->AddOverlay(&m_missi[i]);
+		missions->AddOverlay(&m_missiStatus[i]);
 		m_missi[i].AddWriting(&m_missiW[i]);
 
 	}
-	stringForMissi = "baue: " + std::to_string(2) + " Bauroboter";
+	
 	//diese funktion muss am besten in der game cpp ausgeführt werden anstatt hier oder im clickmanager.
-	makeAllMissions(4,&stringForMissi[0], "ich bin die zweite", "und ich die dritte missi");
 
-
-	/*float anteil = 1;
-	anteil = anteil / Anzahlmissions;
-	std::string dummy;
-	m_missi1.Init(&m_matStats, CFloatRect(0.02, 0.01, 0.8, anteil));
-	m_missi1.SetInnerOn();
-	m_missi1.SetLayer(0.907);
-	dummy = std::to_string(1) + ")Baue " + std::to_string(1) + " Bauroboter";
-	m_missi1W.Init(CFloatRect(0, 0.1, 1, 0.8), 25, font);
-	m_missi1W.SetInnerOn();
-	m_missi1W.SetLayer(0.906);
-	m_missi1W.PrintString(&dummy[0]);
-
-	m_missi2.Init(&m_matStats, CFloatRect(0.02, anteil, 0.8, anteil));
-	m_missi2.SetInnerOn();
-	m_missi2.SetLayer(0.907);
-	dummy = std::to_string(2) + ")Baue " + std::to_string(1) + " landwirtroboter";
-	m_missi2W.Init(CFloatRect(0, 0.1, 1, 0.8), 25, font);
-	m_missi2W.SetInnerOn();
-	m_missi2W.SetLayer(0.906);
-	m_missi2W.PrintString(&dummy[0]);
-
-	m_missi3.Init(&m_matStats, CFloatRect(0.02, anteil*2, 0.8, anteil));
-	m_missi3.SetInnerOn();
-	m_missi3.SetLayer(0.907);
-	dummy = std::to_string(3) + ")Baue " + std::to_string(1) + " minenroboter";
-	m_missi3W.Init(CFloatRect(0, 0.1, 1, 0.8), 25, font);
-	m_missi3W.SetInnerOn();
-	m_missi3W.SetLayer(0.906);
-	m_missi3W.PrintString(&dummy[0]);
-
-	missions->AddOverlay(&m_missi1);
-	missions->AddOverlay(&m_missi2);
-	missions->AddOverlay(&m_missi3);
-	m_missi1.AddWriting(&m_missi1W);
-	m_missi2.AddWriting(&m_missi2W);
-	m_missi3.AddWriting(&m_missi3W);*/
 
 }
 
@@ -456,18 +426,23 @@ void UI::makeAMission(std::string bla, int missionNr)
 
 void UI::makeAllMissions(float missionAnzahl,std::string m1, std::string m2 , std::string m3, std::string m4, std::string m5)
 {
+	int dummyint = missionAnzahl;
+	m_missionen.SetLabel("Missionen: " + std::to_string(0) + "/" + std::to_string(dummyint));
 	float y_pos =0.05;
 	std::string dummyArray[5] = { m1,m2,m3,m4,m5 };
 	std::string dummystring;
 	for (int i = 0; i < missionAnzahl; i++) {
 		dummystring = dummyArray[i];
 		m_missi[i].Init(&m_matStats, CFloatRect(0.05, y_pos, 0.8, 0.95 / missionAnzahl));
+		m_missiStatus[i].Init(&m_resMaterial,CFloatRect(0.85,y_pos,0.1,0.1));
+		m_missiStatus[i].SwitchOn();
 		y_pos += 0.95f / missionAnzahl;
 		m_missi[i].SwitchOn();
 
-		m_missiW[i].Init(CFloatRect(0,0.1,1,0.8), 25, &m_redFont);
+		m_missiW[i].Init(CFloatRect(0.1,0.1,1,0.8), 40, &m_redFont);
 		m_missiW[i].PrintString(&dummystring[0]);
 		m_missiW[i].SwitchOn();
+		
 	}
 	
 }
@@ -478,14 +453,17 @@ void UI::updateLevelUI(float anzahlMissGesamt, float anzahlAbgeschlossenerMiss, 
 	int dummyint1 = anzahlMissGesamt;
 	dummy = "Missionen: " +std::to_string(dummyint) +"/" +std::to_string(dummyint1);
 	m_missionen.SetLabel(&dummy[0]);
-
+	m_missiStatus[dummyint-1].SetMaterial(&m_descMaterial);
 	m_levelFortschritt.Init(&m_descMaterial, CFloatRect(0, 0, (1.0f / anzahlMissGesamt) * anzahlAbgeschlossenerMiss, 1));
 
 	//dummy = std::to_string((anzahlAbgeschlossenerMiss / anzahlMissGesamt) * 100) + "%";
 	dummyint = (anzahlAbgeschlossenerMiss / anzahlMissGesamt) * 100;
 	dummy = std::to_string(dummyint) + "%";
 	levelFortschrittW.PrintString(&dummy[0]);
-
+	
+	
 	
 }
 
+//update individual mission
+//kriegt 

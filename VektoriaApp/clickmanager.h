@@ -8,6 +8,7 @@
 #include "CAudioManager.h"
 #include "CBuildingManager.h"
 #include "Save.h"
+#include "Level.h"
 
 using namespace Vektoria;
 class clickmanager
@@ -17,7 +18,7 @@ public:
 	~clickmanager();
 
 	void menuOFF();
-	void Click(float,  CDeviceCursor*);
+	void Click(float,  CDeviceCursor*,LevelSystem::Level*);
 	void Init(UI* menu, CScene* zs, CAudioManager* am, CBuildingManager* bm, MapSquare* squares) {
 		
 		//Übergebe die UI
@@ -39,6 +40,7 @@ public:
 
 	void cancelClicked(CGameObjectPlacement* );
 	bool createToolTip(int);
+	void uiDecision(CBuildingManager::Typ, std::string,CDeviceCursor*);
 private:
 
 

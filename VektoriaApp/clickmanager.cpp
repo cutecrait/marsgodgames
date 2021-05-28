@@ -17,7 +17,7 @@ clickmanager::~clickmanager()
 
 
 
-void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor)
+void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::Level* currentLevel)
 {
 	//ich muss ne if abfrage machen, dass nicht selected == true sein muss.
 	if (cursor->PickOverlay() == NULL)
@@ -100,11 +100,88 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor)
 	// 	   Die Tooltips am Besten auch vorgefertigt machen, sodass du nur Anhand der switch-Anweisung entscheiden musst,
 	// 	   welcher nen SwitchOn()-Befehl erhält
 	//------------------------------
+	switch (m_menu->getMainSelect()->GetActivePosition())
+	{
+	case 0:
+		switch (m_menu->getSpecificSelect(0)->GetActivePosition())
+		{
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		default:break;
+		}
+	case 1:
+		switch (m_menu->getSpecificSelect(1)->GetActivePosition()) 
+		{
+		case 0: //das  "Apartment" ist für die überschrift im tooltip
+			uiDecision(CBuildingManager::Typ::Apartment,"Apartment",cursor); 
+		
+			break;
+		case 1:
+			
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		}
+	case 2:
+		switch (m_menu->getSpecificSelect(2)->GetActivePosition())
+		{
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		default:break;
+		}
 
-	if (m_menu->getSpecificSelect(1)->GetActivePosition() == 0) {
+	case 3:
+		switch (m_menu->getSpecificSelect(1)->GetActivePosition())
+		{
+		case 0:
+			break;
+		case 1:
+			break;
+			
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		default:break;
+		}
+	case 4:
+		break;
+
+	default: break;
+	}
+
+
+	if (m_menu->m_confirm.IsClicked()) {
+
+		if (enoughRes(toBeBuildObject->getGameObject())) {
+			// save game object in temporary array
+			save.fillPosAr(toBeBuildObject->getGameObject(), toBeBuildObject->GetPos().GetX(), toBeBuildObject->GetPos().GetZ());
+			saveable = true;
+			//
+			currentLevel->UpdateMissions(typeid(Apartment).name(), 1, m_menu);
+			confirmClicked();
+			makeBuilding(toBeBuildObject);
+			targetPos = NULL;
+		}
+	}
+	/*if (m_menu->getSpecificSelect(1)->GetActivePosition() == 0) {
 
 		// Suche nach freiem Gebäude
-		CBuildingManager::Typ typ = CBuildingManager::Typ::Test;
+		CBuildingManager::Typ typ = CBuildingManager::Typ::Apartment;
 		toBeBuildObject = BuildingManager->lookForGameObject(typ);
 
 		//tooltip anschalten 
@@ -112,8 +189,9 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor)
 			//tooltip wird so nur einmal gebaut (aber kann überschrieben werden)
 			activePosition = m_menu->getSpecificSelect(1)->GetActivePosition();
 			m_menu->tooltip(
-				"Haus",
-				toBeBuildObject->getGameObject()->getRessources().Sauerstoff_per_Build,			// Ehemals Res1
+				"Apartment",
+				
+				toBeBuildObject->getGameObject()->getRessources().Sauerstoff_per_Build,								// Ehemals Res1
 				toBeBuildObject->getGameObject()->getRessources().Stein_per_Build,				// Ehemals Res2
 				toBeBuildObject->getGameObject()->getRessources().Strom_per_Build,				// Ehemals Res3
 				10,
@@ -127,6 +205,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor)
 				save.fillPosAr(toBeBuildObject->getGameObject(), toBeBuildObject->GetPos().GetX(), toBeBuildObject->GetPos().GetZ());
 				saveable = true;
 				//
+				currentLevel->UpdateMissions(typeid(Apartment).name(),1,m_menu);
 				confirmClicked();
 				makeBuilding(toBeBuildObject);
 				targetPos = NULL;
@@ -158,62 +237,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor)
 	}
 
 	//Haus2
-	if (m_menu->getSpecificSelect(1)->GetActivePosition() == 1) {
-
-		// Suche nach freiem Gebäude
-		CBuildingManager::Typ typ = CBuildingManager::Typ::Test;
-		toBeBuildObject = BuildingManager->lookForGameObject(typ);
-
-		//tooltip anschalten
-		if (createToolTip(m_menu->getSpecificSelect(1)->GetActivePosition())) {
-			activePosition = m_menu->getSpecificSelect(1)->GetActivePosition();
-			m_menu->tooltip(
-				"Hotel",
-				toBeBuildObject->getGameObject()->getRessources().Sauerstoff_per_Build,			// Ehemals Res1
-				toBeBuildObject->getGameObject()->getRessources().Stein_per_Build,				// Ehemals Res2
-				toBeBuildObject->getGameObject()->getRessources().Strom_per_Build,				// Ehemals Res3
-				20,
-				"Anzahl gebaut");
-
-
-			// Tooltip wird so nur einmal gebaut
-			//toolTipCreate = false;
-		}
-
-
-		if (m_menu->m_confirm.IsClicked()) {
-
-			if (enoughRes(toBeBuildObject->getGameObject())) {
-
-				confirmClicked();
-				makeBuilding(toBeBuildObject);
-				targetPos = NULL;
-				Player::Instance().setWohnung(20);
-				std::string einS;
-				einS = "Wohnungen: " + std::to_string(Player::Instance().getWohnung());
-				m_menu->getWohnung()->PrintString(&einS[0]);
-			}
-		}
-
-		if (targetPos) {
-			if (!isclicked)
-			{
-				toBeBuildObject->SwitchOn();
-				m_menu->m_confirm.SwitchOn();
-				m_menu->m_cancel.SwitchOn();
-				m_menu->switchOnBuy(toBeBuildObject->getGameObject()->getRessources().Sauerstoff_per_Build,
-					toBeBuildObject->getGameObject()->getRessources().Stein_per_Build,
-					toBeBuildObject->getGameObject()->getRessources().Strom_per_Build);
-
-				isclicked = true;
-			}
-			if (cursor->ButtonPressedLeft()) {
-				toBeBuildObject->Translate(targetPos->GetPos());
-			}
-
-		}
-
-	}
+	*/
 	if (m_menu->m_cancel.IsClicked()) {
 
 		cancelClicked(toBeBuildObject);
@@ -244,6 +268,7 @@ void clickmanager::makeBuilding(CGameObjectPlacement* buildingObject)
 	buildingObject->SwitchOn();
 
 	// Exemplarisch, die Methode bekommt am Besten auch einfach den Gebäude-Typ übergeben
+
 	CBuildingManager::Typ typ = CBuildingManager::Typ::Test;
 	BuildingManager->IncreaseNrOfBuildings(typ);
 	buildingObject->setBuildStatus(true);
@@ -300,7 +325,7 @@ void clickmanager::confirmClicked() {
 	m_menu->updatePlayer();
 	m_menu->m_toolTipBackGround.SwitchOff();
 	isclicked = false;
-	m_menu->updateLevelUI(4,1,1);
+
 	saveable = true;
 }
 
@@ -328,4 +353,37 @@ bool clickmanager::createToolTip(int i)
 	}
 
 	return toolTipCreate;
+}
+
+void clickmanager::uiDecision(CBuildingManager::Typ typ,std::string tooltipname,CDeviceCursor* cursor) {
+	
+	toBeBuildObject = BuildingManager->lookForGameObject(typ);
+	if (createToolTip(m_menu->getSpecificSelect(1)->GetActivePosition())) {
+		//tooltip wird so nur einmal gebaut (aber kann überschrieben werden)
+		activePosition = m_menu->getSpecificSelect(1)->GetActivePosition();
+		m_menu->tooltip(
+			tooltipname,
+			toBeBuildObject->getGameObject()->getRessources().Sauerstoff_per_Build,								// Ehemals Res1
+			toBeBuildObject->getGameObject()->getRessources().Stein_per_Build,				// Ehemals Res2
+			toBeBuildObject->getGameObject()->getRessources().Strom_per_Build,				// Ehemals Res3
+			10,
+			" Anzahl gebaut");
+	}
+	if (targetPos) {
+		if (!isclicked)
+		{
+			toBeBuildObject->SwitchOn();
+			m_menu->m_confirm.SwitchOn();
+			m_menu->m_cancel.SwitchOn();
+			m_menu->switchOnBuy(toBeBuildObject->getGameObject()->getRessources().Sauerstoff_per_Build,
+				toBeBuildObject->getGameObject()->getRessources().Stein_per_Build,
+				toBeBuildObject->getGameObject()->getRessources().Strom_per_Build);
+
+			isclicked = true;
+		}
+		if (cursor->ButtonPressedLeft()) {
+			toBeBuildObject->Translate(targetPos->GetPos());
+		}
+
+	}
 }

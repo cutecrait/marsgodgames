@@ -2,6 +2,7 @@
 #include "Vektoria/root.h"
 #include "GameObject.h "
 
+
 using namespace Vektoria;
 
 class CGameObjectPlacement : public CPlacement

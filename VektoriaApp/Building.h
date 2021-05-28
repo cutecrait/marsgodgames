@@ -1,5 +1,15 @@
 #pragma once
 #include "GameObject.h"
+
+enum BuildingCategory {
+    None,
+    Living,
+    Farming,
+    Industry,
+    Robotics
+};
+
+
 class Building :
     public GameObject
 {
@@ -11,10 +21,3 @@ public:
     BuildingCategory Category = None;
 };
 
-enum BuildingCategory {
-    None,
-    Living,
-    Farming,
-    Industry,
-    Robotics
-};

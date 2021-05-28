@@ -29,6 +29,11 @@
 #include "CBuildingManager.h"
 #include "Load.h"
 #include "UI.h"
+#include "Level.h"
+#include "Mission.h"
+
+#include "LevelManager.h"
+
 
 using namespace Vektoria;
 
@@ -78,6 +83,7 @@ private:
 	// 
 	//hendrik start:
 	
+	//LevelSystem::LevelManager m_levelManager;
 	CDeviceCursor einCursor;
 	clickmanager derManager;
 	CWritingFont einsFont;
@@ -86,6 +92,7 @@ private:
 	CMaterial mat3;
 	CPlacement dummyPlace;
 	UI menu;
+	LevelSystem::Level* m_level1;
 	//hendrik end
 
 	// Karo 

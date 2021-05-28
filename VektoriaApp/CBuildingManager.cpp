@@ -28,6 +28,12 @@ void CBuildingManager::Init(CScene* scene)
 		BeispielGameObjects[i].getGameObject()->TransformGeo();
 		m_zs->AddPlacement(&BeispielGameObjects[i]);
 	}
+	for (int i = 0; i < 20; i++) {
+		Apartments[i].setGameObject(new Apartment);
+		Apartments[i].Init();
+		Apartments[i].getGameObject()->TransformGeo();
+		m_zs->AddPlacement(&Apartments[i]);
+	}
 
 	// Initialsierungsmethoden der Gebäude noch einfügen!
 	// ...
@@ -42,6 +48,14 @@ void CBuildingManager::UpdateBuildings(float deltaTime)
 		if (BeispielGameObjects[i].getBuildStatus() == true)
 		{
 			BeispielGameObjects[i].Update(deltaTime);
+			y++;
+			if (y == m_NrOfTestObjects)
+				break;
+		}
+		
+		if (Apartments[i].getBuildStatus() == true)
+		{
+			Apartments[i].Update(deltaTime);
 			y++;
 			if (y == m_NrOfTestObjects)
 				break;
@@ -66,6 +80,11 @@ void CBuildingManager::IncreaseNrOfBuildings(Typ& typ)
 
 	case Typ::Dome:
 	case Typ::Hotel:
+	case Typ::Apartment:
+		m_NrOfTestObjects++;
+
+		break;
+
 	case Typ::NuclearPowerPlant:
 	case Typ::SolarPowerPlant:
 	case Typ::Villa:
@@ -88,6 +107,11 @@ void CBuildingManager::DecreaseNrOfBuildings(Typ& typ)
 
 	case Typ::Dome:
 	case Typ::Hotel:
+	case Typ::Apartment:
+		m_NrOfTestObjects--;
+
+		break;
+
 	case Typ::NuclearPowerPlant:
 	case Typ::SolarPowerPlant:
 	case Typ::Villa:
@@ -116,6 +140,17 @@ CGameObjectPlacement* CBuildingManager::lookForGameObject(Typ& typ)
 			break;
 		case Typ::Dome:
 		case Typ::Hotel:
+		case Typ::Apartment:
+			for (int i = 0; i < 20; i++)
+			{
+				if (Apartments[i].getBuildStatus() == false)
+				{
+					return &Apartments[i];
+				}
+			}
+
+			break;
+
 		case Typ::NuclearPowerPlant:
 		case Typ::SolarPowerPlant:
 		case Typ::Villa:

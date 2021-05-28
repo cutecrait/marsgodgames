@@ -14,12 +14,21 @@ namespace LevelSystem
 		_missions.insert(mission);
 	}
 
-	void Level::UpdateMissions(std::string type, int count)
+	void Level::UpdateMissions(std::string type, int count, UI* uiUpdate)
 	{
+		_missionsCompleted = 0;
 		std::set<Mission*>::iterator it;
-		for (it = _missions.begin(); it != _missions.end(); it++)
-			if ((*it)->GetType() == type)
+		for (it = _missions.begin(); it != _missions.end(); it++) {
+
+			if ((*it)->GetType() == type) {
 				(*it)->Add(count);
+
+				if ((*it)->IsCompleted()) {
+					_missionsCompleted++;
+				}
+				uiUpdate->updateLevelUI(_missions.size(), _missionsCompleted, 0);
+			}
+		}
 	}
 
 	bool Level::IsCompleted()
@@ -50,5 +59,18 @@ namespace LevelSystem
 	std::string Level::GetText()
 	{
 		return _text;
+	}
+
+	void Level::initLevel(UI* uiinit)
+	{
+
+		std::string dummyar[5] = { "","","","","" };
+		int i = 0;
+		std::set<Mission*>::iterator it;
+		for (it = _missions.begin(); it != _missions.end(); it++) {
+			dummyar[i] = (*it)->GetText();
+			i++;
+		}
+		uiinit->makeAllMissions(_missions.size(), dummyar[0], dummyar[1], dummyar[2], dummyar[3], dummyar[4]);
 	}
 }

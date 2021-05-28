@@ -3,6 +3,7 @@
 #include <unordered_set>
 #include <string>
 #include "Mission.h"
+#include "UI.h"
 
 namespace LevelSystem
 {
@@ -17,9 +18,9 @@ namespace LevelSystem
 		Level(std::string text, int maximumexperience);
 
 		void AddMission(Mission* mission);
-		void UpdateMissions(std::string type, int count = 1);
+		void UpdateMissions(std::string type, int count ,UI*);
 		bool IsCompleted();
-
+		void initLevel(UI*);
 		/// <summary>
 		/// Fügt Erfahrung hinzu - Gibt Überfluss der Erfahrung zurück zurück
 		/// </summary>
@@ -50,6 +51,6 @@ namespace LevelSystem
 		std::string _text;
 		int _currentExperience;
 		int _maxExperience;
-
+		int _missionsCompleted = 0;
 	};
 }

@@ -8,11 +8,13 @@ public:
         PowerUse = 1;
         WaterUse = 1;
         NutrientUse = 4;
-
+        ressources.Sauerstoff_per_Build = 100;
+        ressources.Stein_per_Build = 100;
+        ressources.Strom_per_Build = 100;
         Category = Living;
 
         setModel("models\\Barrack.obj");
-	    this->getModel()->m_pmaterial->LoadPreset("Concrete");
+	    //this->getModel()->m_pmaterial->LoadPreset("Concrete");
     }
 
     Resources getBuildCost() {

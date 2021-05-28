@@ -1,6 +1,7 @@
 #pragma once
 #include "Vektoria\root.h"
 #include "GuiSelect.h"
+
 using namespace Vektoria;
 class UI
 {
@@ -97,7 +98,7 @@ public:
 
 	CWriting m_levelW;
 	CWriting m_missiW[5];
-
+	COverlay m_missiStatus[5];
 	COverlay m_wohnungen;
 	CWriting m_wohnungenW;
 

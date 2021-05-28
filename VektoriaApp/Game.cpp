@@ -1,6 +1,6 @@
 #include "Game.h"
 #include "Player.h"
-
+#include "Apartment.h"
 CGame::CGame(void)
 {
 }
@@ -18,8 +18,13 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	//m_zf.SetApiRender(eApiRender_DirectX12);
 	m_zf.Init(hwnd, procOS);
 	m_zr.AddFrame(&m_zf);
-
-
+	m_level1 = new LevelSystem::Level("ultra", 1000);
+	m_level1->AddMission(new LevelSystem::Mission("Kaufe Roboterfabrik",typeid(BeispielForGameObject).name(), 0, 1));
+	m_level1->AddMission(new LevelSystem::Mission("Kaufe einen Bauroboter",typeid(Apartment).name() , 0, 1));
+	
+	LevelSystem::LevelManager::Instance().AddLevel(m_level1);
+	
+	//m_level1->AddMission(new LevelSystem::Mission("Kaufe einen Landwirtroboter",0, 200));
 	// CAMERA & VIEWPORT-------------------------------------------------------
 	m_zv.InitFull(&m_zc);	//with adresse of camera bcoz viewport
 	m_zo.InitFull(&m_zi);
@@ -71,7 +76,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	einsFont.SetChromaKeyingOn(); //hiermit hat die font keinen hässlichen hintergrund
 	menu.InitMenu(&einCursor, &einsFont, &m_zv);
 	derManager.Init(&menu, &m_zs, &AudioManager, &BuildingManager, &mapSquare);
-
+	LevelSystem::LevelManager::Instance().GetCurrentLevel()->initLevel(&menu);
 	// MAP SQUARES---------------------------------------
 	MakeMapSquares(&m_zs);
 	BuildingManager.Init(&m_zs);
@@ -100,7 +105,7 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 	lightingManager.Tick(0);
 
 
-	derManager.Click(fTimeDelta, &einCursor);
+	derManager.Click(fTimeDelta, &einCursor, LevelSystem::LevelManager::Instance().GetCurrentLevel());
 
 	// UI-----------------------------------
 
