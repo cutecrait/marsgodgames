@@ -50,6 +50,7 @@ void GameObject::setMaterial(char* matPfad)
 
 float GameObject::CalculateHeight()
 {
+	
 	/*if (m_model)
 		return m_model->m_aabb.GetSize().m_fy / 2.f;*/
 	return 0;

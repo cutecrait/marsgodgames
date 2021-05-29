@@ -199,7 +199,7 @@ namespace Vektoria
 		// Detect if cursor is on top of element
 		if (&m_zoInteractable == m_pdc->PickOverlay()) {
 			m_bIsHovered = true;
-
+			
 			// Detect if element is grabbed
 			if (m_pdc->ButtonDownLeft()) {
 				m_bIsGrabbed = true;

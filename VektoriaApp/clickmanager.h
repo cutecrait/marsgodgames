@@ -61,7 +61,7 @@ private:
 	MapSquare* mapsquares;
 	CPlacement* targetPos;
 	UI* m_menu;
-
+	CBuildingManager::Typ dumyTyp = CBuildingManager::Typ::RoboFabrik;
 	/*BeispielForGameObject MONKY;
 	BeispielForGameObject* Wohnung[20];*/
 

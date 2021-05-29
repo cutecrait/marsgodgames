@@ -20,7 +20,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_zr.AddFrame(&m_zf);
 	m_level1 = new LevelSystem::Level("ultra", 1000);
 	m_level1->AddMission(new LevelSystem::Mission("Kaufe Roboterfabrik",typeid(BeispielForGameObject).name(), 0, 1));
-	m_level1->AddMission(new LevelSystem::Mission("Kaufe einen Bauroboter",typeid(Apartment).name() , 0, 1));
+	m_level1->AddMission(new LevelSystem::Mission("Kaufe einen Bauroboter",typeid(RobotFactory).name() , 0, 1));
 	
 	LevelSystem::LevelManager::Instance().AddLevel(m_level1);
 	
@@ -33,11 +33,11 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_zs.AddPlacement(&m_zpCamera);
 	m_zpCamera.AddCamera(&m_zc);
 	m_zf.AddViewport(&m_zv);
-
+	
 	m_zpCamera.RotateX(-QUARTERPI); //45°-Winkel
 	m_zpCamera.RotateYDelta(PI + QUARTERPI);
 	m_zpCamera.TranslateDelta(0, 5.f, 0);
-
+	
 	//<Darius>
 	CameraController.AssignCameraPlacement(&m_zpCamera);
 	CameraController.AssignDeviceKeyboard(&m_zdk);

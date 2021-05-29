@@ -14,11 +14,12 @@ CGameObjectPlacement::~CGameObjectPlacement()
 		delete gameObject;
 }
 
-void CGameObjectPlacement::Init()
+void CGameObjectPlacement::Init(std::string type)
 {
 
 	if (gameObject)
 	{
+		_type = type;
 		this->AddGeo(gameObject->getModel());
 		//this->m_pgeos->m_apgeo[0]->SetMaterial(gameObject->getMaterial());
 	}
@@ -43,6 +44,11 @@ bool CGameObjectPlacement::getBuildStatus()
 void CGameObjectPlacement::setBuildStatus(bool b)
 {
 	hasBeenBuild = b;
+}
+
+std::string CGameObjectPlacement::getType()
+{
+	return _type;
 }
 
 GameObject* CGameObjectPlacement::getGameObject()

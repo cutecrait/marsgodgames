@@ -100,12 +100,19 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 	// 	   Die Tooltips am Besten auch vorgefertigt machen, sodass du nur Anhand der switch-Anweisung entscheiden musst,
 	// 	   welcher nen SwitchOn()-Befehl erhält
 	//------------------------------
+	
+	//if (cursor->PickGeo() == BuildingManager->lookForGameObject(dumyTyp)->getGameObject()->getModel()) {
+
+	
+
+
 	switch (m_menu->getMainSelect()->GetActivePosition())
 	{
-	case 0:
+	case 0://fabriken
 		switch (m_menu->getSpecificSelect(0)->GetActivePosition())
 		{
 		case 0:
+			uiDecision(CBuildingManager::Typ::RoboFabrik, "Robofabrik", cursor);
 			break;
 		case 1:
 			break;
@@ -172,7 +179,8 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 			save.fillPosAr(toBeBuildObject->getGameObject(), toBeBuildObject->GetPos().GetX(), toBeBuildObject->GetPos().GetZ());
 			saveable = true;
 			//
-			currentLevel->UpdateMissions(typeid(Apartment).name(), 1, m_menu);
+			if(BuildingManager)
+			currentLevel->UpdateMissions(toBeBuildObject->getType(), 1, m_menu);
 			confirmClicked();
 			makeBuilding(toBeBuildObject);
 			targetPos = NULL;

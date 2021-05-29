@@ -3,12 +3,14 @@
 CBuildingManager::CBuildingManager()
 {
 	m_NrOfVersorgung = 0;
-	m_NrOfWohungen = 0;
+	m_NrOfApartment = 0;
 	m_NrOfTestObjects = 0;
 	m_NrOfNuclearPerPlants = 0;
 	m_NrOfSolarPowerPlants = 0;
 	m_NrOfDomes = 0;
 	m_NrOfWaterTanks = 0;
+	m_NrOfRoboFabrik = 0;
+
 }
 
 CBuildingManager::~CBuildingManager()
@@ -24,15 +26,21 @@ void CBuildingManager::Init(CScene* scene)
 	for (int i = 0; i < 20; i++)
 	{
 		BeispielGameObjects[i].setGameObject(new BeispielForGameObject);
-		BeispielGameObjects[i].Init();
+		BeispielGameObjects[i].Init(typeid(BeispielForGameObject).name());
 		BeispielGameObjects[i].getGameObject()->TransformGeo();
 		m_zs->AddPlacement(&BeispielGameObjects[i]);
 	}
 	for (int i = 0; i < 20; i++) {
 		Apartments[i].setGameObject(new Apartment);
-		Apartments[i].Init();
+		Apartments[i].Init(typeid(Apartment).name());
 		Apartments[i].getGameObject()->TransformGeo();
 		m_zs->AddPlacement(&Apartments[i]);
+	}
+	for (int i = 0; i < 5; i++) {
+		RoboFabrik[i].setGameObject(new RobotFactory);
+		RoboFabrik[i].Init(typeid(RobotFactory).name());
+		RoboFabrik[i].getGameObject()->TransformGeo();
+		m_zs->AddPlacement(&RoboFabrik[i]);
 	}
 
 	// Initialsierungsmethoden der Gebäude noch einfügen!
@@ -52,18 +60,32 @@ void CBuildingManager::UpdateBuildings(float deltaTime)
 			if (y == m_NrOfTestObjects)
 				break;
 		}
-		
+	
+	}
+	y = 0;
+	for (int i = 0; i < 20; i++)
+	{
 		if (Apartments[i].getBuildStatus() == true)
 		{
 			Apartments[i].Update(deltaTime);
 			y++;
-			if (y == m_NrOfTestObjects)
+			if (y == m_NrOfApartment)
 				break;
 		}
-
+		
 	}
-
 	y = 0;
+
+	for (int i = 0; i < 5; i++) {
+		if (RoboFabrik[i].getBuildStatus() == true) {
+			RoboFabrik[i].Update(deltaTime);
+			y++;
+			if (y == m_NrOfRoboFabrik)
+				break;
+		}
+	}
+	y = 0;
+	
 
 	// Update-Methoden der anderen Gebäude hier noch einfügen!
 	// ...
@@ -81,7 +103,7 @@ void CBuildingManager::IncreaseNrOfBuildings(Typ& typ)
 	case Typ::Dome:
 	case Typ::Hotel:
 	case Typ::Apartment:
-		m_NrOfTestObjects++;
+		m_NrOfApartment++;
 
 		break;
 
@@ -89,7 +111,9 @@ void CBuildingManager::IncreaseNrOfBuildings(Typ& typ)
 	case Typ::SolarPowerPlant:
 	case Typ::Villa:
 	case Typ::WaterTank:
-
+	case Typ::RoboFabrik:
+		m_NrOfRoboFabrik++;
+		break;
 	default: break;
 
 	}
@@ -108,7 +132,7 @@ void CBuildingManager::DecreaseNrOfBuildings(Typ& typ)
 	case Typ::Dome:
 	case Typ::Hotel:
 	case Typ::Apartment:
-		m_NrOfTestObjects--;
+		m_NrOfApartment--;
 
 		break;
 
@@ -116,7 +140,9 @@ void CBuildingManager::DecreaseNrOfBuildings(Typ& typ)
 	case Typ::SolarPowerPlant:
 	case Typ::Villa:
 	case Typ::WaterTank:
-
+	case Typ::RoboFabrik:
+		m_NrOfRoboFabrik--;
+		break;
 	default: break;
 
 	}
@@ -155,7 +181,13 @@ CGameObjectPlacement* CBuildingManager::lookForGameObject(Typ& typ)
 		case Typ::SolarPowerPlant:
 		case Typ::Villa:
 		case Typ::WaterTank:
-
+		case Typ::RoboFabrik:
+			for (int i = 0; i < 5; i++) {
+				if (RoboFabrik[i].getBuildStatus() == false) {
+					return &RoboFabrik[i];
+				}
+			}
+			break;
 		default: break;
 
 	}

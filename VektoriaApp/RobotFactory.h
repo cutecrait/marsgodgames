@@ -8,9 +8,11 @@ public:
         PowerUse = 5;
         WaterUse = 0;
         NutrientUse = 0;
-
+        ressources.Sauerstoff_per_Build = 66;
+        ressources.Stein_per_Build = 66;
+        ressources.Strom_per_Build = 66;
         Category = Industry;
-
+        setModel("models\\monkey.obj");
         // set model
         // set material
     }

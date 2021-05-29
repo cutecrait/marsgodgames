@@ -4,8 +4,8 @@
 #include "BeispielForGameObject.h"
 #include "CGameObjectPlacement.h"
 #include "Apartment.h"
-#include "Building.h"
 
+#include "RobotFactory.h"
 
 using namespace Vektoria;
 
@@ -25,7 +25,8 @@ public:
 		Villa,
 		WaterTank,
 		Dome,
-		Test};
+		Test,
+		RoboFabrik};
 	
 	// Initialisierung des BuildingManagers
 	void Init(CScene*);
@@ -52,6 +53,7 @@ private:
 	// Muss noch erweitert werden!
 	CGameObjectPlacement Apartments[50];
 	CGameObjectPlacement Versorgung[50];
+	CGameObjectPlacement RoboFabrik[5];
 	/*CGameObjectPlacement NuclearPowerPlant[20];
 	CGameObjectPlacement SolarPowerPlant[20];
 	CGameObjectPlacement Dome[20];
@@ -60,12 +62,12 @@ private:
 
 	// Die Anzahl an Gebäuden, die schon gebaut wurde
 	int m_NrOfTestObjects;
-	int m_NrOfWohungen;
+	int m_NrOfApartment;
 	int m_NrOfVersorgung;
 	int m_NrOfNuclearPerPlants;
 	int m_NrOfSolarPowerPlants;
 	int m_NrOfDomes;
 	int m_NrOfWaterTanks;
-
+	int m_NrOfRoboFabrik;
 };
 
