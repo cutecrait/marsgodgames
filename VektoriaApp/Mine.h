@@ -9,7 +9,7 @@ public:
         WaterUse = 2;
         NutrientUse = 0;
 
-        Category = Industry;
+        Category = BuildingCategory::Industry;
 
         // set model
         // set material

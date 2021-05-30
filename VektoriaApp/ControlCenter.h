@@ -9,7 +9,7 @@ public:
         WaterUse = 0;
         NutrientUse = 0;
 
-        Category = None;
+        Category = BuildingCategory::None;
 
         // set model
         // set material

@@ -9,7 +9,7 @@ public:
         WaterUse = 5;
         NutrientUse = 6;
 
-        Category = Living;
+        Category = BuildingCategory::Living;
 
         // set model
         // set material

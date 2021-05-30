@@ -11,7 +11,7 @@ public:
         ressources.Sauerstoff_per_Build = 100;
         ressources.Stein_per_Build = 100;
         ressources.Strom_per_Build = 100;
-        Category = Living;
+        Category = BuildingCategory::Living;
 
         setModel("models\\Barrack.obj");
 	    //this->getModel()->m_pmaterial->LoadPreset("Concrete");

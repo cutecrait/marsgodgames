@@ -1,7 +1,7 @@
 #pragma once
 #include "GameObject.h"
 
-enum BuildingCategory {
+enum class BuildingCategory {
     None,
     Living,
     Farming,
@@ -18,6 +18,6 @@ public:
     int PowerUse;
     int WaterUse;
     int NutrientUse;
-    BuildingCategory Category = None;
+    BuildingCategory Category = BuildingCategory::None;
 };
 

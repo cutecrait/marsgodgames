@@ -11,7 +11,7 @@ public:
         ressources.Sauerstoff_per_Build = 66;
         ressources.Stein_per_Build = 66;
         ressources.Strom_per_Build = 66;
-        Category = Industry;
+        Category = BuildingCategory::Industry;
         setModel("models\\monkey.obj");
         // set model
         // set material

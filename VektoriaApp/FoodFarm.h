@@ -9,7 +9,7 @@ public:
         WaterUse = 5;
         NutrientUse = 1;
 
-        Category = Farming;
+        Category = BuildingCategory::Farming;
 
         // set model
         // set material

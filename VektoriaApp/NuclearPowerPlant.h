@@ -9,7 +9,7 @@ public:
         WaterUse = 5;
         NutrientUse = 0;
 
-        Category = Industry;
+        Category = BuildingCategory::Industry;
 
         setModel("models\\kraftwerk.obj");
         this->getModel()->m_pmaterial->LoadPreset("Concrete");
