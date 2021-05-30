@@ -70,13 +70,13 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	m_resBack.SetLayer(0.98);
 	m_redFont.LoadPreset("LucidaConsoleRed");
 	m_redFont.SetChromaKeyingOn();
-	m_res1.Init(cursor, font, CFloatRect(-0.03, 0.2, 0.4, 0.6));
-	m_res2.Init(cursor, font, CFloatRect(0.3, 0.2, 0.4, 0.6));
-	m_res3.Init(cursor, font, CFloatRect(0.63, 0.2, 0.4, 0.6));
+	m_concrete.Init(cursor, font, CFloatRect(-0.03, 0.2, 0.4, 0.6));
+	m_steel.Init(cursor, font, CFloatRect(0.3, 0.2, 0.4, 0.6));
+	m_wood.Init(cursor, font, CFloatRect(0.63, 0.2, 0.4, 0.6));
 
-	m_res1Minus.Init(cursor, &m_redFont, CFloatRect(-0.03, 0.2, 0.4, 0.6));
-	m_res2Minus.Init(cursor, &m_redFont, CFloatRect(0.3, 0.2, 0.4, 0.6));
-	m_res3Minus.Init(cursor, &m_redFont, CFloatRect(0.63, 0.2, 0.4, 0.6));
+	m_concreteMinus.Init(cursor, &m_redFont, CFloatRect(-0.03, 0.2, 0.4, 0.6));
+	m_steelMinus.Init(cursor, &m_redFont, CFloatRect(0.3, 0.2, 0.4, 0.6));
+	m_woodMinus.Init(cursor, &m_redFont, CFloatRect(0.63, 0.2, 0.4, 0.6));
 	initRessource();
 
 	//m_mainSelect.makeInactiveMats(m_matsForSelectMain);
@@ -140,12 +140,12 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	zv->AddOverlay(&m_statsBack);
 	//zv->AddOverlay(&m_tooltip);
 
-	m_resBack.AddOverlay(&m_res1);
-	m_resBack.AddOverlay(&m_res3);
-	m_resBack.AddOverlay(&m_res2);
-	m_resBack.AddOverlay(&m_res1Minus);
-	m_resBack.AddOverlay(&m_res2Minus);
-	m_resBack.AddOverlay(&m_res3Minus);
+	m_resBack.AddOverlay(&m_concrete);
+	m_resBack.AddOverlay(&m_wood);
+	m_resBack.AddOverlay(&m_steel);
+	m_resBack.AddOverlay(&m_concreteMinus);
+	m_resBack.AddOverlay(&m_steelMinus);
+	m_resBack.AddOverlay(&m_woodMinus);
 }
 
 void UI::labelMaker(int a, int b, std::vector<std::string> label)
@@ -157,29 +157,29 @@ void UI::labelMaker(int a, int b, std::vector<std::string> label)
 void UI::initRessource() {
 
 
-	m_res1.SetInnerOn();
-	m_res1.SetLayer(1);
-	m_res1.SetLabel("      " + std::to_string(Player::Instance().getRessource1()));
+	m_concrete.SetInnerOn();
+	m_concrete.SetLayer(1);
+	m_concrete.SetLabel("      " + std::to_string(Player::Instance().getConcrete()));
 
-	m_res2.SetLabel("      " + std::to_string(Player::Instance().getRessource2()));
-	m_res2.SetInnerOn();
-	m_res2.SetLayer(1);
+	m_steel.SetLabel("      " + std::to_string(Player::Instance().getSteel()));
+	m_steel.SetInnerOn();
+	m_steel.SetLayer(1);
 
-	m_res3.SetLabel("      " + std::to_string(Player::Instance().getRessource3()));
-	m_res3.SetInnerOn();
-	m_res3.SetLayer(1);
+	m_wood.SetLabel("      " + std::to_string(Player::Instance().getWood()));
+	m_wood.SetInnerOn();
+	m_wood.SetLayer(1);
 
-	m_res1Minus.SetInnerOn();
-	m_res1Minus.SetLayer(1);
-	m_res1Minus.SwitchOff();
+	m_concreteMinus.SetInnerOn();
+	m_concreteMinus.SetLayer(1);
+	m_concreteMinus.SwitchOff();
 
-	m_res2Minus.SetInnerOn();
-	m_res2Minus.SetLayer(1);
-	m_res2Minus.SwitchOff();
+	m_steelMinus.SetInnerOn();
+	m_steelMinus.SetLayer(1);
+	m_steelMinus.SwitchOff();
 
-	m_res3Minus.SetInnerOn();
-	m_res3Minus.SetLayer(1);
-	m_res3Minus.SwitchOff();
+	m_woodMinus.SetInnerOn();
+	m_woodMinus.SetLayer(1);
+	m_woodMinus.SwitchOff();
 
 }
 void UI::initPlayer(CDeviceCursor* cursor, CWritingFont* font) {
@@ -223,15 +223,15 @@ void UI::initPlayer(CDeviceCursor* cursor, CWritingFont* font) {
 
 void UI::switchOnBuy(int res1, int res2, int res3) {
 
-	m_res1.SwitchOff();
-	m_res2.SwitchOff();
-	m_res3.SwitchOff();
-	m_res1Minus.SwitchOn();
-	m_res1Minus.SetLabel("      " + std::to_string(Player::Instance().getRessource1() - res1));
-	m_res2Minus.SwitchOn();
-	m_res2Minus.SetLabel("      " + std::to_string(Player::Instance().getRessource2() - res2));
-	m_res3Minus.SwitchOn();
-	m_res3Minus.SetLabel("      " + std::to_string(Player::Instance().getRessource3() - res3));
+	m_concrete.SwitchOff();
+	m_steel.SwitchOff();
+	m_wood.SwitchOff();
+	m_concreteMinus.SwitchOn();
+	m_concreteMinus.SetLabel("      " + std::to_string(Player::Instance().getConcrete() - res1));
+	m_steelMinus.SwitchOn();
+	m_steelMinus.SetLabel("      " + std::to_string(Player::Instance().getSteel() - res2));
+	m_woodMinus.SwitchOn();
+	m_woodMinus.SetLabel("      " + std::to_string(Player::Instance().getWood() - res3));
 
 }
 
@@ -239,15 +239,15 @@ void UI::switchOnBuy(int res1, int res2, int res3) {
 
 void UI::updatePlayer() {
 
-	m_res1.SetLabel("      " + std::to_string(Player::Instance().getRessource1()));
-	m_res2.SetLabel("      " + std::to_string(Player::Instance().getRessource2()));
-	m_res3.SetLabel("      " + std::to_string(Player::Instance().getRessource3()));
-	m_res3.SwitchOn();
-	m_res1.SwitchOn();
-	m_res2.SwitchOn();
-	m_res1Minus.SwitchOff();
-	m_res2Minus.SwitchOff();
-	m_res3Minus.SwitchOff();
+	m_concrete.SetLabel("      " + std::to_string(Player::Instance().getConcrete()));
+	m_steel.SetLabel("      " + std::to_string(Player::Instance().getSteel()));
+	m_wood.SetLabel("      " + std::to_string(Player::Instance().getWood()));
+	m_wood.SwitchOn();
+	m_concrete.SwitchOn();
+	m_steel.SwitchOn();
+	m_concreteMinus.SwitchOff();
+	m_steelMinus.SwitchOff();
+	m_woodMinus.SwitchOff();
 }
 void UI::tooltip(std::string headline, int res1, int res2, int res3, int anzahl, std::string whatHappens) {
 	m_headlineW.PrintString(&headline[0]);

@@ -15,12 +15,12 @@ public:
 
 	void initPlayer(int, int, int);
 
-	void setRessource1(int i) { ressource1 += i; }
-	void setRessource2(int i) { ressource2 += i; }
-	void setRessource3(int i) { ressource3 += i; }
-	int getRessource1() { return ressource1; }
-	int getRessource2() { return ressource2; }
-	int getRessource3() { return ressource3; }
+	void gainConcrete(int i) { concrete += i; }
+	void gainSteel(int i) { steel += i; }
+	void gainWood(int i) { wood += i; }
+	int getConcrete() { return concrete; }
+	int getSteel() { return steel; }
+	int getWood() { return wood; }
 
 	void setZufriedenheit1(int);
 	void setZufriedenheit2(int);
@@ -36,16 +36,14 @@ private:
 
 	Player();
 
-	int ressource1;
-	int ressource2;
-	int ressource3;
+	int concrete;
+	int steel;
+	int wood;
 
 	int zufriedenheit1;
 	int zufriedenheit2;
 	int zufriedenheit3;
 
 	int WohnungKapa = 0;
-
-	
 };
 

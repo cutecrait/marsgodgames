@@ -37,7 +37,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 	if (m_menu->getMainSelect()->GetActivePosition() == 4 && saveable) {
 		save.saveItAll();
 		save.deleteTxt();
-		save.writeCurrToTxt("Ressources.txt",Player::Instance().getRessource1(), Player::Instance().getRessource2(), Player::Instance().getRessource3());
+		save.writeCurrToTxt("Ressources.txt",Player::Instance().getConcrete(), Player::Instance().getSteel(), Player::Instance().getWood());
 		ULDebug("Saving...");
 		saveable = false;
 	}
@@ -174,7 +174,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 
 	if (m_menu->m_confirm.IsClicked()) {
 
-		if (enoughRes(toBeBuildObject->getGameObject())) {
+		if (enoughRes(toBeBuiltBuilding)) {
 			// save game object in temporary array
 			save.fillPosAr(toBeBuildObject->getGameObject(), toBeBuildObject->GetPos().GetX(), toBeBuildObject->GetPos().GetZ());
 			saveable = true;
@@ -305,12 +305,13 @@ void clickmanager::menuOFF() {
 
 
 
-bool clickmanager::enoughRes(GameObject* hi) {
+bool clickmanager::enoughRes(Building* hi) {
 
 	// Prüfe, ob genug Ressourcen vorhanden sind
-	if (hi->getRessources().Sauerstoff_per_Build <= Player::Instance().getRessource1() &&
-		hi->getRessources().Stein_per_Build <= Player::Instance().getRessource2()	   &&
-		hi->getRessources().Strom_per_Build <= Player::Instance().getRessource3())
+	auto cost = hi->getBuildCost();
+	if (cost.Concrete <= Player::Instance().getConcrete() &&
+		cost.Steel <= Player::Instance().getSteel()	   &&
+		cost.Wood <= Player::Instance().getWood())
 	{
 		return true;
 	}
@@ -323,9 +324,11 @@ void clickmanager::confirmClicked() {
 	m_menu->m_cancel.SwitchOff();
 	m_menu->m_confirm.SwitchOff();
 
-	Player::Instance().setRessource1(-toBeBuildObject->getGameObject()->getRessources().Sauerstoff_per_Build);
-	Player::Instance().setRessource2(-toBeBuildObject->getGameObject()->getRessources().Stein_per_Build);
-	Player::Instance().setRessource3(-toBeBuildObject->getGameObject()->getRessources().Strom_per_Build);
+	auto cost = toBeBuiltBuilding->getBuildCost();
+
+	Player::Instance().gainConcrete(-cost.Concrete);
+	Player::Instance().gainSteel(-cost.Steel);
+	Player::Instance().gainWood(-cost.Wood);
 	
 	// Tooltip kann jetzt wieder angezeigt werden
 	toolTipCreate = true;
@@ -366,32 +369,31 @@ bool clickmanager::createToolTip(int i)
 void clickmanager::uiDecision(CBuildingManager::Typ typ,std::string tooltipname,CDeviceCursor* cursor) {
 	
 	toBeBuildObject = BuildingManager->lookForGameObject(typ);
+	toBeBuiltBuilding = dynamic_cast<Building*>(toBeBuildObject->getGameObject());
+	auto buildCost = toBeBuiltBuilding->getBuildCost();
+
 	if (createToolTip(m_menu->getSpecificSelect(1)->GetActivePosition())) {
 		//tooltip wird so nur einmal gebaut (aber kann überschrieben werden)
 		activePosition = m_menu->getSpecificSelect(1)->GetActivePosition();
 		m_menu->tooltip(
 			tooltipname,
-			toBeBuildObject->getGameObject()->getRessources().Sauerstoff_per_Build,								// Ehemals Res1
-			toBeBuildObject->getGameObject()->getRessources().Stein_per_Build,				// Ehemals Res2
-			toBeBuildObject->getGameObject()->getRessources().Strom_per_Build,				// Ehemals Res3
+			buildCost.Concrete, buildCost.Steel, buildCost.Wood, 
 			10,
 			" Anzahl gebaut");
 	}
+
 	if (targetPos) {
 		if (!isclicked)
 		{
 			toBeBuildObject->SwitchOn();
 			m_menu->m_confirm.SwitchOn();
 			m_menu->m_cancel.SwitchOn();
-			m_menu->switchOnBuy(toBeBuildObject->getGameObject()->getRessources().Sauerstoff_per_Build,
-				toBeBuildObject->getGameObject()->getRessources().Stein_per_Build,
-				toBeBuildObject->getGameObject()->getRessources().Strom_per_Build);
+			m_menu->switchOnBuy(buildCost.Concrete, buildCost.Steel, buildCost.Wood);
 
 			isclicked = true;
 		}
 		if (cursor->ButtonPressedLeft()) {
 			toBeBuildObject->Translate(targetPos->GetPos());
 		}
-
 	}
 }

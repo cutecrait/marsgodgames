@@ -152,6 +152,7 @@ void CBuildingManager::DecreaseNrOfBuildings(Typ& typ)
 CGameObjectPlacement* CBuildingManager::lookForGameObject(Typ& typ)
 {
 	// Überprüft, welcher Typ übergeben wurde und sucht entspechendes Gebäude
+	// funktioniert bis jetzt nur bei Typen Test, Apartment, RoboFabrik
 	switch (typ)
 	{
 		case Typ::Test:

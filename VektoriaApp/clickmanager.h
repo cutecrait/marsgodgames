@@ -9,6 +9,7 @@
 #include "CBuildingManager.h"
 #include "Save.h"
 #include "Level.h"
+#include "Building.h"
 
 using namespace Vektoria;
 class clickmanager
@@ -34,7 +35,7 @@ public:
 	}
 
 	void makeBuilding(CGameObjectPlacement*);
-	bool enoughRes(GameObject*);
+	bool enoughRes(Building*);
 
 	void confirmClicked();
 
@@ -57,6 +58,7 @@ private:
 
 	// Objekt, das gebaut werden soll (bzw. im Moment platziert werden kann)
 	CGameObjectPlacement* toBeBuildObject;
+	Building* toBeBuiltBuilding;
 	CBuildingManager* BuildingManager;
 	MapSquare* mapsquares;
 	CPlacement* targetPos;

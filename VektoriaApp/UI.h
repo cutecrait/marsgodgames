@@ -89,12 +89,12 @@ public:
 	COverlay m_statsBack;
 	COverlay m_resBack;
 	COverlay m_toolTipBackGround;
-	CGuiElement m_res1;
-	CGuiElement m_res1Minus;
-	CGuiElement m_res2;
-	CGuiElement m_res2Minus;
-	CGuiElement m_res3;
-	CGuiElement m_res3Minus;
+	CGuiElement m_concrete;
+	CGuiElement m_concreteMinus;
+	CGuiElement m_steel;
+	CGuiElement m_steelMinus;
+	CGuiElement m_wood;
+	CGuiElement m_woodMinus;
 
 	CWriting m_levelW;
 	CWriting m_missiW[5];

@@ -4,11 +4,11 @@ Player::Player()
 {
 }
 
-void Player::initPlayer(int res1, int res2, int res3)
+void Player::initPlayer(int startConcrete, int startSteel, int startWood)
 {
-	ressource1 = res1;
-	ressource2 = res2;
-	ressource3 = res3;
+	concrete = startConcrete;
+	steel = startSteel;
+	wood = startWood;
 }
 
 void Player::setZufriedenheit1(int)
