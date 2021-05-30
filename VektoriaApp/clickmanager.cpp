@@ -11,12 +11,6 @@ clickmanager::~clickmanager()
 	delete m_menu;
 }
 
-
-
-
-
-
-
 void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::Level* currentLevel)
 {
 	//ich muss ne if abfrage machen, dass nicht selected == true sein muss.
@@ -329,6 +323,9 @@ void clickmanager::confirmClicked() {
 	Player::Instance().gainConcrete(-cost.Concrete);
 	Player::Instance().gainSteel(-cost.Steel);
 	Player::Instance().gainWood(-cost.Wood);
+	Player::Instance().useFood(toBeBuiltBuilding->NutrientUse);
+	Player::Instance().usePower(toBeBuiltBuilding->PowerUse);
+	Player::Instance().useWater(toBeBuiltBuilding->WaterUse);
 	
 	// Tooltip kann jetzt wieder angezeigt werden
 	toolTipCreate = true;
@@ -366,7 +363,7 @@ bool clickmanager::createToolTip(int i)
 	return toolTipCreate;
 }
 
-void clickmanager::uiDecision(CBuildingManager::Typ typ,std::string tooltipname,CDeviceCursor* cursor) {
+void clickmanager::uiDecision(CBuildingManager::Typ typ, std::string tooltipname, CDeviceCursor* cursor) {
 	
 	toBeBuildObject = BuildingManager->lookForGameObject(typ);
 	toBeBuiltBuilding = dynamic_cast<Building*>(toBeBuildObject->getGameObject());

@@ -21,6 +21,12 @@ public:
 	int getConcrete() { return concrete; }
 	int getSteel() { return steel; }
 	int getWood() { return wood; }
+	void useWater(int x) { water -= x; }
+	void usePower(int x) { power -= x; }
+	void useFood(int x) { food -= x; }
+	int getWater() { return water; }
+	int getPower() { return power; }
+	int getFood() { return food; }
 
 	void setZufriedenheit1(int);
 	void setZufriedenheit2(int);
@@ -39,6 +45,10 @@ private:
 	int concrete;
 	int steel;
 	int wood;
+
+	int water;
+	int power;
+	int food;
 
 	int zufriedenheit1;
 	int zufriedenheit2;
