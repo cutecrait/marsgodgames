@@ -38,7 +38,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 
 	if (m_menu->getStart()->IsClicked()) {
 		if (WhatSpecific == 2) {
-			//wenn ich nochmal start drücke nachdem ich schon mal start gedrückt habe dann mach alles wieder aus.
+			//wenn ich nochmal start drï¿½cke nachdem ich schon mal start gedrï¿½ckt habe dann mach alles wieder aus.
 			for (int i = 0; i < 4; i++) {
 				m_menu->getSpecificSelect(i)->SetActivePosition(-1);
 				m_menu->getSpecificSelect(i)->SwitchOff();
@@ -63,7 +63,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 		m_menu->getSpecificSelect(m_menu->getMainSelect()->GetActivePosition())->SwitchOn();
 	}
 	if (m_menu->getMainSelect()->GetActivePosition() == -1) {
-		// wenn keine position aktive ist wird 2tes menü off
+		// wenn keine position aktive ist wird 2tes menï¿½ off
 		m_menu->getSpecificSelect(0)->SwitchOff();
 		m_menu->getSpecificSelect(0)->SetActivePosition(-1);
 		m_menu->getSpecificSelect(1)->SwitchOff();
@@ -92,7 +92,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 	// 	   Denn der folgende Rest ist ja auch prinzipiell immer der gleiche
 	// 
 	// 	   Die Tooltips am Besten auch vorgefertigt machen, sodass du nur Anhand der switch-Anweisung entscheiden musst,
-	// 	   welcher nen SwitchOn()-Befehl erhält
+	// 	   welcher nen SwitchOn()-Befehl erhï¿½lt
 	//------------------------------
 	
 	//if (cursor->PickGeo() == BuildingManager->lookForGameObject(dumyTyp)->getGameObject()->getModel()) {
@@ -117,7 +117,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 	case 1:
 		switch (m_menu->getSpecificSelect(1)->GetActivePosition()) 
 		{
-		case 0: //das  "Apartment" ist für die überschrift im tooltip
+		case 0: //das  "Apartment" ist fï¿½r die ï¿½berschrift im tooltip
 			uiDecision(CBuildingManager::Typ::Apartment,"Apartment",cursor); 
 		
 			break;
@@ -182,13 +182,13 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 	}
 	/*if (m_menu->getSpecificSelect(1)->GetActivePosition() == 0) {
 
-		// Suche nach freiem Gebäude
+		// Suche nach freiem Gebï¿½ude
 		CBuildingManager::Typ typ = CBuildingManager::Typ::Apartment;
 		toBeBuildObject = BuildingManager->lookForGameObject(typ);
 
 		//tooltip anschalten 
 		if (createToolTip(m_menu->getSpecificSelect(1)->GetActivePosition())) {
-			//tooltip wird so nur einmal gebaut (aber kann überschrieben werden)
+			//tooltip wird so nur einmal gebaut (aber kann ï¿½berschrieben werden)
 			activePosition = m_menu->getSpecificSelect(1)->GetActivePosition();
 			m_menu->tooltip(
 				"Apartment",
@@ -261,15 +261,13 @@ void clickmanager::makeBuilding(CGameObjectPlacement* buildingObject)
 	m_menu->m_confirm.SwitchOff();
 	m_menu->m_cancel.SwitchOff();
 
-	Building_Sound->Start();
-
 	if (targetPos)
 	{
 		buildingObject->Translate(targetPos->GetPos());
 	}
 	buildingObject->SwitchOn();
 
-	// Exemplarisch, die Methode bekommt am Besten auch einfach den Gebäude-Typ übergeben
+	// Exemplarisch, die Methode bekommt am Besten auch einfach den Gebï¿½ude-Typ ï¿½bergeben
 
 	CBuildingManager::Typ typ = CBuildingManager::Typ::Test;
 	BuildingManager->IncreaseNrOfBuildings(typ);
@@ -301,7 +299,7 @@ void clickmanager::menuOFF() {
 
 bool clickmanager::enoughRes(Building* hi) {
 
-	// Prüfe, ob genug Ressourcen vorhanden sind
+	// Prï¿½fe, ob genug Ressourcen vorhanden sind
 	auto cost = hi->getBuildCost();
 	if (cost.Concrete <= Player::Instance().getConcrete() &&
 		cost.Steel <= Player::Instance().getSteel()	   &&
@@ -370,7 +368,7 @@ void clickmanager::uiDecision(CBuildingManager::Typ typ, std::string tooltipname
 	auto buildCost = toBeBuiltBuilding->getBuildCost();
 
 	if (createToolTip(m_menu->getSpecificSelect(1)->GetActivePosition())) {
-		//tooltip wird so nur einmal gebaut (aber kann überschrieben werden)
+		//tooltip wird so nur einmal gebaut (aber kann ï¿½berschrieben werden)
 		activePosition = m_menu->getSpecificSelect(1)->GetActivePosition();
 		m_menu->tooltip(
 			tooltipname,
