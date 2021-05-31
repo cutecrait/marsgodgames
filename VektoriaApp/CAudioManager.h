@@ -6,11 +6,16 @@ using namespace Vektoria;
 
 class CAudioManager
 {
-
 public:
-
-	CAudioManager();
-	~CAudioManager();
+	/// <summary>
+	/// Singleton - gibt Instanz zurück
+	/// </summary>
+	/// <returns>Instanz</returns>
+	static CAudioManager& Instance()
+	{
+		static CAudioManager _instance;
+		return _instance;
+	};
 
 	//Initialisiert alle Audio-Objekte
 	void Init(CScene*);
@@ -20,7 +25,9 @@ public:
 	CAudio Ambient_Building_Sound;
 	CAudio Ambient_Click_Sound;
 
-
+private:
+	CAudioManager();
+	~CAudioManager();
 
 };
 
