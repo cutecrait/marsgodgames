@@ -62,6 +62,7 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	m_viewport = zv;
 	InitMaterial();
 	InitToolTip();
+	m_roboterPopup.Init(cursor,font,&m_matStats);
 	m_start.Init(cursor, font, CFloatRect(0.f, 0.9, 0.15, 0.1));
 	m_start.SetLabel("Menu");
 
@@ -138,6 +139,7 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 
 	zv->AddOverlay(&m_statistic);
 	zv->AddOverlay(&m_statsBack);
+	zv->AddOverlay(&m_roboterPopup);
 	//zv->AddOverlay(&m_tooltip);
 
 	m_resBack.AddOverlay(&m_concrete);

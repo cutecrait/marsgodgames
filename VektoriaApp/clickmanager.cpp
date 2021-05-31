@@ -15,12 +15,13 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 {
 	//ich muss ne if abfrage machen, dass nicht selected == true sein muss.
 
-	MapTile* pickedTile = nullptr;
+	
 
 	if (cursor->PickOverlay() == NULL)
 	{
 		targetPos = cursor->PickPlacementPreselected(*mapsquares);
 		if (targetPos)
+
 		{
 			pickedTile = (MapTile*)targetPos;
 			pickedTile->Select();
@@ -169,20 +170,25 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 	}
 
 
+	//wenn confirm geklickt wird, wird ein addnewBuilding ausgegeführt.
 	if (m_menu->m_confirm.IsClicked()) {
 		// hallo hendrik
-		BuildingManager->AddNewBuilding(CBuildingManager::Typ::Apartment, pickedTile);
+		
 
-		if (enoughRes(toBeBuiltBuilding)) {
+		if (enoughRes(toBeBuiltBuilding)) { //Gameobject
 			// save game object in temporary array
+			
 			save.fillPosAr(toBeBuildObject->getGameObject(), toBeBuildObject->GetPos().GetX(), toBeBuildObject->GetPos().GetZ());
 			saveable = true;
-			//
+			//die UI-Decision updated "dumyTyp" - heißt wo man gerade ui draufklickt ändert den typ
+			BuildingManager->AddNewBuilding(dumyTyp, pickedTile);
+
 			if(BuildingManager)
-			currentLevel->UpdateMissions(toBeBuildObject->getType(), 1, m_menu);
+			currentLevel->UpdateMissions(toBeBuildObject->getType(), 1, m_menu); //gameobjectplacement
 			confirmClicked();
 			makeBuilding(toBeBuildObject);
 			targetPos = NULL;
+			pickedTile = NULL;
 		}
 	}
 	/*if (m_menu->getSpecificSelect(1)->GetActivePosition() == 0) {
@@ -333,7 +339,7 @@ void clickmanager::confirmClicked() {
 	// Tooltip kann jetzt wieder angezeigt werden
 	toolTipCreate = true;
 
-	m_menu->updatePlayer();
+	m_menu->updatePlayer(); // ui für player wird geupdated
 	m_menu->m_toolTipBackGround.SwitchOff();
 	isclicked = false;
 
@@ -370,9 +376,10 @@ void clickmanager::uiDecision(CBuildingManager::Typ typ, std::string tooltipname
 	
 	toBeBuildObject = BuildingManager->lookForGameObject(typ);
 	toBeBuiltBuilding = dynamic_cast<Building*>(toBeBuildObject->getGameObject());
+	dumyTyp = typ;
 	auto buildCost = toBeBuiltBuilding->getBuildCost();
 
-	if (createToolTip(m_menu->getSpecificSelect(1)->GetActivePosition())) {
+	/*if (createToolTip(m_menu->getSpecificSelect(1)->GetActivePosition())) {
 		//tooltip wird so nur einmal gebaut (aber kann überschrieben werden)
 		activePosition = m_menu->getSpecificSelect(1)->GetActivePosition();
 		m_menu->tooltip(
@@ -380,7 +387,7 @@ void clickmanager::uiDecision(CBuildingManager::Typ typ, std::string tooltipname
 			buildCost.Concrete, buildCost.Steel, buildCost.Wood, 
 			10,
 			" Anzahl gebaut");
-	}
+	}*/
 
 	if (targetPos) {
 		if (!isclicked)

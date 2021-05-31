@@ -109,6 +109,9 @@
     <ClCompile Include="Mission.cpp">
       <Filter>LevelSystem\Level</Filter>
     </ClCompile>
+    <ClCompile Include="roboPopUp.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -273,6 +276,9 @@
     </ClInclude>
     <ClInclude Include="Well.h">
       <Filter>Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="roboPopUp.h">
+      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

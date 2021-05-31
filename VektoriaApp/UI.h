@@ -1,7 +1,7 @@
 #pragma once
 #include "Vektoria\root.h"
 #include "GuiSelect.h"
-
+#include "roboPopUp.h"
 using namespace Vektoria;
 class UI
 {
@@ -109,6 +109,6 @@ public:
 	
 	CGuiButton m_missionen;
 	COverlay m_missionenBack;
-	
+	roboPopUp m_roboterPopup;
 };
 

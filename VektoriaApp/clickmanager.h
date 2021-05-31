@@ -66,6 +66,6 @@ private:
 	// Karo: Save um Checkpoint zu setzen
 	Save save;
 	bool saveable = true;
-
+	MapTile* pickedTile = nullptr;
 };
 
