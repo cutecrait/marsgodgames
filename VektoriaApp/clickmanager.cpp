@@ -41,6 +41,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 	}
 
 	if (m_menu->getStart()->IsClicked()) {
+		
 		if (WhatSpecific == 2) {
 			//wenn ich nochmal start drücke nachdem ich schon mal start gedrückt habe dann mach alles wieder aus.
 			for (int i = 0; i < 4; i++) {
@@ -50,10 +51,12 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 			m_menu->getMainSelect()->SetActivePosition(-1);
 			m_menu->getMainSelect()->SwitchOff();
 			WhatSpecific = 1;
+			notInMenu = true;
 		}
 		else {
 			m_menu->getMainSelect()->SwitchOn();
 			WhatSpecific = 2;
+			notInMenu = false;
 		}
 	}
 
@@ -102,6 +105,42 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 	//if (cursor->PickGeo() == BuildingManager->lookForGameObject(dumyTyp)->getGameObject()->getModel()) {
 
 	
+	if (notInMenu) {
+		
+		blaa = cursor->PickGeo();
+		if (blaa) {
+			std::string ss = blaa->GetParent()->GetName();
+			if (ss == "GameObject") {
+				CGameObjectPlacement* test;
+				test = (CGameObjectPlacement*)blaa->GetParent();
+				
+				buildtest = (Building*)test->getGameObject();
+				if (cursor->ButtonDownLeft()) {
+					if (!cursor->ButtonUpLeft()) {
+						if (test->getType() == typeid(RobotFactory).name()) {
+							if (!roboPopUpopen) {
+								buildtest->setPopup(&m_menu->m_roboPopUP);
+
+								buildtest->OnClick();
+								roboPopUpopen = true;
+							}
+						}
+					}
+
+				}
+				
+				
+			}
+		}
+		if (roboPopUpopen) {
+			roboPopUpopen =	buildtest->decision();
+			
+		}
+		m_menu->updatePlayer();
+		
+		
+	}
+
 
 
 	switch (m_menu->getMainSelect()->GetActivePosition())
@@ -280,10 +319,10 @@ void clickmanager::makeBuilding(CGameObjectPlacement* buildingObject)
 
 	// Exemplarisch, die Methode bekommt am Besten auch einfach den Gebäude-Typ übergeben
 
-	CBuildingManager::Typ typ = CBuildingManager::Typ::Test;
+	/*CBuildingManager::Typ typ = CBuildingManager::Typ::Test;
 	BuildingManager->IncreaseNrOfBuildings(typ);
 	buildingObject->setBuildStatus(true);
-	buildingObject = NULL;
+	buildingObject = NULL;*/
 
 	
 }
@@ -327,6 +366,7 @@ void clickmanager::confirmClicked() {
 	m_menu->m_cancel.SwitchOff();
 	m_menu->m_confirm.SwitchOff();
 
+	notInMenu = true;
 	auto cost = toBeBuiltBuilding->getBuildCost();
 
 	Player::Instance().gainConcrete(-cost.Concrete);

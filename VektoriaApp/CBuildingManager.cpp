@@ -40,6 +40,7 @@ void CBuildingManager::Init(CScene* scene)
 		RoboFabrik[i].setGameObject(new RobotFactory);
 		RoboFabrik[i].Init(typeid(RobotFactory).name());
 		RoboFabrik[i].getGameObject()->TransformGeo();
+		
 		m_zs->AddPlacement(&RoboFabrik[i]);
 	}
 

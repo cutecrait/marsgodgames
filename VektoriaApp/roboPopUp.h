@@ -1,27 +1,47 @@
 #pragma once
+#include "Vektoria\root.h"
 #include "GuiSelect.h"
-#include "GuiButton.h"
+#include "GuiButton.h" 
+#include "popup.h"
 using namespace Vektoria;
-class roboPopUp : public COverlay
+class roboPopUp : public popup
 {
 public:
 	roboPopUp();
 	~roboPopUp();
-	void Init(CDeviceCursor* cursor, CWritingFont* font1, CMaterial* mat1);
+	void Init(CDeviceCursor* cursor,CMaterial*,CWritingFont*);
+	void buttonpress()override;
 	
-	CGuiButton m_robo1Add;// zählt robo1addw hoch 
 
 private:
-	COverlay m_main;
+	
 	COverlay m_robo1; //hintergrund für robos
 	COverlay m_robo2;
 	COverlay m_robo3;
 	CWriting m_robo1W; //roboter beschreibung
 	CWriting m_robo2W;
 	CWriting m_robo3W;
-	CGuiButton m_robo1b;
 	
-	CWriting m_robo1AddW; //wie viele robo
+	COverlay kosten;
+	COverlay kosten1;
+	COverlay kosten2;
+	COverlay kosten3;
+	
+
+public:
+	COverlay m_main;
+	CGuiButton m_robo1Add;// zählt robo1addw hoch 
+	CWriting m_robo1AddW;//wie viele robo
+	CWriting m_robo2AddW;
+	CWriting m_robo3AddW;
+	CGuiButton m_robo1b;
+	CGuiButton m_robo2Add;
+	CGuiButton m_robo3Add;
+	CWriting kosten1W;
+	CWriting kosten2W;
+	CWriting kosten3W;
+	CGuiButton confirm;
+	CGuiButton cancel;
 
 };
 

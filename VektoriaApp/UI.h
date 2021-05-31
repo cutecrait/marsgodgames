@@ -24,7 +24,7 @@ public:
 	void switchOnBuy(int,int,int);
 	void buildMission(COverlay*, CWritingFont*);
 	void updatePlayer();
-
+	roboPopUp* getRobo(roboPopUp*);
 	void InitToolTip();
 	void levelOverlay(COverlay*, CWritingFont*, CDeviceCursor*);
 	void tooltip(std::string headline, int res1, int res2, int res3, int anzahl, std::string whatHappens);
@@ -54,7 +54,7 @@ private:
 	CGuiSelect m_mainSelect;
 	CGuiSelect m_specificSelect[4];
 	CGuiButton m_statistic;
-	CViewport* m_viewport;
+	
 	
 
 	COverlay m_headline;
@@ -106,9 +106,9 @@ public:
 	CGuiButton m_cancel;
 
 	CWriting levelFortschrittW;
-	
+	roboPopUp m_roboPopUP;
 	CGuiButton m_missionen;
 	COverlay m_missionenBack;
-	roboPopUp m_roboterPopup;
+	CViewport* m_viewport;
 };
 

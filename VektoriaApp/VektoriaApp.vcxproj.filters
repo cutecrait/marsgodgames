@@ -112,6 +112,9 @@
     <ClCompile Include="roboPopUp.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="Apartment.cpp" />
+    <ClCompile Include="popup.cpp" />
+    <ClCompile Include="testRobo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -280,6 +283,8 @@
     <ClInclude Include="roboPopUp.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="popup.h" />
+    <ClInclude Include="testRobo.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VektoriaApp.rc" />

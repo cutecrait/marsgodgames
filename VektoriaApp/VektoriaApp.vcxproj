@@ -179,8 +179,10 @@
     <ClInclude Include="Laboratory.h" />
     <ClInclude Include="Launchpad.h" />
     <ClInclude Include="Mine.h" />
+    <ClInclude Include="popup.h" />
     <ClInclude Include="roboPopUp.h" />
     <ClInclude Include="RobotFactory.h" />
+    <ClInclude Include="testRobo.h" />
     <ClInclude Include="Well.h" />
     <ClInclude Include="TreeFarm.h" />
     <ClInclude Include="IPathSearchAlgorithm.h" />
@@ -209,6 +211,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Action.cpp" />
+    <ClCompile Include="Apartment.cpp" />
     <ClCompile Include="AStarAlgorithm.cpp" />
     <ClCompile Include="BeispielForGameObject.cpp" />
     <ClCompile Include="CAudioManager.cpp" />
@@ -237,12 +240,14 @@
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="NodeController.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="popup.cpp" />
     <ClCompile Include="roboPopUp.cpp" />
     <ClCompile Include="RobotBase.cpp" />
     <ClCompile Include="Save.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="SteeringManager.cpp" />
+    <ClCompile Include="testRobo.cpp" />
     <ClCompile Include="TimedDecision.cpp" />
     <ClCompile Include="Transition.cpp" />
     <ClCompile Include="UI.cpp" />
