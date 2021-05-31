@@ -3,8 +3,25 @@
 #include "GameObject.h"
 #include "BeispielForGameObject.h"
 #include "CGameObjectPlacement.h"
-#include "Apartment.h"
+#include "CAudioManager.h"
+#include "Player.h"
+#include "Save.h"
 
+#include "Apartment.h"
+#include "ControlCenter.h"
+#include "FoodFarm.h"
+#include "Foundry.h"
+#include "GravelPlant.h"
+#include "Hospital.h"
+#include "Laboratory.h"
+#include "Launchpad.h"
+#include "Mine.h"
+#include "NuclearPowerPlant.h"
+#include "RobotFactory.h"
+#include "SolarPowerPlant.h"
+#include "TreeFarm.h"
+#include "Well.h"
+#include "MapTile.h"
 #include "RobotFactory.h"
 
 using namespace Vektoria;
@@ -18,15 +35,28 @@ public:
 
 	// enum Typ - Beinhaltet alle Gebäude-Typen
 	// NOCH ZU ERWEITERN!!!
-	enum class Typ {NuclearPowerPlant = 0,
-		SolarPowerPlant,
-		Hotel,
+	enum class Typ {
+		None = 0,
 		Apartment,
+		ControlCenter,
+		FoodFarm,
+		Foundry,
+		GravelPlant,
+		Hospital,
+		Laboratory,
+		Launchpad,
+		Mine,
+		NuclearPowerPlant,
+		RobotFactory,
+		SolarPowerPlant,
+		TreeFarm,
+		Well,
+
+		Hotel,
 		Villa,
 		WaterTank,
 		Dome,
-		Test,
-		RoboFabrik};
+		Test};
 	
 	// Initialisierung des BuildingManagers
 	void Init(CScene*);
@@ -40,6 +70,7 @@ public:
 	void IncreaseNrOfBuildings(Typ&);
 	void DecreaseNrOfBuildings(Typ&);
 
+	void AddNewBuilding(Typ, MapTile*);
 	
 
 private:

@@ -14,13 +14,16 @@ clickmanager::~clickmanager()
 void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::Level* currentLevel)
 {
 	//ich muss ne if abfrage machen, dass nicht selected == true sein muss.
+
+	MapTile* pickedTile = nullptr;
+
 	if (cursor->PickOverlay() == NULL)
 	{
 		targetPos = cursor->PickPlacementPreselected(*mapsquares);
 		if (targetPos)
 		{
-			MapTile* tile = (MapTile*)targetPos;
-			tile->Select();
+			pickedTile = (MapTile*)targetPos;
+			pickedTile->Select();
 		}
 
 		else  mapsquares->DeselectMapTile(NULL);
@@ -38,7 +41,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 
 	if (m_menu->getStart()->IsClicked()) {
 		if (WhatSpecific == 2) {
-			//wenn ich nochmal start drï¿½cke nachdem ich schon mal start gedrï¿½ckt habe dann mach alles wieder aus.
+			//wenn ich nochmal start drücke nachdem ich schon mal start gedrückt habe dann mach alles wieder aus.
 			for (int i = 0; i < 4; i++) {
 				m_menu->getSpecificSelect(i)->SetActivePosition(-1);
 				m_menu->getSpecificSelect(i)->SwitchOff();
@@ -63,7 +66,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 		m_menu->getSpecificSelect(m_menu->getMainSelect()->GetActivePosition())->SwitchOn();
 	}
 	if (m_menu->getMainSelect()->GetActivePosition() == -1) {
-		// wenn keine position aktive ist wird 2tes menï¿½ off
+		// wenn keine position aktive ist wird 2tes menü off
 		m_menu->getSpecificSelect(0)->SwitchOff();
 		m_menu->getSpecificSelect(0)->SetActivePosition(-1);
 		m_menu->getSpecificSelect(1)->SwitchOff();
@@ -92,7 +95,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 	// 	   Denn der folgende Rest ist ja auch prinzipiell immer der gleiche
 	// 
 	// 	   Die Tooltips am Besten auch vorgefertigt machen, sodass du nur Anhand der switch-Anweisung entscheiden musst,
-	// 	   welcher nen SwitchOn()-Befehl erhï¿½lt
+	// 	   welcher nen SwitchOn()-Befehl erhält
 	//------------------------------
 	
 	//if (cursor->PickGeo() == BuildingManager->lookForGameObject(dumyTyp)->getGameObject()->getModel()) {
@@ -106,7 +109,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 		switch (m_menu->getSpecificSelect(0)->GetActivePosition())
 		{
 		case 0:
-			uiDecision(CBuildingManager::Typ::RoboFabrik, "Robofabrik", cursor);
+			uiDecision(CBuildingManager::Typ::RobotFactory, "Robofabrik", cursor);
 			break;
 		case 1:
 			break;
@@ -117,7 +120,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 	case 1:
 		switch (m_menu->getSpecificSelect(1)->GetActivePosition()) 
 		{
-		case 0: //das  "Apartment" ist fï¿½r die ï¿½berschrift im tooltip
+		case 0: //das  "Apartment" ist für die überschrift im tooltip
 			uiDecision(CBuildingManager::Typ::Apartment,"Apartment",cursor); 
 		
 			break;
@@ -167,6 +170,8 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 
 
 	if (m_menu->m_confirm.IsClicked()) {
+		// hallo hendrik
+		BuildingManager->AddNewBuilding(CBuildingManager::Typ::Apartment, pickedTile);
 
 		if (enoughRes(toBeBuiltBuilding)) {
 			// save game object in temporary array
@@ -182,13 +187,13 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 	}
 	/*if (m_menu->getSpecificSelect(1)->GetActivePosition() == 0) {
 
-		// Suche nach freiem Gebï¿½ude
+		// Suche nach freiem Gebäude
 		CBuildingManager::Typ typ = CBuildingManager::Typ::Apartment;
 		toBeBuildObject = BuildingManager->lookForGameObject(typ);
 
 		//tooltip anschalten 
 		if (createToolTip(m_menu->getSpecificSelect(1)->GetActivePosition())) {
-			//tooltip wird so nur einmal gebaut (aber kann ï¿½berschrieben werden)
+			//tooltip wird so nur einmal gebaut (aber kann überschrieben werden)
 			activePosition = m_menu->getSpecificSelect(1)->GetActivePosition();
 			m_menu->tooltip(
 				"Apartment",
@@ -267,7 +272,7 @@ void clickmanager::makeBuilding(CGameObjectPlacement* buildingObject)
 	}
 	buildingObject->SwitchOn();
 
-	// Exemplarisch, die Methode bekommt am Besten auch einfach den Gebï¿½ude-Typ ï¿½bergeben
+	// Exemplarisch, die Methode bekommt am Besten auch einfach den Gebäude-Typ übergeben
 
 	CBuildingManager::Typ typ = CBuildingManager::Typ::Test;
 	BuildingManager->IncreaseNrOfBuildings(typ);
@@ -299,7 +304,7 @@ void clickmanager::menuOFF() {
 
 bool clickmanager::enoughRes(Building* hi) {
 
-	// Prï¿½fe, ob genug Ressourcen vorhanden sind
+	// Prüfe, ob genug Ressourcen vorhanden sind
 	auto cost = hi->getBuildCost();
 	if (cost.Concrete <= Player::Instance().getConcrete() &&
 		cost.Steel <= Player::Instance().getSteel()	   &&
@@ -368,7 +373,7 @@ void clickmanager::uiDecision(CBuildingManager::Typ typ, std::string tooltipname
 	auto buildCost = toBeBuiltBuilding->getBuildCost();
 
 	if (createToolTip(m_menu->getSpecificSelect(1)->GetActivePosition())) {
-		//tooltip wird so nur einmal gebaut (aber kann ï¿½berschrieben werden)
+		//tooltip wird so nur einmal gebaut (aber kann überschrieben werden)
 		activePosition = m_menu->getSpecificSelect(1)->GetActivePosition();
 		m_menu->tooltip(
 			tooltipname,

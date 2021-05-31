@@ -111,7 +111,7 @@ void CBuildingManager::IncreaseNrOfBuildings(Typ& typ)
 	case Typ::SolarPowerPlant:
 	case Typ::Villa:
 	case Typ::WaterTank:
-	case Typ::RoboFabrik:
+	case Typ::RobotFactory:
 		m_NrOfRoboFabrik++;
 		break;
 	default: break;
@@ -140,13 +140,109 @@ void CBuildingManager::DecreaseNrOfBuildings(Typ& typ)
 	case Typ::SolarPowerPlant:
 	case Typ::Villa:
 	case Typ::WaterTank:
-	case Typ::RoboFabrik:
+	case Typ::RobotFactory:
 		m_NrOfRoboFabrik--;
 		break;
 	default: break;
 
 	}
 	
+}
+
+void CBuildingManager::AddNewBuilding(Typ t, MapTile* targetTile)
+{
+	if (!targetTile)
+		return;
+
+	CAudioManager::Instance().Ambient_Building_Sound.Start();
+
+	auto gop = lookForGameObject(t);
+	Building* newBuilding;
+
+	switch (t)
+	{
+	case CBuildingManager::Typ::None:
+		break;
+	case CBuildingManager::Typ::Apartment:
+		newBuilding = new Apartment;
+		break;
+	case CBuildingManager::Typ::ControlCenter:
+		newBuilding = new ControlCenter;
+		break;
+	case CBuildingManager::Typ::FoodFarm:
+		newBuilding = new FoodFarm;
+		break;
+	case CBuildingManager::Typ::Foundry:
+		newBuilding = new Foundry;
+		break;
+	case CBuildingManager::Typ::GravelPlant:
+		newBuilding = new GravelPlant;
+		break;
+	case CBuildingManager::Typ::Hospital:
+		newBuilding = new Hospital;
+		break;
+	case CBuildingManager::Typ::Laboratory:
+		newBuilding = new Laboratory;
+		break;
+	case CBuildingManager::Typ::Launchpad:
+		newBuilding = new Launchpad;
+		break;
+	case CBuildingManager::Typ::Mine:
+		newBuilding = new Mine;
+		break;
+	case CBuildingManager::Typ::NuclearPowerPlant:
+		newBuilding = new NuclearPowerPlant;
+		break;
+	case CBuildingManager::Typ::RobotFactory:
+		newBuilding = new RobotFactory;
+		break;
+	case CBuildingManager::Typ::SolarPowerPlant:
+		newBuilding = new SolarPowerPlant;
+		break;
+	case CBuildingManager::Typ::TreeFarm:
+		newBuilding = new TreeFarm;
+		break;
+	case CBuildingManager::Typ::Well:
+		newBuilding = new Well;
+		break;
+	case CBuildingManager::Typ::Hotel:
+		break;
+	case CBuildingManager::Typ::Villa:
+		break;
+	case CBuildingManager::Typ::WaterTank:
+		break;
+	case CBuildingManager::Typ::Dome:
+		break;
+	case CBuildingManager::Typ::Test:
+		break;
+	default:
+		break;
+	}
+
+	gop->setGameObject(newBuilding);
+
+	Player* p = &Player::Instance();
+	auto cost = newBuilding->getBuildCost();
+
+	p->gainConcrete(-cost.Concrete);
+	p->gainSteel(-cost.Steel);
+	p->gainWood(-cost.Wood);
+	p->useFood(newBuilding->NutrientUse);
+	p->usePower(newBuilding->PowerUse);
+	p->useWater(newBuilding->WaterUse);
+
+	if (targetTile)
+	{
+		gop->Translate(targetTile->GetPos());
+		targetTile->Free = false;
+	}
+	gop->SwitchOn();
+
+	IncreaseNrOfBuildings(t);
+	gop->setBuildStatus(true);
+
+	Save save;
+	save.fillPosAr(gop->getGameObject(), gop->GetPos().GetX(), gop->GetPos().GetZ());
 }
 
 CGameObjectPlacement* CBuildingManager::lookForGameObject(Typ& typ)
@@ -182,7 +278,7 @@ CGameObjectPlacement* CBuildingManager::lookForGameObject(Typ& typ)
 		case Typ::SolarPowerPlant:
 		case Typ::Villa:
 		case Typ::WaterTank:
-		case Typ::RoboFabrik:
+		case Typ::RobotFactory:
 			for (int i = 0; i < 5; i++) {
 				if (RoboFabrik[i].getBuildStatus() == false) {
 					return &RoboFabrik[i];

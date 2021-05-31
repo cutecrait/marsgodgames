@@ -22,10 +22,10 @@ public:
 	void Click(float,  CDeviceCursor*,LevelSystem::Level*);
 	void Init(UI* menu, CScene* zs, CBuildingManager* bm, MapSquare* squares) {
 		
-		//ï¿½bergebe die UI
+		//Übergebe die UI
 		m_menu = menu;
 
-		// ï¿½bergebe den BuildingManager (Zugriff auf die Gebï¿½ude im Spiel)
+		// Übergebe den BuildingManager (Zugriff auf die Gebäude im Spiel)
 		BuildingManager = bm;
 
 		mapsquares = squares;
@@ -59,7 +59,7 @@ private:
 	MapSquare* mapsquares;
 	CPlacement* targetPos;
 	UI* m_menu;
-	CBuildingManager::Typ dumyTyp = CBuildingManager::Typ::RoboFabrik;
+	CBuildingManager::Typ dumyTyp = CBuildingManager::Typ::RobotFactory;
 	/*BeispielForGameObject MONKY;
 	BeispielForGameObject* Wohnung[20];*/
 
