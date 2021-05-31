@@ -68,7 +68,6 @@ private:
 
 	//<Darius>
 	CCameraController CameraController;
-	CAudioManager AudioManager;
 	CBuildingManager BuildingManager;
 	//</Darius>
 

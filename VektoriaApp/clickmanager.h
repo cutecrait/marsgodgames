@@ -20,15 +20,12 @@ public:
 
 	void menuOFF();
 	void Click(float,  CDeviceCursor*,LevelSystem::Level*);
-	void Init(UI* menu, CScene* zs, CAudioManager* am, CBuildingManager* bm, MapSquare* squares) {
+	void Init(UI* menu, CScene* zs, CBuildingManager* bm, MapSquare* squares) {
 		
-		//Übergebe die UI
+		//ï¿½bergebe die UI
 		m_menu = menu;
 
-		// Übergebe den Bau-Sounds
-		Building_Sound = &(am->Ambient_Building_Sound);
-
-		// Übergebe den BuildingManager (Zugriff auf die Gebäude im Spiel)
+		// ï¿½bergebe den BuildingManager (Zugriff auf die Gebï¿½ude im Spiel)
 		BuildingManager = bm;
 
 		mapsquares = squares;
@@ -54,7 +51,6 @@ private:
 	bool toolTipCreate = true;
 	bool clicked = false;
 	bool isclicked = false;
-	CAudio* Building_Sound;
 
 	// Objekt, das gebaut werden soll (bzw. im Moment platziert werden kann)
 	CGameObjectPlacement* toBeBuildObject;

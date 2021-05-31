@@ -3,6 +3,7 @@
 #include "Apartment.h"
 CGame::CGame(void)
 {
+
 }
 
 CGame::~CGame(void)
@@ -57,7 +58,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_zf.AddDeviceMouse(&m_zdm);
 
 	// AUDIO------------------------------------------------
-	AudioManager.Init(&m_zs);
+	CAudioManager::Instance().Init(&m_zs);
 
 
 	// LIGHTING--------------------------------------
@@ -75,7 +76,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	einsFont.LoadPreset("LucidaConsoleWhite");
 	einsFont.SetChromaKeyingOn(); //hiermit hat die font keinen hässlichen hintergrund
 	menu.InitMenu(&einCursor, &einsFont, &m_zv);
-	derManager.Init(&menu, &m_zs, &AudioManager, &BuildingManager, &mapSquare);
+	derManager.Init(&menu, &m_zs, &BuildingManager, &mapSquare);
 	LevelSystem::LevelManager::Instance().GetCurrentLevel()->initLevel(&menu);
 	// MAP SQUARES---------------------------------------
 	MakeMapSquares(&m_zs);
