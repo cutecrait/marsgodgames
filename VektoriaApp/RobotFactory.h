@@ -62,7 +62,7 @@ public:
                if (enoughResource()) {
                    thepopup->m_main.SwitchOff();
                    thepopup->confirm.SwitchOff();
-                 
+
                }
            }
            return false;

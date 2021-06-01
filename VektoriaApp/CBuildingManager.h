@@ -1,7 +1,5 @@
 #pragma once
 #include "Vektoria/root.h"
-#include "GameObject.h"
-#include "BeispielForGameObject.h"
 #include "CGameObjectPlacement.h"
 #include "CAudioManager.h"
 #include "Player.h"
@@ -22,7 +20,6 @@
 #include "TreeFarm.h"
 #include "Well.h"
 #include "MapTile.h"
-#include "RobotFactory.h"
 
 using namespace Vektoria;
 
@@ -50,13 +47,7 @@ public:
 		RobotFactory,
 		SolarPowerPlant,
 		TreeFarm,
-		Well,
-
-		Hotel,
-		Villa,
-		WaterTank,
-		Dome,
-		Test};
+		Well};
 	
 	// Initialisierung des BuildingManagers
 	void Init(CScene*);
@@ -77,28 +68,38 @@ private:
 
 	CScene* m_zs;
 
-	// Zum Test hier die Beispiel GameObject-Klasse
-	CGameObjectPlacement BeispielGameObjects[20];
-
 	// Für jeden Gebäudetyp bzw. für jede Kategorie feste Anzahl an Gebäuden
 	// Muss noch erweitert werden!
-	CGameObjectPlacement Apartments[50];
-	CGameObjectPlacement Versorgung[50];
+	CGameObjectPlacement Apartments[20];
 	CGameObjectPlacement RoboFabrik[5];
-	/*CGameObjectPlacement NuclearPowerPlant[20];
-	CGameObjectPlacement SolarPowerPlant[20];
-	CGameObjectPlacement Dome[20];
-	CGameObjectPlacement WaterTank[20];*/
+	CGameObjectPlacement NuclearPowerPlants[20];
+	CGameObjectPlacement SolarPowerPlants[20];
+	CGameObjectPlacement FoodFarms[20];
+	CGameObjectPlacement Foundrys[20];
+	CGameObjectPlacement GravelPlants[20];
+	CGameObjectPlacement Hospitals[20];
+	CGameObjectPlacement Mines[20];
+	CGameObjectPlacement Laboratorys[20];
+	CGameObjectPlacement TreeFarms[20];
+	CGameObjectPlacement Wells[20];
+
+	CGameObjectPlacement ControlCenter_;
+	CGameObjectPlacement LaunchPad;
+		
 
 
 	// Die Anzahl an Gebäuden, die schon gebaut wurde
-	int m_NrOfTestObjects;
 	int m_NrOfApartment;
-	int m_NrOfVersorgung;
 	int m_NrOfNuclearPerPlants;
 	int m_NrOfSolarPowerPlants;
-	int m_NrOfDomes;
-	int m_NrOfWaterTanks;
 	int m_NrOfRoboFabrik;
+	int m_NrOfFoodFarms;
+	int m_NrOfFoundrys;
+	int m_NrOfGravelPlants;
+	int m_NrOfHospitals;
+	int m_NrOfMines;
+	int m_NrOfLaboratorys;
+	int m_NrOfTreeFarms;
+	int m_NrOfWells;
 };
 

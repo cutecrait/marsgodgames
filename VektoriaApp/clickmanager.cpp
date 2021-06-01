@@ -13,9 +13,6 @@ clickmanager::~clickmanager()
 
 void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::Level* currentLevel)
 {
-	//ich muss ne if abfrage machen, dass nicht selected == true sein muss.
-
-	
 
 	if (cursor->PickOverlay() == NULL)
 	{
@@ -92,18 +89,6 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 		clicked = false;
 	}
 
-
-	//HAUS 
-	// ----------------------------
-	// @Hendrik: Du kannst die if-Klammern, die die ActivePosition() abfragen, auch als switch-Anweisung implementieren ;)
-	// 	   Denn der folgende Rest ist ja auch prinzipiell immer der gleiche
-	// 
-	// 	   Die Tooltips am Besten auch vorgefertigt machen, sodass du nur Anhand der switch-Anweisung entscheiden musst,
-	// 	   welcher nen SwitchOn()-Befehl erhält
-	//------------------------------
-	
-	//if (cursor->PickGeo() == BuildingManager->lookForGameObject(dumyTyp)->getGameObject()->getModel()) {
-
 	
 	if (notInMenu) {
 		
@@ -128,7 +113,6 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 					}
 
 				}
-				
 				
 			}
 		}
@@ -225,7 +209,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 			if(BuildingManager)
 			currentLevel->UpdateMissions(toBeBuildObject->getType(), 1, m_menu); //gameobjectplacement
 			confirmClicked();
-			makeBuilding(toBeBuildObject);
+			//makeBuilding(toBeBuildObject);
 			targetPos = NULL;
 			pickedTile = NULL;
 		}
