@@ -1,5 +1,6 @@
 #pragma once
 #include "Building.h"
+
 class Apartment :
     public Building
 {
@@ -8,15 +9,16 @@ public:
         PowerUse = 1;
         WaterUse = 1;
         NutrientUse = 4;
-        ressources.Sauerstoff_per_Build = 100;
-        ressources.Stein_per_Build = 100;
-        ressources.Strom_per_Build = 100;
+       
         Category = BuildingCategory::Living;
 
         setModel("models\\Barrack.obj");
 	    //this->getModel()->m_pmaterial->LoadPreset("Concrete");
     }
+   
+    void OnClick() override {
 
+    }
     Resources getBuildCost() {
         Resources cost;
         cost.Steel = 10;
@@ -24,5 +26,7 @@ public:
         cost.Wood = 20;
         return cost;
     }
+
+    
 };
 

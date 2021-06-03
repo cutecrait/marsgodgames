@@ -51,7 +51,7 @@ private:
 	bool toolTipCreate = true;
 	bool clicked = false;
 	bool isclicked = false;
-
+	bool roboPopUpopen = false;
 	// Objekt, das gebaut werden soll (bzw. im Moment platziert werden kann)
 	CGameObjectPlacement* toBeBuildObject;
 	Building* toBeBuiltBuilding;
@@ -66,6 +66,11 @@ private:
 	// Karo: Save um Checkpoint zu setzen
 	Save save;
 	bool saveable = true;
+	MapTile* pickedTile = nullptr;
+	Building* onClickBuilding;
+	bool notInMenu = false;
+	CGeo* blaa;
+	Building* buildtest;
 
 };
 

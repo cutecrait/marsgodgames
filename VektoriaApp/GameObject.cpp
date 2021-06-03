@@ -33,10 +33,7 @@ void GameObject::TransformGeo()
 	}
 }
 
-GameObject::Ressources_Data& GameObject::getRessources()
-{
-	return ressources;
-}
+
 
 void GameObject::setModel(char* modelpfad)
 {

@@ -50,7 +50,7 @@ public:
 	// Gibt struct aus, der die Ressourcen Informationen enthält
 	// Momentan bitte nicht verwenden. Die Ressourcen kommen in die jeweiligen Buildings rein. 
 	// Andere GameObjects kosten erstmal nichts.
-	Ressources_Data& getRessources();
+	virtual Resources getRessources() { return ressis; }
 
 	// Initialiserungmethode der GameObjects
 	virtual void Init(char* model, char* material, int, int, int);
@@ -79,7 +79,8 @@ private:
 
 protected:
 
-	Ressources_Data ressources;
+	
+	Resources ressis;
 
 	int m_res1;
 	int m_res2;

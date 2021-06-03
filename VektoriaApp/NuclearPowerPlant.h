@@ -12,7 +12,7 @@ public:
         Category = BuildingCategory::Industry;
 
         setModel("models\\kraftwerk.obj");
-        //this->getModel()->m_pmaterial->LoadPreset("Concrete");
+        // this->getModel()->m_pmaterial->LoadPreset("Concrete");
     }
 
     Resources getBuildCost() {

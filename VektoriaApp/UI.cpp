@@ -62,6 +62,7 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	m_viewport = zv;
 	InitMaterial();
 	InitToolTip();
+	m_roboPopUP.Init(cursor,&m_matStats,font);
 	m_start.Init(cursor, font, CFloatRect(0.f, 0.9, 0.15, 0.1));
 	m_start.SetLabel("Menu");
 
@@ -135,9 +136,10 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	zv->AddOverlay(&m_confirm);
 	zv->AddOverlay(&m_cancel);
 	zv->AddOverlay(&m_resBack);
-
+	//zv->AddOverlay(&m_roboPopUP.m_robo1Add);
 	zv->AddOverlay(&m_statistic);
 	zv->AddOverlay(&m_statsBack);
+	zv->AddOverlay(&m_roboPopUP.m_main);
 	//zv->AddOverlay(&m_tooltip);
 
 	m_resBack.AddOverlay(&m_concrete);
@@ -248,6 +250,11 @@ void UI::updatePlayer() {
 	m_concreteMinus.SwitchOff();
 	m_steelMinus.SwitchOff();
 	m_woodMinus.SwitchOff();
+}
+roboPopUp* UI::getRobo(roboPopUp * einsrobo)
+{
+
+	return einsrobo;
 }
 void UI::tooltip(std::string headline, int res1, int res2, int res3, int anzahl, std::string whatHappens) {
 	m_headlineW.PrintString(&headline[0]);
