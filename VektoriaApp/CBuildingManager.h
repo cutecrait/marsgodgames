@@ -23,6 +23,8 @@
 
 using namespace Vektoria;
 
+const int TYP_LENGTH = 20;
+
 class CBuildingManager
 {
 public:
@@ -30,7 +32,7 @@ public:
 	CBuildingManager();
 	~CBuildingManager();
 
-	// enum Typ - Beinhaltet alle Gebäude-Typen
+	// enum Typ - Beinhaltet alle Gebï¿½ude-Typen
 	// NOCH ZU ERWEITERN!!!
 	enum class Typ {
 		None = 0,
@@ -55,7 +57,7 @@ public:
 	// Sucht nach einem bestimmten GameObjectPlacement
 	CGameObjectPlacement* lookForGameObject(Typ&);
 
-	// Update-Methode der Gebäude pro Tick
+	// Update-Methode der Gebï¿½ude pro Tick
 	void UpdateBuildings(float deltaTime);
 
 	void IncreaseNrOfBuildings(Typ&);
@@ -65,41 +67,24 @@ public:
 	
 
 private:
-
 	CScene* m_zs;
 
-	// Für jeden Gebäudetyp bzw. für jede Kategorie feste Anzahl an Gebäuden
-	// Muss noch erweitert werden!
-	CGameObjectPlacement Apartments[20];
-	CGameObjectPlacement RoboFabrik[5];
-	CGameObjectPlacement NuclearPowerPlants[20];
-	CGameObjectPlacement SolarPowerPlants[20];
+	CGameObjectPlacement Apartments[50];
+	CGameObjectPlacement ControlCenters[1];
 	CGameObjectPlacement FoodFarms[20];
 	CGameObjectPlacement Foundrys[20];
 	CGameObjectPlacement GravelPlants[20];
-	CGameObjectPlacement Hospitals[20];
+	CGameObjectPlacement Hospitals[5];
+	CGameObjectPlacement Laboratorys[5];
+	CGameObjectPlacement Launchpads[1];
 	CGameObjectPlacement Mines[20];
-	CGameObjectPlacement Laboratorys[20];
+	CGameObjectPlacement NuclearPowerPlants[10];
+	CGameObjectPlacement RobotFactorys[2];
+	CGameObjectPlacement SolarPowerPlants[20];
 	CGameObjectPlacement TreeFarms[20];
-	CGameObjectPlacement Wells[20];
+	CGameObjectPlacement Wells[30];
 
-	CGameObjectPlacement ControlCenter_;
-	CGameObjectPlacement LaunchPad;
-		
-
-
-	// Die Anzahl an Gebäuden, die schon gebaut wurde
-	int m_NrOfApartment;
-	int m_NrOfNuclearPerPlants;
-	int m_NrOfSolarPowerPlants;
-	int m_NrOfRoboFabrik;
-	int m_NrOfFoodFarms;
-	int m_NrOfFoundrys;
-	int m_NrOfGravelPlants;
-	int m_NrOfHospitals;
-	int m_NrOfMines;
-	int m_NrOfLaboratorys;
-	int m_NrOfTreeFarms;
-	int m_NrOfWells;
+	// Die Anzahl an Buildings, die schon gebaut wurde
+	int m_NrsOfBuildings[TYP_LENGTH];
 };
 

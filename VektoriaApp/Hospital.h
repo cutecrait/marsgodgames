@@ -11,7 +11,7 @@ public:
 
         Category = BuildingCategory::Living;
 
-        // set model
+        setModel("models\\monkey.obj");
         // set material
     }
 
