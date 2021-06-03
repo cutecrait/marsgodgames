@@ -70,19 +70,19 @@ private:
 	CScene* m_zs;
 
 	CGameObjectPlacement Apartments[50];
-	CGameObjectPlacement ControlCenters[50];
-	CGameObjectPlacement FoodFarms[50];
-	CGameObjectPlacement Foundrys[50];
-	CGameObjectPlacement GravelPlants[50];
-	CGameObjectPlacement Hospitals[50];
-	CGameObjectPlacement Laboratorys[50];
-	CGameObjectPlacement Launchpads[50];
-	CGameObjectPlacement Mines[50];
-	CGameObjectPlacement NuclearPowerPlants[50];
-	CGameObjectPlacement RobotFactorys[50];
-	CGameObjectPlacement SolarPowerPlants[50];
-	CGameObjectPlacement TreeFarms[50];
-	CGameObjectPlacement Wells[50];
+	CGameObjectPlacement ControlCenters[1];
+	CGameObjectPlacement FoodFarms[20];
+	CGameObjectPlacement Foundrys[20];
+	CGameObjectPlacement GravelPlants[20];
+	CGameObjectPlacement Hospitals[5];
+	CGameObjectPlacement Laboratorys[5];
+	CGameObjectPlacement Launchpads[1];
+	CGameObjectPlacement Mines[20];
+	CGameObjectPlacement NuclearPowerPlants[10];
+	CGameObjectPlacement RobotFactorys[2];
+	CGameObjectPlacement SolarPowerPlants[20];
+	CGameObjectPlacement TreeFarms[20];
+	CGameObjectPlacement Wells[30];
 
 	// Die Anzahl an Buildings, die schon gebaut wurde
 	int m_NrsOfBuildings[TYP_LENGTH];
