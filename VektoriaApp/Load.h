@@ -3,6 +3,21 @@
 #include "GameObject.h"
 #include "BeispielForGameObject.h"
 #include "Vektoria\Root.h"
+#include "Apartment.h"
+#include "Building.h"
+#include "ControlCenter.h"
+#include "FoodFarm.h"
+#include "Foundry.h"
+#include "GravelPlant.h"
+#include "Hospital.h"
+#include "Laboratory.h"
+#include "Launchpad.h"
+#include "Mine.h"
+#include "NuclearPowerPlant.h"
+#include "RobotFactory.h"
+#include "SolarPowerPlant.h"
+#include "TreeFarm.h"
+#include "Well.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -22,10 +37,22 @@ private:
 	
 	//GOs
 	BeispielForGameObject* beisforgamobj;
+	Apartment* apartment;
+	ControlCenter* controlcenter;
+	FoodFarm* foodfarm;
+	Foundry* foundry;
+	GravelPlant* gravelplant;
+	Hospital* hospital;
+	Laboratory* laboratory;
+	Launchpad* launchpad;
+	Mine* mine; 
+	NuclearPowerPlant* nuclearpowerplant;
+	RobotFactory* robotfactory;
+	SolarPowerPlant* solarpowerplant;
+	TreeFarm* treefarm;
+	Well* well;
 	GameObject* geo_arr[100];
-	// TestCube
-	CGeoCube m_cube;
-	CMaterial* cube_mat;
+	
 	CPlacement* m_placements[100];
 	int pos_id;
 	float* pos_arr[100];

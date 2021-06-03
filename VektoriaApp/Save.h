@@ -4,6 +4,21 @@
 
 #include "Vektoria\Root.h"
 #include "BeispielForGameObject.h"
+#include "Apartment.h"
+#include "Building.h"
+#include "ControlCenter.h"
+#include "FoodFarm.h"
+#include "Foundry.h"
+#include "GravelPlant.h"
+#include "Hospital.h"
+#include "Laboratory.h"
+#include "Launchpad.h"
+#include "Mine.h"
+#include "NuclearPowerPlant.h"
+#include "RobotFactory.h"
+#include "SolarPowerPlant.h"
+#include "TreeFarm.h"
+#include "Well.h"
 #include <map>
 #include <iostream>
 #include <array>
