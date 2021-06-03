@@ -26,6 +26,8 @@
 
 using namespace Vektoria;
 
+const int TYP_LENGTH = 20;
+
 class CBuildingManager
 {
 public:
@@ -52,10 +54,6 @@ public:
 		TreeFarm,
 		Well,
 
-		Hotel,
-		Villa,
-		WaterTank,
-		Dome,
 		Test};
 	
 	// Initialisierung des BuildingManagers
@@ -78,27 +76,26 @@ private:
 	CScene* m_zs;
 
 	// Zum Test hier die Beispiel GameObject-Klasse
-	CGameObjectPlacement BeispielGameObjects[20];
+	CGameObjectPlacement Tests[50];
 
 	// Für jeden Gebäudetyp bzw. für jede Kategorie feste Anzahl an Gebäuden
 	// Muss noch erweitert werden!
 	CGameObjectPlacement Apartments[50];
-	CGameObjectPlacement Versorgung[50];
-	CGameObjectPlacement RoboFabrik[5];
-	/*CGameObjectPlacement NuclearPowerPlant[20];
-	CGameObjectPlacement SolarPowerPlant[20];
-	CGameObjectPlacement Dome[20];
-	CGameObjectPlacement WaterTank[20];*/
-
+	CGameObjectPlacement ControlCenters[50];
+	CGameObjectPlacement FoodFarms[50];
+	CGameObjectPlacement Foundrys[50];
+	CGameObjectPlacement GravelPlants[50];
+	CGameObjectPlacement Hospitals[50];
+	CGameObjectPlacement Laboratorys[50];
+	CGameObjectPlacement Launchpads[50];
+	CGameObjectPlacement Mines[50];
+	CGameObjectPlacement NuclearPowerPlants[50];
+	CGameObjectPlacement RobotFactorys[50];
+	CGameObjectPlacement SolarPowerPlants[50];
+	CGameObjectPlacement TreeFarms[50];
+	CGameObjectPlacement Wells[50];
 
 	// Die Anzahl an Gebäuden, die schon gebaut wurde
-	int m_NrOfTestObjects;
-	int m_NrOfApartment;
-	int m_NrOfVersorgung;
-	int m_NrOfNuclearPerPlants;
-	int m_NrOfSolarPowerPlants;
-	int m_NrOfDomes;
-	int m_NrOfWaterTanks;
-	int m_NrOfRoboFabrik;
+	int m_NrsOfBuildings[TYP_LENGTH];
 };
 

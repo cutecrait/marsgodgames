@@ -2,15 +2,10 @@
 
 CBuildingManager::CBuildingManager()
 {
-	m_NrOfVersorgung = 0;
-	m_NrOfApartment = 0;
-	m_NrOfTestObjects = 0;
-	m_NrOfNuclearPerPlants = 0;
-	m_NrOfSolarPowerPlants = 0;
-	m_NrOfDomes = 0;
-	m_NrOfWaterTanks = 0;
-	m_NrOfRoboFabrik = 0;
-
+	for (int i = 0; i < TYP_LENGTH; i++)
+	{
+		m_NrsOfBuildings[i] = 0;
+	}
 }
 
 CBuildingManager::~CBuildingManager()
@@ -23,26 +18,96 @@ void CBuildingManager::Init(CScene* scene)
 	m_zs = scene;
 
 	// Initialisere die Beispiel GameObjects
-	for (int i = 0; i < 20; i++)
-	{
-		BeispielGameObjects[i].setGameObject(new BeispielForGameObject);
-		BeispielGameObjects[i].Init(typeid(BeispielForGameObject).name());
-		BeispielGameObjects[i].getGameObject()->TransformGeo();
-		m_zs->AddPlacement(&BeispielGameObjects[i]);
-	}
-	for (int i = 0; i < 20; i++) {
+	for (int i = 0; i < size(Apartments); i++) {
 		Apartments[i].setGameObject(new Apartment);
 		Apartments[i].Init(typeid(Apartment).name());
 		Apartments[i].getGameObject()->TransformGeo();
 		m_zs->AddPlacement(&Apartments[i]);
 	}
-	for (int i = 0; i < 5; i++) {
-		RoboFabrik[i].setGameObject(new RobotFactory);
-		RoboFabrik[i].Init(typeid(RobotFactory).name());
-		RoboFabrik[i].getGameObject()->TransformGeo();
-		m_zs->AddPlacement(&RoboFabrik[i]);
+	for (int i = 0; i < size(ControlCenters); i++) {
+		ControlCenters[i].setGameObject(new ControlCenter);
+		ControlCenters[i].Init(typeid(ControlCenter).name());
+		ControlCenters[i].getGameObject()->TransformGeo();
+		m_zs->AddPlacement(&ControlCenters[i]);
 	}
-
+	for (int i = 0; i < size(FoodFarms); i++) {
+		FoodFarms[i].setGameObject(new FoodFarm);
+		FoodFarms[i].Init(typeid(FoodFarm).name());
+		FoodFarms[i].getGameObject()->TransformGeo();
+		m_zs->AddPlacement(&FoodFarms[i]);
+	}
+	for (int i = 0; i < size(Foundrys); i++) {
+		Foundrys[i].setGameObject(new Foundry);
+		Foundrys[i].Init(typeid(Foundry).name());
+		Foundrys[i].getGameObject()->TransformGeo();
+		m_zs->AddPlacement(&Foundrys[i]);
+	}
+	for (int i = 0; i < size(GravelPlants); i++) {
+		GravelPlants[i].setGameObject(new GravelPlant);
+		GravelPlants[i].Init(typeid(GravelPlant).name());
+		GravelPlants[i].getGameObject()->TransformGeo();
+		m_zs->AddPlacement(&GravelPlants[i]);
+	}
+	for (int i = 0; i < size(Hospitals); i++) {
+		Hospitals[i].setGameObject(new Hospital);
+		Hospitals[i].Init(typeid(Hospital).name());
+		Hospitals[i].getGameObject()->TransformGeo();
+		m_zs->AddPlacement(&Hospitals[i]);
+	}
+	for (int i = 0; i < size(Laboratorys); i++) {
+		Laboratorys[i].setGameObject(new Laboratory);
+		Laboratorys[i].Init(typeid(Laboratory).name());
+		Laboratorys[i].getGameObject()->TransformGeo();
+		m_zs->AddPlacement(&Laboratorys[i]);
+	}
+	for (int i = 0; i < size(Launchpads); i++) {
+		Launchpads[i].setGameObject(new Launchpad);
+		Launchpads[i].Init(typeid(Launchpad).name());
+		Launchpads[i].getGameObject()->TransformGeo();
+		m_zs->AddPlacement(&Launchpads[i]);
+	}
+	for (int i = 0; i < size(Mines); i++) {
+		Mines[i].setGameObject(new Mine);
+		Mines[i].Init(typeid(Mine).name());
+		Mines[i].getGameObject()->TransformGeo();
+		m_zs->AddPlacement(&Mines[i]);
+	}
+	for (int i = 0; i < size(NuclearPowerPlants); i++) {
+		NuclearPowerPlants[i].setGameObject(new NuclearPowerPlant);
+		NuclearPowerPlants[i].Init(typeid(NuclearPowerPlant).name());
+		NuclearPowerPlants[i].getGameObject()->TransformGeo();
+		m_zs->AddPlacement(&NuclearPowerPlants[i]);
+	}
+	for (int i = 0; i < size(RobotFactorys); i++) {
+		RobotFactorys[i].setGameObject(new RobotFactory);
+		RobotFactorys[i].Init(typeid(RobotFactory).name());
+		RobotFactorys[i].getGameObject()->TransformGeo();
+		m_zs->AddPlacement(&RobotFactorys[i]);
+	}
+	for (int i = 0; i < size(SolarPowerPlants); i++) {
+		SolarPowerPlants[i].setGameObject(new SolarPowerPlant);
+		SolarPowerPlants[i].Init(typeid(SolarPowerPlant).name());
+		SolarPowerPlants[i].getGameObject()->TransformGeo();
+		m_zs->AddPlacement(&SolarPowerPlants[i]);
+	}
+	for (int i = 0; i < size(TreeFarms); i++) {
+		TreeFarms[i].setGameObject(new TreeFarm);
+		TreeFarms[i].Init(typeid(TreeFarm).name());
+		TreeFarms[i].getGameObject()->TransformGeo();
+		m_zs->AddPlacement(&TreeFarms[i]);
+	}
+	for (int i = 0; i < size(Wells); i++) {
+		Wells[i].setGameObject(new Well);
+		Wells[i].Init(typeid(Well).name());
+		Wells[i].getGameObject()->TransformGeo();
+		m_zs->AddPlacement(&Wells[i]);
+	}
+	for (int i = 0; i < size(Tests); i++) {
+		Tests[i].setGameObject(new BeispielForGameObject);
+		Tests[i].Init(typeid(BeispielForGameObject).name());
+		Tests[i].getGameObject()->TransformGeo();
+		m_zs->AddPlacement(&Tests[i]);
+	}
 	// Initialsierungsmethoden der Gebäude noch einfügen!
 	// ...
 }
@@ -50,37 +115,13 @@ void CBuildingManager::Init(CScene* scene)
 void CBuildingManager::UpdateBuildings(float deltaTime)
 {
 	int y = 0;
-
-	for (int i = 0; i < 20; i++)
-	{
-		if (BeispielGameObjects[i].getBuildStatus() == true)
-		{
-			BeispielGameObjects[i].Update(deltaTime);
-			y++;
-			if (y == m_NrOfTestObjects)
-				break;
-		}
-	
-	}
-	y = 0;
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < size(Apartments); i++)
 	{
 		if (Apartments[i].getBuildStatus() == true)
 		{
 			Apartments[i].Update(deltaTime);
 			y++;
-			if (y == m_NrOfApartment)
-				break;
-		}
-		
-	}
-	y = 0;
-
-	for (int i = 0; i < 5; i++) {
-		if (RoboFabrik[i].getBuildStatus() == true) {
-			RoboFabrik[i].Update(deltaTime);
-			y++;
-			if (y == m_NrOfRoboFabrik)
+			if (y == m_NrsOfBuildings[static_cast<int>(Typ::Apartment)])
 				break;
 		}
 	}
@@ -93,60 +134,12 @@ void CBuildingManager::UpdateBuildings(float deltaTime)
 
 void CBuildingManager::IncreaseNrOfBuildings(Typ& typ)
 {
-	switch (typ)
-	{
-	case Typ::Test:
-		m_NrOfTestObjects++;
-
-		break;
-
-	case Typ::Dome:
-	case Typ::Hotel:
-	case Typ::Apartment:
-		m_NrOfApartment++;
-
-		break;
-
-	case Typ::NuclearPowerPlant:
-	case Typ::SolarPowerPlant:
-	case Typ::Villa:
-	case Typ::WaterTank:
-	case Typ::RobotFactory:
-		m_NrOfRoboFabrik++;
-		break;
-	default: break;
-
-	}
-	
+	m_NrsOfBuildings[static_cast<int>(typ)]++;
 }
 
 void CBuildingManager::DecreaseNrOfBuildings(Typ& typ)
 {
-	switch (typ)
-	{
-	case Typ::Test:
-		m_NrOfTestObjects--;
-
-		break;
-
-	case Typ::Dome:
-	case Typ::Hotel:
-	case Typ::Apartment:
-		m_NrOfApartment--;
-
-		break;
-
-	case Typ::NuclearPowerPlant:
-	case Typ::SolarPowerPlant:
-	case Typ::Villa:
-	case Typ::WaterTank:
-	case Typ::RobotFactory:
-		m_NrOfRoboFabrik--;
-		break;
-	default: break;
-
-	}
-	
+	m_NrsOfBuildings[static_cast<int>(typ)]--;
 }
 
 void CBuildingManager::AddNewBuilding(Typ t, MapTile* targetTile)
@@ -157,69 +150,10 @@ void CBuildingManager::AddNewBuilding(Typ t, MapTile* targetTile)
 	CAudioManager::Instance().Ambient_Building_Sound.Start();
 
 	auto gop = lookForGameObject(t);
-	Building* newBuilding;
+	if (!gop)
+		return;
 
-	switch (t)
-	{
-	case CBuildingManager::Typ::None:
-		break;
-	case CBuildingManager::Typ::Apartment:
-		newBuilding = new Apartment;
-		break;
-	case CBuildingManager::Typ::ControlCenter:
-		newBuilding = new ControlCenter;
-		break;
-	case CBuildingManager::Typ::FoodFarm:
-		newBuilding = new FoodFarm;
-		break;
-	case CBuildingManager::Typ::Foundry:
-		newBuilding = new Foundry;
-		break;
-	case CBuildingManager::Typ::GravelPlant:
-		newBuilding = new GravelPlant;
-		break;
-	case CBuildingManager::Typ::Hospital:
-		newBuilding = new Hospital;
-		break;
-	case CBuildingManager::Typ::Laboratory:
-		newBuilding = new Laboratory;
-		break;
-	case CBuildingManager::Typ::Launchpad:
-		newBuilding = new Launchpad;
-		break;
-	case CBuildingManager::Typ::Mine:
-		newBuilding = new Mine;
-		break;
-	case CBuildingManager::Typ::NuclearPowerPlant:
-		newBuilding = new NuclearPowerPlant;
-		break;
-	case CBuildingManager::Typ::RobotFactory:
-		newBuilding = new RobotFactory;
-		break;
-	case CBuildingManager::Typ::SolarPowerPlant:
-		newBuilding = new SolarPowerPlant;
-		break;
-	case CBuildingManager::Typ::TreeFarm:
-		newBuilding = new TreeFarm;
-		break;
-	case CBuildingManager::Typ::Well:
-		newBuilding = new Well;
-		break;
-	case CBuildingManager::Typ::Hotel:
-		break;
-	case CBuildingManager::Typ::Villa:
-		break;
-	case CBuildingManager::Typ::WaterTank:
-		break;
-	case CBuildingManager::Typ::Dome:
-		break;
-	case CBuildingManager::Typ::Test:
-		break;
-	default:
-		break;
-	}
-
-	gop->setGameObject(newBuilding);
+	Building* newBuilding = (Building*)gop->getGameObject();
 
 	Player* p = &Player::Instance();
 	auto cost = newBuilding->getBuildCost();
@@ -231,11 +165,10 @@ void CBuildingManager::AddNewBuilding(Typ t, MapTile* targetTile)
 	p->usePower(newBuilding->PowerUse);
 	p->useWater(newBuilding->WaterUse);
 
-	if (targetTile)
-	{
-		gop->Translate(targetTile->GetPos());
-		targetTile->Free = false;
-	}
+
+	gop->Translate(targetTile->GetPos());
+	targetTile->Free = false;
+
 	gop->SwitchOn();
 
 	IncreaseNrOfBuildings(t);
@@ -248,45 +181,148 @@ void CBuildingManager::AddNewBuilding(Typ t, MapTile* targetTile)
 CGameObjectPlacement* CBuildingManager::lookForGameObject(Typ& typ)
 {
 	// Überprüft, welcher Typ übergeben wurde und sucht entspechendes Gebäude
-	// funktioniert bis jetzt nur bei Typen Test, Apartment, RoboFabrik
+
 	switch (typ)
 	{
-		case Typ::Test:
-			for (int i = 0; i < 20; i++)
+	case CBuildingManager::Typ::None:
+		break;
+	case CBuildingManager::Typ::Apartment:
+		for (int i = 0; i < size(Apartments); i++)
+		{
+			if (Apartments[i].getBuildStatus() == false)
 			{
-				if (BeispielGameObjects[i].getBuildStatus() == false)
-				{
-					return &BeispielGameObjects[i];
-				}
+				return &Apartments[i];
 			}
-
-			break;
-		case Typ::Dome:
-		case Typ::Hotel:
-		case Typ::Apartment:
-			for (int i = 0; i < 20; i++)
+		}
+		break;
+	case CBuildingManager::Typ::ControlCenter:
+		for (int i = 0; i < size(ControlCenters); i++)
+		{
+			if (ControlCenters[i].getBuildStatus() == false)
 			{
-				if (Apartments[i].getBuildStatus() == false)
-				{
-					return &Apartments[i];
-				}
+				return &ControlCenters[i];
 			}
-
-			break;
-
-		case Typ::NuclearPowerPlant:
-		case Typ::SolarPowerPlant:
-		case Typ::Villa:
-		case Typ::WaterTank:
-		case Typ::RobotFactory:
-			for (int i = 0; i < 5; i++) {
-				if (RoboFabrik[i].getBuildStatus() == false) {
-					return &RoboFabrik[i];
-				}
+		}
+		break;
+	case CBuildingManager::Typ::FoodFarm:
+		for (int i = 0; i < size(FoodFarms); i++)
+		{
+			if (FoodFarms[i].getBuildStatus() == false)
+			{
+				return &FoodFarms[i];
 			}
-			break;
-		default: break;
-
+		}
+		break;
+	case CBuildingManager::Typ::Foundry:
+		for (int i = 0; i < size(Foundrys); i++)
+		{
+			if (Foundrys[i].getBuildStatus() == false)
+			{
+				return &Foundrys[i];
+			}
+		}
+		break;
+	case CBuildingManager::Typ::GravelPlant:
+		for (int i = 0; i < size(GravelPlants); i++)
+		{
+			if (GravelPlants[i].getBuildStatus() == false)
+			{
+				return &GravelPlants[i];
+			}
+		}
+		break;
+	case CBuildingManager::Typ::Hospital:
+		for (int i = 0; i < size(Hospitals); i++)
+		{
+			if (Hospitals[i].getBuildStatus() == false)
+			{
+				return &Hospitals[i];
+			}
+		}
+		break;
+	case CBuildingManager::Typ::Laboratory:
+		for (int i = 0; i < size(Laboratorys); i++)
+		{
+			if (Laboratorys[i].getBuildStatus() == false)
+			{
+				return &Laboratorys[i];
+			}
+		}
+		break;
+	case CBuildingManager::Typ::Launchpad:
+		for (int i = 0; i < size(Launchpads); i++)
+		{
+			if (Launchpads[i].getBuildStatus() == false)
+			{
+				return &Launchpads[i];
+			}
+		}
+		break;
+	case CBuildingManager::Typ::Mine:
+		for (int i = 0; i < size(Mines); i++)
+		{
+			if (Mines[i].getBuildStatus() == false)
+			{
+				return &Mines[i];
+			}
+		}
+		break;
+	case CBuildingManager::Typ::NuclearPowerPlant:
+		for (int i = 0; i < size(NuclearPowerPlants); i++)
+		{
+			if (NuclearPowerPlants[i].getBuildStatus() == false)
+			{
+				return &NuclearPowerPlants[i];
+			}
+		}
+		break;
+	case CBuildingManager::Typ::RobotFactory:
+		for (int i = 0; i < size(RobotFactorys); i++)
+		{
+			if (RobotFactorys[i].getBuildStatus() == false)
+			{
+				return &RobotFactorys[i];
+			}
+		}
+		break;
+	case CBuildingManager::Typ::SolarPowerPlant:
+		for (int i = 0; i < size(SolarPowerPlants); i++)
+		{
+			if (SolarPowerPlants[i].getBuildStatus() == false)
+			{
+				return &SolarPowerPlants[i];
+			}
+		}
+		break;
+	case CBuildingManager::Typ::TreeFarm:
+		for (int i = 0; i < size(TreeFarms); i++)
+		{
+			if (TreeFarms[i].getBuildStatus() == false)
+			{
+				return &TreeFarms[i];
+			}
+		}
+		break;
+	case CBuildingManager::Typ::Well:
+		for (int i = 0; i < size(Wells); i++)
+		{
+			if (Wells[i].getBuildStatus() == false)
+			{
+				return &Wells[i];
+			}
+		}
+		break;
+	case CBuildingManager::Typ::Test:
+		for (int i = 0; i < size(Tests); i++)
+		{
+			if (Tests[i].getBuildStatus() == false)
+			{
+				return &Tests[i];
+			}
+		}
+		break;
+	default:
+		break;
 	}
 
 	// Maximale Anzahl an Gebäude-Typ verbaut
