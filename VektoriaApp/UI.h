@@ -36,9 +36,9 @@ private:
 	CMaterial m_matsForSelectMain[5];
 
 	//Tooltip-Mats
-	CMaterial m_matstein;
-	CMaterial m_matchrom;
-	CMaterial m_matstahl;
+	CMaterial m_matsteel;
+	CMaterial m_matconcrete;
+	CMaterial m_matwood;
 
 
 	CMaterial m_matsForSelect1[3];

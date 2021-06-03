@@ -1,6 +1,7 @@
 #pragma once
 #include "Building.h"
 #include "roboPopUp.h"
+#include "Player.h"
 #include "testRobo.h"
 class RobotFactory :
     public Building

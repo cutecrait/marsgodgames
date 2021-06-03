@@ -12,6 +12,7 @@ UI::~UI()
 void UI::InitMaterial()
 {
 	m_material.MakeTextureSprite("textures\\Menu_Button.png");
+	
 	m_matsForSelectMain[0].MakeTextureSprite("textures\\Menu_Button.png");
 	m_matsForSelectMain[1].MakeTextureSprite("textures\\Menu_Button.png");
 	m_matsForSelectMain[2].MakeTextureSprite("textures\\Menu_Button.png");
@@ -49,9 +50,9 @@ void UI::InitMaterial()
 	m_matRes.MakeTextureSprite("textures\\Player_Res_Window.png");
 
 	m_resMaterial.MakeTextureSprite("textures\\red_image.jpg");
-	m_matstein.MakeTextureSprite("textures\\Tooltip_stein_texture.png");
-	m_matchrom.MakeTextureSprite("textures\\Tooltip_chrom_texture.png");
-	m_matstahl.MakeTextureSprite("textures\\Tooltip_stahl_texture.png");
+	m_matsteel.MakeTextureSprite("textures\\Tooltip_stahl_texture.png");
+	m_matconcrete.MakeTextureSprite("textures\\Tooltip_concrete_texture.png");
+	m_matwood.MakeTextureSprite("textures\\Tooltip_wood_texture.png");
 
 	m_descMaterial.MakeTextureSprite("textures\\green_image.jpg");
 
@@ -284,7 +285,7 @@ void UI::InitToolTip() {
 	m_headlineW.SetLayer(0.97);
 
 	//ressource1
-	m_kosten1.Init(&m_matstein, CFloatRect(0, 0.75, 0.3, 0.25));
+	m_kosten1.Init(&m_matsteel, CFloatRect(0, 0.75, 0.3, 0.25));
 	m_kosten1.SetLayer(0.98);
 	m_kosten1.SetInnerOn();
 	m_kosten1W.Init(CFloatRect(0, 0, 1, 1), 5, &m_redFont);
@@ -292,7 +293,7 @@ void UI::InitToolTip() {
 	m_kosten1W.SetLayer(0.97);
 
 	//ressource2
-	m_kosten2.Init(&m_matstahl, CFloatRect(0.33, 0.75, 0.3, 0.25));
+	m_kosten2.Init(&m_matconcrete, CFloatRect(0.33, 0.75, 0.3, 0.25));
 	m_kosten2.SetLayer(0.98);
 	m_kosten2.SetInnerOn();
 	m_kosten2W.Init(CFloatRect(0, 0, 1, 1), 5, &m_redFont);
@@ -300,7 +301,7 @@ void UI::InitToolTip() {
 	m_kosten2W.SetLayer(0.97);
 
 	//ressource3
-	m_kosten3.Init(&m_matchrom, CFloatRect(0.66, 0.75, 0.3, 0.25));
+	m_kosten3.Init(&m_matwood, CFloatRect(0.66, 0.75, 0.3, 0.25));
 	m_kosten3.SetLayer(0.98);
 	m_kosten3.SetInnerOn();
 	m_kosten3W.Init(CFloatRect(0, 0, 1, 1), 5, &m_redFont);

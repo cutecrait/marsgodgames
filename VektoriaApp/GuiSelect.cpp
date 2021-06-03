@@ -50,7 +50,8 @@ namespace Vektoria
 		m_zfrOptionBase = CFloatRect(0.0f, 0.0f, 0.8f, 1.0f / m_iOptionsVisible);
 
 		// Option active states
-		m_zmOptionActive.MakeTextureSprite("textures\\Button_Click.png"); 
+		m_zmOptionActive.MakeTextureSprite("textures\\animated_button.tif"); 
+		m_zmOptionActive.SetAni(4, 3, 12);
 		m_zmOptionActive.SetTransparencyOn();
 		m_zmOptionActive.SetTransparency(0.2f);
 		m_proot->AddMaterial(&m_zmOptionActive);
