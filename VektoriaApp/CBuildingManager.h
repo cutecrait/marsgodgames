@@ -64,7 +64,7 @@ public:
 	void DecreaseNrOfBuildings(Typ&);
 
 	void AddNewBuilding(Typ, MapTile*);
-	
+	CGameObjectPlacement* getClosestGameObject(Typ);
 
 private:
 	CScene* m_zs;
@@ -86,5 +86,7 @@ private:
 
 	// Die Anzahl an Buildings, die schon gebaut wurde
 	int m_NrsOfBuildings[TYP_LENGTH];
+	int m_MaxBuildings[TYP_LENGTH];
+	CGameObjectPlacement* getBuildingList(Typ);
 };
 

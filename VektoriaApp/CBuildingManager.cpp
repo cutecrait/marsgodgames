@@ -6,6 +6,22 @@ CBuildingManager::CBuildingManager()
 	{
 		m_NrsOfBuildings[i] = 0;
 	}
+
+	m_MaxBuildings[(int)Typ::None] = 0;
+	m_MaxBuildings[(int)Typ::Apartment] = 50;
+	m_MaxBuildings[(int)Typ::ControlCenter] = 1;
+	m_MaxBuildings[(int)Typ::FoodFarm] = 20;
+	m_MaxBuildings[(int)Typ::Foundry] = 20;
+	m_MaxBuildings[(int)Typ::GravelPlant] = 1;
+	m_MaxBuildings[(int)Typ::Hospital] = 1;
+	m_MaxBuildings[(int)Typ::Laboratory] = 1;
+	m_MaxBuildings[(int)Typ::Launchpad] = 1;
+	m_MaxBuildings[(int)Typ::Mine] = 1;
+	m_MaxBuildings[(int)Typ::NuclearPowerPlant] = 1;
+	m_MaxBuildings[(int)Typ::RobotFactory] = 1;
+	m_MaxBuildings[(int)Typ::SolarPowerPlant] = 1;
+	m_MaxBuildings[(int)Typ::TreeFarm] = 1;
+	m_MaxBuildings[(int)Typ::Well] = 1;
 }
 
 CBuildingManager::~CBuildingManager()
@@ -17,7 +33,7 @@ void CBuildingManager::Init(CScene* scene)
 {
 	m_zs = scene;
 
-	// Initialisere die Beispiel GameObjects
+	// Initialisere die GameObjects
 	for (int i = 0; i < size(Apartments); i++) {
 		Apartments[i].setGameObject(new Apartment);
 		Apartments[i].Init(typeid(Apartment).name());
@@ -106,175 +122,22 @@ void CBuildingManager::Init(CScene* scene)
 
 void CBuildingManager::UpdateBuildings(float deltaTime)
 {
-	int y = 0;
-	for (int i = 0; i < size(Apartments); i++)
+	for (int typ = 1; typ < TYP_LENGTH; typ++)
 	{
-		if (Apartments[i].getBuildStatus() == true)
+		auto list = getBuildingList((Typ)typ);
+		int y = 0;
+		for (int i = 0; i < m_MaxBuildings[typ]; i++)
 		{
-			Apartments[i].Update(deltaTime);
-			y++;
-			if (y == m_NrsOfBuildings[static_cast<int>(Typ::Apartment)])
-				break;
+			if (list[i].getBuildStatus() == true)
+			{
+				list[i].Update(deltaTime);
+				y++;
+				if (y == m_NrsOfBuildings[typ])
+					break;
+			}
 		}
+		y = 0;
 	}
-	y = 0;
-
-	for (int i = 0; i < size(ControlCenters); i++)
-	{
-		if (ControlCenters[i].getBuildStatus() == true)
-		{
-			ControlCenters[i].Update(deltaTime);
-			y++;
-			if (y == m_NrsOfBuildings[static_cast<int>(Typ::ControlCenter)])
-				break;
-		}
-	}
-	y = 0;
-
-	for (int i = 0; i < size(FoodFarms); i++)
-	{
-		if (FoodFarms[i].getBuildStatus() == true)
-		{
-			FoodFarms[i].Update(deltaTime);
-			y++;
-			if (y == m_NrsOfBuildings[static_cast<int>(Typ::FoodFarm)])
-				break;
-		}
-	}
-	y = 0;
-
-	for (int i = 0; i < size(Foundrys); i++)
-	{
-		if (Foundrys[i].getBuildStatus() == true)
-		{
-			Foundrys[i].Update(deltaTime);
-			y++;
-			if (y == m_NrsOfBuildings[static_cast<int>(Typ::Foundry)])
-				break;
-		}
-	}
-	y = 0;
-
-	for (int i = 0; i < size(GravelPlants); i++)
-	{
-		if (GravelPlants[i].getBuildStatus() == true)
-		{
-			GravelPlants[i].Update(deltaTime);
-			y++;
-			if (y == m_NrsOfBuildings[static_cast<int>(Typ::GravelPlant)])
-				break;
-		}
-	}
-	y = 0;
-
-	for (int i = 0; i < size(Hospitals); i++)
-	{
-		if (Hospitals[i].getBuildStatus() == true)
-		{
-			Hospitals[i].Update(deltaTime);
-			y++;
-			if (y == m_NrsOfBuildings[static_cast<int>(Typ::Hospital)])
-				break;
-		}
-	}
-	y = 0;
-
-	for (int i = 0; i < size(Laboratorys); i++)
-	{
-		if (Laboratorys[i].getBuildStatus() == true)
-		{
-			Laboratorys[i].Update(deltaTime);
-			y++;
-			if (y == m_NrsOfBuildings[static_cast<int>(Typ::Laboratory)])
-				break;
-		}
-	}
-	y = 0;
-
-	for (int i = 0; i < size(Launchpads); i++)
-	{
-		if (Launchpads[i].getBuildStatus() == true)
-		{
-			Launchpads[i].Update(deltaTime);
-			y++;
-			if (y == m_NrsOfBuildings[static_cast<int>(Typ::Launchpad)])
-				break;
-		}
-	}
-	y = 0;
-
-	for (int i = 0; i < size(Mines); i++)
-	{
-		if (Mines[i].getBuildStatus() == true)
-		{
-			Mines[i].Update(deltaTime);
-			y++;
-			if (y == m_NrsOfBuildings[static_cast<int>(Typ::Mine)])
-				break;
-		}
-	}
-	y = 0;
-
-	for (int i = 0; i < size(NuclearPowerPlants); i++)
-	{
-		if (NuclearPowerPlants[i].getBuildStatus() == true)
-		{
-			NuclearPowerPlants[i].Update(deltaTime);
-			y++;
-			if (y == m_NrsOfBuildings[static_cast<int>(Typ::NuclearPowerPlant)])
-				break;
-		}
-
-	}
-	y = 0;
-
-	for (int i = 0; i < size(RobotFactorys); i++)
-	{
-		if (RobotFactorys[i].getBuildStatus() == true)
-		{
-			RobotFactorys[i].Update(deltaTime);
-			y++;
-			if (y == m_NrsOfBuildings[static_cast<int>(Typ::RobotFactory)])
-				break;
-		}
-	}
-	y = 0;
-
-	for (int i = 0; i < size(SolarPowerPlants); i++)
-	{
-		if (SolarPowerPlants[i].getBuildStatus() == true)
-		{
-			SolarPowerPlants[i].Update(deltaTime);
-			y++;
-			if (y == m_NrsOfBuildings[static_cast<int>(Typ::SolarPowerPlant)])
-				break;
-		}
-	}
-	y = 0;
-
-	for (int i = 0; i < size(TreeFarms); i++)
-	{
-		if (TreeFarms[i].getBuildStatus() == true)
-		{
-			TreeFarms[i].Update(deltaTime);
-			y++;
-			if (y == m_NrsOfBuildings[static_cast<int>(Typ::TreeFarm)])
-				break;
-		}
-	}
-	y = 0;
-
-	for (int i = 0; i < size(Wells); i++)
-	{
-		if (Wells[i].getBuildStatus() == true)
-		{
-			Wells[i].Update(deltaTime);
-			y++;
-			if (y == m_NrsOfBuildings[static_cast<int>(Typ::Well)])
-				break;
-		}
-	}
-	y = 0;
 }
 
 void CBuildingManager::IncreaseNrOfBuildings(Typ& typ)
@@ -323,143 +186,75 @@ void CBuildingManager::AddNewBuilding(Typ t, MapTile* targetTile)
 	save.fillPosAr(gop->getGameObject(), gop->GetPos().GetX(), gop->GetPos().GetZ());
 }
 
-CGameObjectPlacement* CBuildingManager::lookForGameObject(Typ& typ)
+CGameObjectPlacement* CBuildingManager::getClosestGameObject(Typ)
 {
-	// �berpr�ft, welcher Typ �bergeben wurde und sucht entspechendes Geb�ude
 
+	return nullptr;
+}
+
+CGameObjectPlacement* CBuildingManager::getBuildingList(Typ typ)
+{
 	switch (typ)
 	{
 	case CBuildingManager::Typ::None:
+		return nullptr;
 		break;
 	case CBuildingManager::Typ::Apartment:
-		for (int i = 0; i < size(Apartments); i++)
-		{
-			if (Apartments[i].getBuildStatus() == false)
-			{
-				return &Apartments[i];
-			}
-		}
+		return Apartments;
 		break;
 	case CBuildingManager::Typ::ControlCenter:
-		for (int i = 0; i < size(ControlCenters); i++)
-		{
-			if (ControlCenters[i].getBuildStatus() == false)
-			{
-				return &ControlCenters[i];
-			}
-		}
+		return ControlCenters;
 		break;
 	case CBuildingManager::Typ::FoodFarm:
-		for (int i = 0; i < size(FoodFarms); i++)
-		{
-			if (FoodFarms[i].getBuildStatus() == false)
-			{
-				return &FoodFarms[i];
-			}
-		}
+		return FoodFarms;
 		break;
 	case CBuildingManager::Typ::Foundry:
-		for (int i = 0; i < size(Foundrys); i++)
-		{
-			if (Foundrys[i].getBuildStatus() == false)
-			{
-				return &Foundrys[i];
-			}
-		}
+		return Foundrys;
 		break;
 	case CBuildingManager::Typ::GravelPlant:
-		for (int i = 0; i < size(GravelPlants); i++)
-		{
-			if (GravelPlants[i].getBuildStatus() == false)
-			{
-				return &GravelPlants[i];
-			}
-		}
+		return GravelPlants;
 		break;
 	case CBuildingManager::Typ::Hospital:
-		for (int i = 0; i < size(Hospitals); i++)
-		{
-			if (Hospitals[i].getBuildStatus() == false)
-			{
-				return &Hospitals[i];
-			}
-		}
+		return Hospitals;
 		break;
 	case CBuildingManager::Typ::Laboratory:
-		for (int i = 0; i < size(Laboratorys); i++)
-		{
-			if (Laboratorys[i].getBuildStatus() == false)
-			{
-				return &Laboratorys[i];
-			}
-		}
+		return Laboratorys;
 		break;
 	case CBuildingManager::Typ::Launchpad:
-		for (int i = 0; i < size(Launchpads); i++)
-		{
-			if (Launchpads[i].getBuildStatus() == false)
-			{
-				return &Launchpads[i];
-			}
-		}
+		return Launchpads;
 		break;
 	case CBuildingManager::Typ::Mine:
-		for (int i = 0; i < size(Mines); i++)
-		{
-			if (Mines[i].getBuildStatus() == false)
-			{
-				return &Mines[i];
-			}
-		}
+		return Mines;
 		break;
 	case CBuildingManager::Typ::NuclearPowerPlant:
-		for (int i = 0; i < size(NuclearPowerPlants); i++)
-		{
-			if (NuclearPowerPlants[i].getBuildStatus() == false)
-			{
-				return &NuclearPowerPlants[i];
-			}
-		}
+		return NuclearPowerPlants;
 		break;
 	case CBuildingManager::Typ::RobotFactory:
-		for (int i = 0; i < size(RobotFactorys); i++)
-		{
-			if (RobotFactorys[i].getBuildStatus() == false)
-			{
-				return &RobotFactorys[i];
-			}
-		}
+		return RobotFactorys;
 		break;
 	case CBuildingManager::Typ::SolarPowerPlant:
-		for (int i = 0; i < size(SolarPowerPlants); i++)
-		{
-			if (SolarPowerPlants[i].getBuildStatus() == false)
-			{
-				return &SolarPowerPlants[i];
-			}
-		}
+		return SolarPowerPlants;
 		break;
 	case CBuildingManager::Typ::TreeFarm:
-		for (int i = 0; i < size(TreeFarms); i++)
-		{
-			if (TreeFarms[i].getBuildStatus() == false)
-			{
-				return &TreeFarms[i];
-			}
-		}
+		return TreeFarms;
 		break;
 	case CBuildingManager::Typ::Well:
-		for (int i = 0; i < size(Wells); i++)
-		{
-			if (Wells[i].getBuildStatus() == false)
-			{
-				return &Wells[i];
-			}
-		}
+		return Wells;
 		break;
-
 	default:
 		break;
+	}
+}
+
+CGameObjectPlacement* CBuildingManager::lookForGameObject(Typ& typ)
+{
+	auto list = getBuildingList(typ);
+	for (int i = 0; i < m_MaxBuildings[(int)typ]; i++)
+	{
+		if (list[i].getBuildStatus() == false)
+		{
+			return &list[i];
+		}
 	}
 
 	// Maximale Anzahl an Geb�ude-Typ verbaut
