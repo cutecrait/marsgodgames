@@ -13,6 +13,8 @@ public:
 
         setModel("models\\monkey.obj");
         // set material
+
+        setAudio(&CAudioManager::Instance().Local_Foundry);
     }
 
     Resources getBuildCost() {

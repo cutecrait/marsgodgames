@@ -25,6 +25,13 @@ public:
 	CAudio Ambient_Building_Sound;
 	CAudio Ambient_Click_Sound;
 
+	CAudio Local_ControlCenter;
+	CAudio Local_Mine;
+	CAudio Local_Foundry;
+	CAudio Local_Well;
+	CAudio Local_Laboratory;
+	CAudio Local_RobotFactory;
+
 private:
 	CAudioManager();
 	~CAudioManager();

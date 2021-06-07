@@ -17,6 +17,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_zr.Init(psplash);
 	m_zr.AddScene(&m_zs);
 	//m_zf.SetApiRender(eApiRender_DirectX12);
+	//m_zf.SetApiSound(eApiSound_DirectSound);
 	m_zf.Init(hwnd, procOS);
 	m_zr.AddFrame(&m_zf);
 	m_level1 = new LevelSystem::Level("ultra", 1000,1);

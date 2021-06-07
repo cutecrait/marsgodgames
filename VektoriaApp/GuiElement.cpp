@@ -48,7 +48,6 @@ namespace Vektoria
 
 	bool CGuiElement::IsClicked()
 	{
-		ULDebug("hallo: %u", m_bIsClicked);
 		return m_bIsClicked;
 	}
 

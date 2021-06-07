@@ -45,6 +45,11 @@ void GameObject::setMaterial(char* matPfad)
 	m_material.MakeTextureSprite(matPfad);
 }
 
+void GameObject::setAudio(CAudio* audio)
+{
+	m_audio = audio;
+}
+
 float GameObject::CalculateHeight()
 {
 	

@@ -1,6 +1,8 @@
 #pragma once
 #include "GameObject.h"
+#include "CAudioManager.h"
 #include "popup.h"
+
 enum class BuildingCategory {
     None,
     Living,

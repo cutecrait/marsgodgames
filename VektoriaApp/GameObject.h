@@ -40,6 +40,7 @@ public:
 	~GameObject();
 
 	CGeo* getModel() { return m_model; }
+	CAudio* getAudio() { return m_audio; }
 	CMaterial* getMaterial() {return &m_material;}
 	CFileWavefront getPfad() { return m_modelPfad; }
 
@@ -69,8 +70,11 @@ public:
 	// Setzt die Textur
 	void setMaterial(char* );
 
+	void setAudio(CAudio*);
+
 private:
 	
+	CAudio* m_audio = NULL;
 	CGeo* m_model;
 	CFileWavefront m_modelPfad;
 	CMaterial m_material;
@@ -81,7 +85,6 @@ protected:
 
 	
 	Resources ressis;
-
 	int m_res1;
 	int m_res2;
 	int m_res3;

@@ -22,6 +22,12 @@ void CGameObjectPlacement::Init(std::string type)
 		_type = type;
 		this->AddGeo(gameObject->getModel());
 		//this->m_pgeos->m_apgeo[0]->SetMaterial(gameObject->getMaterial());
+
+		//Nicht alle Objekte besitzen Audio
+		if (gameObject->getAudio() != NULL)
+		{
+			this->AddAudio(gameObject->getAudio());
+		}
 	}
 
 }

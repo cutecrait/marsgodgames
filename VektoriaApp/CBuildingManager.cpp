@@ -182,6 +182,9 @@ void CBuildingManager::AddNewBuilding(Typ t, MapTile* targetTile)
 	IncreaseNrOfBuildings(t);
 	gop->setBuildStatus(true);
 
+	if(gop->getGameObject()->getAudio())
+	gop->m_paudios->m_apaudio[0]->Loop();
+
 	Save save;
 	save.fillPosAr(gop->getGameObject(), gop->GetPos().GetX(), gop->GetPos().GetZ());
 }

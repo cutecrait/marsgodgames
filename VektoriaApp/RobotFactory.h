@@ -16,6 +16,8 @@ public:
         setModel("models\\monkey.obj");
         // set model
         // set material
+
+        setAudio(&CAudioManager::Instance().Local_RobotFactory);
     }
     
    void OnClick() override {
