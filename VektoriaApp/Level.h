@@ -15,7 +15,7 @@ namespace LevelSystem
 		/// Konstruktor
 		/// </summary>
 		/// <param name="maximumexperience">Erfahrung für nächsten Aufstieg</param>
-		Level(std::string text, int maximumexperience);
+		Level(std::string text, int maximumexperience, int currentLevel);
 
 		void AddMission(Mission* mission);
 		void UpdateMissions(std::string type, int count ,UI*);
@@ -52,5 +52,6 @@ namespace LevelSystem
 		int _currentExperience;
 		int _maxExperience;
 		int _missionsCompleted = 0;
+		int _currentLevel;
 	};
 }

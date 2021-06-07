@@ -8,7 +8,7 @@
 #include "CAudioManager.h"
 #include "CBuildingManager.h"
 #include "Save.h"
-#include "Level.h"
+#include "LevelManager.h"
 #include "Building.h"
 
 using namespace Vektoria;
@@ -39,6 +39,10 @@ public:
 	void cancelClicked(CGameObjectPlacement* );
 	bool createToolTip(int);
 	void uiDecision(CBuildingManager::Typ, std::string,CDeviceCursor*);
+	void switchButtonClick(int,LevelSystem::Level*);
+	void popUpButtonClick(CDeviceCursor* cursor, LevelSystem::Level* currentLevel);
+	bool openPopup(CDeviceCursor*);
+	
 private:
 
 
@@ -67,10 +71,13 @@ private:
 	Save save;
 	bool saveable = true;
 	MapTile* pickedTile = nullptr;
+	MapTile* TileForAddNewBuilding = nullptr;
 	Building* onClickBuilding;
 	bool notInMenu = false;
-	CGeo* blaa;
-	Building* buildtest;
+	CGeo* selectedGeo;
+	Building* selectedBuilding;
+	bool oneTimeSetPopup = true;
 
+	CGameObjectPlacement* selectedPlacement;
 };
 

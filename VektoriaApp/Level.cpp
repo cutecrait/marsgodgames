@@ -2,11 +2,14 @@
 
 namespace LevelSystem
 {
-	Level::Level(std::string text, int maximumexperience)
+	Level::Level(std::string text, int maximumexperience, int currentLevel)
 	{
 		_text = text;
 		_currentExperience = 0;
 		_maxExperience = maximumexperience;
+		
+		_currentLevel = currentLevel;
+	
 	}
 
 	void Level::AddMission(Mission* mission)
@@ -18,17 +21,18 @@ namespace LevelSystem
 	{
 		_missionsCompleted = 0;
 		std::set<Mission*>::iterator it;
-		for (it = _missions.begin(); it != _missions.end(); it++) {
 
+		for (it = _missions.begin(); it != _missions.end(); it++) {
 			if ((*it)->GetType() == type) {
 				(*it)->Add(count);
-
-				if ((*it)->IsCompleted()) {
-					_missionsCompleted++;
-				}
-				uiUpdate->updateLevelUI(_missions.size(), _missionsCompleted, 0);
 			}
+
+			if ((*it)->IsCompleted()) {
+				_missionsCompleted++; 
+			}
+			
 		}
+		uiUpdate->updateLevelUI(_missions.size(), _missionsCompleted, 0);
 	}
 
 	bool Level::IsCompleted()
@@ -71,6 +75,6 @@ namespace LevelSystem
 			dummyar[i] = (*it)->GetText();
 			i++;
 		}
-		uiinit->makeAllMissions(_missions.size(), dummyar[0], dummyar[1], dummyar[2], dummyar[3], dummyar[4]);
+		uiinit->makeAllMissions(_missions.size(), _currentLevel, dummyar[0], dummyar[1], dummyar[2], dummyar[3], dummyar[4]);
 	}
 }

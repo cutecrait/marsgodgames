@@ -78,5 +78,6 @@ namespace LevelSystem
 		/// Steigt auf das nächste Level
 		/// </summary>
 		void LevelUp();
+		
 	};
 }

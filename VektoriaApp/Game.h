@@ -92,6 +92,8 @@ private:
 	CPlacement dummyPlace;
 	UI menu;
 	LevelSystem::Level* m_level1;
+	LevelSystem::Level* m_level2; 
+	LevelSystem::Level* m_level3;
 	//hendrik end
 
 	// Karo 

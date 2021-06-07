@@ -19,12 +19,19 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	//m_zf.SetApiRender(eApiRender_DirectX12);
 	m_zf.Init(hwnd, procOS);
 	m_zr.AddFrame(&m_zf);
-	m_level1 = new LevelSystem::Level("ultra", 1000);
-	m_level1->AddMission(new LevelSystem::Mission("Kaufe Roboterfabrik",typeid(BeispielForGameObject).name(), 0, 1));
-	m_level1->AddMission(new LevelSystem::Mission("Kaufe einen Bauroboter",typeid(RobotFactory).name() , 0, 1));
+	m_level1 = new LevelSystem::Level("ultra", 1000,1);
+	m_level1->AddMission(new LevelSystem::Mission("Kaufe Roboterfabrik",typeid(RobotFactory).name(), 0, 1));
+	m_level1->AddMission(new LevelSystem::Mission("Kaufe drei Bauroboter",typeid(testRobo).name() , 0, 3));
+
+	m_level2 = new LevelSystem::Level("cool", 1000,2);
+	m_level2->AddMission(new LevelSystem::Mission("Kaufe zwei Landwirtroboter", typeid(testRobo).name(), 0, 2));
+	m_level2->AddMission(new LevelSystem::Mission("Kaufe ein Apartment", typeid(Apartment).name(), 0, 1));
 	
+	m_level3 = new LevelSystem::Level("cool", 1000, 3);
+
 	LevelSystem::LevelManager::Instance().AddLevel(m_level1);
-	
+	LevelSystem::LevelManager::Instance().AddLevel(m_level2);
+	LevelSystem::LevelManager::Instance().AddLevel(m_level3);
 	//m_level1->AddMission(new LevelSystem::Mission("Kaufe einen Landwirtroboter",0, 200));
 	// CAMERA & VIEWPORT-------------------------------------------------------
 	m_zv.InitFull(&m_zc);	//with adresse of camera bcoz viewport
@@ -104,7 +111,7 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 
 	// lighting
 	lightingManager.Tick(0);
-
+	
 
 	derManager.Click(fTimeDelta, &einCursor, LevelSystem::LevelManager::Instance().GetCurrentLevel());
 

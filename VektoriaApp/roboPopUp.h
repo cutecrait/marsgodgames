@@ -27,8 +27,9 @@ private:
 	COverlay kosten2;
 	COverlay kosten3;
 	
-
+	COverlay buttonOverlay;
 public:
+
 	COverlay m_main;
 	CGuiButton m_robo1Add;// zählt robo1addw hoch 
 	CWriting m_robo1AddW;//wie viele robo

@@ -1,7 +1,8 @@
 #pragma once
 #include "Vektoria\root.h"
 #include "GuiSelect.h"
-#include "roboPopUp.h"
+
+#include "RobotFactory.h"
 using namespace Vektoria;
 class UI
 {
@@ -30,8 +31,9 @@ public:
 	void tooltip(std::string headline, int res1, int res2, int res3, int anzahl, std::string whatHappens);
 	void updateWriting(std::string, CWriting*);
 	void makeAMission(std::string, int);
-	void makeAllMissions(float missionAnzahl, std::string m1 = "", std::string m2= "", std::string m3 = "", std::string m4 = "", std::string m5 = "");
+	void makeAllMissions(float missionAnzahl,int currentLevel, std::string m1 = "", std::string m2= "", std::string m3 = "", std::string m4 = "", std::string m5 = "");
 	void updateLevelUI(float anzahlMissGesamt, float anzahlAbgeschlossenerMiss, int welchesLevel);
+	popup* getPopup(std::string );
 private:
 	CMaterial m_matsForSelectMain[5];
 

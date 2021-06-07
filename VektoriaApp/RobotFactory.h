@@ -36,43 +36,58 @@ public:
         kostenSteel = 0;
         kostenConcrete = 0;
         onlyOneTime = true;
-      
+        erstesMal = false;
        thepopup->m_main.SwitchOn();
-      
+       thepopup->m_robo1AddW.PrintInt(robo1);
+       thepopup->m_robo2AddW.PrintInt(robo2);
+       thepopup->m_robo3AddW.PrintInt(robo3);
+       resultArray[0] = 0;
+       resultArray[1] = 0;
+       resultArray[2] = 0;
     }
-   bool decision() override {
+   int decision() override {
          calculateCost();
        if (thepopup->m_robo1Add.IsClicked()) {
            robo1++;
            thepopup->m_robo1AddW.PrintInt(robo1);
-           return true;
+           resultArray[0] = robo1;
+           return 4;
          }
        if (thepopup->m_robo2Add.IsClicked()) {
            robo2++;
            thepopup->m_robo2AddW.PrintInt(robo2);
-           return true;
+           resultArray[1] = robo2;
+           return 4;
        }
        if (thepopup->m_robo3Add.IsClicked()) {
            robo3++;
            thepopup->m_robo3AddW.PrintInt(robo3);
-           return true;
+           resultArray[2] = robo3;
+           return 4;
        }
     
        if (thepopup->confirm.IsClicked()) {
-           if (onlyOneTime) {
-               if (enoughResource()) {
-                   thepopup->m_main.SwitchOff();
-                   thepopup->confirm.SwitchOff();
+           if (erstesMal) {
+               if (onlyOneTime) {
+                   if (enoughResource()) {
+                       thepopup->m_main.SwitchOff();
+                       
+                       return 2;
 
+                   }
                }
            }
-           return false;
+           
        }
        if (thepopup->cancel.IsClicked()) {
-           thepopup->m_main.SwitchOff();
-           return false;
+           if (erstesMal) {
+               thepopup->m_main.SwitchOff();
+               return 3;
+           }
        }
-       return true;
+       erstesMal = true;
+       return 4;
+      
    }
    void setPopup(popup* einPopup) override {
        thepopup = (roboPopUp*)einPopup;
@@ -113,6 +128,14 @@ public:
             return false;
 
    }
+    int RobotFactory::getResult(int i) override{
+        
+        return resultArray[i];
+
+    }
+    bool hasPopup()override {
+        return true;
+    }
 private:
     testRobo Robo1;
     int robo1 = 0;
@@ -132,5 +155,6 @@ private:
     int kostenConcrete = 0;
     bool onlyOneTime = true;
     roboPopUp* thepopup;
-    
+    bool erstesMal = true;
+    int resultArray[3];
 };

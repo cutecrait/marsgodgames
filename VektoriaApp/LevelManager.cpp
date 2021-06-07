@@ -52,5 +52,6 @@ namespace LevelSystem
 		for (it = objects.begin(); it != objects.end(); it++)
 			_unlockedObjects.insert(*it);
 		_currentLevel++;
+		
 	}
 }

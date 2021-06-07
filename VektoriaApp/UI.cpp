@@ -432,13 +432,20 @@ void UI::makeAMission(std::string bla, int missionNr)
 //standard missions macher
 //diese funktion wird am anfang an wenn man ein neues level ereicht ausgeführt 
 
-void UI::makeAllMissions(float missionAnzahl,std::string m1, std::string m2 , std::string m3, std::string m4, std::string m5)
+void UI::makeAllMissions(float missionAnzahl, int currentLevel,std::string m1, std::string m2 , std::string m3, std::string m4, std::string m5)
 {
+	std::string dummystring;
+	m_levelFortschritt.Init(&m_descMaterial, CFloatRect(0, 0, 0, 1));
+	dummystring = std::to_string(0) + "%";
+	levelFortschrittW.PrintString(&dummystring[0]);
+	dummystring = "Level: " + std::to_string(currentLevel);
+	m_levelW.PrintString(&dummystring[0]);
+
 	int dummyint = missionAnzahl;
 	m_missionen.SetLabel("Missionen: " + std::to_string(0) + "/" + std::to_string(dummyint));
 	float y_pos =0.05;
 	std::string dummyArray[5] = { m1,m2,m3,m4,m5 };
-	std::string dummystring;
+	
 	for (int i = 0; i < missionAnzahl; i++) {
 		dummystring = dummyArray[i];
 		m_missi[i].Init(&m_matStats, CFloatRect(0.05, y_pos, 0.8, 0.95 / missionAnzahl));
@@ -471,6 +478,15 @@ void UI::updateLevelUI(float anzahlMissGesamt, float anzahlAbgeschlossenerMiss, 
 	
 	
 	
+}
+
+popup* UI::getPopup(std::string type)
+{
+	if (type == typeid(RobotFactory).name()) {
+		return& m_roboPopUP;
+	}
+
+	return nullptr;
 }
 
 //update individual mission

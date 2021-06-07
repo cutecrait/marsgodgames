@@ -121,14 +121,18 @@ void roboPopUp::Init(CDeviceCursor* cursor,CMaterial* mat1, CWritingFont* font1)
 	kosten3W.SetLayer(0.87);
 	kosten3W.PrintInt(0);
 
-	confirm.Init(cursor, font1,CFloatRect(0.6, 0.8, 0.2, 0.2));
+	buttonOverlay.Init(mat1, CFloatRect(0.6,0.8,0.4,0.2));
+	buttonOverlay.SetInnerOn();
+	buttonOverlay.SetLayer(0.88);
+
+	confirm.Init(cursor, font1,CFloatRect(0, 0, 0.5, 1));
 	confirm.SetInnerOn();
-	confirm.SetLayer(0.87);
+	confirm.SetLayer(0.8);
 	confirm.SetLabel("confirm");
 
-	cancel.Init(cursor, font1, CFloatRect(0.8, 0.8, 0.2, 0.2));
+	cancel.Init(cursor, font1, CFloatRect(0.5, 0, 0.5, 1));
 	cancel.SetInnerOn();
-	cancel.SetLayer(0.87);
+	cancel.SetLayer(0.8);
 	cancel.SetLabel("cancel");
 
 	m_main.SwitchOff();
@@ -138,9 +142,10 @@ void roboPopUp::Init(CDeviceCursor* cursor,CMaterial* mat1, CWritingFont* font1)
 	m_main.AddOverlay(&m_robo2);
 	m_main.AddOverlay(&m_robo3);
 	m_main.AddOverlay(&kosten);
-	m_main.AddOverlay(&confirm);
-	m_main.AddOverlay(&cancel);
+	m_main.AddOverlay(&buttonOverlay);
 
+	buttonOverlay.AddOverlay(&cancel);
+	buttonOverlay.AddOverlay(&confirm);
 
 	m_robo1.AddWriting(&m_robo1W);
 	m_robo1.AddWriting(&m_robo1AddW);
