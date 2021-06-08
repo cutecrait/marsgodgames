@@ -14,6 +14,8 @@ public:
         setModel("models\\Kraftwerk.obj");
         this->setMaterial("textures\\KraftwerkTex.png");
         this->getModel()->SetMaterial(this->getMaterial());
+
+        this->setAudio(&CAudioManager::Instance().Local_NuclearPowerPlant);
     }
 
     Resources getBuildCost() {
