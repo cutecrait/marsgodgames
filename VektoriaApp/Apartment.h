@@ -12,8 +12,9 @@ public:
        
         Category = BuildingCategory::Living;
 
-        setModel("models\\Barrack.obj");
-	    //this->getModel()->m_pmaterial->LoadPreset("Concrete");
+        setModel("models\\Kraftwerk.obj");
+        this->setMaterial("textures\\KraftwerkTex.png");
+        this->getModel()->SetMaterial(this->getMaterial());
     }
    
     void OnClick() override {

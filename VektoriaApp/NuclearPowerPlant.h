@@ -11,8 +11,9 @@ public:
 
         Category = BuildingCategory::Industry;
 
-        setModel("models\\kraftwerk.obj");
-        // this->getModel()->m_pmaterial->LoadPreset("Concrete");
+        setModel("models\\Kraftwerk.obj");
+        this->setMaterial("textures\\KraftwerkTex.png");
+        this->getModel()->SetMaterial(this->getMaterial());
     }
 
     Resources getBuildCost() {
