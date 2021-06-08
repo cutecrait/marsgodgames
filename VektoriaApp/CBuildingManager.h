@@ -28,7 +28,6 @@ const int TYP_LENGTH = 20;
 class CBuildingManager
 {
 public:
-
 	CBuildingManager();
 	~CBuildingManager();
 
@@ -64,7 +63,8 @@ public:
 	void DecreaseNrOfBuildings(Typ&);
 
 	void AddNewBuilding(Typ, MapTile*);
-	CGameObjectPlacement* getClosestGameObject(Typ);
+
+	vector<CGameObjectPlacement> GetBuildingVector(Typ);
 
 private:
 	CScene* m_zs;

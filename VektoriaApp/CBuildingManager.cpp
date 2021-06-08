@@ -189,10 +189,16 @@ void CBuildingManager::AddNewBuilding(Typ t, MapTile* targetTile)
 	save.fillPosAr(gop->getGameObject(), gop->GetPos().GetX(), gop->GetPos().GetZ());
 }
 
-CGameObjectPlacement* CBuildingManager::getClosestGameObject(Typ)
+vector<CGameObjectPlacement> CBuildingManager::GetBuildingVector(Typ)
 {
+	return vector<CGameObjectPlacement>();
+}
 
-	return nullptr;
+vector<CGameObjectPlacement> CBuildingManager::GetBuildingVector(Typ t)
+{
+	CGameObjectPlacement* list = getBuildingList(t);
+	vector<CGameObjectPlacement> vec(list, list + m_MaxBuildings[(int)t]);
+	return vec;
 }
 
 CGameObjectPlacement* CBuildingManager::getBuildingList(Typ typ)
