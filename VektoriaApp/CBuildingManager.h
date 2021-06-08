@@ -28,6 +28,17 @@ const int TYP_LENGTH = 20;
 class CBuildingManager
 {
 public:
+
+	/// <summary>
+	/// Singleton - gibt Instanz zurück
+	/// </summary>
+	/// <returns>Instanz</returns>
+	static CBuildingManager& Instance()
+	{
+		static CBuildingManager _instance;
+		return _instance;
+	};
+
 	CBuildingManager();
 	~CBuildingManager();
 

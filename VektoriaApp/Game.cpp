@@ -84,11 +84,11 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	einsFont.LoadPreset("LucidaConsoleWhite");
 	einsFont.SetChromaKeyingOn(); //hiermit hat die font keinen hässlichen hintergrund
 	menu.InitMenu(&einCursor, &einsFont, &m_zv);
-	derManager.Init(&menu, &m_zs, &BuildingManager, &mapSquare);
+	derManager.Init(&menu, &m_zs, &CBuildingManager::Instance(), &mapSquare);
 	LevelSystem::LevelManager::Instance().GetCurrentLevel()->initLevel(&menu);
 	// MAP SQUARES---------------------------------------
+	CBuildingManager::Instance().Init(&m_zs);
 	MakeMapSquares(&m_zs);
-	BuildingManager.Init(&m_zs);
 
 	//LOAD TERRAIN---------------------------------------
 	m_zs.AddPlacement(m_ldgame.LoadTerrain());

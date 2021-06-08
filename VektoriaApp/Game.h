@@ -68,7 +68,6 @@ private:
 
 	//<Darius>
 	CCameraController CameraController;
-	CBuildingManager BuildingManager;
 	//</Darius>
 
 	//World Ground
