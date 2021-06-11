@@ -99,6 +99,8 @@ void CBuildingManager::Init(CScene* scene)
 		RobotFactorys[i].Init(typeid(RobotFactory).name());
 		RobotFactorys[i].getGameObject()->TransformGeo();
 		m_zs->AddPlacement(&RobotFactorys[i]);
+		std::string bla = RobotFactorys[i].GetName();
+		bla;
 	}
 	for (int i = 0; i < size(SolarPowerPlants); i++) {
 		SolarPowerPlants[i].setGameObject(new SolarPowerPlant);

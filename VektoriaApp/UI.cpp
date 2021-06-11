@@ -63,7 +63,11 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	m_viewport = zv;
 	InitMaterial();
 	InitToolTip();
+
 	m_roboPopUP.Init(cursor,&m_matStats,font);
+	m_apsPopup.Init(cursor, &m_matStats, font);
+	m_CCpopup.Init(cursor, &m_matStats, font);
+
 	m_start.Init(cursor, font, CFloatRect(0.f, 0.9, 0.15, 0.1));
 	m_start.SetLabel("Menu");
 
@@ -109,7 +113,7 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	m_specificSelect[2].Init(cursor, font, 4, CFloatRect(0.15, 0.3, 0.15, 0.6)); labelMaker(2, 4, selectLabel);
 
 	selectLabel.clear();
-	selectLabel.push_back(" anderes1"); selectLabel.push_back(" anderes2"); selectLabel.push_back(" anderes3"); selectLabel.push_back(" anderes4"); selectLabel.push_back(" anderes5"); 
+	selectLabel.push_back(" ControlCenter"); selectLabel.push_back(" anderes2"); selectLabel.push_back(" anderes3"); selectLabel.push_back(" anderes4"); selectLabel.push_back(" anderes5"); 
 	//m_specificSelect[3].makeInactiveMats(m_matsForSelect4);
 	m_specificSelect[3].Init(cursor, font, 5, CFloatRect(0.15, 0.2, 0.15, 0.7)); labelMaker(3, 5, selectLabel);
 
@@ -141,6 +145,8 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	zv->AddOverlay(&m_statistic);
 	zv->AddOverlay(&m_statsBack);
 	zv->AddOverlay(&m_roboPopUP.m_main);
+	zv->AddOverlay(&m_apsPopup.m_main);
+	zv->AddOverlay(&m_CCpopup.m_main);
 	//zv->AddOverlay(&m_tooltip);
 
 	m_resBack.AddOverlay(&m_concrete);
@@ -483,9 +489,16 @@ void UI::updateLevelUI(float anzahlMissGesamt, float anzahlAbgeschlossenerMiss, 
 popup* UI::getPopup(std::string type)
 {
 	if (type == typeid(RobotFactory).name()) {
+		
 		return& m_roboPopUP;
 	}
+	if (type == typeid(Apartment).name()) {
+		return&m_apsPopup;
+	}
 
+	if (type == typeid(ControlCenter).name()) {
+		return&m_CCpopup;
+	}
 	return nullptr;
 }
 

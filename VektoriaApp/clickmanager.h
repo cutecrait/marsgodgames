@@ -45,7 +45,7 @@ public:
 	
 private:
 
-
+	CBuildingManager::Typ typforUiDecsion;
 
 	//std::vector <CMaterial*> m_MATbuildingKind;
 	int whatKind;
@@ -63,7 +63,7 @@ private:
 	MapSquare* mapsquares;
 	CPlacement* targetPos;
 	UI* m_menu;
-	CBuildingManager::Typ dumyTyp = CBuildingManager::Typ::RobotFactory;
+	CBuildingManager::Typ dumyTyp;
 	/*BeispielForGameObject MONKY;
 	BeispielForGameObject* Wohnung[20];*/
 
@@ -77,7 +77,9 @@ private:
 	CGeo* selectedGeo;
 	Building* selectedBuilding;
 	bool oneTimeSetPopup = true;
-
+	std::string ss;
+	
 	CGameObjectPlacement* selectedPlacement;
+	Building::Resources buildCost;
 };
 

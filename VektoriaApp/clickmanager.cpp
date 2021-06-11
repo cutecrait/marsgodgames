@@ -94,6 +94,40 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 		clicked = false;
 	}
 	//openPopup gibt true zurück wenn ein popup geöffnet wurde, popupbuttonclick kümmert sich um die buttonclicks im popup;
+
+	/*if (!m_menu->getMainSelect()->IsOn()) {
+		selectedGeo = nullptr;
+		selectedPlacement = nullptr;
+		selectedBuilding = nullptr;
+		if (cursor->PickOverlay() == NULL) {
+			if (cursor->ButtonPressedLeft()) {
+				if (!cursor->ButtonUpLeft()) {
+					selectedGeo = cursor->PickGeo();
+					if (selectedGeo) {
+						//selectedGeo->GetParent()->SetName("GameObject");
+						ss = selectedGeo->GetName();
+						//wenn audio aktiv, pickt kein geo mehr sondern geogrid(tiles)
+						//wenn setaudio in einem building ausgeführt kllappts nicht mehr
+						//caudiomanager auch ein setname gemacht,
+						//reihenfolge in GOplacement geändert
+						// in Buildingmanager getname klappt noch 
+						if (ss == "GameObject") {
+							selectedPlacement = (CGameObjectPlacement*)selectedGeo->GetParent();
+							selectedBuilding = (Building*)selectedPlacement->getGameObject();
+							if (selectedBuilding->hasPopup()) {
+								if (!selectedBuilding->isPopupOpen()) {
+									selectedBuilding->setPopup(m_menu->getPopup(selectedPlacement->getType())); // funktion im m_menu.PopoUP returned ein popup. und es komm drauf an wie der typ, dann kommt popup.
+									selectedBuilding->OnClick();
+									
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}*/
+
 	if (openPopup(cursor)) {
 		popUpButtonClick(cursor, currentLevel);
 	}
@@ -117,11 +151,12 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 		switch (m_menu->getSpecificSelect(1)->GetActivePosition()) 
 		{
 		case 0: //das  "Apartment" ist für die überschrift im tooltip
+			
 			uiDecision(CBuildingManager::Typ::Apartment,"Apartment",cursor); 
 		
 			break;
 		case 1:
-			
+			uiDecision(CBuildingManager::Typ::NuclearPowerPlant, "Nuklearpowerplant", cursor);
 			break;
 		case 2:
 			break;
@@ -143,9 +178,10 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 		}
 
 	case 3:
-		switch (m_menu->getSpecificSelect(1)->GetActivePosition())
+		switch (m_menu->getSpecificSelect(3)->GetActivePosition())
 		{
 		case 0:
+			uiDecision(CBuildingManager::Typ::ControlCenter, "ControlCenter", cursor);
 			break;
 		case 1:
 			break;
@@ -301,11 +337,14 @@ bool clickmanager::createToolTip(int i)
 
 void clickmanager::uiDecision(CBuildingManager::Typ typ, std::string tooltipname, CDeviceCursor* cursor) {
 	
-	toBeBuildObject = BuildingManager->lookForGameObject(typ);
-	toBeBuiltBuilding = dynamic_cast<Building*>(toBeBuildObject->getGameObject());
-	dumyTyp = typ;
-	auto buildCost = toBeBuiltBuilding->getBuildCost();
+	
+		toBeBuildObject = BuildingManager->lookForGameObject(typ);
 
+		toBeBuiltBuilding = dynamic_cast<Building*>(toBeBuildObject->getGameObject());
+		dumyTyp = typ;
+		buildCost = toBeBuiltBuilding->getBuildCost();
+		typforUiDecsion = typ;
+	
 	/*if (createToolTip(m_menu->getSpecificSelect(1)->GetActivePosition())) {
 		//tooltip wird so nur einmal gebaut (aber kann überschrieben werden)
 		activePosition = m_menu->getSpecificSelect(1)->GetActivePosition();
@@ -361,11 +400,10 @@ void clickmanager::switchButtonClick(int i, LevelSystem::Level* currentLevel) {
 		//popup confirm
 		currentLevel->UpdateMissions(typeid(testRobo).name(), selectedBuilding->getResult(0), m_menu);
 		m_menu->updatePlayer();
-		roboPopUpopen = false;
+		
 		break;
 	case 3:
 		//popup cancel
-		roboPopUpopen = false;
 		break;
 	case 4:
 		break;
@@ -373,12 +411,15 @@ void clickmanager::switchButtonClick(int i, LevelSystem::Level* currentLevel) {
 	}
 	//nur wenn man auf nen confirm button geklickt hat, und kein popup offen ist und nicht im menü ist 
 	//überprüfe ob level completed, und steige level auf (gainxp) und initialisiere nächstes level
-	if (notInMenu && !roboPopUpopen) {
-		if (LevelSystem::LevelManager::Instance().GetCurrentLevel()->IsCompleted()) {
-			LevelSystem::LevelManager::Instance().GainXp(1000);
-			LevelSystem::LevelManager::Instance().GetCurrentLevel()->initLevel(m_menu);
+	// 
+	// kann nur ein level upkommen wenn ich mal in nem popupwar:
+	if(selectedBuilding){
+		if (notInMenu && selectedBuilding->isPopupOpen()) {
+			if (LevelSystem::LevelManager::Instance().GetCurrentLevel()->IsCompleted()) {
+				LevelSystem::LevelManager::Instance().GainXp(1000);
+				LevelSystem::LevelManager::Instance().GetCurrentLevel()->initLevel(m_menu);
+			}
 		}
-
 	}
 }
 
@@ -394,20 +435,27 @@ void clickmanager::popUpButtonClick(CDeviceCursor * cursor, LevelSystem::Level* 
 }
 bool clickmanager::openPopup(CDeviceCursor* cursor) {
 	if (!m_menu->getMainSelect()->IsOn()) {
-		selectedGeo = cursor->PickGeo();
-		if (selectedGeo) {
-			std::string ss = selectedGeo->GetParent()->GetName();
-			if (ss == "GameObject") {
-				selectedPlacement = (CGameObjectPlacement*)selectedGeo->GetParent();
-				selectedBuilding = (Building*)selectedPlacement->getGameObject();
-				if (cursor->ButtonDownLeft()) {
-					if (!cursor->ButtonUpLeft()) {
-						if (selectedBuilding->hasPopup()) {
-							if (!roboPopUpopen) {
-								selectedBuilding->setPopup(m_menu->getPopup(selectedPlacement->getType())); // funktion im m_menu.PopoUP returned ein popup. und es komm drauf an wie der typ, dann kommt popup.
-								selectedBuilding->OnClick();
-								roboPopUpopen = true;
-								return false;
+		if (cursor->PickOverlay() == NULL) {
+			if (cursor->ButtonPressedLeft()) {
+				if (!cursor->ButtonUpLeft()) {
+					selectedGeo = cursor->PickGeo();
+					if (selectedGeo) {
+						//selectedGeo->GetParent()->SetName("GameObject");
+						ss = selectedGeo->GetName();
+						//wenn audio aktiv, pickt kein geo mehr sondern geogrid(tiles)
+						//wenn setaudio in einem building ausgeführt kllappts nicht mehr
+						//caudiomanager auch ein setname gemacht,
+						//reihenfolge in GOplacement geändert
+						// in Buildingmanager getname klappt noch 
+						if (ss == "GameObject") {
+							selectedPlacement = (CGameObjectPlacement*)selectedGeo->GetParent();
+							selectedBuilding = (Building*)selectedPlacement->getGameObject();
+							if (selectedBuilding->hasPopup()) {
+								if (!selectedBuilding->isPopupOpen()) {
+									selectedBuilding->setPopup(m_menu->getPopup(selectedPlacement->getType())); // funktion im m_menu.PopoUP returned ein popup. und es komm drauf an wie der typ, dann kommt popup.
+									selectedBuilding->OnClick();
+
+								}
 							}
 						}
 					}
@@ -415,10 +463,12 @@ bool clickmanager::openPopup(CDeviceCursor* cursor) {
 			}
 		}
 	}
-	if (roboPopUpopen)
-		return true;
-	else 
-		return false;
+	if (selectedBuilding) {
+		if (selectedBuilding->isPopupOpen()) {
+			return true;
+		}
+	}
+	return false;
 }
 
 

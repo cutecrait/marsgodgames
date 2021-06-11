@@ -3,6 +3,8 @@
 #include "GuiSelect.h"
 
 #include "RobotFactory.h"
+#include "Apartment.h"
+#include "ControlCenter.h"
 using namespace Vektoria;
 class UI
 {
@@ -108,7 +110,12 @@ public:
 	CGuiButton m_cancel;
 
 	CWriting levelFortschrittW;
+
+
 	roboPopUp m_roboPopUP;
+	ApsPopup m_apsPopup;
+	ControlCPopup m_CCpopup;
+
 	CGuiButton m_missionen;
 	COverlay m_missionenBack;
 	CViewport* m_viewport;

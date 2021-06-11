@@ -1,5 +1,6 @@
 #pragma once
 #include "Building.h"
+#include "ControlCPopup.h"
 class ControlCenter :
     public Building
 {
@@ -14,9 +15,48 @@ public:
         setModel("models\\monkey.obj");
         // set material
         
-        setAudio(&CAudioManager::Instance().Local_ControlCenter);
+        //setAudio(&CAudioManager::Instance().Local_ControlCenter);
 
     }
+    void OnClick() override {
+        erstesMal = false;
+        thepopup->m_main.SwitchOn();
+
+    }
+    void setPopup(popup* einPopup) override {
+        thepopup = (ControlCPopup*)einPopup;
+    }
+
+    bool hasPopup()override {
+        return true;
+    }
+    int decision() override {
+        if (thepopup->m_abort.IsClicked()) {
+            if (erstesMal) {
+                thepopup->m_main.SwitchOff();
+                return 2;
+            }
+        }
+        erstesMal = true;
+        return 4;
+
+    }
+
+    bool isPopupOpen() override {
+
+        if (thepopup != NULL) {
+            if (thepopup->m_main.IsOn()) {
+                return true;
+            }
+            else
+                return false;
+
+        }
+        else
+            return false;
+
+    }
+  
 
     Resources getBuildCost() {
         Resources cost;
@@ -25,4 +65,6 @@ public:
         cost.Wood = 0;
         return cost;
     }
+private:
+    ControlCPopup* thepopup = NULL;
 };

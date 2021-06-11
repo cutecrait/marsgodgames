@@ -39,13 +39,13 @@ namespace Vektoria
 		///<param name="deviceCursor"> Cursor that interacts with the GuiElement </param>
 		///<param name="font"> Font to be used for labels and values </param>
 		void Init(CDeviceCursor* deviceCursor, CWritingFont* font);
-
+		
 		///<summary>Initialisation method for a basic gui element.</summary>
 		///<param name="deviceCursor"> Cursor that interacts with the GuiElement </param>
 		///<param name="font"> Font to be used for labels and values </param>
 		///<param name="floatRect"> Size and position for the GuiElement </param>
-		void Init(CDeviceCursor* deviceCursor, CWritingFont* font, CFloatRect& floatRect);
-
+		void Init(CDeviceCursor* deviceCursor, CWritingFont* font, CFloatRect& floatRect,int i = 16);
+		void setLabelLength(int i) { m_iLabelLength = i; }
 		///<summary>Returns true if cursor is above the element.</summary>
 		bool IsHovered();
 

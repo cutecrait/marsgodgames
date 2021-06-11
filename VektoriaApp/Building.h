@@ -22,9 +22,13 @@ public:
     virtual void setPopup(popup*){}
     virtual int getResult(int) { return 0; }
     virtual bool hasPopup() { return false; }
+    virtual bool isPopupOpen() { return false; }
+    virtual bool isPopupFunctional() { return false; }
+    
     int PowerUse;
     int WaterUse;
     int NutrientUse;
+    bool erstesMal;
     BuildingCategory Category = BuildingCategory::None;
 };
 
