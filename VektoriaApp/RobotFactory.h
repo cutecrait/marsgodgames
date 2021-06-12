@@ -176,7 +176,7 @@ private:
     int kostenSteel = 0;
     int kostenConcrete = 0;
     bool onlyOneTime = true;
-    roboPopUp* thepopup;
+    roboPopUp* thepopup = NULL;
   
     int resultArray[3];
 };
