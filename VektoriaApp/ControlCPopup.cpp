@@ -95,8 +95,33 @@ void ControlCPopup::Init(CDeviceCursor* cursor, CMaterial* mat1, CWritingFont* f
 
 
 
+	m_food.Init(mat1, CFloatRect(0, 0.65, 1, 0.15));
+	m_food.SetInnerOn();
+	m_food.SetLayer(0.98);
 
-	m_roboter.Init(mat1, CFloatRect(0, 0.65, 1, 0.15));
+	m_foodW.Init(cursor, font1, CFloatRect(0.05, 0.1, 0.4, 0.8), 22);
+	m_foodW.SetInnerOn();
+	m_foodW.SetLayer(0.97);
+	m_foodW.SetLabel("Wasser zurverfuegung: ");
+
+	m_foodInsgesamt.Init(CFloatRect(0.47, 0.1, 0.1, 0.8), 4, font1);
+	m_foodInsgesamt.SetInnerOn();
+	m_foodInsgesamt.SetLayer(0.97);
+	m_foodInsgesamt.PrintInt(200);
+
+	m_usedFood.Init(CFloatRect(0.6, 0.1, 0.3, 0.8), 23, font1);
+	m_usedFood.SetInnerOn();
+	m_usedFood.SetLayer(0.97);
+	m_usedFood.PrintString(" Davon werden benutzt: ");
+
+	m_usedFoodInt.Init(CFloatRect(0.9, 0.1, 0.1, 0.8), 4, font1);
+	m_usedFoodInt.SetInnerOn();
+	m_usedFoodInt.SetLayer(0.97);
+	m_usedFoodInt.PrintInt(100);
+
+
+
+	m_roboter.Init(mat1, CFloatRect(0, 0.8, 1, 0.15));
 	m_roboter.SetInnerOn();
 	m_roboter.SetLayer(0.98);
 
@@ -118,6 +143,7 @@ void ControlCPopup::Init(CDeviceCursor* cursor, CMaterial* mat1, CWritingFont* f
 	m_main.AddOverlay(&m_strom);
 	m_main.AddOverlay(&m_wasser);
 	m_main.AddOverlay(&m_roboter);
+	m_main.AddOverlay(&m_food);
 
 	m_wohnungen.AddOverlay(&m_wohnungenW);
 	m_wohnungen.AddWriting(&m_wohnungenInsgesamt);
@@ -134,6 +160,11 @@ void ControlCPopup::Init(CDeviceCursor* cursor, CMaterial* mat1, CWritingFont* f
 	m_wasser.AddWriting(&m_usedWasser);
 	m_wasser.AddWriting(&m_usedWasserInt);
 
+	m_food.AddOverlay(&m_foodW);
+	m_food.AddWriting(&m_foodInsgesamt);
+	m_food.AddWriting(&m_usedFood);
+	m_food.AddWriting(&m_usedFoodInt);
+
 	m_roboter.AddOverlay(&m_roboterW);
 	m_roboter.AddWriting(&m_roboterInsgesamt);
 
@@ -141,5 +172,20 @@ void ControlCPopup::Init(CDeviceCursor* cursor, CMaterial* mat1, CWritingFont* f
 
 void ControlCPopup::updatePopup()
 {
+	
+	m_wohnungenInsgesamt.PrintInt(Player::Instance().getWohnung());
+	m_usedWohnungenInt.PrintInt(Player::Instance().getUsedWohnungen());
+
+	m_stromInsgesamt.PrintInt(Player::Instance().getPower());
+	m_usedStromInt.PrintInt(Player::Instance().getUsePower());
+
+	m_wasserInsgesamt.PrintInt(Player::Instance().getWater());
+	m_usedWasserInt.PrintInt(Player::Instance().getUseWater());
+
+	m_foodInsgesamt.PrintInt(Player::Instance().getFood());
+	m_usedFoodInt.PrintInt(Player::Instance().getUseFood());
+
+	m_roboterInsgesamt.PrintInt(Player::Instance().getRobots());
+
 
 }

@@ -78,7 +78,7 @@ private:
 	Building* selectedBuilding;
 	bool oneTimeSetPopup = true;
 	std::string ss;
-	
+	bool erstesMal = true;
 	CGameObjectPlacement* selectedPlacement;
 	Building::Resources buildCost;
 };

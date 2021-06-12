@@ -174,7 +174,7 @@ void CBuildingManager::AddNewBuilding(Typ t, MapTile* targetTile)
 	p->useFood(newBuilding->NutrientUse);
 	p->usePower(newBuilding->PowerUse);
 	p->useWater(newBuilding->WaterUse);
-
+	newBuilding->updatePlayer();
 
 	gop->Translate(targetTile->GetPos());
 	targetTile->Free = false;

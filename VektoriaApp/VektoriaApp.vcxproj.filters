@@ -129,6 +129,9 @@
     <ClCompile Include="ControlCPopup.cpp">
       <Filter>UI\popups</Filter>
     </ClCompile>
+    <ClCompile Include="wellPopup.cpp">
+      <Filter>UI\popups</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -311,6 +314,9 @@
       <Filter>UI\popups</Filter>
     </ClInclude>
     <ClInclude Include="ControlCPopup.h">
+      <Filter>UI\popups</Filter>
+    </ClInclude>
+    <ClInclude Include="wellPopup.h">
       <Filter>UI\popups</Filter>
     </ClInclude>
   </ItemGroup>

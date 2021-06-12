@@ -20,6 +20,7 @@ public:
     }
     void OnClick() override {
         erstesMal = false;
+        thepopup->updatePopup();
         thepopup->m_main.SwitchOn();
 
     }

@@ -1,5 +1,6 @@
 #pragma once
 #include "popup.h"
+
 class ControlCPopup :
     public popup
 {
@@ -32,7 +33,12 @@ private:
     CWriting m_wasserInsgesamt;
     CWriting m_usedWasser;
     CWriting m_usedWasserInt;
- 
+    
+    COverlay m_food;
+    CGuiElement m_foodW;
+    CWriting m_foodInsgesamt;
+    CWriting m_usedFood;
+    CWriting m_usedFoodInt;
 
     //ich brauche Wohungsanzahl mit belegent plätzen
     //ich brauche strom / verbrauchter strom

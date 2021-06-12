@@ -5,6 +5,7 @@
 #include "RobotFactory.h"
 #include "Apartment.h"
 #include "ControlCenter.h"
+#include "Well.h"
 using namespace Vektoria;
 class UI
 {
@@ -15,7 +16,7 @@ public:
 	void InitMaterial();
 	void InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport*);
 	void labelMaker(int,int, std::vector<std::string>);
-	void initRessource();
+	void initRessource(CWritingFont*);
 	void initPlayer(CDeviceCursor*,CWritingFont*);
 	CGuiButton* getStart() { return &m_start; }
 	CGuiSelect* getMainSelect() { return &m_mainSelect; }
@@ -30,7 +31,7 @@ public:
 	roboPopUp* getRobo(roboPopUp*);
 	void InitToolTip();
 	void levelOverlay(COverlay*, CWritingFont*, CDeviceCursor*);
-	void tooltip(std::string headline, int res1, int res2, int res3, int anzahl, std::string whatHappens);
+	void tooltip(std::string headline, int res1, int res2, int res3, int anzahl, BuildingCategory);
 	void updateWriting(std::string, CWriting*);
 	void makeAMission(std::string, int);
 	void makeAllMissions(float missionAnzahl,int currentLevel, std::string m1 = "", std::string m2= "", std::string m3 = "", std::string m4 = "", std::string m5 = "");
@@ -93,13 +94,23 @@ public:
 	COverlay m_statsBack;
 	COverlay m_resBack;
 	COverlay m_toolTipBackGround;
-	CGuiElement m_concrete;
-	CGuiElement m_concreteMinus;
-	CGuiElement m_steel;
-	CGuiElement m_steelMinus;
-	CGuiElement m_wood;
-	CGuiElement m_woodMinus;
 
+
+	CGuiElement m_Ressources;
+
+	
+	CWriting m_concreteW;
+	CWriting m_concreteMinusW;
+
+	
+	CWriting m_steelW;
+	CWriting m_steelMinusW;
+
+	
+	CWriting m_woodW;
+	CWriting m_woodMinusW;
+
+	
 	CWriting m_levelW;
 	CWriting m_missiW[5];
 	COverlay m_missiStatus[5];
@@ -115,6 +126,7 @@ public:
 	roboPopUp m_roboPopUP;
 	ApsPopup m_apsPopup;
 	ControlCPopup m_CCpopup;
+	wellPopup m_wellPopup;
 
 	CGuiButton m_missionen;
 	COverlay m_missionenBack;

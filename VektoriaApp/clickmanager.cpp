@@ -132,7 +132,9 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 		popUpButtonClick(cursor, currentLevel);
 	}
 
-
+	//beim hinzufuegen, im ui.cpp infunktion "tooltip" auch das gebäude hinzufuegen.
+	//im gebäude selber muss dann noch howmuch = int zahl hinzugefügt werden. (wie viele nahrungseinheiten z.b.)
+	// und die funktion void updatePlayer() override {Player::Instance().setirgendwas()} wenn das gebäude irgendwie in den statistiken eine auswirkung hat.
 	switch (m_menu->getMainSelect()->GetActivePosition())
 	{
 	case 0://fabriken
@@ -167,6 +169,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 		switch (m_menu->getSpecificSelect(2)->GetActivePosition())
 		{
 		case 0:
+			uiDecision(CBuildingManager::Typ::Well, "Brunnen", cursor);
 			break;
 		case 1:
 			break;
@@ -203,15 +206,14 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 	
 
 	//wenn confirm geklickt wird, wird ein addnewBuilding ausgegeführt.
+
+	
 	if (m_menu->m_confirm.IsClicked()) {
 		// hallo hendrik
 		switchButtonClick(0,currentLevel);
 
 		
 	}
-	
-
-
 	
 	if (m_menu->m_cancel.IsClicked()) {
 
@@ -284,29 +286,25 @@ bool clickmanager::enoughRes(Building* hi) {
 }
 
 void clickmanager::confirmClicked() {
-
-	menuOFF();
-	m_menu->m_cancel.SwitchOff();
-	m_menu->m_confirm.SwitchOff();
-
-	notInMenu = true;
-	auto cost = toBeBuiltBuilding->getBuildCost();
-
-	Player::Instance().gainConcrete(-cost.Concrete);
-	Player::Instance().gainSteel(-cost.Steel);
-	Player::Instance().gainWood(-cost.Wood);
-	Player::Instance().useFood(toBeBuiltBuilding->NutrientUse);
-	Player::Instance().usePower(toBeBuiltBuilding->PowerUse);
-	Player::Instance().useWater(toBeBuiltBuilding->WaterUse);
 	
-	// Tooltip kann jetzt wieder angezeigt werden
-	toolTipCreate = true;
+		menuOFF();
+		m_menu->m_cancel.SwitchOff();
+		m_menu->m_confirm.SwitchOff();
 
-	m_menu->updatePlayer(); // ui für player wird geupdated
-	m_menu->m_toolTipBackGround.SwitchOff();
-	isclicked = false;
+		notInMenu = true;
+		auto cost = toBeBuiltBuilding->getBuildCost();
+		//guiklasse ist scheiße und man läuft immer 2mal in confirmclicked rein. 
+		//deshalb alles geteilt durch 2 :D
+	
+		// Tooltip kann jetzt wieder angezeigt werden
+		toolTipCreate = true;
 
-	saveable = true;
+		m_menu->updatePlayer(); // ui für player wird geupdated
+		m_menu->m_toolTipBackGround.SwitchOff();
+		isclicked = false;
+
+		saveable = true;
+	
 }
 
 void clickmanager::cancelClicked(CGameObjectPlacement* buildObject) {
@@ -326,13 +324,13 @@ void clickmanager::cancelClicked(CGameObjectPlacement* buildObject) {
 bool clickmanager::createToolTip(int i)
 {
 	if (activePosition != i) {
-		toolTipCreate = true;
+		return true;
 	}
 	else {
-		toolTipCreate = false;
+		return false;
 	}
 
-	return toolTipCreate;
+	
 }
 
 void clickmanager::uiDecision(CBuildingManager::Typ typ, std::string tooltipname, CDeviceCursor* cursor) {
@@ -341,10 +339,14 @@ void clickmanager::uiDecision(CBuildingManager::Typ typ, std::string tooltipname
 		toBeBuildObject = BuildingManager->lookForGameObject(typ);
 
 		toBeBuiltBuilding = dynamic_cast<Building*>(toBeBuildObject->getGameObject());
-		dumyTyp = typ;
+		
 		buildCost = toBeBuiltBuilding->getBuildCost();
 		typforUiDecsion = typ;
 	
+		if (dumyTyp != typ) {
+			dumyTyp = typ;
+			m_menu->tooltip(tooltipname, buildCost.Concrete, buildCost.Steel, buildCost.Wood, toBeBuiltBuilding->howMuch, toBeBuiltBuilding->Category);
+		}
 	/*if (createToolTip(m_menu->getSpecificSelect(1)->GetActivePosition())) {
 		//tooltip wird so nur einmal gebaut (aber kann überschrieben werden)
 		activePosition = m_menu->getSpecificSelect(1)->GetActivePosition();
@@ -409,10 +411,12 @@ void clickmanager::switchButtonClick(int i, LevelSystem::Level* currentLevel) {
 		break;
 	default: break;
 	}
+	
 	//nur wenn man auf nen confirm button geklickt hat, und kein popup offen ist und nicht im menü ist 
 	//überprüfe ob level completed, und steige level auf (gainxp) und initialisiere nächstes level
 	// 
 	// kann nur ein level upkommen wenn ich mal in nem popupwar:
+	dumyTyp = CBuildingManager::Typ::None;
 	if(selectedBuilding){
 		if (notInMenu && selectedBuilding->isPopupOpen()) {
 			if (LevelSystem::LevelManager::Instance().GetCurrentLevel()->IsCompleted()) {

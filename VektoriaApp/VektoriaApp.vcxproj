@@ -212,6 +212,7 @@
     <ClInclude Include="TimedDecision.h" />
     <ClInclude Include="Transition.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="wellPopup.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Action.cpp" />
@@ -260,6 +261,7 @@
     <ClCompile Include="Transition.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="VektoriaApp.cpp" />
+    <ClCompile Include="wellPopup.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\VektoriaTest.ico" />

@@ -10,7 +10,7 @@ public:
         PowerUse = 1;
         WaterUse = 1;
         NutrientUse = 4;
-       
+        howMuch = 10;
         Category = BuildingCategory::Living;
 
         setModel("models\\Kraftwerk.obj");
@@ -21,6 +21,8 @@ public:
    
     void OnClick() override {
         erstesMal = false;
+        //ersten 
+        thepopup->setInfo(PowerUse, WaterUse, NutrientUse, howMuch);
         thepopup->m_main.SwitchOn();
     }
     Resources getBuildCost() {
@@ -29,6 +31,11 @@ public:
         cost.Concrete = 10;
         cost.Wood = 20;
         return cost;
+    }
+    void updatePlayer() override {
+
+        Player::Instance().setWohnung(howMuch);
+
     }
     void setPopup(popup* einPopup) override {
         thepopup = (ApsPopup*)einPopup;
@@ -66,5 +73,6 @@ public:
     
 private:
     ApsPopup* thepopup = NULL;
+    
 };
 

@@ -14,6 +14,31 @@ void popup::init(CMaterial * mat1,CDeviceCursor* cursor, CWritingFont* font)
 	m_headlineW.SetLayer(0.97);
 	m_headlineW.SetInnerOn();
 
+
+	m_info2.Init(mat1, CFloatRect(0, 0.3, 1, 0.1));
+	m_info2.SetLayer(0.98);
+	m_info2.SetInnerOn();
+	m_info2W.Init(CFloatRect(0.1, 0.1, 0.8, 0.8),30,font);
+	m_info2W.SetLayer(0.97);
+	m_info2W.SetInnerOn();
+	
+
+	m_info3.Init(mat1, CFloatRect(0, 0.4, 1, 0.1));
+	m_info3.SetLayer(0.98);
+	m_info3.SetInnerOn();
+	m_info3W.Init(CFloatRect(0.1, 0.1, 0.8, 0.8), 30, font);
+	m_info3W.SetLayer(0.97);
+	m_info3W.SetInnerOn();
+
+
+	m_info4.Init(mat1, CFloatRect(0, 0.5, 1, 0.1));
+	m_info4.SetLayer(0.98);
+	m_info4.SetInnerOn();
+	m_info4W.Init(CFloatRect(0.1, 0.1, 0.8, 0.8), 30, font);
+	m_info4W.SetLayer(0.97);
+	m_info4W.SetInnerOn();
+
+
 	m_main.AddOverlay(&m_headline);
 	m_headline.AddWriting(&m_headlineW);
 
@@ -21,5 +46,7 @@ void popup::init(CMaterial * mat1,CDeviceCursor* cursor, CWritingFont* font)
 	m_abort.SetInnerOn();
 	m_abort.SetLayer(0.95);
 	m_abort.SetLabel("Close");
+
+
 	
 }
