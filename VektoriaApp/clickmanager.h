@@ -6,7 +6,7 @@
 #include "BeispielForGameObject.h"
 #include "MapTile.h"
 #include "CAudioManager.h"
-#include "CBuildingManager.h"
+
 #include "Save.h"
 #include "LevelManager.h"
 #include "Building.h"

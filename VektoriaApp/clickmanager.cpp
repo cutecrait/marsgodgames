@@ -219,12 +219,19 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 
 		switchButtonClick(1, currentLevel);
 	}
+	if (m_menu->m_Ressources.IsHovered()) {
+		m_menu->m_RessourcesPM.SwitchOn();
+	}
+	else {
+		m_menu->m_RessourcesPM.SwitchOff();
+	}
 	if (m_menu->m_missionen.IsHovered()) {
 		m_menu->m_missionenBack.SwitchOn();
 	}
-	else
+	else {
 		m_menu->m_missionenBack.SwitchOff();
-
+		
+	}
 }
 
 
@@ -345,7 +352,7 @@ void clickmanager::uiDecision(CBuildingManager::Typ typ, std::string tooltipname
 	
 		if (dumyTyp != typ) {
 			dumyTyp = typ;
-			m_menu->tooltip(tooltipname, buildCost.Concrete, buildCost.Steel, buildCost.Wood, toBeBuiltBuilding->howMuch, toBeBuiltBuilding->Category);
+			m_menu->tooltip(tooltipname, buildCost.Concrete, buildCost.Steel, buildCost.Wood,typ);
 		}
 	/*if (createToolTip(m_menu->getSpecificSelect(1)->GetActivePosition())) {
 		//tooltip wird so nur einmal gebaut (aber kann überschrieben werden)
