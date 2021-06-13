@@ -1,18 +1,18 @@
-#include "FoodFarmPopup.h"
+#include "SolarPopup.h"
 
-FoodFarmPopup::FoodFarmPopup()
+SolarPopup::SolarPopup()
 {
 }
 
-FoodFarmPopup::~FoodFarmPopup()
+SolarPopup::~SolarPopup()
 {
 }
 
-void FoodFarmPopup::Init(CDeviceCursor* cursor, CMaterial* mat1, CWritingFont* font)
+void SolarPopup::Init(CDeviceCursor* cursor, CMaterial* mat1, CWritingFont*font)
 {
 	init(mat1, cursor, font);
 
-	m_headlineW.PrintString("Nahrungsmittelfabrik");
+	m_headlineW.PrintString("Solarzellen");
 
 	m_info1.Init(mat1, CFloatRect(0, 0.2, 1, 0.1));
 	m_info1.SetLayer(0.98);
@@ -22,7 +22,7 @@ void FoodFarmPopup::Init(CDeviceCursor* cursor, CMaterial* mat1, CWritingFont* f
 	m_info1W.SetLayer(0.97);
 	m_info1W.SetInnerOn();
 	std::string dummystring;
-	dummystring = "Nahrungsmittelherstellung: " + std::to_string(10);
+	dummystring = "Stromherstellung: " + std::to_string(10);
 	m_info1W.PrintString(&dummystring[0]);
 
 
@@ -38,12 +38,12 @@ void FoodFarmPopup::Init(CDeviceCursor* cursor, CMaterial* mat1, CWritingFont* f
 	m_infotext1.Init(CFloatRect(0.1, 0.5, 0.7, 0.2), 50, font);
 	m_infotext1.SetLayer(0.97);
 	m_infotext1.SetInnerOn();
-	m_infotext1.PrintString("Nahrung pro Stunde bestimmt wie viel Nahrung");
+	m_infotext1.PrintString("Strom pro Stunde bestimmt wie viel KW pro Stunde");
 
 	m_infotext2.Init(CFloatRect(0.1, 0.75, 0.7, 0.2), 50, font);
 	m_infotext2.SetLayer(0.97);
 	m_infotext2.SetInnerOn();
-	m_infotext2.PrintString("hergestellt wird, Bewohner brauchen Nahrung.");
+	m_infotext2.PrintString("hergestellt wird, Gebaeude brauchen Strom.");
 
 
 	m_main.SwitchOff();
@@ -68,10 +68,10 @@ void FoodFarmPopup::Init(CDeviceCursor* cursor, CMaterial* mat1, CWritingFont* f
 	m_infotext.AddWriting(&m_infotext2);
 }
 
-void FoodFarmPopup::setInfo(int powerUse, int waterUse, int NutrientUse, int howMuch)
+void SolarPopup::setInfo(int powerUse, int waterUse, int NutrientUse, int howMuch)
 {
 	std::string dumyString;
-	dumyString = "Nahrungsmittelherstellung: " + std::to_string(howMuch);
+	dumyString = "Stromherstellung: " + std::to_string(howMuch);
 	m_info1W.PrintString(&dumyString[0]);
 
 	dumyString = "Stromverbrauch: " + std::to_string(powerUse);
@@ -82,5 +82,4 @@ void FoodFarmPopup::setInfo(int powerUse, int waterUse, int NutrientUse, int how
 
 	dumyString = "Nahrungsverbrauch: " + std::to_string(NutrientUse);
 	m_info4W.PrintString(&dumyString[0]);
-
 }

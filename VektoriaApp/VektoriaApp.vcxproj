@@ -183,9 +183,11 @@
     <ClInclude Include="Laboratory.h" />
     <ClInclude Include="Launchpad.h" />
     <ClInclude Include="Mine.h" />
+    <ClInclude Include="NuclearPopup.h" />
     <ClInclude Include="popup.h" />
     <ClInclude Include="roboPopUp.h" />
     <ClInclude Include="RobotFactory.h" />
+    <ClInclude Include="SolarPopup.h" />
     <ClInclude Include="testRobo.h" />
     <ClInclude Include="Well.h" />
     <ClInclude Include="TreeFarm.h" />
@@ -248,11 +250,13 @@
     <ClCompile Include="Mission.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="NodeController.cpp" />
+    <ClCompile Include="NuclearPopup.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="popup.cpp" />
     <ClCompile Include="roboPopUp.cpp" />
     <ClCompile Include="RobotBase.cpp" />
     <ClCompile Include="Save.cpp" />
+    <ClCompile Include="SolarPopup.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="SteeringManager.cpp" />

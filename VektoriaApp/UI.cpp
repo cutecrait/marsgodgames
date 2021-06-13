@@ -69,7 +69,9 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	m_apsPopup.Init(cursor, &m_matStats, font);
 	m_CCpopup.Init(cursor, &m_matStats, font);
 	m_wellPopup.Init(cursor, &m_matStats, font);
-
+	m_FFPopup.Init(cursor, &m_matStats, font);
+	m_nuclearPopup.Init(cursor, &m_matStats, font);
+	m_SolarPopup.Init(cursor, &m_matStats, font);
 	m_start.Init(cursor, font, CFloatRect(0.f, 0.9, 0.15, 0.1));
 	m_start.SetLabel("Menu");
 
@@ -149,6 +151,9 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	zv->AddOverlay(&m_apsPopup.m_main);
 	zv->AddOverlay(&m_CCpopup.m_main);
 	zv->AddOverlay(&m_wellPopup.m_main);
+	zv->AddOverlay(&m_FFPopup.m_main);
+	zv->AddOverlay(&m_SolarPopup.m_main);
+	zv->AddOverlay(&m_nuclearPopup.m_main);
 	//zv->AddOverlay(&m_tooltip);
 
 	
@@ -323,11 +328,7 @@ void UI::updatePlayer() {
 	m_steelMinusW.SwitchOff();
 	m_woodMinusW.SwitchOff();
 }
-roboPopUp* UI::getRobo(roboPopUp * einsrobo)
-{
 
-	return einsrobo;
-}
 void UI::tooltip(std::string headline, int res1, int res2, int res3, CBuildingManager::Typ typ) {
 	m_headlineW.PrintString(&headline[0]);
 	m_kosten1W.PrintInt(res1);
@@ -656,6 +657,15 @@ popup* UI::getPopup(std::string type)
 
 	if (type == typeid(Well).name()) {
 		return &m_wellPopup;
+	}
+	if (type == typeid(FoodFarm).name()) {
+		return&m_FFPopup;
+	}
+	if (type == typeid(NuclearPowerPlant).name()) {
+		return&m_nuclearPopup;
+	}
+	if (type == typeid(SolarPowerPlant).name()) {
+		return &m_SolarPopup;
 	}
 	return nullptr;
 }

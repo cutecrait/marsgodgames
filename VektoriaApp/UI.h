@@ -39,7 +39,7 @@ public:
 	void switchOnBuy(int,int,int);
 	void buildMission(COverlay*, CWritingFont*);
 	void updatePlayer();
-	roboPopUp* getRobo(roboPopUp*);
+	
 	void InitToolTip();
 	void levelOverlay(COverlay*, CWritingFont*, CDeviceCursor*);
 	void tooltip(std::string headline, int res1, int res2, int res3, CBuildingManager::Typ);
@@ -139,7 +139,9 @@ public:
 	ApsPopup m_apsPopup;
 	ControlCPopup m_CCpopup;
 	wellPopup m_wellPopup;
-
+	FoodFarmPopup m_FFPopup;
+	SolarPopup m_SolarPopup;
+	NuclearPopup m_nuclearPopup;
 	CGuiButton m_missionen;
 	COverlay m_missionenBack;
 	CViewport* m_viewport;

@@ -132,6 +132,12 @@
     <ClCompile Include="wellPopup.cpp">
       <Filter>UI\popups</Filter>
     </ClCompile>
+    <ClCompile Include="NuclearPopup.cpp">
+      <Filter>UI\popups</Filter>
+    </ClCompile>
+    <ClCompile Include="SolarPopup.cpp">
+      <Filter>UI\popups</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -317,6 +323,12 @@
       <Filter>UI\popups</Filter>
     </ClInclude>
     <ClInclude Include="wellPopup.h">
+      <Filter>UI\popups</Filter>
+    </ClInclude>
+    <ClInclude Include="NuclearPopup.h">
+      <Filter>UI\popups</Filter>
+    </ClInclude>
+    <ClInclude Include="SolarPopup.h">
       <Filter>UI\popups</Filter>
     </ClInclude>
   </ItemGroup>

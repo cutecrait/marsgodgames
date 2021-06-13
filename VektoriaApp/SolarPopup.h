@@ -1,11 +1,11 @@
 #pragma once
 #include "popup.h"
-class FoodFarmPopup :
+class SolarPopup :
     public popup
 {
 public:
-    FoodFarmPopup();
-    ~FoodFarmPopup();
+    SolarPopup();
+    ~SolarPopup();
     void Init(CDeviceCursor* cursor, CMaterial*, CWritingFont*);
     void setInfo(int powerUse, int waterUse, int NutrientUse, int howMuch) override;
 private:
@@ -23,4 +23,5 @@ private:
     CWriting m_infotext1;
     CWriting m_infotext2;
 };
+
 
