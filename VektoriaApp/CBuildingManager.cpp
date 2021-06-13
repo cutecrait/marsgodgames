@@ -39,86 +39,144 @@ void CBuildingManager::Init(CScene* scene)
 		Apartments[i].Init(typeid(Apartment).name());
 		Apartments[i].getGameObject()->TransformGeo();
 		m_zs->AddPlacement(&Apartments[i]);
+		if (i == 0)
+		{
+			BuildingGeos.Add(Apartments[i].getGameObject()->getModel());
+		}
 	}
 	for (int i = 0; i < size(ControlCenters); i++) {
 		ControlCenters[i].setGameObject(new ControlCenter);
 		ControlCenters[i].Init(typeid(ControlCenter).name());
 		ControlCenters[i].getGameObject()->TransformGeo();
 		m_zs->AddPlacement(&ControlCenters[i]);
+		if (i == 0)
+		{
+			BuildingGeos.Add(ControlCenters[i].getGameObject()->getModel());
+		}
 	}
 	for (int i = 0; i < size(FoodFarms); i++) {
 		FoodFarms[i].setGameObject(new FoodFarm);
 		FoodFarms[i].Init(typeid(FoodFarm).name());
 		FoodFarms[i].getGameObject()->TransformGeo();
 		m_zs->AddPlacement(&FoodFarms[i]);
+		if (i == 0)
+		{
+			BuildingGeos.Add(FoodFarms[i].getGameObject()->getModel());
+		}
 	}
 	for (int i = 0; i < size(Foundrys); i++) {
 		Foundrys[i].setGameObject(new Foundry);
 		Foundrys[i].Init(typeid(Foundry).name());
 		Foundrys[i].getGameObject()->TransformGeo();
 		m_zs->AddPlacement(&Foundrys[i]);
+		if (i == 0)
+		{
+			BuildingGeos.Add(Foundrys[i].getGameObject()->getModel());
+		}
 	}
 	for (int i = 0; i < size(GravelPlants); i++) {
 		GravelPlants[i].setGameObject(new GravelPlant);
 		GravelPlants[i].Init(typeid(GravelPlant).name());
 		GravelPlants[i].getGameObject()->TransformGeo();
 		m_zs->AddPlacement(&GravelPlants[i]);
+		if (i == 0)
+		{
+			BuildingGeos.Add(GravelPlants[i].getGameObject()->getModel());
+		}
 	}
 	for (int i = 0; i < size(Hospitals); i++) {
 		Hospitals[i].setGameObject(new Hospital);
 		Hospitals[i].Init(typeid(Hospital).name());
 		Hospitals[i].getGameObject()->TransformGeo();
 		m_zs->AddPlacement(&Hospitals[i]);
+		if (i == 0)
+		{
+			BuildingGeos.Add(Hospitals[i].getGameObject()->getModel());
+		}
 	}
 	for (int i = 0; i < size(Laboratorys); i++) {
 		Laboratorys[i].setGameObject(new Laboratory);
 		Laboratorys[i].Init(typeid(Laboratory).name());
 		Laboratorys[i].getGameObject()->TransformGeo();
 		m_zs->AddPlacement(&Laboratorys[i]);
+		if (i == 0)
+		{
+			BuildingGeos.Add(Laboratorys[i].getGameObject()->getModel());
+		}
 	}
 	for (int i = 0; i < size(Launchpads); i++) {
 		Launchpads[i].setGameObject(new Launchpad);
 		Launchpads[i].Init(typeid(Launchpad).name());
 		Launchpads[i].getGameObject()->TransformGeo();
 		m_zs->AddPlacement(&Launchpads[i]);
+		if (i == 0)
+		{
+			BuildingGeos.Add(Launchpads[i].getGameObject()->getModel());
+		}
 	}
 	for (int i = 0; i < size(Mines); i++) {
 		Mines[i].setGameObject(new Mine);
 		Mines[i].Init(typeid(Mine).name());
 		Mines[i].getGameObject()->TransformGeo();
 		m_zs->AddPlacement(&Mines[i]);
+		if (i == 0)
+		{
+			BuildingGeos.Add(Mines[i].getGameObject()->getModel());
+		}
 	}
+	int iNuclear = size(NuclearPowerPlants);
 	for (int i = 0; i < size(NuclearPowerPlants); i++) {
 		NuclearPowerPlants[i].setGameObject(new NuclearPowerPlant);
 		NuclearPowerPlants[i].Init(typeid(NuclearPowerPlant).name());
 		NuclearPowerPlants[i].getGameObject()->TransformGeo();
 		m_zs->AddPlacement(&NuclearPowerPlants[i]);
+		if (i == 0)
+		{
+			BuildingGeos.Add(NuclearPowerPlants[i].getGameObject()->getModel());
+		}
 	}
-	for (int i = 0; i < size(RobotFactorys); i++) {
+	int iRobots = size(RobotFactorys);
+	for (int i = 0; i < iRobots; i++) {
 		RobotFactorys[i].setGameObject(new RobotFactory);
 		RobotFactorys[i].Init(typeid(RobotFactory).name());
 		RobotFactorys[i].getGameObject()->TransformGeo();
 		m_zs->AddPlacement(&RobotFactorys[i]);
-		std::string bla = RobotFactorys[i].GetName();
-		bla;
+		if (i == 0)
+		{
+			BuildingGeos.Add(RobotFactorys[i].getGameObject()->getModel());
+		}
 	}
+	int iSolar = size(SolarPowerPlants);
 	for (int i = 0; i < size(SolarPowerPlants); i++) {
 		SolarPowerPlants[i].setGameObject(new SolarPowerPlant);
 		SolarPowerPlants[i].Init(typeid(SolarPowerPlant).name());
 		SolarPowerPlants[i].getGameObject()->TransformGeo();
 		m_zs->AddPlacement(&SolarPowerPlants[i]);
+		if (i == 0)
+		{
+			BuildingGeos.Add(SolarPowerPlants[i].getGameObject()->getModel());
+		}
 	}
+
 	for (int i = 0; i < size(TreeFarms); i++) {
 		TreeFarms[i].setGameObject(new TreeFarm);
 		TreeFarms[i].Init(typeid(TreeFarm).name());
 		TreeFarms[i].getGameObject()->TransformGeo();
 		m_zs->AddPlacement(&TreeFarms[i]);
+		if (i == 0)
+		{
+			BuildingGeos.Add(TreeFarms[i].getGameObject()->getModel());
+		}
 	}
 	for (int i = 0; i < size(Wells); i++) {
 		Wells[i].setGameObject(new Well);
 		Wells[i].Init(typeid(Well).name());
 		Wells[i].getGameObject()->TransformGeo();
 		m_zs->AddPlacement(&Wells[i]);
+		if (i == 0)
+		{
+			BuildingGeos.Add(Wells[i].getGameObject()->getModel());
+		}
 	}
 }
 
@@ -150,6 +208,11 @@ void CBuildingManager::IncreaseNrOfBuildings(Typ& typ)
 void CBuildingManager::DecreaseNrOfBuildings(Typ& typ)
 {
 	m_NrsOfBuildings[static_cast<int>(typ)]--;
+}
+
+CGeos* CBuildingManager::getBuildingGeos()
+{
+	return &BuildingGeos;
 }
 
 void CBuildingManager::AddNewBuilding(Typ t, MapTile* targetTile)

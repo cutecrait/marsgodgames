@@ -17,7 +17,7 @@ public:
         // set model
         // set material
 
-      // setAudio(&CAudioManager::Instance().Local_RobotFactory);
+       setAudio(&CAudioManager::Instance().Local_RobotFactory);
     }
     
    void OnClick() override {

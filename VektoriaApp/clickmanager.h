@@ -35,6 +35,7 @@ public:
 	bool enoughRes(Building*);
 
 	void confirmClicked();
+	void setBuildingGeos(CGeos*);
 
 	void cancelClicked(CGameObjectPlacement* );
 	bool createToolTip(int);
@@ -66,6 +67,8 @@ private:
 	CBuildingManager::Typ dumyTyp;
 	/*BeispielForGameObject MONKY;
 	BeispielForGameObject* Wohnung[20];*/
+
+	CGeos* BuildingModels;
 
 	// Karo: Save um Checkpoint zu setzen
 	Save save;

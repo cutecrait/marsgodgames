@@ -449,10 +449,10 @@ bool clickmanager::openPopup(CDeviceCursor* cursor) {
 		if (cursor->PickOverlay() == NULL) {
 			if (cursor->ButtonPressedLeft()) {
 				if (!cursor->ButtonUpLeft()) {
-					selectedGeo = cursor->PickGeo();
+					selectedGeo = cursor->PickGeoPreselected(*BuildingModels);
 					if (selectedGeo) {
 						//selectedGeo->GetParent()->SetName("GameObject");
-						ss = selectedGeo->GetName();
+						ss = selectedGeo->GetParent()->GetName();
 						//wenn audio aktiv, pickt kein geo mehr sondern geogrid(tiles)
 						//wenn setaudio in einem building ausgeführt kllappts nicht mehr
 						//caudiomanager auch ein setname gemacht,
@@ -482,7 +482,10 @@ bool clickmanager::openPopup(CDeviceCursor* cursor) {
 	return false;
 }
 
-
+void clickmanager::setBuildingGeos(CGeos* geos)
+{
+	BuildingModels = geos;
+}
 
 /*if (m_menu->getSpecificSelect(1)->GetActivePosition() == 0) {
 

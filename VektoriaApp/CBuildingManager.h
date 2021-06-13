@@ -66,8 +66,12 @@ public:
 	void AddNewBuilding(Typ, MapTile*);
 	CGameObjectPlacement* getClosestGameObject(Typ);
 
+	CGeos* getBuildingGeos();
+
 private:
 	CScene* m_zs;
+
+	CGeos BuildingGeos;
 
 	CGameObjectPlacement Apartments[50];
 	CGameObjectPlacement ControlCenters[1];
