@@ -151,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="Action.h" />
     <ClInclude Include="Apartment.h" />
+    <ClInclude Include="ApsPopup.h" />
     <ClInclude Include="AStarAlgorithm.h" />
     <ClInclude Include="BeispielForGameObject.h" />
     <ClInclude Include="Building.h" />
@@ -160,11 +161,14 @@
     <ClInclude Include="clickmanager.h" />
     <ClInclude Include="Connection.h" />
     <ClInclude Include="ControlCenter.h" />
+    <ClInclude Include="ControlCPopup.h" />
     <ClInclude Include="CTerrain.h" />
     <ClInclude Include="Decision.h" />
     <ClInclude Include="FollowPathAction.h" />
     <ClInclude Include="FoodFarm.h" />
+    <ClInclude Include="FoodFarmPopup.h" />
     <ClInclude Include="Foundry.h" />
+    <ClInclude Include="FoundryPopup.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="CGameObjectPlacement.h" />
@@ -208,10 +212,12 @@
     <ClInclude Include="TimedDecision.h" />
     <ClInclude Include="Transition.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="wellPopup.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Action.cpp" />
     <ClCompile Include="Apartment.cpp" />
+    <ClCompile Include="ApsPopup.cpp" />
     <ClCompile Include="AStarAlgorithm.cpp" />
     <ClCompile Include="BeispielForGameObject.cpp" />
     <ClCompile Include="CAudioManager.cpp" />
@@ -219,9 +225,12 @@
     <ClCompile Include="CCameraController.cpp" />
     <ClCompile Include="clickmanager.cpp" />
     <ClCompile Include="Connection.cpp" />
+    <ClCompile Include="ControlCPopup.cpp" />
     <ClCompile Include="CTerrain.cpp" />
     <ClCompile Include="Decision.cpp" />
     <ClCompile Include="FollowPathAction.cpp" />
+    <ClCompile Include="FoodFarmPopup.cpp" />
+    <ClCompile Include="FoundryPopup.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Level.cpp" />
@@ -252,6 +261,7 @@
     <ClCompile Include="Transition.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="VektoriaApp.cpp" />
+    <ClCompile Include="wellPopup.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\VektoriaTest.ico" />

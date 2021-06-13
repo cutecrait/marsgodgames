@@ -1,0 +1,46 @@
+# Blender MTL File: 'Lab2.blend'
+# Material Count: 4
+
+newmtl Sockel
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.009019 0.009019 0.009019
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl Solar
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump D:\\Blender Projekte\\Project Mars\\textures\\SolarPanel003_2K-JPG\\SolarPanel003_2K_Normal.jpg
+map_Kd D:\\Blender Projekte\\Project Mars\\textures\\SolarPanel003_2K-JPG\\SolarPanel003_2K_Color.jpg
+map_Ns D:\\Blender Projekte\\Project Mars\\textures\\SolarPanel003_2K-JPG\\SolarPanel003_2K_Roughness.jpg
+refl D:\\Blender Projekte\\Project Mars\\textures\\SolarPanel003_2K-JPG\\SolarPanel003_2K_Metalness.jpg
+
+newmtl fassade
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.081177 0.081177 0.081177
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl glass
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.289596 0.481757 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2

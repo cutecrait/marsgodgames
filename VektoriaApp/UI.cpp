@@ -63,23 +63,25 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	m_viewport = zv;
 	InitMaterial();
 	InitToolTip();
+
 	m_roboPopUP.Init(cursor,&m_matStats,font);
+	m_apsPopup.Init(cursor, &m_matStats, font);
+	m_CCpopup.Init(cursor, &m_matStats, font);
+	m_wellPopup.Init(cursor, &m_matStats, font);
+
 	m_start.Init(cursor, font, CFloatRect(0.f, 0.9, 0.15, 0.1));
 	m_start.SetLabel("Menu");
 
 
-	m_resBack.Init(&m_matRes, CFloatRect(0.5, 0, 0.4, 0.1));
-	m_resBack.SetLayer(0.98);
+	/*m_resBack.Init(&m_matRes, CFloatRect(0.5, 0, 0.4, 0.1));
+	m_resBack.SetLayer(0.98);*/
+	m_Ressources.Init(cursor, font, CFloatRect(0.5, 0, 0.4, 0.1));
 	m_redFont.LoadPreset("LucidaConsoleRed");
 	m_redFont.SetChromaKeyingOn();
-	m_concrete.Init(cursor, font, CFloatRect(-0.03, 0.2, 0.4, 0.6));
-	m_steel.Init(cursor, font, CFloatRect(0.3, 0.2, 0.4, 0.6));
-	m_wood.Init(cursor, font, CFloatRect(0.63, 0.2, 0.4, 0.6));
+	
 
-	m_concreteMinus.Init(cursor, &m_redFont, CFloatRect(-0.03, 0.2, 0.4, 0.6));
-	m_steelMinus.Init(cursor, &m_redFont, CFloatRect(0.3, 0.2, 0.4, 0.6));
-	m_woodMinus.Init(cursor, &m_redFont, CFloatRect(0.63, 0.2, 0.4, 0.6));
-	initRessource();
+	
+	initRessource(font);
 
 	//m_mainSelect.makeInactiveMats(m_matsForSelectMain);
 
@@ -104,12 +106,12 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	m_specificSelect[1].Init(cursor, font, 4, CFloatRect(0.15, 0.3, 0.15, 0.6)); labelMaker(1, 4, selectLabel);
 
 	selectLabel.clear();
-	selectLabel.push_back(" Gemüsegarten"); selectLabel.push_back(" Insektenzucht"); selectLabel.push_back(" Abwasserreinigung"); selectLabel.push_back(" Strom");
+	selectLabel.push_back(" Brunnen"); selectLabel.push_back(" Farm"); selectLabel.push_back(" Abwasserreinigung"); selectLabel.push_back(" Strom");
 	//m_specificSelect[2].makeInactiveMats(m_matsForSelect3);
 	m_specificSelect[2].Init(cursor, font, 4, CFloatRect(0.15, 0.3, 0.15, 0.6)); labelMaker(2, 4, selectLabel);
 
 	selectLabel.clear();
-	selectLabel.push_back(" anderes1"); selectLabel.push_back(" anderes2"); selectLabel.push_back(" anderes3"); selectLabel.push_back(" anderes4"); selectLabel.push_back(" anderes5"); 
+	selectLabel.push_back(" ControlCenter"); selectLabel.push_back(" anderes2"); selectLabel.push_back(" anderes3"); selectLabel.push_back(" anderes4"); selectLabel.push_back(" anderes5"); 
 	//m_specificSelect[3].makeInactiveMats(m_matsForSelect4);
 	m_specificSelect[3].Init(cursor, font, 5, CFloatRect(0.15, 0.2, 0.15, 0.7)); labelMaker(3, 5, selectLabel);
 
@@ -136,19 +138,24 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	//zv->AddOverlay(&m_specificSelect[4]);
 	zv->AddOverlay(&m_confirm);
 	zv->AddOverlay(&m_cancel);
-	zv->AddOverlay(&m_resBack);
+	zv->AddOverlay(&m_Ressources);
 	//zv->AddOverlay(&m_roboPopUP.m_robo1Add);
 	zv->AddOverlay(&m_statistic);
 	zv->AddOverlay(&m_statsBack);
 	zv->AddOverlay(&m_roboPopUP.m_main);
+	zv->AddOverlay(&m_apsPopup.m_main);
+	zv->AddOverlay(&m_CCpopup.m_main);
+	zv->AddOverlay(&m_wellPopup.m_main);
 	//zv->AddOverlay(&m_tooltip);
 
-	m_resBack.AddOverlay(&m_concrete);
+	
+
+	/*m_resBack.AddOverlay(&m_concrete);
 	m_resBack.AddOverlay(&m_wood);
 	m_resBack.AddOverlay(&m_steel);
 	m_resBack.AddOverlay(&m_concreteMinus);
 	m_resBack.AddOverlay(&m_steelMinus);
-	m_resBack.AddOverlay(&m_woodMinus);
+	m_resBack.AddOverlay(&m_woodMinus);*/
 }
 
 void UI::labelMaker(int a, int b, std::vector<std::string> label)
@@ -157,12 +164,72 @@ void UI::labelMaker(int a, int b, std::vector<std::string> label)
 		m_specificSelect[a].AddOption(label.at(i));
 	}
 }
-void UI::initRessource() {
+void UI::initRessource(CWritingFont* font) {
+/*	m_concrete.Init(cursor, font, CFloatRect(-0.03, 0.2, 0.4, 0.6));
+	m_steel.Init(cursor, font, CFloatRect(0.3, 0.2, 0.4, 0.6));
+	m_wood.Init(cursor, font, CFloatRect(0.63, 0.2, 0.4, 0.6));
+
+	m_concreteMinus.Init(cursor, &m_redFont, CFloatRect(-0.03, 0.2, 0.4, 0.6));
+	m_steelMinus.Init(cursor, &m_redFont, CFloatRect(0.3, 0.2, 0.4, 0.6));
+	m_woodMinus.Init(cursor, &m_redFont, CFloatRect(0.63, 0.2, 0.4, 0.6));*/
+
+	
+	m_Ressources.SetLayer(0.99);
+	m_Ressources.SetMaterial(&m_matRes);
+
+	
+
+	m_concreteW.Init(CFloatRect(0.2,0.1,0.1, 0.8), 5, font);
+	m_concreteW.SetInnerOn();
+	m_concreteW.SetLayer(0.78);
+	m_concreteW.PrintInt(Player::Instance().getConcrete());
+
+	m_concreteW.SwitchOn();
 
 
+
+	m_steelW.Init(CFloatRect(0.5, 0.1, 0.1, 0.8), 5, font);
+	m_steelW.SetInnerOn();
+	m_steelW.SetLayer(0.78);
+	m_steelW.PrintInt(Player::Instance().getSteel());
+
+	m_steelW.SwitchOn();
+	
+
+	m_woodW.Init(CFloatRect(0.8, 0.1, 0.1, 0.8), 5, font);
+	m_woodW.SetInnerOn();
+	m_woodW.SetLayer(0.78);
+	m_woodW.PrintInt(Player::Instance().getWood());
+	m_woodW.SwitchOn();
+
+	m_concreteMinusW.Init(CFloatRect(0.2, 0.1, 0.1, 0.8), 5, &m_redFont);
+	m_concreteMinusW.SetInnerOn();
+	m_concreteMinusW.SetLayer(0.78);
+	m_concreteMinusW.SwitchOff();
+
+	m_steelMinusW.Init(CFloatRect(0.5, 0.1, 0.1, 0.8), 5, &m_redFont);
+	m_steelMinusW.SetInnerOn();
+	m_steelMinusW.SetLayer(0.78);
+	
+	m_steelMinusW.SwitchOff();
+	m_woodMinusW.Init(CFloatRect(0.8, 0.1, 0.1, 0.8), 5, &m_redFont);
+	m_woodMinusW.SetInnerOn();
+	m_woodMinusW.SetLayer(0.78);
+	
+	m_woodMinusW.SwitchOff();
+	
+	m_Ressources.AddWriting(&m_concreteW);
+	m_Ressources.AddWriting(&m_woodW);
+	m_Ressources.AddWriting(&m_steelW);
+
+	m_Ressources.AddWriting(&m_concreteMinusW);
+	m_Ressources.AddWriting(&m_woodMinusW);
+	m_Ressources.AddWriting(&m_steelMinusW);
+	
+	/*m_concrete.Init();
 	m_concrete.SetInnerOn();
 	m_concrete.SetLayer(1);
-	m_concrete.SetLabel("      " + std::to_string(Player::Instance().getConcrete()));
+	m_concrete.PrintString("      " + std::to_string(Player::Instance().getConcrete()));
 
 	m_steel.SetLabel("      " + std::to_string(Player::Instance().getSteel()));
 	m_steel.SetInnerOn();
@@ -182,7 +249,7 @@ void UI::initRessource() {
 
 	m_woodMinus.SetInnerOn();
 	m_woodMinus.SetLayer(1);
-	m_woodMinus.SwitchOff();
+	m_woodMinus.SwitchOff();*/
 
 }
 void UI::initPlayer(CDeviceCursor* cursor, CWritingFont* font) {
@@ -226,15 +293,15 @@ void UI::initPlayer(CDeviceCursor* cursor, CWritingFont* font) {
 
 void UI::switchOnBuy(int res1, int res2, int res3) {
 
-	m_concrete.SwitchOff();
-	m_steel.SwitchOff();
-	m_wood.SwitchOff();
-	m_concreteMinus.SwitchOn();
-	m_concreteMinus.SetLabel("      " + std::to_string(Player::Instance().getConcrete() - res1));
-	m_steelMinus.SwitchOn();
-	m_steelMinus.SetLabel("      " + std::to_string(Player::Instance().getSteel() - res2));
-	m_woodMinus.SwitchOn();
-	m_woodMinus.SetLabel("      " + std::to_string(Player::Instance().getWood() - res3));
+	m_concreteW.SwitchOff();
+	m_steelW.SwitchOff();
+	m_woodW.SwitchOff();
+	m_concreteMinusW.SwitchOn();
+	m_concreteMinusW.PrintInt(Player::Instance().getConcrete() - res1);
+	m_steelMinusW.SwitchOn();
+	m_steelMinusW.PrintInt(Player::Instance().getSteel() - res2);
+	m_woodMinusW.SwitchOn();
+	m_woodMinusW.PrintInt(Player::Instance().getWood() - res3);
 
 }
 
@@ -242,29 +309,38 @@ void UI::switchOnBuy(int res1, int res2, int res3) {
 
 void UI::updatePlayer() {
 
-	m_concrete.SetLabel("      " + std::to_string(Player::Instance().getConcrete()));
-	m_steel.SetLabel("      " + std::to_string(Player::Instance().getSteel()));
-	m_wood.SetLabel("      " + std::to_string(Player::Instance().getWood()));
-	m_wood.SwitchOn();
-	m_concrete.SwitchOn();
-	m_steel.SwitchOn();
-	m_concreteMinus.SwitchOff();
-	m_steelMinus.SwitchOff();
-	m_woodMinus.SwitchOff();
+	m_concreteW.PrintInt(Player::Instance().getConcrete());
+	m_steelW.PrintInt(Player::Instance().getSteel());
+	m_woodW.PrintInt(Player::Instance().getWood());
+	m_woodW.SwitchOn();
+	m_concreteW.SwitchOn();
+	m_steelW.SwitchOn();
+	m_concreteMinusW.SwitchOff();
+	m_steelMinusW.SwitchOff();
+	m_woodMinusW.SwitchOff();
 }
 roboPopUp* UI::getRobo(roboPopUp * einsrobo)
 {
 
 	return einsrobo;
 }
-void UI::tooltip(std::string headline, int res1, int res2, int res3, int anzahl, std::string whatHappens) {
+void UI::tooltip(std::string headline, int res1, int res2, int res3, int anzahl, BuildingCategory bla) {
 	m_headlineW.PrintString(&headline[0]);
 	m_kosten1W.PrintInt(res1);
 	m_kosten2W.PrintInt(res2);
 	m_kosten3W.PrintInt(res3);
 
 	m_descriptionW2.PrintInt(anzahl);
-	m_descriptionW3.PrintString(&whatHappens[0]);
+	
+	if (BuildingCategory::Living == bla) {
+		m_descriptionW3.PrintString("Wohnungen hinzugefuegt");
+	}
+	if (BuildingCategory::Farming == bla) {
+		m_descriptionW3.PrintString("Nahrungseinheiten hinzugefuegt");
+	}
+	//hier weitere tooltips hinzufuegen (nur die "if")
+
+
 	m_toolTipBackGround.SwitchOn();
 
 }
@@ -322,7 +398,7 @@ void UI::InitToolTip() {
 	m_descriptionW2.SetLayer(0.96);
 	m_descriptionW2.SetInnerOn();
 
-	m_descriptionW3.Init(CFloatRect(0.1, 0.6, 1, 0.3), 25, &m_redFont);
+	m_descriptionW3.Init(CFloatRect(0.1, 0.6, 1, 0.3), 30, &m_redFont);
 	m_descriptionW3.SetLayer(0.96);
 	m_descriptionW3.SetInnerOn();
 
@@ -483,9 +559,20 @@ void UI::updateLevelUI(float anzahlMissGesamt, float anzahlAbgeschlossenerMiss, 
 popup* UI::getPopup(std::string type)
 {
 	if (type == typeid(RobotFactory).name()) {
+		
 		return& m_roboPopUP;
 	}
+	if (type == typeid(Apartment).name()) {
+		return&m_apsPopup;
+	}
 
+	if (type == typeid(ControlCenter).name()) {
+		return&m_CCpopup;
+	}
+
+	if (type == typeid(Well).name()) {
+		return &m_wellPopup;
+	}
 	return nullptr;
 }
 

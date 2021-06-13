@@ -7,10 +7,10 @@ namespace Vektoria
 		this->Init(deviceCursor, font, CFloatRect(0.0f, 0.0f, 0.0f, 0.0f));
 	}
 
-	void CGuiElement::Init(CDeviceCursor* deviceCursor, CWritingFont* font, CFloatRect& floatRect)
+	void CGuiElement::Init(CDeviceCursor* deviceCursor, CWritingFont* font, CFloatRect& floatRect ,int i)
 	{
 		m_acName = "CGuiElement";
-
+		setLabelLength(i);
 		// Init members
 		m_pdc = deviceCursor;
 		m_pwfFont = font;

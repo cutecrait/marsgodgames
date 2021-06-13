@@ -99,6 +99,8 @@ void CBuildingManager::Init(CScene* scene)
 		RobotFactorys[i].Init(typeid(RobotFactory).name());
 		RobotFactorys[i].getGameObject()->TransformGeo();
 		m_zs->AddPlacement(&RobotFactorys[i]);
+		std::string bla = RobotFactorys[i].GetName();
+		bla;
 	}
 	for (int i = 0; i < size(SolarPowerPlants); i++) {
 		SolarPowerPlants[i].setGameObject(new SolarPowerPlant);
@@ -172,7 +174,7 @@ void CBuildingManager::AddNewBuilding(Typ t, MapTile* targetTile)
 	p->useFood(newBuilding->NutrientUse);
 	p->usePower(newBuilding->PowerUse);
 	p->useWater(newBuilding->WaterUse);
-
+	newBuilding->updatePlayer();
 
 	gop->Translate(targetTile->GetPos());
 	targetTile->Free = false;

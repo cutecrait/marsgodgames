@@ -23,11 +23,15 @@ public:
     virtual void setPopup(popup*){}
     virtual int getResult(int) { return 0; }
     virtual bool hasPopup() { return false; }
-
-
+    virtual bool isPopupOpen() { return false; }
+    virtual bool isPopupFunctional() { return false; }
+    virtual void updatePlayer() {};
+    
     int PowerUse;
     int WaterUse;
     int NutrientUse;
+    int howMuch;
+    bool erstesMal;
     BuildingCategory Category = BuildingCategory::None;
 };
 
