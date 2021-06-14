@@ -17,11 +17,11 @@ public:
         // set model
         // set material
 
-        setAudio(&CAudioManager::Instance().Local_RobotFactory);
+       setAudio(&CAudioManager::Instance().Local_RobotFactory);
     }
     
    void OnClick() override {
-     //  thepopup = (roboPopUp*) m_robopopup;
+    
          robo1 = 0;
         robo2 = 0;
         robo3 = 0;
@@ -91,6 +91,23 @@ public:
        return 4;
       
    }
+   bool isPopupFunctional() override{
+       return true;
+   }
+
+   bool isPopupOpen() override {
+
+       if (thepopup != NULL) {
+           if (thepopup->m_main.IsOn()) {
+               return true;
+           }
+           else
+               return false;
+       }
+       else
+           return false;
+   }
+
    void setPopup(popup* einPopup) override {
        thepopup = (roboPopUp*)einPopup;
    }
@@ -115,6 +132,9 @@ public:
 
 
     }
+    //hier drin wird dann playerstats geupdated.
+    //hier drin wird dann erstelle robos evtl gemacht?
+
     bool enoughResource() {
         if (kostenConcrete <= Player::Instance().getConcrete() &&
             kostenSteel <= Player::Instance().getSteel() &&
@@ -156,7 +176,7 @@ private:
     int kostenSteel = 0;
     int kostenConcrete = 0;
     bool onlyOneTime = true;
-    roboPopUp* thepopup;
-    bool erstesMal = true;
+    roboPopUp* thepopup = NULL;
+  
     int resultArray[3];
 };

@@ -21,7 +21,9 @@ private:
 	CWriting m_robo1W; //roboter beschreibung
 	CWriting m_robo2W;
 	CWriting m_robo3W;
-	
+//	COverlay m_headLine;
+	//CWriting m_headlineW;
+
 	COverlay kosten;
 	COverlay kosten1;
 	COverlay kosten2;
@@ -29,8 +31,9 @@ private:
 	
 	COverlay buttonOverlay;
 public:
-
-	COverlay m_main;
+	
+	
+	//COverlay m_main;
 	CGuiButton m_robo1Add;// zählt robo1addw hoch 
 	CWriting m_robo1AddW;//wie viele robo
 	CWriting m_robo2AddW;

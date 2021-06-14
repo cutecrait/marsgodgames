@@ -31,6 +31,8 @@ public:
 	CAudio Local_Well;
 	CAudio Local_Laboratory;
 	CAudio Local_RobotFactory;
+	CAudio Local_GravelPlant;
+	CAudio Local_NuclearPowerPlant;
 
 private:
 	CAudioManager();

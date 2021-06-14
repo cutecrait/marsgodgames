@@ -109,12 +109,38 @@
     <ClCompile Include="Mission.cpp">
       <Filter>LevelSystem\Level</Filter>
     </ClCompile>
-    <ClCompile Include="roboPopUp.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
     <ClCompile Include="Apartment.cpp" />
-    <ClCompile Include="popup.cpp" />
     <ClCompile Include="testRobo.cpp" />
+    <ClCompile Include="roboPopUp.cpp">
+      <Filter>UI\popups</Filter>
+    </ClCompile>
+    <ClCompile Include="ApsPopup.cpp">
+      <Filter>UI\popups</Filter>
+    </ClCompile>
+    <ClCompile Include="FoodFarmPopup.cpp">
+      <Filter>UI\popups</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundryPopup.cpp">
+      <Filter>UI\popups</Filter>
+    </ClCompile>
+    <ClCompile Include="popup.cpp">
+      <Filter>UI\popups</Filter>
+    </ClCompile>
+    <ClCompile Include="ControlCPopup.cpp">
+      <Filter>UI\popups</Filter>
+    </ClCompile>
+    <ClCompile Include="wellPopup.cpp">
+      <Filter>UI\popups</Filter>
+    </ClCompile>
+    <ClCompile Include="NuclearPopup.cpp">
+      <Filter>UI\popups</Filter>
+    </ClCompile>
+    <ClCompile Include="SolarPopup.cpp">
+      <Filter>UI\popups</Filter>
+    </ClCompile>
+    <ClCompile Include="LabPopup.cpp">
+      <Filter>UI\popups</Filter>
+    </ClCompile>
     <ClCompile Include="PathController.cpp">
       <Filter>Robot\Pathfinding</Filter>
     </ClCompile>
@@ -289,8 +315,36 @@
     <ClInclude Include="Well.h">
       <Filter>Buildings</Filter>
     </ClInclude>
+    <ClInclude Include="testRobo.h" />
     <ClInclude Include="roboPopUp.h">
-      <Filter>UI</Filter>
+      <Filter>UI\popups</Filter>
+    </ClInclude>
+    <ClInclude Include="ApsPopup.h">
+      <Filter>UI\popups</Filter>
+    </ClInclude>
+    <ClInclude Include="FoodFarmPopup.h">
+      <Filter>UI\popups</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundryPopup.h">
+      <Filter>UI\popups</Filter>
+    </ClInclude>
+    <ClInclude Include="popup.h">
+      <Filter>UI\popups</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlCPopup.h">
+      <Filter>UI\popups</Filter>
+    </ClInclude>
+    <ClInclude Include="wellPopup.h">
+      <Filter>UI\popups</Filter>
+    </ClInclude>
+    <ClInclude Include="NuclearPopup.h">
+      <Filter>UI\popups</Filter>
+    </ClInclude>
+    <ClInclude Include="SolarPopup.h">
+      <Filter>UI\popups</Filter>
+    </ClInclude>
+    <ClInclude Include="LabPopup.h">
+      <Filter>UI\popups</Filter>
     </ClInclude>
     <ClInclude Include="popup.h" />
     <ClInclude Include="testRobo.h" />
@@ -370,6 +424,9 @@
     </Filter>
     <Filter Include="Buildings">
       <UniqueIdentifier>{2ba58d36-604a-49eb-ae64-1b8a643be130}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\popups">
+      <UniqueIdentifier>{d81b4f20-7616-4341-839a-4cda784b8c6c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

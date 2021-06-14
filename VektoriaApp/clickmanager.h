@@ -6,7 +6,7 @@
 #include "BeispielForGameObject.h"
 #include "MapTile.h"
 #include "CAudioManager.h"
-#include "CBuildingManager.h"
+
 #include "Save.h"
 #include "LevelManager.h"
 #include "Building.h"
@@ -35,6 +35,7 @@ public:
 	bool enoughRes(Building*);
 
 	void confirmClicked();
+	void setBuildingGeos(CGeos*);
 
 	void cancelClicked(CGameObjectPlacement* );
 	bool createToolTip(int);
@@ -45,7 +46,7 @@ public:
 	
 private:
 
-
+	CBuildingManager::Typ typforUiDecsion;
 
 	//std::vector <CMaterial*> m_MATbuildingKind;
 	int whatKind;
@@ -63,9 +64,11 @@ private:
 	MapSquare* mapsquares;
 	CPlacement* targetPos;
 	UI* m_menu;
-	CBuildingManager::Typ dumyTyp = CBuildingManager::Typ::RobotFactory;
+	CBuildingManager::Typ dumyTyp;
 	/*BeispielForGameObject MONKY;
 	BeispielForGameObject* Wohnung[20];*/
+
+	CGeos* BuildingModels;
 
 	// Karo: Save um Checkpoint zu setzen
 	Save save;
@@ -77,7 +80,9 @@ private:
 	CGeo* selectedGeo;
 	Building* selectedBuilding;
 	bool oneTimeSetPopup = true;
-
+	std::string ss;
+	bool erstesMal = true;
 	CGameObjectPlacement* selectedPlacement;
+	Building::Resources buildCost;
 };
 

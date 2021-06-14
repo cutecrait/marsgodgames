@@ -13,11 +13,19 @@ roboPopUp::~roboPopUp()
 void roboPopUp::Init(CDeviceCursor* cursor,CMaterial* mat1, CWritingFont* font1)
 {
 	//hintergrund für alle robos
-	m_main.Init(mat1, CFloatRect(0.25,0.2,0.5,0.6));
+	init(mat1,cursor,font1);
+	/*m_main.Init(mat1, CFloatRect(0.25,0.2,0.5,0.6));
 	m_main.SwitchOn();
 	m_main.SetLayer(0.99);
 	//writing (welcher robo) writing (wie viele) button der 2tes writing hochzählt.
 	//hintergrund für robo1
+	m_headLine.Init(mat1,CFloatRect(0,0,1,0.2));
+	m_headLine.SetLayer(0.98);
+	m_headLine.SetInnerOn();*/
+
+	
+	m_headlineW.PrintString("Roboterfabrik");
+
 	m_robo1.Init(mat1,CFloatRect(0,0.2,1,0.2)); 
 	m_robo1.SetLayer(0.89);
 	m_robo1.SetInnerOn();
@@ -143,6 +151,9 @@ void roboPopUp::Init(CDeviceCursor* cursor,CMaterial* mat1, CWritingFont* font1)
 	m_main.AddOverlay(&m_robo3);
 	m_main.AddOverlay(&kosten);
 	m_main.AddOverlay(&buttonOverlay);
+	m_main.AddOverlay(&m_headline);
+	
+	m_headline.AddWriting(&m_headlineW);
 
 	buttonOverlay.AddOverlay(&cancel);
 	buttonOverlay.AddOverlay(&confirm);
