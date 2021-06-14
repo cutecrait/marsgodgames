@@ -181,6 +181,7 @@
     <ClInclude Include="GuiUtils.h" />
     <ClInclude Include="Hospital.h" />
     <ClInclude Include="Laboratory.h" />
+    <ClInclude Include="LabPopup.h" />
     <ClInclude Include="Launchpad.h" />
     <ClInclude Include="Mine.h" />
     <ClInclude Include="NuclearPopup.h" />
@@ -235,6 +236,7 @@
     <ClCompile Include="FoundryPopup.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="LabPopup.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="LightingManager.cpp" />

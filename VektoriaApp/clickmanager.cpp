@@ -144,6 +144,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 			uiDecision(CBuildingManager::Typ::RobotFactory, "Robofabrik", cursor);
 			break;
 		case 1:
+			uiDecision(CBuildingManager::Typ::Laboratory, "Labor", cursor);
 			break;
 		case 2:
 			break;

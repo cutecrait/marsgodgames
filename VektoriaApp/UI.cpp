@@ -72,6 +72,7 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	m_FFPopup.Init(cursor, &m_matStats, font);
 	m_nuclearPopup.Init(cursor, &m_matStats, font);
 	m_SolarPopup.Init(cursor, &m_matStats, font);
+	m_labPopup.Init(cursor, &m_matStats, font,&m_matRes);
 	m_start.Init(cursor, font, CFloatRect(0.f, 0.9, 0.15, 0.1));
 	m_start.SetLabel("Menu");
 
@@ -98,7 +99,7 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	m_mainSelect.AddOption(" Save");
 	std::vector <std::string> selectLabel;
 
-	selectLabel.push_back(" Roboterfabrik"); selectLabel.push_back(" FabrikNr2"); selectLabel.push_back(" FabrikNr3");
+	selectLabel.push_back(" Roboterfabrik"); selectLabel.push_back(" Labor"); selectLabel.push_back(" FabrikNr3");
 	//m_specificSelect[0].makeInactiveMats(m_matsForSelect1);
 	m_specificSelect[0].Init(cursor, font, 3, CFloatRect(0.15, 0.4, 0.15, 0.5));
 
@@ -154,6 +155,7 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	zv->AddOverlay(&m_FFPopup.m_main);
 	zv->AddOverlay(&m_SolarPopup.m_main);
 	zv->AddOverlay(&m_nuclearPopup.m_main);
+	zv->AddOverlay(&m_labPopup.m_main);
 	//zv->AddOverlay(&m_tooltip);
 
 	
@@ -374,10 +376,10 @@ void UI::tooltip(std::string headline, int res1, int res2, int res3, CBuildingMa
 		m_descriptionW4.PrintString("Optionen zur Bekaempfung.");
 		break;
 	case CBuildingManager::Typ::Laboratory:
-		m_descriptionW1.PrintString("");
-		m_descriptionW2.PrintString("");
-		m_descriptionW3.PrintString("");
-		m_descriptionW4.PrintString("");
+		m_descriptionW1.PrintString("bla");
+		m_descriptionW2.PrintString("blabla");
+		m_descriptionW3.PrintString("blablabla");
+		m_descriptionW4.PrintString("blablablabla");
 		break;
 	case CBuildingManager::Typ::Launchpad:
 		m_descriptionW1.PrintString("");
@@ -666,6 +668,9 @@ popup* UI::getPopup(std::string type)
 	}
 	if (type == typeid(SolarPowerPlant).name()) {
 		return &m_SolarPopup;
+	}
+	if (type == typeid(Laboratory).name()) {
+		return&m_labPopup;
 	}
 	return nullptr;
 }

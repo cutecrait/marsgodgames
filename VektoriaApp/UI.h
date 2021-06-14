@@ -142,6 +142,7 @@ public:
 	FoodFarmPopup m_FFPopup;
 	SolarPopup m_SolarPopup;
 	NuclearPopup m_nuclearPopup;
+	LabPopup m_labPopup;
 	CGuiButton m_missionen;
 	COverlay m_missionenBack;
 	CViewport* m_viewport;
