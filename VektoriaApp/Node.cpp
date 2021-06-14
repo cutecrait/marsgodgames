@@ -13,18 +13,27 @@ namespace Pathfinding
 	{
 	}
 
-	void Node::AddConnection(Connection*& connection)
+	void Node::AddConnection(Connection* connection)
 	{
 		_connections.push_back(connection);
 	}
 
+	void Node::RemoveConnection(Node* node)
+	{
+		std::vector<Connection*>::iterator pos ;
+		if (pos != _connections.end()) // pos == .end() => element not found
+		{
+			_connections.erase(pos);
+			delete* pos;
+		}
+	}
 	void Node::RemoveConnection(Connection* connection)
 	{
 		std::vector<Connection*>::iterator pos = std::find(_connections.begin(), _connections.end(), connection);
 		if (pos != _connections.end()) // pos == .end() => element not found
 		{
-			delete *pos;
 			_connections.erase(pos);
+			delete *pos;
 		}
 	}
 

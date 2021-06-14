@@ -8,19 +8,19 @@ namespace AI
 	/// <summary>
 	/// Klasse zu Verwaltung von Zuständen
 	/// </summary>
-	class StateManager
+	class StateController
 	{
 	public:
 
 		/// <summary>
 		/// Konstruktor (kein Anfangszustand)
 		/// </summary>
-		StateManager();
+		StateController();
 		/// <summary>
 		/// Konstruktor
 		/// </summary>
 		/// <param name="">Zustand, der aktiv sein soll</param>
-		StateManager(State*);
+		StateController(State*);
 
 		/// <summary>
 		/// Ausführung und Aktualisierung von aktivem Zustand

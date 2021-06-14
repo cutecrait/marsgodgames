@@ -3,8 +3,9 @@
 #include "Action.h"
 #include "Vektoria\Root.h"
 #include <vector>
-#include "SteeringManager.h"
+#include "SteeringController.h"
 #include "Node.h"
+#include "PathController.h"
 
 namespace AI
 {
@@ -24,49 +25,30 @@ namespace AI
 		/// <summary>
 		/// Konstruktor
 		/// </summary>
-		/// <param name="steeringManager">Verbindung zur Steuerung der Bewegung</param>
-		/// <param name="path">Referenz auf Pfad</param>
+		/// <param name="steeringcontroller">Verbindung zur Steuerung der Bewegung</param>
+		/// <param name="pathcontroller">Verbindung zum PathController</param>
 		/// <param name="stopDistance">Haltedistanz zum Ziel</param>
-		/// <param name="repeat">Optional - True: wiederhole Pfad, wenn Ende erreicht</param>
-		FollowPathAction(Movement::SteeringManager* steeringManager, std::vector<Pathfinding::Node*> path, float stopDistance,  bool repeat = false);
+		FollowPathAction(Movement::SteeringController* steeringcontroller, Pathfinding::PathController* pathcontroller, float stopDistance);
 
 		/// <summary>
-		/// Gibt an, welcher Knoten besucht werden soll und wertet Distanz aus
+		/// Bewegt zu Knoten
 		/// </summary>
 		virtual void Act() override;
-
-		/// <summary>
-		/// Setzt nächsten Knoten (Bei Wiederholung: Setzt bei Erreichen des letzten Knoten auf ersten Knoten)
-		/// </summary>
-		void NextNode();
 
 	protected:
 		/// <summary>
 		/// Verbindung zur Steuerung der Bewegung
 		/// </summary>
-		Movement::SteeringManager* _steeringManager;
-		/// <summary>
-		/// Zu besuchender Knoten
-		/// </summary>
-		Pathfinding::Node* _node;
-		/// <summary>
-		/// Knotenliste des Pfads
-		/// </summary>
-		std::vector<Pathfinding::Node*> _path;
+		Movement::SteeringController* _steeringController;
 
 		/// <summary>
-		/// Index aktueller Knoten
+		/// Verbindung zum PathController
 		/// </summary>
-		int _i;
+		Pathfinding::PathController* _pathController;
 
 		/// <summary>
 		/// Haltedistanz zum Ziel
 		/// </summary>
 		float _stopDistance;
-		/// <summary>
-		/// Gibt an, ob Pfad wiederholt werden soll
-		/// </summary>
-		bool _repeat;
-
 	};
 }

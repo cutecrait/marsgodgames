@@ -1,32 +1,39 @@
 #pragma once
 
 #include "Vektoria\Root.h"
-#include "StateManager.h"
-#include "SteeringManager.h"
+#include "StateController.h"
+#include "SteeringController.h"
 #include "GameObject.h"
+#include "PathController.h"
+#include "IPathSearchAlgorithm.h"
 
-class RobotBase
+class RobotBase : GameObject
 {
 public:
 
-	RobotBase(float maximumVelocity, float rotationSpeed);
+	RobotBase(Pathfinding::Node* startingnode, float maximumvelocity, float maximumforce, float maximumrotation);
 	~RobotBase();
 
 	void Update(float timeDelta);
 
 	Vektoria::CPlacement* GetPlacement();
 
-	void SetStates(); //TODO abstract? (if wanted to be used to set state runtime - with parameters)
+	/// <summary>
+	/// Gehe zu Knoten
+	/// </summary>
+	/// <param name="node">zu besuchender Knoten</param>
+	/// <param name="repeat">Schleife</param>
+	void SetPath(Pathfinding::Node* node, bool repeat = false);
 
 protected:
 
 	Vektoria::CPlacement* _placementRoot;
-	AI::StateManager* _stateManager;
-	Movement::SteeringManager* _steeringManager;
+	Vektoria::CPlacement* _rotationPlacement;
+	AI::StateController* _stateController;
+	Movement::SteeringController* _steeringController;
+	Pathfinding::PathController* _pathController;
 
-	//TODO test only --> von GameObject erben
-	Vektoria::CGeo* _model;
-	Vektoria::CFileWavefront _modelPath;
+	//TODO test only
 	void CreateMesh();
 
 };
