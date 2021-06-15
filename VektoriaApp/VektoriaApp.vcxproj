@@ -168,11 +168,13 @@
     <ClInclude Include="FoodFarm.h" />
     <ClInclude Include="FoodFarmPopup.h" />
     <ClInclude Include="Foundry.h" />
+    <ClInclude Include="FoundryController.h" />
     <ClInclude Include="FoundryPopup.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="CGameObjectPlacement.h" />
     <ClInclude Include="GravelPlant.h" />
+    <ClInclude Include="GravelPlantController.h" />
     <ClInclude Include="GuiButton.h" />
     <ClInclude Include="GuiElement.h" />
     <ClInclude Include="GuiImageColorPicker.h" />
@@ -216,7 +218,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Action.cpp" />
-    <ClCompile Include="Apartment.cpp" />
     <ClCompile Include="ApsPopup.cpp" />
     <ClCompile Include="AStarAlgorithm.cpp" />
     <ClCompile Include="BeispielForGameObject.cpp" />
@@ -230,9 +231,11 @@
     <ClCompile Include="Decision.cpp" />
     <ClCompile Include="FollowPathAction.cpp" />
     <ClCompile Include="FoodFarmPopup.cpp" />
+    <ClCompile Include="FoundryController.cpp" />
     <ClCompile Include="FoundryPopup.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GravelPlantController.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="LightingManager.cpp" />

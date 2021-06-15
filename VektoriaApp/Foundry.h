@@ -5,58 +5,47 @@
 #include "CGameObjectPlacement.h"
 
 class Foundry :
-    public Building
+	public Building
 {
 public:
-    CGameObjectPlacement* linkedMine = nullptr;
+	Mine* linkedMine = nullptr;
+	CGameObjectPlacement* linkedGOP = nullptr;
 
-    Foundry() {
-        PowerUse = 70;
-        WaterUse = 0;
-        NutrientUse = 0;
+	Foundry() {
+		PowerUse = 70;
+		WaterUse = 0;
+		NutrientUse = 0;
 
-        Category = BuildingCategory::Industry;
+		Category = BuildingCategory::Industry;
 
-        setModel("models\\monkey.obj");
-        // set material
+		setModel("models\\monkey.obj");
+		// set material
 
-        setAudio(&CAudioManager::Instance().Local_Foundry);
-    };
+		setAudio(&CAudioManager::Instance().Local_Foundry);
+	};
 
+	void Update(float time)
+	{
+		timeSinceTick += time;
+		if (timeSinceTick > tickTime)
+		{
+			timeSinceTick -= tickTime;
 
-    void Update(float time)
-    {
-        timeSinceTick += time;
-        if (timeSinceTick > checkTime)
-        {
-            timeSinceTick -= checkTime;
-            if (!linkedMine)
-            {
-                //CBuildingManager::GetBuildingVector(CBuildingManager::Typ::Mine);
+			int value = static_cast<int>(std::round(10 * efficiency));
+			Player::Instance().gainSteel(value);
+		}
+	};
 
-            }
-
-            return;
-        }
-
-        if(timeSinceTick > tickTime)
-        {
-            timeSinceTick -= tickTime;
-            // per default, gain 10 steel per 10 seconds.
-            Player::Instance().gainSteel(10);
-        }
-    };
-
-    Resources getBuildCost() {
-        Resources cost;
-        cost.Steel = 10;
-        cost.Concrete = 60;
-        cost.Wood = 0;
-        return cost;
-    };
+	Resources getBuildCost() {
+		Resources cost;
+		cost.Steel = 10;
+		cost.Concrete = 60;
+		cost.Wood = 0;
+		return cost;
+	};
 
 private:
-    float timeSinceTick = 0.f;
-    float tickTime = 10.0f;
-    float checkTime = 1.0f;
+	float timeSinceTick = 0.f;
+	float tickTime = 10.0f;
+	float efficiency = 1.f;
 };

@@ -1,4 +1,5 @@
 #pragma once
+#include <functional>
 #include "Vektoria/root.h"
 #include "CGameObjectPlacement.h"
 #include "CAudioManager.h"
@@ -76,6 +77,11 @@ public:
 	void AddNewBuilding(Typ, MapTile*);
 
 	vector<CGameObjectPlacement> GetBuildingVector(Typ);
+
+	// DEPRECATED but i'll leave it here for now in case we need it later on
+	// only works for Foundry, is used to get closest Mine building with no linked Foundry
+	// will later work in the same way for FoodPlant / FoodFarm
+	CGameObjectPlacement* findClosestUnlinked(Building* me, Typ t_me, Typ target, function<bool(GameObject*)>);
 
 private:
 	CScene* m_zs;

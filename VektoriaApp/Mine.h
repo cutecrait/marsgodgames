@@ -6,8 +6,8 @@ class Mine :
     public Building
 {
 public:
-    CGameObjectPlacement* linkedFoundry;
-    CGameObjectPlacement* linkedGravelPlant;
+    GameObject* linkedFoundry = nullptr;
+    GameObject* linkedGravelPlant = nullptr;
 
     Mine() {
         PowerUse = 30;

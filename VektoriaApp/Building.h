@@ -34,4 +34,3 @@ public:
     bool erstesMal;
     BuildingCategory Category = BuildingCategory::None;
 };
-

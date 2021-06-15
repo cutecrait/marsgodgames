@@ -184,8 +184,8 @@ void CBuildingManager::AddNewBuilding(Typ t, MapTile* targetTile)
 	IncreaseNrOfBuildings(t);
 	gop->setBuildStatus(true);
 
-	if(gop->getGameObject()->getAudio())
-	gop->m_paudios->m_apaudio[0]->Loop();
+	if (gop->getGameObject()->getAudio())
+		gop->m_paudios->m_apaudio[0]->Loop();
 
 	Save save;
 	save.fillPosAr(gop->getGameObject(), gop->GetPos().GetX(), gop->GetPos().GetZ());
@@ -196,6 +196,58 @@ vector<CGameObjectPlacement> CBuildingManager::GetBuildingVector(Typ t)
 	CGameObjectPlacement* list = getBuildingList(t);
 	vector<CGameObjectPlacement> vec(list, list + m_MaxBuildings[(int)t]);
 	return vec;
+}
+
+CGameObjectPlacement* CBuildingManager::findClosestUnlinked(Building* me, Typ t_me, Typ target, function<bool(GameObject*)> isLinked)
+{
+	// since this is only meant for linkables, return if Typ isnt linkable.
+	if (target != Typ::Mine)
+		return nullptr;
+
+	CGameObjectPlacement* gop_me = nullptr;
+	auto list = getBuildingList(t_me);
+
+	for (int i = 0; i < m_MaxBuildings[(int)t_me]; i++)
+	{
+		if (list[i].getGameObject() == me)
+		{
+			gop_me = &list[i];
+			break;
+		}
+	}
+	// check that we actually found it
+	if (!gop_me)
+		return nullptr;
+
+	// only X and Z distance matter.
+	// since we will only be comparing distances, the squared distance will save us some ms
+	float myX = gop_me->GetPos().GetX();
+	float myZ = gop_me->GetPos().GetZ();
+
+	list = getBuildingList(target);
+	CGameObjectPlacement* closest = nullptr;
+	float closestDistance = 10000.f;
+	int n = 0;
+	for (int i = 0; n == m_NrsOfBuildings[(int)target] || i < m_MaxBuildings[(int)target]; i++)
+	{
+		if (list[i].getBuildStatus())
+		{
+			n++;
+			if (isLinked(list[i].getGameObject()))
+			{
+				float tX = list[i].GetPos().GetX();
+				float tZ = list[i].GetPos().GetZ();
+				float dist = pow(myX - tX, 2) + pow(myZ - tZ, 2);
+				if (dist > closestDistance)
+				{
+					closest = &list[i];
+					closestDistance = dist;
+				}
+			}
+		}
+	}
+
+	return closest;
 }
 
 CGameObjectPlacement* CBuildingManager::getBuildingList(Typ typ)
