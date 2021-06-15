@@ -13,9 +13,10 @@ public:
         NutrientUse = 0;
         
         Category = BuildingCategory::Industry;
-        setModel("models\\monkey.obj");
-        // set model
-        // set material
+
+        setModel("models\\RobotFactory.obj");
+        this->setMaterial("textures\\RobotFactoryTex.png");
+        this->getModel()->SetMaterial(this->getMaterial());
 
        setAudio(&CAudioManager::Instance().Local_RobotFactory);
     }
