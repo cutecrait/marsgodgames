@@ -99,7 +99,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 		m_zs.AddPlacement(m_ldgame.GetPlacements(i));
 	}
 
-	derManager.setBuildingGeos(BuildingManager.getBuildingGeos());
+	derManager.setBuildingGeos(CBuildingManager::Instance().getBuildingGeos());
 
 	foundryCtrl.Init();
 	gpCtrl.Init();
