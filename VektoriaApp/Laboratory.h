@@ -12,8 +12,17 @@ public:
 
         Category = BuildingCategory::Living;
 
-        setModel("models\\monkey.obj");
-        // set material
+        setModel("models\\Laboratory.obj");
+
+        char* base = "textures\\LaboratoryTex\\Base_ani.png";
+        char* glow = "textures\\LaboratoryTex\\Emissive_ani.png";
+        char* spec = "textures\\LaboratoryTex\\LabTex_Metallic.png";
+        char* height = "textures\\LaboratoryTex\\LabTex_Height.png";
+        char* bump = "textures\\LaboratoryTex\\LabTex_Roughness.png";
+
+
+        this->setMaterial(bump, base, glow, spec, height, 3, 5, 6);
+        this->getModel()->SetMaterial(this->getMaterial());
 
         setAudio(&CAudioManager::Instance().Local_Laboratory);
     }

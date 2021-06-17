@@ -13,8 +13,8 @@ namespace Vektoria
 		CGuiElement::Init(deviceCursor, font, floatRect);
 		m_acName = "CGuiButton";
 
-		m_zmBase.MakeTextureSprite("textures\\animated_menu.tif");
-		m_zmBase.SetAni(3, 3, 7);
+		m_zmBase.MakeTextureSprite("textures\\animated_menu.png");
+		m_zmBase.SetAni(3, 7, 10);
 		m_zmBase.SetTransparencyOn();
 		m_zmBase.SetTransparency(0.0f);
 

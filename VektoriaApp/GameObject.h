@@ -69,6 +69,8 @@ public:
 
 	// Setzt die Textur
 	void setMaterial(char* );
+	void setMaterial(char*, char*, char*, char*, char*);
+	void setMaterial(char*, char*, char*, char*, char*, int, int, int);
 
 	void setAudio(CAudio*);
 

@@ -47,7 +47,8 @@ void UI::InitMaterial()
 	m_matsForSelect5[5].MakeTextureSprite("textures\\Menu_Button.png");
 
 	m_matStats.MakeTextureSprite("textures\\Player_Stat_Window.png");
-	m_matRes.MakeTextureSprite("textures\\Player_Res_Window.png");
+	m_matRes.MakeTextureSprite("textures\\Player_Res_Animated.png");
+	m_matRes.SetAni(3, 5, 8);
 
 	m_resMaterial.MakeTextureSprite("textures\\red_image.jpg");
 	m_matsteel.MakeTextureSprite("textures\\Tooltip_stahl_texture.png");

@@ -34,8 +34,8 @@ namespace Vektoria
 		m_acName = "CGuiSelect";
 
 		// Styling base overlay
-		m_zmBase.MakeTextureSprite("textures\\Base_Tex2.png");  // hier ist der hintergrund für den jeweiligen select.
-		
+		m_zmBase.MakeTextureSprite("textures\\Base_Tex2_Animated.png");// hier ist der hintergrund für den jeweiligen select.
+		m_zmBase.SetAni(3, 5, 10);
 		// Styling Interactable
 		m_zoInteractable.SetRect(CFloatRect(0.05f, 0.25f, 0.9f, 0.7f));
 
@@ -51,7 +51,7 @@ namespace Vektoria
 
 		// Option active states
 		m_zmOptionActive.MakeTextureSprite("textures\\animated_button.tif"); 
-		m_zmOptionActive.SetAni(4, 3, 12);
+		m_zmOptionActive.SetAni(4, 3, 10);
 		m_zmOptionActive.SetTransparencyOn();
 		m_zmOptionActive.SetTransparency(0.2f);
 		m_proot->AddMaterial(&m_zmOptionActive);
