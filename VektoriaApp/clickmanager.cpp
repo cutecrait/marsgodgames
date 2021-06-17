@@ -144,6 +144,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 			uiDecision(CBuildingManager::Typ::RobotFactory, "Robofabrik", cursor);
 			break;
 		case 1:
+			uiDecision(CBuildingManager::Typ::Laboratory, "Labor", cursor);
 			break;
 		case 2:
 			break;
@@ -219,12 +220,19 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 
 		switchButtonClick(1, currentLevel);
 	}
+	if (m_menu->m_Ressources.IsHovered()) {
+		m_menu->m_RessourcesPM.SwitchOn();
+	}
+	else {
+		m_menu->m_RessourcesPM.SwitchOff();
+	}
 	if (m_menu->m_missionen.IsHovered()) {
 		m_menu->m_missionenBack.SwitchOn();
 	}
-	else
+	else {
 		m_menu->m_missionenBack.SwitchOff();
-
+		
+	}
 }
 
 
@@ -345,7 +353,7 @@ void clickmanager::uiDecision(CBuildingManager::Typ typ, std::string tooltipname
 	
 		if (dumyTyp != typ) {
 			dumyTyp = typ;
-			m_menu->tooltip(tooltipname, buildCost.Concrete, buildCost.Steel, buildCost.Wood, toBeBuiltBuilding->howMuch, toBeBuiltBuilding->Category);
+			m_menu->tooltip(tooltipname, buildCost.Concrete, buildCost.Steel, buildCost.Wood,typ);
 		}
 	/*if (createToolTip(m_menu->getSpecificSelect(1)->GetActivePosition())) {
 		//tooltip wird so nur einmal gebaut (aber kann überschrieben werden)
@@ -442,10 +450,10 @@ bool clickmanager::openPopup(CDeviceCursor* cursor) {
 		if (cursor->PickOverlay() == NULL) {
 			if (cursor->ButtonPressedLeft()) {
 				if (!cursor->ButtonUpLeft()) {
-					selectedGeo = cursor->PickGeo();
+					selectedGeo = cursor->PickGeoPreselected(*BuildingModels);
 					if (selectedGeo) {
 						//selectedGeo->GetParent()->SetName("GameObject");
-						ss = selectedGeo->GetName();
+						ss = selectedGeo->GetParent()->GetName();
 						//wenn audio aktiv, pickt kein geo mehr sondern geogrid(tiles)
 						//wenn setaudio in einem building ausgeführt kllappts nicht mehr
 						//caudiomanager auch ein setname gemacht,
@@ -475,7 +483,10 @@ bool clickmanager::openPopup(CDeviceCursor* cursor) {
 	return false;
 }
 
-
+void clickmanager::setBuildingGeos(CGeos* geos)
+{
+	BuildingModels = geos;
+}
 
 /*if (m_menu->getSpecificSelect(1)->GetActivePosition() == 0) {
 

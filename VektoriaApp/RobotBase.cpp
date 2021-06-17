@@ -1,28 +1,54 @@
 #include "RobotBase.h"
 #include "FollowPathAction.h"
+#include "IdleAction.h"
+#include "CheckPathDecision.h"
+#include "NodeController.h"
 
-RobotBase::RobotBase(float maximumVelocity, float maximumforce)
+RobotBase::RobotBase(Pathfinding::Node* startingnode, float maximumvelocity, float maximumforce, float maximumrotation)
 {
-	_stateManager = new AI::StateManager();
+	//Init
 	_placementRoot = new Vektoria::CPlacement();
-	_steeringManager = new Movement::SteeringManager(_placementRoot, maximumVelocity, maximumforce);
+	_placementRoot->Translate(*(startingnode->GetPosVector()));
+	_rotationPlacement = new Vektoria::CPlacement();
+	_placementRoot->AddPlacement(_rotationPlacement);
 
-	//TODO test only
-	std::vector<Pathfinding::Node*> path;
-	Pathfinding::Node* n1 = new Pathfinding::Node(new Vektoria::CHVector(10, 0, 0));
-	Pathfinding::Node* n2 = new Pathfinding::Node(new Vektoria::CHVector(0, 0, 0));
-	Pathfinding::Node* n3 = new Pathfinding::Node(new Vektoria::CHVector(0, 5, 10));
-	path.push_back(n1);
-	path.push_back(n2);
-	path.push_back(n3);
-	AI::State* s1 = new AI::State();
-	AI::Action* a1 = new AI::FollowPathAction(_steeringManager, path, 0.1, true);
-	s1->AddAction(a1);
-	_stateManager->SetState(s1);
+	//Init SteeringController
+	_steeringController =
+		new Movement::SteeringController(_placementRoot, _rotationPlacement, maximumvelocity, maximumforce, maximumrotation);
+	_steeringController->SetCurrent(startingnode);
+
+	//Init PathController
+	_pathController = new Pathfinding::PathController();
+
+	// Init StateController
+	_stateController = new AI::StateController();
+	//States
+	AI::State* followPathState = new AI::State();
+	AI::State* idleState = new AI::State();
+	//Actions
+	AI::Action* followPath = new AI::FollowPathAction(_steeringController, _pathController, 0.1);
+	AI::Action* idle = new AI::IdleAction();
+	//Decisions
+	AI::Decision* hasPath = new AI::CheckPathDecision(_pathController);
+	AI::Decision* noPath = new AI::CheckPathDecision(_pathController, false);
+	//Transitions
+	AI::Transition* toAction = new AI::Transition(hasPath, followPathState);
+	AI::Transition* toIdle = new AI::Transition(noPath, idleState);
+	//setup states
+	followPathState->AddAction(followPath);
+	followPathState->AddTransition(toIdle);
+	idleState->AddAction(idle);
+	idleState->AddTransition(toAction);
+	_stateController->SetState(idleState);
+
+	//TODO Enable
+	//Model
+	setModel("models\\Rover.obj");
+	_rotationPlacement->AddGeo(getModel());
+	_rotationPlacement->ScaleDelta(0.01);
+
+	//test only - used cause loadtime while debug
 	//CreateMesh();
-	_model = _modelPath.LoadGeo("textures\\Rover.obj");
-	_placementRoot->AddGeo(_model);
-	_placementRoot->ScaleDelta(0.01);
 }
 
 RobotBase::~RobotBase()
@@ -33,9 +59,9 @@ RobotBase::~RobotBase()
 void RobotBase::Update(float timeDelta)
 {
 	//Update AI
-	_stateManager->Update(timeDelta);
+	_stateController->Update(timeDelta);
 	//Update Movement
-	_steeringManager->Update(timeDelta);
+	_steeringController->Update(timeDelta);
 
 	//TODO Wann/Wie bekommt Robot seinen "Auftrag" für Pathfinding -> Neue Methode SetPath(vector<Node*>) in FollowPathAction? 
 	//-> Wann wird diese Aufgerufen -> JobSystem?
@@ -46,8 +72,11 @@ Vektoria::CPlacement* RobotBase::GetPlacement()
 	return _placementRoot;
 }
 
-void RobotBase::SetStates()
+void RobotBase::SetPath(Pathfinding::Node* node, bool repeat)
 {
+	std::vector<Pathfinding::Node*> path =
+		Pathfinding::NodeController::Instance().GetPath(_steeringController->GetNodePosition(), node);
+	_pathController->SetPath(path, repeat);
 }
 
 void RobotBase::CreateMesh()

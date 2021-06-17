@@ -1,4 +1,4 @@
-Benutzung StateManager
+Benutzung StateController
 
 1.)
 Wenn entsprechende Klasse nicht vorhanden:
@@ -17,11 +17,11 @@ Neue Variable von "State" initialisieren und gewünschte Aktionen und Übergängen 
 wiederhole Schritt 2 bis gewünschter Baum erreicht
 
 4.)
-Neue Variable von "StateManager" in entsprechender Klasse initialisieren
+Neue Variable von "StateController" in entsprechender Klasse initialisieren
 und ersten aktiven Zustand (in Konstruktor oder SetState(State*) ) zuweisen 
 
 5.)
-StateManager->Update(deltaTime) per Tick ausführen
+StateController->Update(deltaTime) per Tick ausführen
 
 
 Beispiel (Nur anschaulich - keine richtige Funktion)
@@ -30,10 +30,10 @@ Beispiel (Nur anschaulich - keine richtige Funktion)
 	State* followPath = new State();
 	State* patrol = new State();
 
-	//StateManager
-	StateManager* sm = new StateManager(patrol);
+	//StateController
+	StateController* sm = new StateController(patrol);
 	//oder
-	StateManager* sm = new StateManager();
+	StateController* sm = new StateController();
 	sm->SetState(patrol);
 
 	//Actions

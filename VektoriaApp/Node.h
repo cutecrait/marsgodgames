@@ -26,7 +26,8 @@ namespace Pathfinding
 		/// <param name="position">Position</param>
 		Node(Vektoria::CPlacement* position);
 
-		void AddConnection(Connection*& connection);
+		void AddConnection(Connection* connection);
+		void RemoveConnection(Node* node);
 		void RemoveConnection(Connection* connection);
 		std::vector<Connection*> GetConnections();
 

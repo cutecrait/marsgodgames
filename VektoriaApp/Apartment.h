@@ -13,8 +13,8 @@ public:
         howMuch = 10;
         Category = BuildingCategory::Living;
 
-        setModel("models\\Kraftwerk.obj");
-        this->setMaterial("textures\\KraftwerkTex.png");
+        setModel("models\\Apartment.obj");
+        this->setMaterial("textures\\ApartmentTex.png");
         this->getModel()->SetMaterial(this->getMaterial());
       
     }

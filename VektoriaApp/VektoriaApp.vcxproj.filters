@@ -18,13 +18,13 @@
     <ClCompile Include="TimedDecision.cpp">
       <Filter>Robot\AI\Decision</Filter>
     </ClCompile>
-    <ClCompile Include="SteeringManager.cpp">
+    <ClCompile Include="SteeringController.cpp">
       <Filter>Robot\Movement</Filter>
     </ClCompile>
     <ClCompile Include="RobotBase.cpp">
       <Filter>Robot</Filter>
     </ClCompile>
-    <ClCompile Include="StateManager.cpp">
+    <ClCompile Include="StateController.cpp">
       <Filter>Robot\AI</Filter>
     </ClCompile>
     <ClCompile Include="State.cpp">
@@ -137,6 +137,24 @@
     <ClCompile Include="GravelPlantController.cpp">
       <Filter>Buildings</Filter>
     </ClCompile>
+    <ClCompile Include="NuclearPopup.cpp">
+      <Filter>UI\popups</Filter>
+    </ClCompile>
+    <ClCompile Include="SolarPopup.cpp">
+      <Filter>UI\popups</Filter>
+    </ClCompile>
+    <ClCompile Include="LabPopup.cpp">
+      <Filter>UI\popups</Filter>
+    </ClCompile>
+    <ClCompile Include="PathController.cpp">
+      <Filter>Robot\Pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="IdleAction.cpp">
+      <Filter>Robot\AI\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckPathDecision.cpp">
+      <Filter>Robot\AI\Decision</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -157,13 +175,13 @@
     <ClInclude Include="TimedDecision.h">
       <Filter>Robot\AI\Decision</Filter>
     </ClInclude>
-    <ClInclude Include="SteeringManager.h">
+    <ClInclude Include="SteeringController.h">
       <Filter>Robot\Movement</Filter>
     </ClInclude>
     <ClInclude Include="RobotBase.h">
       <Filter>Robot</Filter>
     </ClInclude>
-    <ClInclude Include="StateManager.h">
+    <ClInclude Include="StateController.h">
       <Filter>Robot\AI</Filter>
     </ClInclude>
     <ClInclude Include="NodeController.h">
@@ -329,6 +347,26 @@
     </ClInclude>
     <ClInclude Include="GravelPlantController.h">
       <Filter>Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="NuclearPopup.h">
+      <Filter>UI\popups</Filter>
+    </ClInclude>
+    <ClInclude Include="SolarPopup.h">
+      <Filter>UI\popups</Filter>
+    </ClInclude>
+    <ClInclude Include="LabPopup.h">
+      <Filter>UI\popups</Filter>
+    </ClInclude>
+    <ClInclude Include="popup.h" />
+    <ClInclude Include="testRobo.h" />
+    <ClInclude Include="PathController.h">
+      <Filter>Robot\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleAction.h">
+      <Filter>Robot\AI\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckPathDecision.h">
+      <Filter>Robot\AI\Decision</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

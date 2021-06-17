@@ -83,8 +83,12 @@ public:
 	// will later work in the same way for FoodPlant / FoodFarm
 	CGameObjectPlacement* findClosestUnlinked(Building* me, Typ t_me, Typ target, function<bool(GameObject*)>);
 
+	CGeos* getBuildingGeos();
+
 private:
 	CScene* m_zs;
+
+	CGeos BuildingGeos;
 
 	CGameObjectPlacement Apartments[50];
 	CGameObjectPlacement ControlCenters[1];

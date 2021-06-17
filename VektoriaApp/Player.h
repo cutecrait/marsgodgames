@@ -22,6 +22,12 @@ public:
 	int getSteel() { return steel; }
 	int getWood() { return wood; }
 
+	void setConcretePM(int i) { concretePMinute += i; }
+	void setSteelPM(int i) { steelPMinute += i; }
+	void setWoodPM(int i) { woodPMinute += i; }
+	int getConcretePM() { return concretePMinute; }
+	int getSteelPM() { return steelPMinute; }
+	int getWoodPM() { return woodPMinute; }
 
 	void useWater(int x) { usedWater += x; }
 	void usePower(int x) { usedPower += x; }
@@ -61,7 +67,9 @@ private:
 	int concrete;
 	int steel;
 	int wood;
-	
+	int concretePMinute;
+	int steelPMinute;
+	int woodPMinute;
 
 	int water;
 	int power;

@@ -21,7 +21,8 @@ public:
 		Category = BuildingCategory::Industry;
 
 		setModel("models\\monkey.obj");
-		// set material
+        this->setMaterial("textures\\FoundryTex.png");
+        this->getModel()->SetMaterial(this->getMaterial());
 
 		setAudio(&CAudioManager::Instance().Local_Foundry);
 	};

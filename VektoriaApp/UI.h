@@ -1,10 +1,21 @@
 #pragma once
 #include "Vektoria\root.h"
 #include "GuiSelect.h"
-
+#include "CBuildingManager.h"
 #include "RobotFactory.h"
 #include "Apartment.h"
 #include "ControlCenter.h"
+
+#include "FoodFarm.h"
+#include "Foundry.h"
+#include "GravelPlant.h"
+#include "Hospital.h"
+#include "Laboratory.h"
+#include "Launchpad.h"
+#include "Mine.h"
+#include "NuclearPowerPlant.h"
+#include "SolarPowerPlant.h"
+#include "TreeFarm.h"
 #include "Well.h"
 using namespace Vektoria;
 class UI
@@ -28,10 +39,10 @@ public:
 	void switchOnBuy(int,int,int);
 	void buildMission(COverlay*, CWritingFont*);
 	void updatePlayer();
-	roboPopUp* getRobo(roboPopUp*);
+	
 	void InitToolTip();
 	void levelOverlay(COverlay*, CWritingFont*, CDeviceCursor*);
-	void tooltip(std::string headline, int res1, int res2, int res3, int anzahl, BuildingCategory);
+	void tooltip(std::string headline, int res1, int res2, int res3, CBuildingManager::Typ);
 	void updateWriting(std::string, CWriting*);
 	void makeAMission(std::string, int);
 	void makeAllMissions(float missionAnzahl,int currentLevel, std::string m1 = "", std::string m2= "", std::string m3 = "", std::string m4 = "", std::string m5 = "");
@@ -79,6 +90,7 @@ private:
 	CWriting m_descriptionW1;
 	CWriting m_descriptionW2;
 	CWriting m_descriptionW3;
+	CWriting m_descriptionW4;
 	CMaterial m_resMaterial;
 
 	COverlay m_level;
@@ -97,19 +109,19 @@ public:
 
 
 	CGuiElement m_Ressources;
-
+	COverlay m_RessourcesPM;
 	
 	CWriting m_concreteW;
 	CWriting m_concreteMinusW;
-
+	CWriting m_concretePM;
 	
 	CWriting m_steelW;
 	CWriting m_steelMinusW;
-
+	CWriting m_steelPM;
 	
 	CWriting m_woodW;
 	CWriting m_woodMinusW;
-
+	CWriting m_woodPM;
 	
 	CWriting m_levelW;
 	CWriting m_missiW[5];
@@ -127,7 +139,10 @@ public:
 	ApsPopup m_apsPopup;
 	ControlCPopup m_CCpopup;
 	wellPopup m_wellPopup;
-
+	FoodFarmPopup m_FFPopup;
+	SolarPopup m_SolarPopup;
+	NuclearPopup m_nuclearPopup;
+	LabPopup m_labPopup;
 	CGuiButton m_missionen;
 	COverlay m_missionenBack;
 	CViewport* m_viewport;

@@ -10,7 +10,7 @@ void popup::init(CMaterial * mat1,CDeviceCursor* cursor, CWritingFont* font)
 	m_headline.SetLayer(0.98);
 	m_headline.SetInnerOn();
 
-	m_headlineW.Init(CFloatRect(0.2, 0.2, 0.6, 0.6), 14, font);
+	m_headlineW.Init(CFloatRect(0.2, 0.2, 0.6, 0.6), 25, font);
 	m_headlineW.SetLayer(0.97);
 	m_headlineW.SetInnerOn();
 
