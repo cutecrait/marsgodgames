@@ -50,6 +50,32 @@ void GameObject::setMaterial(char* matPfad)
 	m_material.MakeTextureSprite(matPfad);
 }
 
+void GameObject::setMaterial(char* matPfadB, char* matPfadD, char* matPfadG, char* matPfadS, char* matPfadH) // Texturierung mit Glow bei Nacht
+{
+	m_material.MakeTextureDiffuse(matPfadD);
+	m_material.MakeTextureGlow(matPfadG);
+	m_material.MakeTextureHeight(matPfadH);
+	m_material.MakeTextureBump(matPfadB);
+	m_material.MakeTextureSpecular(matPfadS);
+
+	//m_material.SetSpecularSharpness(0.0f);
+	//m_material.SetSpecularStrength(0.1f);
+	m_material.SetGlowStrength(3.5f);
+}
+
+void GameObject::setMaterial(char* matPfadB, char* matPfadD, char* matPfadG, char* matPfadS, char* matPfadH, int spalt, int zeil, int fr) // Texturierung mit Glow und Animation
+{
+	m_material.MakeTextureDiffuse(matPfadD);
+	m_material.MakeTextureGlow(matPfadG);
+	//m_material.MakeTextureHeight(matPfadH);
+	//m_material.MakeTextureBump(matPfadB);
+	//m_material.MakeTextureSpecular(matPfadS);
+
+	m_material.SetTextureGlowWhite();
+	m_material.SetGlowStrength(3.0f);
+	m_material.SetAni(spalt, zeil, fr);
+}
+
 void GameObject::setAudio(CAudio* audio)
 {
 	m_audio = audio;
