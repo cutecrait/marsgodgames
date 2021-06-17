@@ -6,13 +6,13 @@
 class FoundryController
 {
 public:
-	void Init(CGameObjectPlacement*, int);
+	void Init();
 	void Update(float);
 
 private:
 	void findMine(CGameObjectPlacement*);
 	bool ready = false;
-	CGameObjectPlacement* list;
+	vector<CGameObjectPlacement*> list;
 	int count;
 	float timeSinceTick = 0.f;
 	float tickInterval = 10.f;

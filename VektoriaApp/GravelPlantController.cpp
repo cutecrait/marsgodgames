@@ -1,9 +1,10 @@
 #include "GravelPlantController.h"
 
-void GravelPlantController::Init(CGameObjectPlacement* gplist, int len)
+using namespace std;
+
+void GravelPlantController::Init()
 {
-	count = len;
-	list = gplist;
+	list = CBuildingManager::Instance().GetBuildingVector(CBuildingManager::Typ::GravelPlant);
 	ready = true;
 }
 
@@ -15,40 +16,40 @@ void GravelPlantController::Update(float delta)
 	if (timeSinceTick > tickInterval)
 	{
 		timeSinceTick -= tickInterval;
-		for (int i = 0; i < count; i++)
+		for (vector<CGameObjectPlacement*>::iterator gravelPlant = list.begin(); gravelPlant != list.end(); ++gravelPlant)
 		{
-			GravelPlant* gp = dynamic_cast<GravelPlant*>(list[i].getGameObject());
+			GravelPlant* gp = dynamic_cast<GravelPlant*>((*gravelPlant)->getGameObject());
 
 			if (!gp->linkedGOP || !gp->linkedGOP->getBuildStatus())
 			{
 				// this call could be moved to a BG thread.
-				findMine(&list[i]);
+				findMine(*gravelPlant);
 			}
 		}
 	}
 }
 
-void GravelPlantController::findMine(CGameObjectPlacement* foundryGOP)
+void GravelPlantController::findMine(CGameObjectPlacement* gpGOP)
 {
-	float myX = foundryGOP->GetPos().GetX();
-	float myZ = foundryGOP->GetPos().GetZ();
+	float myX = gpGOP->GetPos().GetX();
+	float myZ = gpGOP->GetPos().GetZ();
 
-	vector<CGameObjectPlacement> mines = CBuildingManager::Instance().GetBuildingVector(CBuildingManager::Typ::Mine);
+	vector<CGameObjectPlacement*> mines = CBuildingManager::Instance().GetBuildingVector(CBuildingManager::Typ::Mine);
 	CGameObjectPlacement* closest = nullptr;
 	float closestDistance = 10000.f;
 
-	for (std::vector<CGameObjectPlacement>::iterator mine = mines.begin(); mine != mines.end(); ++mine)
+	for (vector<CGameObjectPlacement*>::iterator mine = mines.begin(); mine != mines.end(); ++mine)
 	{
-		if (dynamic_cast<Mine*>(mine->getGameObject())->linkedFoundry != nullptr)
+		if ((*mine)->getBuildStatus() && dynamic_cast<Mine*>((*mine)->getGameObject())->linkedGravelPlant != nullptr)
 		{
-			if (mine->getGameObject())
+			if ((*mine)->getGameObject())
 			{
-				float tX = mine->GetPos().GetX();
-				float tZ = mine->GetPos().GetZ();
+				float tX = (*mine)->GetPos().GetX();
+				float tZ = (*mine)->GetPos().GetZ();
 				float dist = pow(myX - tX, 2) + pow(myZ - tZ, 2);
 				if (dist > closestDistance)
 				{
-					closest = &*mine;
+					closest = *mine;
 					closestDistance = dist;
 				}
 			}
@@ -56,9 +57,10 @@ void GravelPlantController::findMine(CGameObjectPlacement* foundryGOP)
 	}
 	if (closest)
 	{
-		Foundry* f = dynamic_cast<Foundry*>(foundryGOP->getGameObject());
-		f->linkedGOP = closest;
-		f->linkedMine = (Mine*)closest->getGameObject();
-		f->linkedMine->linkedFoundry = f;
+		GravelPlant* gp = dynamic_cast<GravelPlant*>(gpGOP->getGameObject());
+		gp->linkedGOP = closest;
+		gp->linkedMine = (Mine*)closest->getGameObject();
+		gp->linkedMine->linkedGravelPlant = gp;
+		gp->efficiency = 1.0f; // TODO set according to distance
 	}
 }

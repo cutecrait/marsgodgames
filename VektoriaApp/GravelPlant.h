@@ -11,6 +11,8 @@ public:
     Mine* linkedMine = nullptr;
     CGameObjectPlacement* linkedGOP = nullptr;
 
+    float efficiency = 0.f;
+
     GravelPlant() {
         PowerUse = 10;
         WaterUse = 10;
@@ -47,5 +49,4 @@ public:
 private:
     float timeSinceTick = 0.f;
     float tickTime = 10.0f;
-    float efficiency = 1.f;
 };

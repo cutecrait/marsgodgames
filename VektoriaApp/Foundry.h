@@ -10,6 +10,8 @@ class Foundry :
 public:
 	Mine* linkedMine = nullptr;
 	CGameObjectPlacement* linkedGOP = nullptr;
+	
+	float efficiency = 0.f;
 
 	Foundry() {
 		PowerUse = 70;
@@ -47,5 +49,4 @@ public:
 private:
 	float timeSinceTick = 0.f;
 	float tickTime = 10.0f;
-	float efficiency = 1.f;
 };

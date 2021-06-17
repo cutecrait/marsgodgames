@@ -99,8 +99,8 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 		m_zs.AddPlacement(m_ldgame.GetPlacements(i));
 	}
 
-
-
+	foundryCtrl.Init();
+	gpCtrl.Init();
 }
 
 void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
@@ -120,9 +120,11 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 
 
 	//derManager.makeBuilding(selectedPlace,&einCursor);
-
-
 	mapSquare.setLevel(&m_zdk);
+
+	// buildings
+	gpCtrl.Update(fTimeDelta);
+	foundryCtrl.Update(fTimeDelta);
 }
 
 void CGame::MakeMapSquares(CScene* m_zs)

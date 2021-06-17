@@ -76,7 +76,7 @@ public:
 
 	void AddNewBuilding(Typ, MapTile*);
 
-	vector<CGameObjectPlacement> GetBuildingVector(Typ);
+	vector<CGameObjectPlacement*> GetBuildingVector(Typ);
 
 	// DEPRECATED but i'll leave it here for now in case we need it later on
 	// only works for Foundry, is used to get closest Mine building with no linked Foundry
