@@ -84,11 +84,11 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	einsFont.LoadPreset("LucidaConsoleWhite");
 	einsFont.SetChromaKeyingOn(); //hiermit hat die font keinen hässlichen hintergrund
 	menu.InitMenu(&einCursor, &einsFont, &m_zv);
-	derManager.Init(&menu, &m_zs, &BuildingManager, &mapSquare);
+	derManager.Init(&menu, &m_zs, &CBuildingManager::Instance(), &mapSquare);
 	LevelSystem::LevelManager::Instance().GetCurrentLevel()->initLevel(&menu);
 	// MAP SQUARES---------------------------------------
+	CBuildingManager::Instance().Init(&m_zs);
 	MakeMapSquares(&m_zs);
-	BuildingManager.Init(&m_zs);
 
 	//LOAD TERRAIN---------------------------------------
 	m_zs.AddPlacement(m_ldgame.LoadTerrain());
@@ -99,8 +99,10 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 		m_zs.AddPlacement(m_ldgame.GetPlacements(i));
 	}
 
-	derManager.setBuildingGeos(BuildingManager.getBuildingGeos());
+	derManager.setBuildingGeos(CBuildingManager::Instance().getBuildingGeos());
 
+	foundryCtrl.Init();
+	gpCtrl.Init();
 }
 
 void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
@@ -120,9 +122,11 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 
 
 	//derManager.makeBuilding(selectedPlace,&einCursor);
-
-
 	mapSquare.setLevel(&m_zdk);
+
+	// buildings
+	gpCtrl.Update(fTimeDelta);
+	foundryCtrl.Update(fTimeDelta);
 }
 
 void CGame::MakeMapSquares(CScene* m_zs)

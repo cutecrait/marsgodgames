@@ -12,16 +12,16 @@ CBuildingManager::CBuildingManager()
 	m_MaxBuildings[(int)Typ::ControlCenter] = 1;
 	m_MaxBuildings[(int)Typ::FoodFarm] = 20;
 	m_MaxBuildings[(int)Typ::Foundry] = 20;
-	m_MaxBuildings[(int)Typ::GravelPlant] = 1;
-	m_MaxBuildings[(int)Typ::Hospital] = 1;
-	m_MaxBuildings[(int)Typ::Laboratory] = 1;
+	m_MaxBuildings[(int)Typ::GravelPlant] = 20;
+	m_MaxBuildings[(int)Typ::Hospital] = 5;
+	m_MaxBuildings[(int)Typ::Laboratory] = 5;
 	m_MaxBuildings[(int)Typ::Launchpad] = 1;
-	m_MaxBuildings[(int)Typ::Mine] = 1;
-	m_MaxBuildings[(int)Typ::NuclearPowerPlant] = 1;
-	m_MaxBuildings[(int)Typ::RobotFactory] = 1;
-	m_MaxBuildings[(int)Typ::SolarPowerPlant] = 1;
-	m_MaxBuildings[(int)Typ::TreeFarm] = 1;
-	m_MaxBuildings[(int)Typ::Well] = 1;
+	m_MaxBuildings[(int)Typ::Mine] = 20;
+	m_MaxBuildings[(int)Typ::NuclearPowerPlant] = 10;
+	m_MaxBuildings[(int)Typ::RobotFactory] = 2;
+	m_MaxBuildings[(int)Typ::SolarPowerPlant] = 20;
+	m_MaxBuildings[(int)Typ::TreeFarm] = 20;
+	m_MaxBuildings[(int)Typ::Well] = 30;
 }
 
 CBuildingManager::~CBuildingManager()
@@ -178,13 +178,15 @@ void CBuildingManager::Init(CScene* scene)
 			BuildingGeos.Add(Wells[i].getGameObject()->getModel());
 		}
 	}
+
+
 }
 
 void CBuildingManager::UpdateBuildings(float deltaTime)
 {
 	for (int typ = 1; typ < TYP_LENGTH; typ++)
 	{
-		auto list = getBuildingList((Typ)typ);
+		CGameObjectPlacement* list = getBuildingList((Typ)typ);
 		int y = 0;
 		for (int i = 0; i < m_MaxBuildings[typ]; i++)
 		{
@@ -222,14 +224,14 @@ void CBuildingManager::AddNewBuilding(Typ t, MapTile* targetTile)
 
 	CAudioManager::Instance().Ambient_Building_Sound.Start();
 
-	auto gop = lookForGameObject(t);
+	CGameObjectPlacement* gop = lookForGameObject(t);
 	if (!gop)
 		return;
 
 	Building* newBuilding = (Building*)gop->getGameObject();
 
 	Player* p = &Player::Instance();
-	auto cost = newBuilding->getBuildCost();
+	GameObject::Resources cost = newBuilding->getBuildCost();
 
 	p->gainConcrete(-cost.Concrete);
 	p->gainSteel(-cost.Steel);
@@ -247,17 +249,75 @@ void CBuildingManager::AddNewBuilding(Typ t, MapTile* targetTile)
 	IncreaseNrOfBuildings(t);
 	gop->setBuildStatus(true);
 
-	if(gop->getGameObject()->getAudio())
-	gop->m_paudios->m_apaudio[0]->Loop();
+	if (gop->getGameObject()->getAudio())
+		gop->m_paudios->m_apaudio[0]->Loop();
 
 	Save save;
 	save.fillPosAr(gop->getGameObject(), gop->GetPos().GetX(), gop->GetPos().GetZ());
 }
 
-CGameObjectPlacement* CBuildingManager::getClosestGameObject(Typ)
+vector<CGameObjectPlacement*> CBuildingManager::GetBuildingVector(Typ t)
 {
+	CGameObjectPlacement* list = getBuildingList(t);
+	vector<CGameObjectPlacement*> vec;
+	vec.reserve(m_MaxBuildings[(int)t]);
+	for (int i = 0; i < m_MaxBuildings[(int)t]; i++)
+	{
+		vec.push_back(&list[i]);
+	}
+	return vec;
+}
 
-	return nullptr;
+CGameObjectPlacement* CBuildingManager::findClosestUnlinked(Building* me, Typ t_me, Typ target, function<bool(GameObject*)> isLinked)
+{
+	// since this is only meant for linkables, return if Typ isnt linkable.
+	if (target != Typ::Mine)
+		return nullptr;
+
+	CGameObjectPlacement* gop_me = nullptr;
+	CGameObjectPlacement* list = getBuildingList(t_me);
+
+	for (int i = 0; i < m_MaxBuildings[(int)t_me]; i++)
+	{
+		if (list[i].getGameObject() == me)
+		{
+			gop_me = &list[i];
+			break;
+		}
+	}
+	// check that we actually found it
+	if (!gop_me)
+		return nullptr;
+
+	// only X and Z distance matter.
+	// since we will only be comparing distances, the squared distance will save us some ms
+	float myX = gop_me->GetPos().GetX();
+	float myZ = gop_me->GetPos().GetZ();
+
+	list = getBuildingList(target);
+	CGameObjectPlacement* closest = nullptr;
+	float closestDistance = 10000.f;
+	int n = 0;
+	for (int i = 0; n == m_NrsOfBuildings[(int)target] || i < m_MaxBuildings[(int)target]; i++)
+	{
+		if (list[i].getBuildStatus())
+		{
+			n++;
+			if (isLinked(list[i].getGameObject()))
+			{
+				float tX = list[i].GetPos().GetX();
+				float tZ = list[i].GetPos().GetZ();
+				float dist = pow(myX - tX, 2) + pow(myZ - tZ, 2);
+				if (dist > closestDistance)
+				{
+					closest = &list[i];
+					closestDistance = dist;
+				}
+			}
+		}
+	}
+
+	return closest;
 }
 
 CGameObjectPlacement* CBuildingManager::getBuildingList(Typ typ)
@@ -316,7 +376,7 @@ CGameObjectPlacement* CBuildingManager::getBuildingList(Typ typ)
 
 CGameObjectPlacement* CBuildingManager::lookForGameObject(Typ& typ)
 {
-	auto list = getBuildingList(typ);
+	CGameObjectPlacement* list = getBuildingList(typ);
 	for (int i = 0; i < m_MaxBuildings[(int)typ]; i++)
 	{
 		if (list[i].getBuildStatus() == false)

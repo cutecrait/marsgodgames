@@ -1,4 +1,5 @@
 #pragma once
+#include <functional>
 #include "Vektoria/root.h"
 #include "CGameObjectPlacement.h"
 #include "CAudioManager.h"
@@ -28,6 +29,16 @@ const int TYP_LENGTH = 20;
 class CBuildingManager
 {
 public:
+
+	/// <summary>
+	/// Singleton - gibt Instanz zurück
+	/// </summary>
+	/// <returns>Instanz</returns>
+	static CBuildingManager& Instance()
+	{
+		static CBuildingManager _instance;
+		return _instance;
+	};
 
 	CBuildingManager();
 	~CBuildingManager();
@@ -64,7 +75,13 @@ public:
 	void DecreaseNrOfBuildings(Typ&);
 
 	void AddNewBuilding(Typ, MapTile*);
-	CGameObjectPlacement* getClosestGameObject(Typ);
+
+	vector<CGameObjectPlacement*> GetBuildingVector(Typ);
+
+	// DEPRECATED but i'll leave it here for now in case we need it later on
+	// only works for Foundry, is used to get closest Mine building with no linked Foundry
+	// will later work in the same way for FoodPlant / FoodFarm
+	CGameObjectPlacement* findClosestUnlinked(Building* me, Typ t_me, Typ target, function<bool(GameObject*)>);
 
 	CGeos* getBuildingGeos();
 

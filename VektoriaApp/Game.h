@@ -31,6 +31,8 @@
 #include "UI.h"
 #include "Level.h"
 #include "Mission.h"
+#include "FoundryController.h"
+#include "GravelPlantController.h"
 
 #include "LevelManager.h"
 
@@ -65,10 +67,12 @@ private:
 	CImage m_zi;
 	CDeviceKeyboard m_zdk;
 	CDeviceMouse m_zdm;
+	
+	FoundryController foundryCtrl;
+	GravelPlantController gpCtrl;
 
 	//<Darius>
 	CCameraController CameraController;
-	CBuildingManager BuildingManager;
 	//</Darius>
 
 	//World Ground

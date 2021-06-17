@@ -17,6 +17,7 @@ class Building :
 {
 public:
     virtual Resources getBuildCost() = 0;
+    virtual void destroy() {}
     virtual void OnClick() {}
     virtual int decision() { return true; }
     virtual void setPopup(popup*){}
@@ -25,6 +26,7 @@ public:
     virtual bool isPopupOpen() { return false; }
     virtual bool isPopupFunctional() { return false; }
     virtual void updatePlayer() {};
+    
     int PowerUse;
     int WaterUse;
     int NutrientUse;
@@ -32,4 +34,3 @@ public:
     bool erstesMal;
     BuildingCategory Category = BuildingCategory::None;
 };
-
