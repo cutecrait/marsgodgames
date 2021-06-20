@@ -155,11 +155,10 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 		{
 		case 0: //das  "Apartment" ist für die überschrift im tooltip
 			
-			uiDecision(CBuildingManager::Typ::Apartment,"Apartment",cursor); 
-		
+			uiDecision(CBuildingManager::Typ::Barrack,"Baracke",cursor); 
 			break;
 		case 1:
-			uiDecision(CBuildingManager::Typ::NuclearPowerPlant, "Nuklearpowerplant", cursor);
+			uiDecision(CBuildingManager::Typ::Apartment, "Apartment", cursor);
 			break;
 		case 2:
 			break;

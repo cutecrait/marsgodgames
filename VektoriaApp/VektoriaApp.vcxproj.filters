@@ -155,6 +155,9 @@
     <ClCompile Include="CheckPathDecision.cpp">
       <Filter>Robot\AI\Decision</Filter>
     </ClCompile>
+    <ClCompile Include="BarrackPopUp.cpp">
+      <Filter>UI\popups</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -367,6 +370,12 @@
     </ClInclude>
     <ClInclude Include="CheckPathDecision.h">
       <Filter>Robot\AI\Decision</Filter>
+    </ClInclude>
+    <ClInclude Include="Barrack.h">
+      <Filter>Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="BarrackPopUp.h">
+      <Filter>UI\popups</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

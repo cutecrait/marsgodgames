@@ -7,6 +7,7 @@
 #include "Save.h"
 
 #include "Apartment.h"
+#include "Barrack.h"
 #include "ControlCenter.h"
 #include "FoodFarm.h"
 #include "Foundry.h"
@@ -47,6 +48,7 @@ public:
 	// NOCH ZU ERWEITERN!!!
 	enum class Typ {
 		None = 0,
+		Barrack,
 		Apartment,
 		ControlCenter,
 		FoodFarm,
@@ -91,6 +93,7 @@ private:
 	CGeos BuildingGeos;
 
 	CGameObjectPlacement Apartments[50];
+	CGameObjectPlacement Barracks[50];
 	CGameObjectPlacement ControlCenters[1];
 	CGameObjectPlacement FoodFarms[20];
 	CGameObjectPlacement Foundrys[20];

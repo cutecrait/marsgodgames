@@ -153,6 +153,8 @@
     <ClInclude Include="Apartment.h" />
     <ClInclude Include="ApsPopup.h" />
     <ClInclude Include="AStarAlgorithm.h" />
+    <ClInclude Include="Barrack.h" />
+    <ClInclude Include="BarrackPopUp.h" />
     <ClInclude Include="BeispielForGameObject.h" />
     <ClInclude Include="Building.h" />
     <ClInclude Include="CAudioManager.h" />
@@ -226,6 +228,7 @@
     <ClCompile Include="Action.cpp" />
     <ClCompile Include="ApsPopup.cpp" />
     <ClCompile Include="AStarAlgorithm.cpp" />
+    <ClCompile Include="BarrackPopUp.cpp" />
     <ClCompile Include="BeispielForGameObject.cpp" />
     <ClCompile Include="CAudioManager.cpp" />
     <ClCompile Include="CBuildingManager.cpp" />

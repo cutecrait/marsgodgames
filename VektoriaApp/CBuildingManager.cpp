@@ -8,6 +8,7 @@ CBuildingManager::CBuildingManager()
 	}
 
 	m_MaxBuildings[(int)Typ::None] = 0;
+	m_MaxBuildings[(int)Typ::Barrack] = 50;
 	m_MaxBuildings[(int)Typ::Apartment] = 50;
 	m_MaxBuildings[(int)Typ::ControlCenter] = 1;
 	m_MaxBuildings[(int)Typ::FoodFarm] = 20;
@@ -34,6 +35,16 @@ void CBuildingManager::Init(CScene* scene)
 	m_zs = scene;
 
 	// Initialisere die GameObjects
+	for (int i = 0; i < size(Barracks); i++) {
+		Barracks[i].setGameObject(new Barrack);
+		Barracks[i].Init(typeid(Barrack).name());
+		Barracks[i].getGameObject()->TransformGeo();
+		m_zs->AddPlacement(&Barracks[i]);
+		if (i == 0)
+		{
+			BuildingGeos.Add(Barracks[i].getGameObject()->getModel());
+		}
+	}
 	for (int i = 0; i < size(Apartments); i++) {
 		Apartments[i].setGameObject(new Apartment);
 		Apartments[i].Init(typeid(Apartment).name());
@@ -326,6 +337,9 @@ CGameObjectPlacement* CBuildingManager::getBuildingList(Typ typ)
 	{
 	case CBuildingManager::Typ::None:
 		return nullptr;
+		break;
+	case CBuildingManager::Typ::Barrack:
+		return Barracks;
 		break;
 	case CBuildingManager::Typ::Apartment:
 		return Apartments;
