@@ -19,6 +19,8 @@ void CAudioManager::Init(CScene* m_zs)
 	Ambient_Background_Music.Init("sounds\\Project_Mars_Background_Mono_Edit.wav");
 	Ambient_Click_Sound.Init("sounds\\Click_Sound_2_Geschnitten.wav");
 
+	Ambient_Background_Music.SetVolume(0.85f);
+
 	Local_ControlCenter.Init3D("sounds\\ControlCenter_Loop.wav", 1);
 	Local_Foundry.Init3D("sounds\\Foundry_Loop.wav", 1);
 	Local_Laboratory.Init3D("sounds\\Laboratory_Loop.wav", 1);
