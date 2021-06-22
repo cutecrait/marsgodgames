@@ -36,7 +36,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	LevelSystem::LevelManager::Instance().AddLevel(m_level1);
 	LevelSystem::LevelManager::Instance().AddLevel(m_level2);
 	LevelSystem::LevelManager::Instance().AddLevel(m_level3);
-	//m_level1->AddMission(new LevelSystem::Mission("Kaufe einen Landwirtroboter",0, 200));
+	
 	// CAMERA & VIEWPORT-------------------------------------------------------
 	m_zv.InitFull(&m_zc);	//with adresse of camera bcoz viewport
 	m_zo.InitFull(&m_zi);

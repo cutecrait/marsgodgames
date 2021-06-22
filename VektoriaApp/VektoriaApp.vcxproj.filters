@@ -156,6 +156,9 @@
       <Filter>Robot\AI\Decision</Filter>
     </ClCompile>
     <ClCompile Include="AssetManager.cpp" />
+    <ClCompile Include="BarrackPopUp.cpp">
+      <Filter>UI\popups</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -370,6 +373,12 @@
       <Filter>Robot\AI\Decision</Filter>
     </ClInclude>
     <ClInclude Include="AssetManager.h" />
+    <ClInclude Include="Barrack.h">
+      <Filter>Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="BarrackPopUp.h">
+      <Filter>UI\popups</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VektoriaApp.rc" />

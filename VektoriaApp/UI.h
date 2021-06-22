@@ -4,6 +4,7 @@
 #include "CBuildingManager.h"
 #include "RobotFactory.h"
 #include "Apartment.h"
+#include "Barrack.h"
 #include "ControlCenter.h"
 
 #include "FoodFarm.h"
@@ -136,6 +137,7 @@ public:
 
 
 	roboPopUp m_roboPopUP;
+	BarrackPopUp m_barrackPopUp;
 	ApsPopup m_apsPopup;
 	ControlCPopup m_CCpopup;
 	wellPopup m_wellPopup;

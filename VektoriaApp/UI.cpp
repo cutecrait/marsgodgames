@@ -67,6 +67,7 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	updatePlayer();
 
 	m_roboPopUP.Init(cursor,&m_matStats,font);
+	m_barrackPopUp.Init(cursor, &m_matStats, font);
 	m_apsPopup.Init(cursor, &m_matStats, font);
 	m_CCpopup.Init(cursor, &m_matStats, font);
 	m_wellPopup.Init(cursor, &m_matStats, font);
@@ -107,7 +108,7 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	labelMaker(0, 3, selectLabel);
 
 	selectLabel.clear();
-	selectLabel.push_back(" Hotel"); selectLabel.push_back(" Einfamilienhaus"); selectLabel.push_back(" Mehrfamilienhaus"); selectLabel.push_back(" Villa");
+	selectLabel.push_back(" Baracke"); selectLabel.push_back(" Apartment"); selectLabel.push_back(" Mehrfamilienhaus"); selectLabel.push_back(" Villa");
 	//m_specificSelect[1].makeInactiveMats(m_matsForSelect2);
 	m_specificSelect[1].Init(cursor, font, 4, CFloatRect(0.15, 0.3, 0.15, 0.6)); labelMaker(1, 4, selectLabel);
 
@@ -151,6 +152,7 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	zv->AddOverlay(&m_statsBack);
 	zv->AddOverlay(&m_roboPopUP.m_main);
 	zv->AddOverlay(&m_apsPopup.m_main);
+	zv->AddOverlay(&m_barrackPopUp.m_main);
 	zv->AddOverlay(&m_CCpopup.m_main);
 	zv->AddOverlay(&m_wellPopup.m_main);
 	zv->AddOverlay(&m_FFPopup.m_main);
@@ -339,8 +341,14 @@ void UI::tooltip(std::string headline, int res1, int res2, int res3, CBuildingMa
 	m_kosten3W.PrintInt(res3);
 	
 	switch (typ) {
+	case CBuildingManager::Typ::Barrack:
+		m_descriptionW1.PrintString("Wohnungen werden gebraucht, ");
+		m_descriptionW2.PrintString("um Bewohner anzusiedeln.");
+		m_descriptionW3.PrintString("Beim kauf werden der Siedlung");
+		m_descriptionW4.PrintString("Wohnungen hinzugefuegt.");
+		break;
 	case CBuildingManager::Typ::Apartment:
-		m_descriptionW1.PrintString("Wohnungen werden gebraucht ");
+		m_descriptionW1.PrintString("Wohnungen werden gebraucht, ");
 		m_descriptionW2.PrintString("um Bewohner anzusiedeln.");
 		m_descriptionW3.PrintString("Beim kauf werden der Siedlung");
 		m_descriptionW4.PrintString("Wohnungen hinzugefuegt.");
@@ -352,7 +360,7 @@ void UI::tooltip(std::string headline, int res1, int res2, int res3, CBuildingMa
 		m_descriptionW4.PrintString("wichtige Rohstoffe her.");
 		break;
 	case CBuildingManager::Typ::FoodFarm:
-		m_descriptionW1.PrintString("Essen wird gebraucht damit");
+		m_descriptionW1.PrintString("Essen wird gebraucht, damit");
 		m_descriptionW2.PrintString("Bewohner ueberleben koennen.");
 		m_descriptionW3.PrintString("Beim Kauf wird Nahrung");
 		m_descriptionW4.PrintString("der Siedlung hinzugefuegt");
@@ -395,12 +403,12 @@ void UI::tooltip(std::string headline, int res1, int res2, int res3, CBuildingMa
 		m_descriptionW4.PrintString("pro Minute Stahl.");
 		break;
 	case CBuildingManager::Typ::NuclearPowerPlant:
-		m_descriptionW1.PrintString("Strom wird gebraucht um");
+		m_descriptionW1.PrintString("Strom wird gebraucht, um");
 		m_descriptionW2.PrintString("Gebauede zuversorgen.");
 		m_descriptionW3.PrintString("Beim Kauf wird Strom");
 		m_descriptionW4.PrintString("der Siedlung hinzugefuegt.");
 	case CBuildingManager::Typ::SolarPowerPlant:
-		m_descriptionW1.PrintString("Strom wird gebraucht um");
+		m_descriptionW1.PrintString("Strom wird gebraucht, um");
 		m_descriptionW2.PrintString("Gebauede zuversorgen.");
 		m_descriptionW3.PrintString("Beim Kauf wird Strom");
 		m_descriptionW4.PrintString("der Siedlung hinzugefuegt.");
@@ -412,7 +420,7 @@ void UI::tooltip(std::string headline, int res1, int res2, int res3, CBuildingMa
 		m_descriptionW4.PrintString("pro Minute Holz.");
 		break;
 	case CBuildingManager::Typ::Well:
-		m_descriptionW1.PrintString("Wasser wird gebraucht um");
+		m_descriptionW1.PrintString("Wasser wird gebraucht, um");
 		m_descriptionW2.PrintString("Gebauede zuversorgen.");
 		m_descriptionW3.PrintString("Beim Kauf wird Wasser");
 		m_descriptionW4.PrintString("der Siedlung hinzugefuegt.");
@@ -649,6 +657,9 @@ popup* UI::getPopup(std::string type)
 	if (type == typeid(RobotFactory).name()) {
 		
 		return& m_roboPopUP;
+	}
+	if (type == typeid(Barrack).name()) {
+		return&m_barrackPopUp;
 	}
 	if (type == typeid(Apartment).name()) {
 		return&m_apsPopup;
