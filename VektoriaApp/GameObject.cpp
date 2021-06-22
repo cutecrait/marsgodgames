@@ -34,7 +34,8 @@ void GameObject::TransformGeo()
 	}
 }
 
-void GameObject::setModel(char* modelpfad)
+//DEPRECATED - use setModel(AssetManager::Models) instead
+void GameObject::setModel(char* modelpfad) 
 {
 	m_model = m_modelPfad.LoadGeo(modelpfad, true);     // true; da die Texturen auf den Blender Modellen nicht richtig angezeigt werden
 	//m_model->GetChild()->SetName("GameObject");
