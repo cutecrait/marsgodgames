@@ -22,6 +22,10 @@ public:
 	int getSteel() { return steel; }
 	int getWood() { return wood; }
 
+	void setConcrete(int x) { concrete = 0; }
+	void setSteel(int x) { steel = 0; }
+	void setWood(int x) { wood = 0; }
+
 	void setConcretePM(int i) { concretePMinute += i; }
 	void setSteelPM(int i) { steelPMinute += i; }
 	void setWoodPM(int i) { woodPMinute += i; }

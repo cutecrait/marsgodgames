@@ -1,1 +1,2 @@
-Laboratory, 4, 7
+ControlCenter, 10, 10
+Launchpad, 12, 10

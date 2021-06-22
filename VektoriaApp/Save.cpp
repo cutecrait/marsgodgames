@@ -17,7 +17,8 @@ void Save::getObjects()
 
 void Save::deleteTxt()
 {
-	remove("Ressources.txt");
+	remove("PlayerDetails.txt");
+	
 	
 }
 
@@ -25,15 +26,14 @@ std::string Save::getObjName(GameObject *GO)
 {
 	std::string objName;
 	
-
-	if (dynamic_cast<BeispielForGameObject*>(GO))
-	{
-		objName = "BeispielForGameObject";
-		//ULDebug(objName.c_str());
-	}
-	else if (dynamic_cast<Apartment*>(GO))
+	if (dynamic_cast<Apartment*>(GO))
 	{
 		objName = "Apartment";
+		//ULDebug(objName.c_str());
+	}
+	if (dynamic_cast<Barrack*>(GO))
+	{
+		objName = "Barrack";
 		//ULDebug(objName.c_str());
 	}
 	/*else if (dynamic_cast<Building*>(GO))
@@ -155,7 +155,73 @@ bool Save::saveItAll()
 	for (int i = 0; i < pos_id; i++) {
 		this->writePosToTxt("Positions.txt", geo_arr[i], pos_arr[i][0], pos_arr[i][1]);
 	}
-
+	this->writePlayerDetailstoTxt();
 	return true;
 }
-//Karo start
+void Save::writePlayerDetailstoTxt()
+{
+	remove("PlayerDetails.txt");
+	std::ofstream file;
+	file.open("PlayerDetails.txt", std::ios_base::app);
+	file << Player::Instance().getConcrete() << std::endl;
+	file << Player::Instance().getSteel() << std::endl;
+	file << Player::Instance().getWood() << std::endl;
+
+	file << Player::Instance().getConcretePM() << std::endl;
+	file << Player::Instance().getSteelPM() << std::endl;
+	file << Player::Instance().getWoodPM() << std::endl;
+
+	file << Player::Instance().getUseWater() << std::endl;
+	file << Player::Instance().getUsePower() << std::endl;
+	file << Player::Instance().getUseFood() << std::endl;
+
+	file << Player::Instance().getWater() << std::endl;
+	file << Player::Instance().getPower() << std::endl;
+	file << Player::Instance().getFood() << std::endl;
+
+	file << Player::Instance().getWohnung() << std::endl;
+	file << Player::Instance().getUsedWohnungen() << std::endl;
+	file << Player::Instance().getRobots() << std::endl;
+	
+
+	file.close();
+}
+
+void Save::ResetGame()
+{
+	//Reset Resources in den Player Details
+	remove("PlayerDetails.txt");
+	std::ofstream file;
+	
+	file.open("PlayerDetails.txt", std::ios_base::app);
+	file << 1000 << std::endl;
+	file << 1000 << std::endl;
+	file << 1000 << std::endl;
+
+	file << 0 << std::endl;
+	file << 0 << std::endl;
+	file << 0 << std::endl;
+
+	file << 0 << std::endl;
+	file << 0 << std::endl;
+	file << 0 << std::endl;
+
+	file << 0 << std::endl;
+	file << 0 << std::endl;
+	file << 0 << std::endl;
+
+	file << 0 << std::endl;
+	file << 0 << std::endl;
+	file << 0 << std::endl;
+	file.close();
+
+	// Reset Positions: alles löschen, erste 2 Zeilen hinzufügen
+	remove("Positions.txt");
+	std::ofstream filepos;
+	filepos.open("Positions.txt", std::ios_base::app);
+
+	filepos << "ControlCenter" << ", " << 10 << ", " << 10 << std::endl;
+	filepos << "Launchpad" << ", " << 12 << ", " << 10 << std::endl;
+
+}
+//Karo end

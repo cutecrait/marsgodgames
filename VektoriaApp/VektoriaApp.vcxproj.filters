@@ -159,6 +159,9 @@
     <ClCompile Include="BarrackPopUp.cpp">
       <Filter>UI\popups</Filter>
     </ClCompile>
+    <ClCompile Include="StartScreen.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -378,6 +381,9 @@
     </ClInclude>
     <ClInclude Include="BarrackPopUp.h">
       <Filter>UI\popups</Filter>
+    </ClInclude>
+    <ClInclude Include="StartScreen.h">
+      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

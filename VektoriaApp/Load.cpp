@@ -13,8 +13,41 @@ Load::Load()
 	}
 
 	*pos_arr = new float[100];
+	for (int i = 0; i < 20; i++)
+	{
+		apartment[i] = new Apartment();
+		obama[i] = new Barrack();
+		controlcenter[i] = new ControlCenter();
+		foodfarm[i] = new FoodFarm();
+		gravelplant[i] = new GravelPlant();
+		hospital[i] = new Hospital();
+		laboratory[i] = new Laboratory();
+		launchpad[i] = new Launchpad();
+		mine[i] = new Mine();
+		nuclearpowerplant[i] = new NuclearPowerPlant();
+		robotfactory[i] = new RobotFactory();
+		solarpowerplant[i] = new SolarPowerPlant();
+		treefarm[i] = new TreeFarm();
+		well[i] = new Well();
+	}
 
+	apart_anz = 0;
+	barr_anz = 0;
+	contr_anz = 0;
+	food_anz = 0;
+	found_anz = 0;
+	gravel_anz = 0;
+	hos_anz = 0;
+	lab_anz = 0;
+	launch_anz = 0;
+	mine_anz = 0;
+	nuc_anz = 0;
+	solar_anz = 0;
+	robo_anz = 0;
+	tree_anz = 0;
+	well_anz = 0;
 
+	
 
 	//if (this->fileExists("Positions.txt")) {
 		this->readPos();
@@ -74,89 +107,109 @@ GameObject *Load::getObj(std::string obj_name)
 	}
 
 	else if (obj_name == std::string("Apartment")) {
-		apartment = new Apartment();
+		
 
-		this->SetGeos(apartment, this->getObjCount());
+		this->SetGeos(apartment[apart_anz], this->getObjCount());
+		apart_anz++;
+		return geo_arr[this->getObjCount()];
+	}
+
+	else if (obj_name == std::string("Barrack")) {
+
+
+		this->SetGeos(obama[barr_anz], this->getObjCount());
+		barr_anz++;
 		return geo_arr[this->getObjCount()];
 	}
 
 	else if (obj_name == std::string("ControlCenter")) {
-		controlcenter = new ControlCenter();
+		
 
-		this->SetGeos(controlcenter, this->getObjCount());
+		this->SetGeos(controlcenter[contr_anz], this->getObjCount());
+		contr_anz++;
 		return geo_arr[this->getObjCount()];
 	}
 	else if (obj_name == std::string("FoodFarm")) {
-		foodfarm = new FoodFarm();
+	
 
-		this->SetGeos(foodfarm, this->getObjCount());
+		this->SetGeos(foodfarm[food_anz], this->getObjCount());
+		food_anz++;
 		return geo_arr[this->getObjCount()];
 	}
 	else if (obj_name == std::string("Foundry")) {
-		foundry = new Foundry();
+		
 
-		this->SetGeos(foundry, this->getObjCount());
+		this->SetGeos(foundry[found_anz], this->getObjCount());
+		found_anz++;
 		return geo_arr[this->getObjCount()];
 	}
 	else if (obj_name == std::string("GravelPlant")) {
-		gravelplant = new GravelPlant();
+	
 
-		this->SetGeos(gravelplant, this->getObjCount());
+		this->SetGeos(gravelplant[gravel_anz], this->getObjCount());
+		gravel_anz++;
 		return geo_arr[this->getObjCount()];
 	}
 	else if (obj_name == std::string("Hospital")) {
-		hospital = new Hospital();
 
-		this->SetGeos(hospital, this->getObjCount());
+		this->SetGeos(hospital[hos_anz], this->getObjCount());
+		hos_anz++;
 		return geo_arr[this->getObjCount()];
 	}
 	else if (obj_name == std::string("Laboratory")) {
-		laboratory = new Laboratory();
+		
 
-		this->SetGeos(laboratory, this->getObjCount());
+		this->SetGeos(laboratory[lab_anz], this->getObjCount());
+		lab_anz++;
 		return geo_arr[this->getObjCount()];
 	}
 	else if (obj_name == std::string("Launchpad")) {
-		launchpad = new Launchpad();
+		
 
-		this->SetGeos(launchpad, this->getObjCount());
+		this->SetGeos(launchpad[launch_anz], this->getObjCount());
+		launch_anz++;
 		return geo_arr[this->getObjCount()];
 	}
 	else if (obj_name == std::string("Mine")) {
-		mine = new Mine();
+		
 
-		this->SetGeos(mine, this->getObjCount());
+		this->SetGeos(mine[mine_anz], this->getObjCount());
+		mine_anz++;
 		return geo_arr[this->getObjCount()];
 	}
 	else if (obj_name == std::string("NuclearPowerPlant")) {
-		nuclearpowerplant = new NuclearPowerPlant();
+		
 
-		this->SetGeos(nuclearpowerplant, this->getObjCount());
+		this->SetGeos(nuclearpowerplant[nuc_anz], this->getObjCount());
+		nuc_anz++;
 		return geo_arr[this->getObjCount()];
 	}
 	else if (obj_name == std::string("RobotFactory")) {
-		robotfactory = new RobotFactory();
+		
 
-		this->SetGeos(robotfactory, this->getObjCount());
+		this->SetGeos(robotfactory[robo_anz], this->getObjCount());
+		robo_anz++;
 		return geo_arr[this->getObjCount()];
 	}
 
 	else if (obj_name == std::string("SolarPowerPlant")) {
-		solarpowerplant = new SolarPowerPlant();
 
-		this->SetGeos(solarpowerplant, this->getObjCount());
+		this->SetGeos(solarpowerplant[solar_anz], this->getObjCount());
+		solar_anz++;
 		return geo_arr[this->getObjCount()];
 	}
 	else if (obj_name == std::string("TreeFarm")) {
-		treefarm = new TreeFarm();
+		
 
-		this->SetGeos(treefarm, this->getObjCount());
+		this->SetGeos(treefarm[tree_anz], this->getObjCount());
+		tree_anz++;
 		return geo_arr[this->getObjCount()];
 	}
 	else if (obj_name == std::string("Well")) {
-		well = new Well();
+		
 
-		this->SetGeos(well, this->getObjCount());
+		this->SetGeos(well[well_anz], this->getObjCount());
+		well_anz++;
 		return geo_arr[this->getObjCount()];
 	}
 	else {
@@ -185,12 +238,36 @@ CPlacement* Load::GetPlacements(int i)
 		
 }
 
+void Load::setPlayerDetails()
+{
+	this->loadPlayerDetails();
+	Player::Instance().setConcrete(playerdets[0]);
+	Player::Instance().setSteel(playerdets[1]);
+	Player::Instance().setWood(playerdets[2]);
+
+	Player::Instance().setConcretePM(playerdets[3]);
+	Player::Instance().setSteelPM(playerdets[4]);
+	Player::Instance().setWoodPM(playerdets[5]);
+
+	Player::Instance().useWater(playerdets[6]);
+	Player::Instance().usePower(playerdets[7]);
+	Player::Instance().useWater(playerdets[8]);
+
+	Player::Instance().setWater(playerdets[9]);
+	Player::Instance().setPower(playerdets[10]);
+	Player::Instance().setFood(playerdets[11]);
+
+	Player::Instance().setWohnung(playerdets[12]);
+	Player::Instance().setUsedWohnungen(playerdets[13]);
+	Player::Instance().setRobots(playerdets[14]);
+}
+
 void Load::readPos()
 {
-		Vektoria::ULDebug("Searching for Save-File");
+		//Vektoria::ULDebug("Searching for Save-File");
 		std::fstream file("Positions.txt");
 		if (file.is_open()) {
-			Vektoria::ULDebug("Save-File found");
+			//Vektoria::ULDebug("Save-File found");
 		}
 		
 		std::string tp;
@@ -205,14 +282,14 @@ void Load::readPos()
 			pos = tp.find(del);
 			std::string x_valstr = tp.substr(0, pos);
 			tempstring = x_valstr;
-			Vektoria::ULDebug(tempstring.c_str());
+			//Vektoria::ULDebug(tempstring.c_str());
 			
 			float x_val = std::stof(x_valstr);
-			Vektoria::ULDebug("Get Values");
+			//Vektoria::ULDebug("Get Values");
 			tp.erase(0, pos + del.length());
 			std::string z_valstr = tp.substr(0, pos);
 			tempstring = z_valstr;
-			Vektoria::ULDebug(tempstring.c_str());
+			//Vektoria::ULDebug(tempstring.c_str());
 			
 			float z_val = std::stof(z_valstr);
 			tp.erase(0, pos + del.length());
@@ -233,10 +310,10 @@ int Load::getObjCount()
 
 int* Load::LoadPlayerStats()
 {
-	Vektoria::ULDebug("Searching for Player-Stats");
+	//Vektoria::ULDebug("Searching for Player-Stats");
 	std::fstream file("Ressources.txt");
 	if (file.is_open()) {
-		Vektoria::ULDebug("Player-Stats found");
+		//Vektoria::ULDebug("Player-Stats found");
 	}
 
 	std::string tp;
@@ -248,19 +325,19 @@ int* Load::LoadPlayerStats()
 		std::string tempstring = tp;
 
 		std::string resstr1 = tp.substr(0, pos);
-		Vektoria::ULDebug(resstr1.c_str());
+		//Vektoria::ULDebug(resstr1.c_str());
 		int res1 = std::stoi(resstr1);
 		tp.erase(0, pos + del.length());
 		
 		pos = tp.find(del);
 		std::string resstr2 = tp.substr(0, pos);
-		Vektoria::ULDebug(resstr2.c_str());
+		//Vektoria::ULDebug(resstr2.c_str());
 		int res2 = std::stoi(resstr2);
 		tp.erase(0, pos + del.length());
 
 		pos = tp.find(del);
 		std::string resstr3 = tp.substr(0, pos);
-		Vektoria::ULDebug(resstr3.c_str());
+		//Vektoria::ULDebug(resstr3.c_str());
 		int res3 = std::stoi(resstr3);
 		tp.erase(0, pos + del.length());
 		
@@ -275,7 +352,29 @@ int* Load::LoadPlayerStats()
 
 }
 
+void Load::loadPlayerDetails()
+{
+	//Vektoria::ULDebug("Searching for Player-Stats");
+	std::fstream file("PlayerDetails.txt");
+	if (file.is_open()) {
+		//Vektoria::ULDebug("Player-Stats found");
+	}
 
+	std::string tp;
+	size_t pos = 0;
+
+	for (int i = 0; i < 15; i++) {
+		getline(file, tp);
+		
+		playerdets[i] = std::stoi(tp);
+		ULDebug(tp.c_str());
+	}
+
+	file.close();
+
+	
+
+}
 
 GameObject* Load::GetGeos(int i)
 {
@@ -285,8 +384,7 @@ GameObject* Load::GetGeos(int i)
 void Load::SetGeos(GameObject * GO, int id)
 {
 	geo_arr[id] = GO;
-
-	
-	
 }
+
+
 //Karo end

@@ -5,6 +5,7 @@
 #include "Vektoria\Root.h"
 #include "BeispielForGameObject.h"
 #include "Apartment.h"
+#include "Barrack.h"
 #include "Building.h"
 #include "ControlCenter.h"
 #include "FoodFarm.h"
@@ -19,6 +20,7 @@
 #include "SolarPowerPlant.h"
 #include "TreeFarm.h"
 #include "Well.h"
+#include "Player.h"
 #include <map>
 #include <iostream>
 #include <array>
@@ -46,7 +48,7 @@ private:
 	std::string geo_arr[100];
 	int pos_id;
 	BeispielForGameObject bfgo;
-
+	bool reset = false; 
 
 public:
 	void getObjects();
@@ -56,6 +58,10 @@ public:
 	void writeCurrToTxt(std::string file_name, int val1, int val2, int val3); // for Currencys 
 	void fillPosAr(GameObject* GO,float x, float y);
 	bool saveItAll();
+	void writePlayerDetailstoTxt();
+	void ResetGame();
+	void setResetTrue();
+
 
 };
 

@@ -367,16 +367,17 @@ void clickmanager::switchButtonClick(int i, LevelSystem::Level* currentLevel) {
 	case 0:
 		//confirm click.
 		if (enoughRes(toBeBuiltBuilding)) { //Gameobject
-			// save game object in temporary array
-
-			save.fillPosAr(toBeBuildObject->getGameObject(), toBeBuildObject->GetPos().GetX(), toBeBuildObject->GetPos().GetZ());
-			saveable = true;
+			
 			//die UI-Decision updated "dumyTyp" - heißt wo man gerade ui draufklickt ändert den typ
 			BuildingManager->AddNewBuilding(dumyTyp, TileForAddNewBuilding);
 
 			if (BuildingManager)
 				currentLevel->UpdateMissions(toBeBuildObject->getType(), 1, m_menu); //gameobjectplacement
 			confirmClicked();
+
+			// save game object in temporary array
+			save.fillPosAr(toBeBuildObject->getGameObject(), toBeBuildObject->GetPos().GetX(), toBeBuildObject->GetPos().GetZ());
+			saveable = true;
 			//makeBuilding(toBeBuildObject);
 			targetPos = NULL;
 			pickedTile = NULL;

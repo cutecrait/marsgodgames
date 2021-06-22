@@ -4,6 +4,7 @@
 #include "BeispielForGameObject.h"
 #include "Vektoria\Root.h"
 #include "Apartment.h"
+#include "Barrack.h"
 #include "Building.h"
 #include "ControlCenter.h"
 #include "FoodFarm.h"
@@ -18,6 +19,7 @@
 #include "SolarPowerPlant.h"
 #include "TreeFarm.h"
 #include "Well.h"
+#include "Player.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -37,20 +39,21 @@ private:
 	
 	//GOs
 	BeispielForGameObject* beisforgamobj;
-	Apartment* apartment;
-	ControlCenter* controlcenter;
-	FoodFarm* foodfarm;
-	Foundry* foundry;
-	GravelPlant* gravelplant;
-	Hospital* hospital;
-	Laboratory* laboratory;
-	Launchpad* launchpad;
-	Mine* mine; 
-	NuclearPowerPlant* nuclearpowerplant;
-	RobotFactory* robotfactory;
-	SolarPowerPlant* solarpowerplant;
-	TreeFarm* treefarm;
-	Well* well;
+	Apartment* apartment[20];
+	Barrack* obama[20];
+	ControlCenter* controlcenter[20];
+	FoodFarm* foodfarm[20];
+	Foundry* foundry[20];
+	GravelPlant* gravelplant[20];
+	Hospital* hospital[20];
+	Laboratory* laboratory[20];
+	Launchpad* launchpad[20];
+	Mine* mine[20];
+	NuclearPowerPlant* nuclearpowerplant[20];
+	RobotFactory* robotfactory[20];
+	SolarPowerPlant* solarpowerplant[20];
+	TreeFarm* treefarm[20];
+	Well* well[20];
 	GameObject* geo_arr[100];
 	
 	CPlacement* m_placements[100];
@@ -60,11 +63,27 @@ private:
 	GameObject* GetGeos(int i);
 	void SetGeos(GameObject* GO, int id);
 
+	int apart_anz;
+	int barr_anz;
+	int contr_anz;
+	int food_anz;
+	int found_anz;
+	int gravel_anz;
+	int hos_anz;
+	int lab_anz;
+	int launch_anz;
+	int mine_anz;
+	int nuc_anz;
+	int solar_anz;
+	int robo_anz;
+	int tree_anz;
+	int well_anz;
 
 
 public:
     Load();
 	~Load();
+	void loadPlayerDetails();
 	void LoadPlacements(CScene scene); //erstellt Placements
 	void AttachGeos();
 	void getGoID();
@@ -73,11 +92,12 @@ public:
 	void SetPlacement(float x, float z, GameObject*geo);
 	GameObject *getObj(std::string obj_name);
 	CPlacement *LoadTerrain();
-	CPlacement* TestCube();
 	CPlacement* GetPlacements(int i);
+	void setPlayerDetails();
 	void readPos();
 	int getObjCount();
 	int* LoadPlayerStats();
+	int playerdets[15];
 	
 	//Karo end
 };

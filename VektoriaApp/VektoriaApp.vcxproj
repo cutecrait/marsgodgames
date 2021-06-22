@@ -197,6 +197,7 @@
     <ClInclude Include="RobotFactory.h" />
     <ClInclude Include="SolarPopup.h" />
     <ClInclude Include="PathController.h" />
+    <ClInclude Include="StartScreen.h" />
     <ClInclude Include="testRobo.h" />
     <ClInclude Include="Well.h" />
     <ClInclude Include="TreeFarm.h" />
@@ -273,6 +274,7 @@
     <ClCompile Include="PathController.cpp" />
     <ClCompile Include="Save.cpp" />
     <ClCompile Include="SolarPopup.cpp" />
+    <ClCompile Include="StartScreen.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateController.cpp" />
     <ClCompile Include="SteeringController.cpp" />

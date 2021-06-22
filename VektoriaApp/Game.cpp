@@ -39,6 +39,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	
 	// CAMERA & VIEWPORT-------------------------------------------------------
 	m_zv.InitFull(&m_zc);	//with adresse of camera bcoz viewport
+	m_zv.SetBloomOn();
 	m_zo.InitFull(&m_zi);
 	m_zi.Init("textures\\ENV.jpg");	//double slash
 	m_zc.Init(QUARTERPI); //field of view float or variable
@@ -79,13 +80,18 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	// texturen werden jetzt in UI erstellt. 
 	// UI = menu, derManager = click-event.
 	if (m_ldgame.fileExists("Ressources.txt")) {
-		Player::Instance().initPlayer(m_ldgame.LoadPlayerStats()[0], m_ldgame.LoadPlayerStats()[1], m_ldgame.LoadPlayerStats()[2]);
+		Player::Instance().initPlayer(m_ldgame.playerdets[0], m_ldgame.playerdets[1], m_ldgame.playerdets[2]);
+		m_ldgame.setPlayerDetails();
 	}
 	else {
 		Player::Instance().initPlayer(1000, 1000, 1000);
 	}
 	einsFont.LoadPreset("LucidaConsoleWhite");
 	einsFont.SetChromaKeyingOn(); //hiermit hat die font keinen hässlichen hintergrund
+
+	//StartScreen
+	m_startscr.InitStartScreen(&einCursor, &einsFont, &m_zv);
+
 	menu.InitMenu(&einCursor, &einsFont, &m_zv);
 	derManager.Init(&menu, &m_zs, &CBuildingManager::Instance(), &mapSquare);
 	LevelSystem::LevelManager::Instance().GetCurrentLevel()->initLevel(&menu);
@@ -123,6 +129,9 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 
 	// UI-----------------------------------
 
+	if (m_startscr.update() == 1) {
+		Reload();
+	}
 
 	//derManager.makeBuilding(selectedPlace,&einCursor);
 	mapSquare.setLevel(&m_zdk);
@@ -163,3 +172,17 @@ void CGame::WindowReSize(int iNewWidth, int iNewHeight)
 	m_zf.ReSize(iNewWidth, iNewHeight);
 }
 
+void CGame::Reload() //Fur den Fall dass ein neues Spiel begonnen wird
+{
+	//reload Player & Positions
+	ULDebug("Reloading");
+	for (int i = 0; i < m_ldgame.getObjCount(); i++)
+	{
+		if (i > 2)
+			m_ldgame.GetPlacements(i)->SwitchOff();
+	}
+
+	m_ldgame.setPlayerDetails();
+	Player::Instance().initPlayer(m_ldgame.playerdets[0], m_ldgame.playerdets[1], m_ldgame.playerdets[2]);
+	menu.updatePlayer();
+}
