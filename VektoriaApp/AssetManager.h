@@ -36,7 +36,9 @@ public:
 		SolarPowerPlant,
 		TreeFarm,
 		Well,
-		Robot = 14
+		Robot = 14,
+		Barrack = 15,
+		Laboratory = 16
 	};
 
 	// string: folder path containing textures/, models/, ect. with trailing '\\'
@@ -44,7 +46,7 @@ public:
 	static CGeo* getModel(Models);
 
 	static bool ready;
-	static ManagedGeo geos[15];
+	static ManagedGeo geos[17];
 	static string baseModelPath;
 	static CFileWavefront fileWavefront;
 

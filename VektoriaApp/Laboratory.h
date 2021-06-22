@@ -12,7 +12,7 @@ public:
 
         Category = BuildingCategory::Living;
 
-        setModel("models\\Laboratory.obj");
+        setModel(AssetManager::Models::Laboratory);
 
         char* base = "textures\\LaboratoryTex\\Base_ani.png";
         char* glow = "textures\\LaboratoryTex\\Emissive_ani.png";

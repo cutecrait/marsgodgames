@@ -25,7 +25,7 @@
 
 using namespace Vektoria;
 
-const int TYP_LENGTH = 20;
+const int TYP_LENGTH = 16;
 
 class CBuildingManager
 {
@@ -52,17 +52,17 @@ public:
 		Apartment,
 		ControlCenter,
 		FoodFarm,
-		Foundry,
+		Foundry = 5,
 		GravelPlant,
 		Hospital,
 		Laboratory,
 		Launchpad,
-		Mine,
+		Mine = 10,
 		NuclearPowerPlant,
 		RobotFactory,
 		SolarPowerPlant,
 		TreeFarm,
-		Well};
+		Well = 15};
 	
 	// Initialisierung des BuildingManagers
 	void Init(CScene*);

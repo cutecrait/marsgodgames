@@ -13,7 +13,7 @@ public:
         howMuch = 10;
         Category = BuildingCategory::Living;
 
-        setModel("models\\Baracke.obj");
+        setModel(AssetManager::Models::Barrack);
         this->setMaterial("textures\\BarackeTex.png");
         this->getModel()->SetMaterial(this->getMaterial());
 
