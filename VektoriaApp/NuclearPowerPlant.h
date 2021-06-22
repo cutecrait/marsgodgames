@@ -12,7 +12,7 @@ public:
         howMuch = 240;
         Category = BuildingCategory::Industry;
 
-        setModel("models\\Kraftwerk.obj");
+        setModel(AssetManager::Models::NuclearPowerPlant);
 
         char* base = "textures\\KraftwerkTex\\Base_ani.png";
         char* glow = "textures\\KraftwerkTex\\Emissive_ani.png";

@@ -14,7 +14,7 @@ public:
         
         Category = BuildingCategory::Industry;
 
-        setModel("models\\RobotFactory.obj");
+        setModel(AssetManager::Models::RobotFactory);
         this->setMaterial("textures\\RobotFactoryTex.png");
         this->getModel()->SetMaterial(this->getMaterial());
 

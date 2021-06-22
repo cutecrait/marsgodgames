@@ -20,6 +20,9 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	//m_zf.SetApiSound(eApiSound_DirectSound);
 	m_zf.Init(hwnd, procOS);
 	m_zr.AddFrame(&m_zf);
+
+	AssetManager::Init("");
+
 	m_level1 = new LevelSystem::Level("ultra", 1000,1);
 	m_level1->AddMission(new LevelSystem::Mission("Kaufe Roboterfabrik",typeid(RobotFactory).name(), 0, 1));
 	m_level1->AddMission(new LevelSystem::Mission("Kaufe drei Bauroboter",typeid(testRobo).name() , 0, 3));

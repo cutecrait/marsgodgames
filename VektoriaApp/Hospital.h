@@ -11,7 +11,7 @@ public:
 
         Category = BuildingCategory::Living;
 
-        setModel("models\\monkey.obj");
+        setModel(AssetManager::Models::Hospital);
         // set material
     }
 

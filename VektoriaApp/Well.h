@@ -12,7 +12,7 @@ public:
         howMuch = 60;
         Category = BuildingCategory::Farming;
 
-        setModel("models\\Wassertank.obj");
+        setModel(AssetManager::Models::Well);
 
         char* base = "textures\\WassertankTex\\Base_ani.png";
         char* glow = "textures\\WassertankTex\\Emissive_ani.png";

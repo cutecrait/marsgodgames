@@ -16,7 +16,7 @@ public:
 
         Category = BuildingCategory::Industry;
 
-        setModel("models\\monkey.obj");
+        setModel(AssetManager::Models::Mine);
         // set material
         setAudio(&CAudioManager::Instance().Local_Mine);
     };

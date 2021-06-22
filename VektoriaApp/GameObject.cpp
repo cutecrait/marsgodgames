@@ -34,8 +34,6 @@ void GameObject::TransformGeo()
 	}
 }
 
-
-
 void GameObject::setModel(char* modelpfad)
 {
 	m_model = m_modelPfad.LoadGeo(modelpfad, true);     // true; da die Texturen auf den Blender Modellen nicht richtig angezeigt werden
@@ -43,6 +41,13 @@ void GameObject::setModel(char* modelpfad)
 	//m_model->GetParent()->SetName("GameObject");
 	m_model->SetName("GameObject");
 	
+}
+
+void GameObject::setModel(AssetManager::Models model)
+{
+	CGeo* geo = AssetManager::getModel(model);
+	m_model = geo;
+	m_model->SetName("GameObject");
 }
 
 void GameObject::setMaterial(char* matPfad)

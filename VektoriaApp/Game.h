@@ -33,6 +33,7 @@
 #include "Mission.h"
 #include "FoundryController.h"
 #include "GravelPlantController.h"
+#include "AssetManager.h"
 
 #include "LevelManager.h"
 

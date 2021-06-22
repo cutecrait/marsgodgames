@@ -20,7 +20,7 @@ public:
 
         Category = BuildingCategory::Industry;
 
-        setModel("models\\monkey.obj");
+        setModel(AssetManager::Models::GravelPlant);
         // set material
 
         setAudio(&CAudioManager::Instance().Local_GravelPlant);

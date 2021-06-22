@@ -14,7 +14,7 @@ public:
 
         Category = BuildingCategory::Farming;
 
-        setModel("models\\monkey.obj");
+        setModel(AssetManager::Models::FoodFarm);
         // set material
     }
    

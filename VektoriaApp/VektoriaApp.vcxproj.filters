@@ -155,6 +155,7 @@
     <ClCompile Include="CheckPathDecision.cpp">
       <Filter>Robot\AI\Decision</Filter>
     </ClCompile>
+    <ClCompile Include="AssetManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -368,6 +369,7 @@
     <ClInclude Include="CheckPathDecision.h">
       <Filter>Robot\AI\Decision</Filter>
     </ClInclude>
+    <ClInclude Include="AssetManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VektoriaApp.rc" />
