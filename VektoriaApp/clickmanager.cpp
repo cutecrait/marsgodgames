@@ -133,8 +133,10 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 			uiDecision(CBuildingManager::Typ::Apartment, "Apartment", cursor);
 			break;
 		case 2:
+			uiDecision(CBuildingManager::Typ::Laboratory, "Labor", cursor);
 			break;
 		case 3:
+			uiDecision(CBuildingManager::Typ::Hospital, "Krankenhaus", cursor);
 			break;
 		}
 	case 2:
@@ -144,10 +146,13 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 			uiDecision(CBuildingManager::Typ::Well, "Brunnen", cursor);
 			break;
 		case 1:
+			uiDecision(CBuildingManager::Typ::FoodFarm, "Foodfarm", cursor);
 			break;
 		case 2:
+			uiDecision(CBuildingManager::Typ::SolarPowerPlant, "Solaranlage", cursor);
 			break;
 		case 3:
+			uiDecision(CBuildingManager::Typ::RobotFactory, "Nuklearzelle", cursor);
 			break;
 		default:break;
 		}
@@ -159,13 +164,17 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 			uiDecision(CBuildingManager::Typ::ControlCenter, "ControlCenter", cursor);
 			break;
 		case 1:
+			uiDecision(CBuildingManager::Typ::Foundry, "Foundy", cursor);
 			break;
 			
 		case 2:
+			uiDecision(CBuildingManager::Typ::GravelPlant, "Gravelplant", cursor);
 			break;
 		case 3:
+			uiDecision(CBuildingManager::Typ::Mine, "Mine", cursor);
 			break;
 		case 4:
+			uiDecision(CBuildingManager::Typ::TreeFarm, "Baumzucht", cursor);
 			break;
 		default:break;
 		}

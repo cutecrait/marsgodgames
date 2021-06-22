@@ -108,17 +108,17 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	labelMaker(0, 3, selectLabel);
 
 	selectLabel.clear();
-	selectLabel.push_back(" Baracke"); selectLabel.push_back(" Apartment"); selectLabel.push_back(" Mehrfamilienhaus"); selectLabel.push_back(" Villa");
+	selectLabel.push_back(" Baracke"); selectLabel.push_back(" Apartment"); selectLabel.push_back(" Labor"); selectLabel.push_back(" Hospital");
 	//m_specificSelect[1].makeInactiveMats(m_matsForSelect2);
 	m_specificSelect[1].Init(cursor, font, 4, CFloatRect(0.15, 0.3, 0.15, 0.6)); labelMaker(1, 4, selectLabel);
 
 	selectLabel.clear();
-	selectLabel.push_back(" Brunnen"); selectLabel.push_back(" Farm"); selectLabel.push_back(" Abwasserreinigung"); selectLabel.push_back(" Strom");
+	selectLabel.push_back(" Brunnen"); selectLabel.push_back(" FoodFarm"); selectLabel.push_back(" Solar"); selectLabel.push_back(" Nuklear");
 	//m_specificSelect[2].makeInactiveMats(m_matsForSelect3);
 	m_specificSelect[2].Init(cursor, font, 4, CFloatRect(0.15, 0.3, 0.15, 0.6)); labelMaker(2, 4, selectLabel);
 
 	selectLabel.clear();
-	selectLabel.push_back(" ControlCenter"); selectLabel.push_back(" anderes2"); selectLabel.push_back(" anderes3"); selectLabel.push_back(" anderes4"); selectLabel.push_back(" anderes5"); 
+	selectLabel.push_back(" ControlCenter"); selectLabel.push_back(" Foundry"); selectLabel.push_back(" Gravelplant"); selectLabel.push_back(" Mine"); selectLabel.push_back(" Treefarm"); 
 	//m_specificSelect[3].makeInactiveMats(m_matsForSelect4);
 	m_specificSelect[3].Init(cursor, font, 5, CFloatRect(0.15, 0.2, 0.15, 0.7)); labelMaker(3, 5, selectLabel);
 
