@@ -16,6 +16,15 @@ public:
 
         setModel(AssetManager::Models::FoodFarm);
         // set material
+        char* base = "textures\\FoodFarmTex\\FoodFarmTex_Base_Color.png";
+        char* glow = "textures\\FoodFarmTex\\FoodFarmTex_Emissive.png";
+        char* spec = "textures\\FoodFarmTex\\FoodFarmTex_Metallic.png";
+        char* height = "textures\\FoodFarmTex\\FoodFarmTex_Height.png";
+        char* bump = "textures\\FoodFarmTex\\FoodFarmTex_Roughness.png";
+
+
+        this->setMaterial(bump, base, glow, spec, height);
+        this->getModel()->SetMaterial(this->getMaterial());
     }
    
 

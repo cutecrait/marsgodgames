@@ -13,6 +13,16 @@ public:
 
         setModel(AssetManager::Models::Hospital);
         // set material
+
+        char* base = "textures\\HospitalTex\\HospitalTex_Base_Color.png";
+        char* glow = "textures\\HospitalTex\\cross_Emissive.png";
+        char* spec = "textures\\HospitalTex\\HospitalTex_Metallic.png";
+        char* height = "textures\\HospitalTex\\HospitalTex_Height.png";
+        char* bump = "textures\\HospitalTex\\HospitalTex_Roughness.png";
+
+
+        this->setMaterial(bump, base, glow, spec, height);
+        this->getModel()->SetMaterial(this->getMaterial());
     }
 
     Resources getBuildCost() {

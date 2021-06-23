@@ -64,9 +64,7 @@ void GameObject::setMaterial(char* matPfadB, char* matPfadD, char* matPfadG, cha
 	m_material.MakeTextureBump(matPfadB);
 	m_material.MakeTextureSpecular(matPfadS);
 
-	//m_material.SetSpecularSharpness(0.0f);
-	//m_material.SetSpecularStrength(0.1f);
-	m_material.SetGlowStrength(3.5f);
+	m_material.SetGlowStrength(3.0f);
 }
 
 void GameObject::setMaterial(char* matPfadB, char* matPfadD, char* matPfadG, char* matPfadS, char* matPfadH, int spalt, int zeil, int fr) // Texturierung mit Glow und Animation

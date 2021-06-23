@@ -123,7 +123,7 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 	CameraController.UpdateCameraMovement(fTimeDelta); //Aktualisiert die Kamerabewegung
 
 	// lighting
-	lightingManager.Tick(0);
+	lightingManager.Tick(fTimeDelta);
 	
 
 	derManager.Click(fTimeDelta, &einCursor, LevelSystem::LevelManager::Instance().GetCurrentLevel());

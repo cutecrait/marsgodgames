@@ -14,7 +14,16 @@ public:
         Category = BuildingCategory::Living;
 
         setModel(AssetManager::Models::Barrack);
-        this->setMaterial("textures\\BarackeTex.png");
+       
+
+        char* base = "textures\\BarackeTex\\BarackeTex_Base_Color.png";
+        char* glow = "textures\\BarackeTex\\BarackeTex_Emissive.png";
+        char* spec = "textures\\BarackeTex\\BarackeTex_Metallic.png";
+        char* height = "textures\\BarackeTex\\BarackeTex_Height.png";
+        char* bump = "textures\\BarackeTex\\BarackeTex_Roughness.png";
+
+
+        this->setMaterial(bump, base, glow, spec, height);
         this->getModel()->SetMaterial(this->getMaterial());
 
     }

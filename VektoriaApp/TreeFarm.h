@@ -13,6 +13,17 @@ public:
         Category = BuildingCategory::Farming;
 
         setModel(AssetManager::Models::TreeFarm);
+
+
+        char* base = "textures\\TreefarmTex\\TreefarmTex_Base_Color.png";
+        char* glow = "textures\\TreefarmTex\\TreefarmTex_Emissive.png";
+        char* spec = "textures\\TreefarmTex\\TreefarmTex_Metallic.png";
+        char* height = "textures\\TreefarmTex\\TreefarmTex_Height.png";
+        char* bump = "textures\\TreefarmTex\\TreefarmTex_Roughness.png";
+
+
+        this->setMaterial(bump, base, glow, spec, height);
+        this->getModel()->SetMaterial(this->getMaterial());
         // set material
     }
 

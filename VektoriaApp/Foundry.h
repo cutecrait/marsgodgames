@@ -20,8 +20,8 @@ public:
 
 		Category = BuildingCategory::Industry;
 
-		//setModel("models\\monkey.obj");
 		setModel(AssetManager::Models::Foundry);
+
         this->setMaterial("textures\\FoundryTex.png");
         this->getModel()->SetMaterial(this->getMaterial());
 

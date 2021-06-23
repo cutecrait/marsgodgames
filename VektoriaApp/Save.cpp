@@ -31,7 +31,7 @@ std::string Save::getObjName(GameObject *GO)
 		objName = "Apartment";
 		//ULDebug(objName.c_str());
 	}
-	if (dynamic_cast<Barrack*>(GO))
+	else if(dynamic_cast<Barrack*>(GO))
 	{
 		objName = "Barrack";
 		//ULDebug(objName.c_str());
@@ -151,7 +151,7 @@ bool Save::saveItAll()
 		pos_arr[pos_id][0] = 1.0f;
 		pos_arr[pos_id][1] = 1.0f;
 	}*/
-	ULDebug(geo_arr[0].c_str());
+	//ULDebug(geo_arr[0].c_str());
 	for (int i = 0; i < pos_id; i++) {
 		this->writePosToTxt("Positions.txt", geo_arr[i], pos_arr[i][0], pos_arr[i][1]);
 	}
