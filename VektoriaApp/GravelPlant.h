@@ -21,6 +21,9 @@ public:
         Category = BuildingCategory::Industry;
 
         setModel(AssetManager::Models::GravelPlant);
+       // setModel("models\\foerderband+stein.obj");
+        this->setMaterial("textures\\foerderband\\base_color.png");
+        this->getModel()->SetMaterial(this->getMaterial());
         // set material
 
         setAudio(&CAudioManager::Instance().Local_GravelPlant);

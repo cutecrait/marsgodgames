@@ -12,7 +12,10 @@ public:
 
         Category = BuildingCategory::None;
 
-        setModel("models\\monkey.obj");
+        setModel(AssetManager::Models::ControlCenter);
+        //setModel("models\\controlcenter.obj");
+        this->setMaterial("textures\\controlcenter\\base_color.png");
+        this->getModel()->SetMaterial(this->getMaterial());
         // set material
         
         setAudio(&CAudioManager::Instance().Local_ControlCenter);

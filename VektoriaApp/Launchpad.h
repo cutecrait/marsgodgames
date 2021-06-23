@@ -13,6 +13,9 @@ public:
 
         setModel(AssetManager::Models::Launchpad);
         // set material
+        //setModel("models\\launchpad.obj");
+        this->setMaterial("textures\\launchpad\\base_color.png");
+        this->getModel()->SetMaterial(this->getMaterial());
     }
 
     Resources getBuildCost() {
