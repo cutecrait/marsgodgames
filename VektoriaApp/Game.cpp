@@ -80,8 +80,9 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	// texturen werden jetzt in UI erstellt. 
 	// UI = menu, derManager = click-event.
 	if (m_ldgame.fileExists("Ressources.txt")) {
-		Player::Instance().initPlayer(m_ldgame.playerdets[0], m_ldgame.playerdets[1], m_ldgame.playerdets[2]);
 		m_ldgame.setPlayerDetails();
+		Player::Instance().initPlayer(m_ldgame.playerdets[0], m_ldgame.playerdets[1], m_ldgame.playerdets[2]);
+		
 	}
 	else {
 		Player::Instance().initPlayer(1000, 1000, 1000);
@@ -178,7 +179,7 @@ void CGame::Reload() //Fur den Fall dass ein neues Spiel begonnen wird
 	ULDebug("Reloading");
 	for (int i = 0; i < m_ldgame.getObjCount(); i++)
 	{
-		if (i > 2)
+		if (i > 1)
 			m_ldgame.GetPlacements(i)->SwitchOff();
 	}
 

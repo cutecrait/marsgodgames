@@ -367,7 +367,7 @@ void Load::loadPlayerDetails()
 		getline(file, tp);
 		
 		playerdets[i] = std::stoi(tp);
-		ULDebug(tp.c_str());
+		//ULDebug(tp.c_str());
 	}
 
 	file.close();

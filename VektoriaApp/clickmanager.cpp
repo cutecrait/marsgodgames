@@ -41,9 +41,8 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 
 	if (m_menu->getMainSelect()->GetActivePosition() == 4 && saveable) {
 		save.saveItAll();
-		save.deleteTxt();
-		save.writeCurrToTxt("Ressources.txt",Player::Instance().getConcrete(), Player::Instance().getSteel(), Player::Instance().getWood());
-		ULDebug("Saving...");
+		
+		//ULDebug("Saving...");
 		saveable = false;
 	}
 
