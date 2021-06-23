@@ -24,7 +24,7 @@ public:
         this->setMaterial(bump, base, glow, spec, height, 3, 5, 6);
         this->getModel()->SetMaterial(this->getMaterial());
 
-        //setAudio(&CAudioManager::Instance().Local_Well);
+        setAudio(&CAudioManager::Instance().Local_Well);
     }
 
     Resources getBuildCost() {

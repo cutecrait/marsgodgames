@@ -15,7 +15,7 @@ public:
         setModel("models\\monkey.obj");
         // set material
         
-        //setAudio(&CAudioManager::Instance().Local_ControlCenter);
+        setAudio(&CAudioManager::Instance().Local_ControlCenter);
 
     }
     void OnClick() override {

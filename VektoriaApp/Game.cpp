@@ -23,15 +23,21 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 
 	AssetManager::Init("");
 
-	m_level1 = new LevelSystem::Level("ultra", 1000,1);
-	m_level1->AddMission(new LevelSystem::Mission("Kaufe Roboterfabrik",typeid(RobotFactory).name(), 0, 1));
-	m_level1->AddMission(new LevelSystem::Mission("Kaufe drei Bauroboter",typeid(testRobo).name() , 0, 3));
+	m_level1 = new LevelSystem::Level("Prolog", 1000, 1);
+	m_level1->AddMission(new LevelSystem::Mission("Baue 2 Apartments",typeid(Apartment).name(), 0, 2));
+	m_level1->AddMission(new LevelSystem::Mission("Baue einen Brunnen",typeid(Well).name() , 0, 1));
+	m_level1->AddMission(new LevelSystem::Mission("Baue eine Mine", typeid(Mine).name(), 0, 1));
 
-	m_level2 = new LevelSystem::Level("cool", 1000,2);
-	m_level2->AddMission(new LevelSystem::Mission("Kaufe zwei Landwirtroboter", typeid(testRobo).name(), 0, 2));
-	m_level2->AddMission(new LevelSystem::Mission("Kaufe ein Apartment", typeid(Apartment).name(), 0, 1));
+	m_level2 = new LevelSystem::Level("Post-Prolog", 1000, 2);
+	m_level2->AddMission(new LevelSystem::Mission("Baue eine FoodFarm", typeid(FoodFarm).name(), 0, 1));
+	m_level2->AddMission(new LevelSystem::Mission("Baue 2 SPPs", typeid(SolarPowerPlant).name(), 0, 2));
+	m_level2->AddMission(new LevelSystem::Mission("Baue eine Foundry", typeid(Foundry).name(), 0, 1));
 	
-	m_level3 = new LevelSystem::Level("cool", 1000, 3);
+	m_level3 = new LevelSystem::Level("Advanced", 2000, 3);
+	m_level3->AddMission(new LevelSystem::Mission("Baue eine GravelPlant", typeid(GravelPlant).name(), 0, 1));
+	m_level3->AddMission(new LevelSystem::Mission("Baue ein Labor", typeid(Laboratory).name(), 0, 1));
+	m_level3->AddMission(new LevelSystem::Mission("Baue eine Rob-Fab.", typeid(RobotFactory).name(), 0, 1));
+
 
 	LevelSystem::LevelManager::Instance().AddLevel(m_level1);
 	LevelSystem::LevelManager::Instance().AddLevel(m_level2);
