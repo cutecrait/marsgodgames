@@ -39,21 +39,21 @@ private:
 	
 	//GOs
 	BeispielForGameObject* beisforgamobj;
-	Apartment* apartment[20];
-	Barrack* obama[20];
-	ControlCenter* controlcenter[20];
-	FoodFarm* foodfarm[20];
-	Foundry* foundry[20];
-	GravelPlant* gravelplant[20];
-	Hospital* hospital[20];
-	Laboratory* laboratory[20];
-	Launchpad* launchpad[20];
-	Mine* mine[20];
-	NuclearPowerPlant* nuclearpowerplant[20];
-	RobotFactory* robotfactory[20];
-	SolarPowerPlant* solarpowerplant[20];
-	TreeFarm* treefarm[20];
-	Well* well[20];
+	Apartment* apartment;
+	Barrack* obama;
+	ControlCenter* controlcenter;
+	FoodFarm* foodfarm;
+	Foundry* foundry;
+	GravelPlant* gravelplant;
+	Hospital* hospital;
+	Laboratory* laboratory;
+	Launchpad* launchpad;
+	Mine* mine;
+	NuclearPowerPlant* nuclearpowerplant;
+	RobotFactory* robotfactory;
+	SolarPowerPlant* solarpowerplant;
+	TreeFarm* treefarm;
+	Well* well;
 	GameObject* geo_arr[100];
 	
 	CPlacement* m_placements[100];

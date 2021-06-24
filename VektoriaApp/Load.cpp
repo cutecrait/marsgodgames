@@ -13,39 +13,7 @@ Load::Load()
 	}
 
 	*pos_arr = new float[100];
-	for (int i = 0; i < 20; i++)
-	{
-		apartment[i] = new Apartment();
-		obama[i] = new Barrack();
-		controlcenter[i] = new ControlCenter();
-		foodfarm[i] = new FoodFarm();
-		gravelplant[i] = new GravelPlant();
-		hospital[i] = new Hospital();
-		laboratory[i] = new Laboratory();
-		launchpad[i] = new Launchpad();
-		mine[i] = new Mine();
-		nuclearpowerplant[i] = new NuclearPowerPlant();
-		robotfactory[i] = new RobotFactory();
-		solarpowerplant[i] = new SolarPowerPlant();
-		treefarm[i] = new TreeFarm();
-		well[i] = new Well();
-	}
-
-	apart_anz = 0;
-	barr_anz = 0;
-	contr_anz = 0;
-	food_anz = 0;
-	found_anz = 0;
-	gravel_anz = 0;
-	hos_anz = 0;
-	lab_anz = 0;
-	launch_anz = 0;
-	mine_anz = 0;
-	nuc_anz = 0;
-	solar_anz = 0;
-	robo_anz = 0;
-	tree_anz = 0;
-	well_anz = 0;
+	
 
 	
 
@@ -107,109 +75,100 @@ GameObject *Load::getObj(std::string obj_name)
 	}
 
 	else if (obj_name == std::string("Apartment")) {
-		
+		apartment = new Apartment();
 
-		this->SetGeos(apartment[apart_anz], this->getObjCount());
-		apart_anz++;
+		this->SetGeos(apartment, this->getObjCount());
 		return geo_arr[this->getObjCount()];
+
 	}
 
 	else if (obj_name == std::string("Barrack")) {
 
+		obama = new Barrack();
 
-		this->SetGeos(obama[barr_anz], this->getObjCount());
-		barr_anz++;
+		this->SetGeos(obama, this->getObjCount());
 		return geo_arr[this->getObjCount()];
 	}
 
 	else if (obj_name == std::string("ControlCenter")) {
 		
+		controlcenter = new ControlCenter();
 
-		this->SetGeos(controlcenter[contr_anz], this->getObjCount());
-		contr_anz++;
+		this->SetGeos(controlcenter, this->getObjCount());
 		return geo_arr[this->getObjCount()];
 	}
 	else if (obj_name == std::string("FoodFarm")) {
-	
+		foodfarm = new FoodFarm();
 
-		this->SetGeos(foodfarm[food_anz], this->getObjCount());
-		food_anz++;
+		this->SetGeos(foodfarm, this->getObjCount());
 		return geo_arr[this->getObjCount()];
 	}
-	else if (obj_name == std::string("Foundry")) {
-		
 
-		this->SetGeos(foundry[found_anz], this->getObjCount());
-		found_anz++;
+	else if (obj_name == std::string("Foundry")) {
+		foundry = new Foundry();
+
+		this->SetGeos(foundry, this->getObjCount());
 		return geo_arr[this->getObjCount()];
 	}
 	else if (obj_name == std::string("GravelPlant")) {
-	
+		gravelplant = new GravelPlant();
 
-		this->SetGeos(gravelplant[gravel_anz], this->getObjCount());
-		gravel_anz++;
+		this->SetGeos(gravelplant, this->getObjCount());
 		return geo_arr[this->getObjCount()];
 	}
 	else if (obj_name == std::string("Hospital")) {
+		hospital = new Hospital();
 
-		this->SetGeos(hospital[hos_anz], this->getObjCount());
-		hos_anz++;
+		this->SetGeos(hospital, this->getObjCount());
 		return geo_arr[this->getObjCount()];
 	}
 	else if (obj_name == std::string("Laboratory")) {
-		
+		laboratory = new Laboratory();
 
-		this->SetGeos(laboratory[lab_anz], this->getObjCount());
-		lab_anz++;
+		this->SetGeos(laboratory, this->getObjCount());
 		return geo_arr[this->getObjCount()];
 	}
 	else if (obj_name == std::string("Launchpad")) {
-		
+		launchpad = new Launchpad();
 
-		this->SetGeos(launchpad[launch_anz], this->getObjCount());
-		launch_anz++;
+		this->SetGeos(launchpad, this->getObjCount());
 		return geo_arr[this->getObjCount()];
 	}
 	else if (obj_name == std::string("Mine")) {
-		
+		mine = new Mine();
 
-		this->SetGeos(mine[mine_anz], this->getObjCount());
-		mine_anz++;
+		this->SetGeos(mine, this->getObjCount());
 		return geo_arr[this->getObjCount()];
 	}
 	else if (obj_name == std::string("NuclearPowerPlant")) {
-		
+		nuclearpowerplant = new NuclearPowerPlant();
 
-		this->SetGeos(nuclearpowerplant[nuc_anz], this->getObjCount());
-		nuc_anz++;
+		this->SetGeos(nuclearpowerplant, this->getObjCount());
 		return geo_arr[this->getObjCount()];
 	}
 	else if (obj_name == std::string("RobotFactory")) {
-		
+		robotfactory = new RobotFactory();
 
-		this->SetGeos(robotfactory[robo_anz], this->getObjCount());
-		robo_anz++;
+		this->SetGeos(robotfactory, this->getObjCount());
 		return geo_arr[this->getObjCount()];
 	}
 
 	else if (obj_name == std::string("SolarPowerPlant")) {
+		solarpowerplant = new SolarPowerPlant();
 
-		this->SetGeos(solarpowerplant[solar_anz], this->getObjCount());
-		solar_anz++;
+		this->SetGeos(solarpowerplant, this->getObjCount());
 		return geo_arr[this->getObjCount()];
 	}
 	else if (obj_name == std::string("TreeFarm")) {
-		
+		treefarm = new TreeFarm();
 
-		this->SetGeos(treefarm[tree_anz], this->getObjCount());
-		tree_anz++;
+		this->SetGeos(treefarm, this->getObjCount());
 		return geo_arr[this->getObjCount()];
 	}
 	else if (obj_name == std::string("Well")) {
-		
+		well = new Well();
 
-		this->SetGeos(well[well_anz], this->getObjCount());
-		well_anz++;
+		this->SetGeos(well, this->getObjCount());
 		return geo_arr[this->getObjCount()];
 	}
 	else {
