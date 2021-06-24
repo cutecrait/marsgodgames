@@ -17,7 +17,7 @@ public:
         PowerUse = 10;
         WaterUse = 10;
         NutrientUse = 0;
-
+        howMuch = 5;
         Category = BuildingCategory::Industry;
 
         setModel(AssetManager::Models::GravelPlant);
@@ -27,8 +27,12 @@ public:
         // set material
 
         setAudio(&CAudioManager::Instance().Local_GravelPlant);
+    }
+    //diese funktion ist für das kleine popup was auftaucht wenn man über die ressoucen hovered.
+    //ausgeführt wird die in buildingmanager addnewbuilding
+    void updatePlayer() override {
+        Player::Instance().setConcretePM(howMuch);
     };
-
     void Update(float time)
     {
         timeSinceTick += time;

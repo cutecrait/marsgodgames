@@ -43,36 +43,44 @@ public:
     }
     int decision() override {
         if (erstesMal) {
-            if (thepopup->m_forschung1B.IsClicked() || thepopup->m_forschung2.IsClicked()) {
-                thepopup->m_mineUpgrade.SwitchOn();
+            if (thepopup->m_forschung1B.IsClicked()) {
+                thepopup->m_buyOverlay.SwitchOn();
+                thepopup->buyOverlay(1);
+                thepopup->deaktivate();
             }
-            
-            if (thepopup->m_mineUpgrade.IsOn()) {
+            else if (thepopup->m_forschung2B.IsClicked()) {
+                thepopup->m_buyOverlay.SwitchOn();
+                thepopup->buyOverlay(2);
+                thepopup->deaktivate();
+            }
+            else if (thepopup->m_forschung3B.IsClicked()) {
+                thepopup->m_buyOverlay.SwitchOn();
+                thepopup->buyOverlay(3);
+                thepopup->deaktivate();
+            }
+            if (thepopup->m_buyOverlay.IsOn()) {
                 if (erstesmal1) {
-                    if (thepopup->m_mineUpgrade1B.IsClicked()) {
-                        thepopup->m_buyOverlay.SwitchOn();
-                    }
-                    if (thepopup->m_buyOverlay.IsOn()) {
-                        if (erstesMal2) {
-                            if (thepopup->m_cancelB.IsClicked()) {
-                                thepopup->m_buyOverlay.SwitchOff();
-                                 thepopup->m_mineUpgrade.SwitchOff();
+                    if (erstesMal2) {
+                        if (thepopup->m_cancelB.IsClicked()) {
+                            thepopup->m_buyOverlay.SwitchOff();
+                            thepopup->activate();
+                            thepopup->m_main.SwitchOff();
                             }
-                            else if (thepopup->m_confirmB.IsClicked()) {
-                                thepopup->m_buyOverlay.SwitchOff();
-                                thepopup->m_mineUpgrade.SwitchOff();
-                            }
+                        else if (thepopup->m_confirmB.IsClicked()) {
+                            thepopup->m_buyOverlay.SwitchOff();     
+                            thepopup->activate();
+                            thepopup->m_main.SwitchOff();
+                            }                       
                         }
                         erstesMal2 = true;
                     }
+                    erstesmal1 = true;
                 }
-                erstesmal1 = true;
-            }
             if (thepopup->m_abort.IsClicked()) {
                 thepopup->m_main.SwitchOff();
+                }
             }
-        }
-        erstesMal = true;
+            erstesMal = true;
        
         return 4;
 

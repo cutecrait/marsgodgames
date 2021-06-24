@@ -75,7 +75,8 @@ private:
 	bool saveable = true;
 	MapTile* pickedTile = nullptr;
 	MapTile* TileForAddNewBuilding = nullptr;
-	Building* onClickBuilding;
+	Building* BuildingForEffi;
+	CGameObjectPlacement* forEffi;
 	bool notInMenu = false;
 	CGeo* selectedGeo;
 	Building* selectedBuilding;
