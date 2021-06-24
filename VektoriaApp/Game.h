@@ -51,7 +51,6 @@ public:
 	void Tick(float fTime, float fTimeDelta);													// Wird w�hrend der Laufzeit bei jedem Bildaufbau aufgerufen
 	void MakeMapSquares(CScene* m_zs);
 	void Fini();																				// Wird am Ende einmal aufgerufen
-	void Reload();
 	void WindowReSize(int iNewWidth, int iNewHeight);											// Wird immer dann aufgerufen, wenn der Benutzer die Fenstergr��e ver�ndert hat
 
 private:

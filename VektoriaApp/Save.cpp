@@ -122,14 +122,6 @@ void Save::writePosToTxt(std::string file_name, std::string object_name, float x
 	file.close();
 }
 
-void Save::writeCurrToTxt(std::string file_name, int val1, int val2, int val3)
-{
-	std::ofstream file;
-	file.open(file_name, std::ios_base::app);
-	file << val1 << ", " << val2 << ", " << val3 << std::endl;
-
-	file.close();
-}
 
 void Save::fillPosAr(GameObject* GO, float x, float z)
 {
@@ -220,8 +212,8 @@ void Save::ResetGame()
 	std::ofstream filepos;
 	filepos.open("Positions.txt", std::ios_base::app);
 
-	filepos << "ControlCenter" << ", " << 10 << ", " << 10 << std::endl;
-	filepos << "Launchpad" << ", " << 12 << ", " << 10 << std::endl;
+	filepos << "ControlCenter" << ", " << 4 << ", " << 4 << std::endl;
+	filepos << "Launchpad" << ", " << 4 << ", " << 6 << std::endl;
 
 }
 //Karo end

@@ -3,6 +3,7 @@
 #include "Vektoria\root.h"
 #include "GuiSelect.h"
 #include "Save.h"
+#include "Load.h"
 #include "UI.h"
 
 class StartScreen
@@ -27,7 +28,8 @@ private:
 	COverlay m_startOverlay;
 	CImage m_startImage;
 	Save s;
-	CMaterial m_buttmat;
+	Load l;
+
 
 	CGuiButton m_newGame;
 	CGuiButton m_loadGame;

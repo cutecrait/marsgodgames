@@ -13,9 +13,7 @@ void StartScreen::InitStartScreen(CDeviceCursor* cursor, CWritingFont* font, CVi
 	m_startOverlay.InitFull(&m_startImage);
 	m_startImage.Init("textures\\StartScreen.png");
 	m_startOverlay.SetLayer(0.1f);
-	//m_buttmat.Init();
-	m_buttmat.MakeTextureSprite("textures\\ENV.jpg");
-	//m_proot->AddMaterial(&m_buttmat);
+	
 	
 	
 	
@@ -28,8 +26,7 @@ void StartScreen::InitStartScreen(CDeviceCursor* cursor, CWritingFont* font, CVi
 	m_loadGame.SetLayerGui(0.08f);
 	m_loadGame.SetLabel("Load Game");
 
-	//m_newGame->SetMaterial(&m_buttmat);
-	// 
+	
 	zv->AddOverlay(&m_startOverlay);
 	zv->AddOverlay(&m_newGame);
 	zv->AddOverlay(&m_loadGame);
@@ -39,11 +36,17 @@ void StartScreen::InitStartScreen(CDeviceCursor* cursor, CWritingFont* font, CVi
 
 void StartScreen::StartNewGame()
 {
-	
+	s.ResetGame();
+	l.loadPlayerDetails();
+	l.AddBuilding();
+	switchStartScreenOff();
 }
 
 void StartScreen::LoadGame()
 {
+	l.loadPlayerDetails();
+	l.AddBuilding();
+	switchStartScreenOff();
 }
 
 int StartScreen::update()
@@ -52,16 +55,14 @@ int StartScreen::update()
 	if (m_newGame.IsClicked() && clickable) {
 		retval = 1;
 		StartNewGame();
-		switchStartScreenOff();
-		s.ResetGame();
 		clickable = false;
 		return retval;
 	}
 	else if (m_loadGame.IsClicked() && clickable) {
-		retval = 0;
+		retval = 1;
 		LoadGame();
 		ULDebug("load game");
-		switchStartScreenOff();
+
 		clickable = false;
 		return retval;
 	}

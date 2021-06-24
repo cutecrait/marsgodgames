@@ -77,6 +77,7 @@ public:
 	void DecreaseNrOfBuildings(Typ&);
 
 	void AddNewBuilding(Typ, MapTile*);
+	void AddNewBuilding(Typ, float x, float z);
 
 	vector<CGameObjectPlacement*> GetBuildingVector(Typ);
 

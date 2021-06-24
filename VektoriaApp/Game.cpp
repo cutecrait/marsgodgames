@@ -85,7 +85,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	// OVERLAY-----------------------------------------
 	// texturen werden jetzt in UI erstellt. 
 	// UI = menu, derManager = click-event.
-	if (m_ldgame.fileExists("Ressources.txt")) {
+	if (m_ldgame.fileExists("PlayerDetails.txt")) {
 		m_ldgame.setPlayerDetails();
 		Player::Instance().initPlayer(m_ldgame.playerdets[0], m_ldgame.playerdets[1], m_ldgame.playerdets[2]);
 		
@@ -96,7 +96,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	einsFont.LoadPreset("LucidaConsoleWhite");
 	einsFont.SetChromaKeyingOn(); //hiermit hat die font keinen hässlichen hintergrund
 
-	//StartScreen
+	//StartScreen: LOADS CHECKPOINT ---------------------
 	m_startscr.InitStartScreen(&einCursor, &einsFont, &m_zv);
 
 	menu.InitMenu(&einCursor, &einsFont, &m_zv);
@@ -109,11 +109,6 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	//LOAD TERRAIN---------------------------------------
 	m_zs.AddPlacement(m_ldgame.LoadTerrain());
 
-	//LOAD CHECKPOINT------------------------------------
-	for (int i = 0; i < m_ldgame.getObjCount(); i++)
-	{
-		m_zs.AddPlacement(m_ldgame.GetPlacements(i));
-	}
 
 	derManager.setBuildingGeos(CBuildingManager::Instance().getBuildingGeos());
 
@@ -137,7 +132,7 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 	// UI-----------------------------------
 
 	if (m_startscr.update() == 1) {
-		Reload();
+		menu.updatePlayer();
 	}
 
 	//derManager.makeBuilding(selectedPlace,&einCursor);
@@ -177,19 +172,4 @@ void CGame::WindowReSize(int iNewWidth, int iNewHeight)
 	// Windows ReSize wird immer automatisch aufgerufen, wenn die Fenstergr��e ver�ndert wurde.
 	// Hier kannst Du dann die Aufl�sung des Viewports neu einstellen:
 	m_zf.ReSize(iNewWidth, iNewHeight);
-}
-
-void CGame::Reload() //Fur den Fall dass ein neues Spiel begonnen wird
-{
-	//reload Player & Positions
-	ULDebug("Reloading");
-	for (int i = 0; i < m_ldgame.getObjCount(); i++)
-	{
-		if (i > 1)
-			m_ldgame.GetPlacements(i)->SwitchOff();
-	}
-
-	m_ldgame.setPlayerDetails();
-	Player::Instance().initPlayer(m_ldgame.playerdets[0], m_ldgame.playerdets[1], m_ldgame.playerdets[2]);
-	menu.updatePlayer();
 }
