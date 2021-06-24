@@ -48,7 +48,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 
 	if (m_menu->getStart()->IsClicked()) {
 		
-		if (WhatSpecific == 2) {
+		if (WhatSpecific == 2 && !m_menu->getConfirm()->IsOn()) {
 			//wenn ich nochmal start drücke nachdem ich schon mal start gedrückt habe dann mach alles wieder aus.
 			for (int i = 0; i < 4; i++) {
 				m_menu->getSpecificSelect(i)->SetActivePosition(-1);
