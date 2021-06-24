@@ -323,16 +323,31 @@ bool clickmanager::createToolTip(int i)
 void clickmanager::uiDecision(CBuildingManager::Typ typ, std::string tooltipname, CDeviceCursor* cursor) {
 	
 	
-		toBeBuildObject = BuildingManager->lookForGameObject(typ);
-
-		toBeBuiltBuilding = dynamic_cast<Building*>(toBeBuildObject->getGameObject());
-		
-		buildCost = toBeBuiltBuilding->getBuildCost();
-		typforUiDecsion = typ;
-	
-		if (dumyTyp != typ) {
+			typforUiDecsion = typ;
+		if (dumyTyp == CBuildingManager::Typ::None) {
 			dumyTyp = typ;
-			m_menu->tooltip(tooltipname, buildCost.Concrete, buildCost.Steel, buildCost.Wood,typ);
+			toBeBuildObject = BuildingManager->lookForGameObject(typ);
+
+			toBeBuiltBuilding = dynamic_cast<Building*>(toBeBuildObject->getGameObject());
+
+			buildCost = toBeBuiltBuilding->getBuildCost();
+
+			m_menu->tooltip(tooltipname, buildCost.Concrete, buildCost.Steel, buildCost.Wood, typ);
+		}
+		else if (dumyTyp != typ) {
+			dumyTyp = typ;
+			if (toBeBuildObject && toBeBuiltBuilding) {
+				toBeBuildObject->SwitchOff();
+				isclicked = false;
+			}
+			toBeBuildObject = BuildingManager->lookForGameObject(typ);
+
+			toBeBuiltBuilding = dynamic_cast<Building*>(toBeBuildObject->getGameObject());
+
+			buildCost = toBeBuiltBuilding->getBuildCost();
+
+			m_menu->tooltip(tooltipname, buildCost.Concrete, buildCost.Steel, buildCost.Wood, typ);
+
 		}
 	/*if (createToolTip(m_menu->getSpecificSelect(1)->GetActivePosition())) {
 		//tooltip wird so nur einmal gebaut (aber kann überschrieben werden)
@@ -380,11 +395,13 @@ void clickmanager::switchButtonClick(int i, LevelSystem::Level* currentLevel) {
 			//makeBuilding(toBeBuildObject);
 			targetPos = NULL;
 			pickedTile = NULL;
+			dumyTyp = CBuildingManager::Typ::None;
 		}
 		break;
 	case 1:
 		//cancel click
 		cancelClicked(toBeBuildObject);
+		dumyTyp = CBuildingManager::Typ::None;
 		break;
 	case 2:
 		//popup confirm
