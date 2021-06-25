@@ -55,7 +55,7 @@ void UI::InitMaterial()
 	m_matconcrete.MakeTextureSprite("textures\\Tooltip_concrete_texture.png");
 	m_matwood.MakeTextureSprite("textures\\Tooltip_wood_texture.png");
 
-	m_descMaterial.MakeTextureSprite("textures\\green_image.jpg");
+	m_descMaterial.MakeTextureSprite("textures\\all1.png");
 
 }
 
@@ -101,7 +101,7 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	m_mainSelect.AddOption(" nicht save");
 	std::vector <std::string> selectLabel;
 
-	selectLabel.push_back(" Roboterfabrik"); selectLabel.push_back(" Labor"); selectLabel.push_back(" FabrikNr3");
+	selectLabel.push_back(" Roboterfabrik"); selectLabel.push_back(" Labor"); selectLabel.push_back(" Kiesfabrik");
 	//m_specificSelect[0].makeInactiveMats(m_matsForSelect1);
 	m_specificSelect[0].Init(cursor, font, 3, CFloatRect(0.15, 0.4, 0.15, 0.5));
 

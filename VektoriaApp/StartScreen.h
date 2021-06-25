@@ -19,6 +19,7 @@ public:
 	
 	void StartNewGame();
 	void LoadGame();
+	void ExitGame();
 	int update();
 	void switchStartScreenOff();
 
@@ -34,6 +35,7 @@ private:
 
 	CGuiButton m_newGame;
 	CGuiButton m_loadGame;
+	CGuiButton m_exitGame;
 
 	bool clickable;
 };
