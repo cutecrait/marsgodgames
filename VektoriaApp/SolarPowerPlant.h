@@ -13,6 +13,9 @@ public:
         Category = BuildingCategory::Industry;
 
         setModel(AssetManager::Models::SolarPowerPlant);
+
+        this->setMaterial("textures\\solarfarm\\Material.001_Base_Color.png");
+        this->getModel()->SetMaterial(this->getMaterial());
         //this->getModel()->m_pmaterial->LoadPreset("Concrete");
     }
 
