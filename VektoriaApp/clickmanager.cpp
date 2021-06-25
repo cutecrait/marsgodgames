@@ -39,7 +39,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 
 	else  mapsquares->DeselectMapTile(NULL);
 
-	if (m_menu->getMainSelect()->GetActivePosition() == 4 && saveable) {
+	if (m_menu->m_saveButton.IsClicked() && saveable) {
 		save.saveItAll();
 		
 		//ULDebug("Saving...");
@@ -50,7 +50,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 		
 		if (WhatSpecific == 2 && !m_menu->getConfirm()->IsOn()) {
 			//wenn ich nochmal start drücke nachdem ich schon mal start gedrückt habe dann mach alles wieder aus.
-			for (int i = 0; i < 4; i++) {
+			for (int i = 0; i < 5; i++) {
 				m_menu->getSpecificSelect(i)->SetActivePosition(-1);
 				m_menu->getSpecificSelect(i)->SwitchOff();
 			}
@@ -71,7 +71,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 		m_menu->getSpecificSelect(1)->SwitchOff();
 		m_menu->getSpecificSelect(2)->SwitchOff();
 		m_menu->getSpecificSelect(3)->SwitchOff();
-		//m_menu->getSpecificSelect(4)->SwitchOff();
+		m_menu->getSpecificSelect(4)->SwitchOff();
 
 		m_menu->getSpecificSelect(m_menu->getMainSelect()->GetActivePosition())->SwitchOn();
 	}
@@ -85,8 +85,8 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 		m_menu->getSpecificSelect(2)->SetActivePosition(-1);
 		m_menu->getSpecificSelect(3)->SwitchOff();
 		m_menu->getSpecificSelect(3)->SetActivePosition(-1);
-		//m_menu->getSpecificSelect(4)->SwitchOff();
-		//m_menu->getSpecificSelect(4)->SetActivePosition(-1);
+		m_menu->getSpecificSelect(4)->SwitchOff();
+		m_menu->getSpecificSelect(4)->SetActivePosition(-1);
 	}
 
 	if (m_menu->getPlayer()->IsClicked() && !clicked) {

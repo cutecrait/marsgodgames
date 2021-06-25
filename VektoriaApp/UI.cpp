@@ -98,7 +98,7 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	m_mainSelect.AddOption(" Wohnen");
 	m_mainSelect.AddOption(" Verpflegung");
 	m_mainSelect.AddOption(" Was anderes");
-	m_mainSelect.AddOption(" Save");
+	m_mainSelect.AddOption(" nicht save");
 	std::vector <std::string> selectLabel;
 
 	selectLabel.push_back(" Roboterfabrik"); selectLabel.push_back(" Labor"); selectLabel.push_back(" FabrikNr3");
@@ -122,8 +122,13 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	//m_specificSelect[3].makeInactiveMats(m_matsForSelect4);
 	m_specificSelect[3].Init(cursor, font, 5, CFloatRect(0.15, 0.2, 0.15, 0.7)); labelMaker(3, 5, selectLabel);
 
+
+	selectLabel.clear();
+	selectLabel.push_back(" noch eins"); selectLabel.push_back(" noch 2"); selectLabel.push_back(" noch dre"); 
+	//m_specificSelect[3].makeInactiveMats(m_matsForSelect4);
+	m_specificSelect[4].Init(cursor, font,3, CFloatRect(0.15, 0.2, 0.15, 0.7)); labelMaker(4, 3, selectLabel);
 	m_mainSelect.SwitchOff();
-	m_specificSelect[0].SwitchOff(); m_specificSelect[1].SwitchOff(); m_specificSelect[2].SwitchOff(); m_specificSelect[3].SwitchOff();
+	m_specificSelect[0].SwitchOff(); m_specificSelect[1].SwitchOff(); m_specificSelect[2].SwitchOff(); m_specificSelect[3].SwitchOff();; m_specificSelect[4].SwitchOff();
 
 	initPlayer(cursor, font);
 
@@ -142,7 +147,7 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	zv->AddOverlay(&m_specificSelect[1]);
 	zv->AddOverlay(&m_specificSelect[2]);
 	zv->AddOverlay(&m_specificSelect[3]);
-	//zv->AddOverlay(&m_specificSelect[4]);
+	zv->AddOverlay(&m_specificSelect[4]);
 	zv->AddOverlay(&m_confirm);
 	zv->AddOverlay(&m_cancel);
 	zv->AddOverlay(&m_Ressources);
@@ -281,20 +286,15 @@ void UI::initPlayer(CDeviceCursor* cursor, CWritingFont* font) {
 	//overlay für fortschritt + writing für fortschritt
 	//button für missionen 
 
-	m_wohnungen.Init(&m_matStats, CFloatRect(0, 0.3, 1, 0.05));
-	m_wohnungen.SetInnerOn();
-	m_wohnungen.SetLayer(0.97);
-	m_wohnungenW.Init(CFloatRect(), 20, font);
-	derString = "Wohnungen: " + std::to_string(Player::Instance().getWohnung());
-	m_wohnungenW.PrintString(&derString[0]);
-	m_wohnungenW.SetLayer(0.96);
-	m_wohnungenW.SetInnerOn();
+	m_saveButton.Init(cursor, font, CFloatRect(0.2, 0.8, 0.6, 0.15));
+	m_saveButton.SetInnerOn();
+	m_saveButton.SetLabel("Save");
 
 
 
 
-	m_statsBack.AddOverlay(&m_wohnungen);
-	m_wohnungen.AddWriting(&m_wohnungenW);
+	m_statsBack.AddOverlay(&m_saveButton);
+	
 	m_statsBack.AddOverlay(&m_level);
 
 
@@ -416,6 +416,7 @@ void UI::tooltip(std::string headline, int res1, int res2, int res3, CBuildingMa
 		m_descriptionW2.PrintString("Gebauede zuversorgen.");
 		m_descriptionW3.PrintString("Beim Kauf wird Strom");
 		m_descriptionW4.PrintString("der Siedlung hinzugefuegt.");
+		break;
 	case CBuildingManager::Typ::SolarPowerPlant:
 		m_descriptionW1.PrintString("Strom wird gebraucht, um");
 		m_descriptionW2.PrintString("Gebauede zuversorgen.");
