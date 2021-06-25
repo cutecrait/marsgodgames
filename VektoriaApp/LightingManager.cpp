@@ -52,7 +52,7 @@ void LightingManager::Tick(float fTimeDelta)
 	}
 	else if (time > duskEnd && time < dawnStart) // night
 	{
-		viewport->SetBloomOn();
+		//viewport->SetBloomOn();
 	}
 	else if (time >= duskStart && time <= duskEnd) // dusk
 	{
