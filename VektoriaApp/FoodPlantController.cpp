@@ -24,11 +24,13 @@ void FoodPlantController::Update(float delta)
 				{
 					// this call could be moved to a BG thread.
 					findFarm(*foodplant);
+
 				}
 				else
 				{
 					int value = static_cast<int>(std::round(30 * f->efficiency));
 					Player::Instance().useFood(-value);
+					f->efficiency = 0.f; // only gain food once
 				}
 			}
 		}
