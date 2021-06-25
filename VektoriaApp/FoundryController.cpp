@@ -18,12 +18,17 @@ void FoundryController::Update(float delta)
 		{
 			if ((*foundry)->getBuildStatus())
 			{
-				Foundry* gp = dynamic_cast<Foundry*>((*foundry)->getGameObject());
+				Foundry* f = dynamic_cast<Foundry*>((*foundry)->getGameObject());
 
-				if (!gp->linkedGOP || !gp->linkedGOP->getBuildStatus())
+				if (!f->linkedGOP || !f->linkedGOP->getBuildStatus())
 				{
 					// this call could be moved to a BG thread.
 					findMine(*foundry);
+				}
+				else
+				{
+					int value = static_cast<int>(std::round(10 * f->efficiency));
+					Player::Instance().gainConcrete(value);
 				}
 			}
 		}

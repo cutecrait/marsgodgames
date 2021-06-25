@@ -35,14 +35,7 @@ public:
     };
     void Update(float time)
     {
-        timeSinceTick += time;
-        if (timeSinceTick > tickTime)
-        {
-            timeSinceTick -= tickTime;
 
-            int value = static_cast<int>(std::round(10 * efficiency));
-            Player::Instance().gainConcrete(value);
-        }
     };
 
     Resources getBuildCost() {

@@ -27,6 +27,11 @@ void GravelPlantController::Update(float delta)
 					// this call could be moved to a BG thread.
 					findMine(*gravelPlant);
 				}
+				else
+				{
+					int value = static_cast<int>(std::round(10 * gp->efficiency));
+					Player::Instance().gainConcrete(value);
+				}
 			}
 		}
 	}
@@ -50,7 +55,7 @@ void GravelPlantController::findMine(CGameObjectPlacement* gpGOP)
 				float tX = (*mine)->GetPos().GetX();
 				float tZ = (*mine)->GetPos().GetZ();
 				float dist = pow(myX - tX, 2) + pow(myZ - tZ, 2);
-				if (dist > closestDistance)
+				if (dist < closestDistance)
 				{
 					closest = *mine;
 					closestDistance = dist;
