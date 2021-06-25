@@ -23,6 +23,7 @@ CBuildingManager::CBuildingManager()
 	m_MaxBuildings[(int)Typ::SolarPowerPlant] = 20;
 	m_MaxBuildings[(int)Typ::TreeFarm] = 20;
 	m_MaxBuildings[(int)Typ::Well] = 30;
+	m_MaxBuildings[(int)Typ::FoodPlant] = 20;
 }
 
 CBuildingManager::~CBuildingManager()
@@ -190,7 +191,16 @@ void CBuildingManager::Init(CScene* scene)
 		}
 	}
 
-
+	for (int i = 0; i < size(FoodPlants); i++) {
+		FoodPlants[i].setGameObject(new FoodPlant);
+		FoodPlants[i].Init(typeid(FoodPlant).name());
+		FoodPlants[i].getGameObject()->TransformGeo();
+		m_zs->AddPlacement(&FoodPlants[i]);
+		if (i == 0)
+		{
+			BuildingGeos.Add(FoodPlants[i].getGameObject()->getModel());
+		}
+	}
 }
 
 void CBuildingManager::UpdateBuildings(float deltaTime)
@@ -418,6 +428,9 @@ CGameObjectPlacement* CBuildingManager::getBuildingList(Typ typ)
 		break;
 	case CBuildingManager::Typ::Well:
 		return Wells;
+		break;
+	case CBuildingManager::Typ::FoodPlant:
+		return FoodPlants;
 		break;
 	default:
 		break;

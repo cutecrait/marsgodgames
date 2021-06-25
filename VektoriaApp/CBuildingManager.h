@@ -21,11 +21,12 @@
 #include "SolarPowerPlant.h"
 #include "TreeFarm.h"
 #include "Well.h"
+#include "FoodPlant.h"
 #include "MapTile.h"
 
 using namespace Vektoria;
 
-const int TYP_LENGTH = 16;
+const int TYP_LENGTH = 17;
 
 class CBuildingManager
 {
@@ -62,7 +63,9 @@ public:
 		RobotFactory,
 		SolarPowerPlant,
 		TreeFarm,
-		Well = 15};
+		Well = 15,
+		FoodPlant
+	};
 	
 	// Initialisierung des BuildingManagers
 	void Init(CScene*);
@@ -108,6 +111,7 @@ private:
 	CGameObjectPlacement SolarPowerPlants[20];
 	CGameObjectPlacement TreeFarms[20];
 	CGameObjectPlacement Wells[30];
+	CGameObjectPlacement FoodPlants[20];
 
 	// Die Anzahl an Buildings, die schon gebaut wurde
 	int m_NrsOfBuildings[TYP_LENGTH];

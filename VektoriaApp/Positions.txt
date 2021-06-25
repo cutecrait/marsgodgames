@@ -13,3 +13,4 @@ Hospital, 6, 9
 Barrack, 5, 9
 Apartment, 4, 9
 Laboratory, 6, 10
+FoodFarm, 8, 9

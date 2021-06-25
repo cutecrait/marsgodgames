@@ -170,6 +170,8 @@
     <ClInclude Include="FollowPathAction.h" />
     <ClInclude Include="FoodFarm.h" />
     <ClInclude Include="FoodFarmPopup.h" />
+    <ClInclude Include="FoodPlant.h" />
+    <ClInclude Include="FoodPlantController.h" />
     <ClInclude Include="Foundry.h" />
     <ClInclude Include="FoundryController.h" />
     <ClInclude Include="FoundryPopup.h" />
@@ -243,6 +245,7 @@
     <ClCompile Include="Decision.cpp" />
     <ClCompile Include="FollowPathAction.cpp" />
     <ClCompile Include="FoodFarmPopup.cpp" />
+    <ClCompile Include="FoodPlantController.cpp" />
     <ClCompile Include="FoundryController.cpp" />
     <ClCompile Include="FoundryPopup.cpp" />
     <ClCompile Include="Game.cpp" />

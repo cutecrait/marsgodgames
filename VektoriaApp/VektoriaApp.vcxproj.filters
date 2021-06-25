@@ -162,6 +162,9 @@
     <ClCompile Include="StartScreen.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="FoodPlantController.cpp">
+      <Filter>Buildings</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -384,6 +387,12 @@
     </ClInclude>
     <ClInclude Include="StartScreen.h">
       <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="FoodPlantController.h">
+      <Filter>Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="FoodPlant.h">
+      <Filter>Buildings</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

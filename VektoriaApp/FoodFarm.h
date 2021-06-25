@@ -6,6 +6,8 @@ class FoodFarm :
     public Building
 {
 public:
+    GameObject* linkedPlant = nullptr;
+
     FoodFarm() {
         PowerUse = 5;
         WaterUse = 5;
