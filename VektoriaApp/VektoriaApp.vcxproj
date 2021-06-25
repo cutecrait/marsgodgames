@@ -238,7 +238,6 @@
     <ClCompile Include="AStarAlgorithm.cpp" />
     <ClCompile Include="BarrackPopUp.cpp" />
     <ClCompile Include="BeispielForGameObject.cpp" />
-    <ClCompile Include="Building.cpp" />
     <ClCompile Include="CAudioManager.cpp" />
     <ClCompile Include="CBuildingManager.cpp" />
     <ClCompile Include="CCameraController.cpp" />

@@ -1,4 +1,5 @@
 #include "CBuildingManager.h"
+#include "JobController.h"
 
 CBuildingManager::CBuildingManager()
 {
