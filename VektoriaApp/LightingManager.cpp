@@ -1,30 +1,34 @@
 #include "LightingManager.h"
+#include <cmath>
 //#include <iostream>
 
-void LightingManager::Init(CScene* scene, CPlacement* cameraPlacement)
+void LightingManager::Init(CScene* scene, CPlacement* cameraPlacement, CViewport* v)
 {
+	viewport = v;
 	this->scene = scene;
 	nightLight.Init(CHVector(-0.5f, 1.0f, 0.0f), nightColor);
-	scene->SetLightAmbient(CColor(0.6f, 0.3f, 1.0f));
-	scene->AddLightParallel(&nightLight);
 	scene->SetSkyOn(cameraPlacement);
 	scene->SetSkyCardinalDirection(-THREEQUARTERPI); // south is -X-Z, which is behind the camera
 	scene->m_psceneweather->m_azmSky->MakeTextureDiffuse("textures//marssky.png");
-	scene->SetSkyShadowResolution(10000, 10000);
 	scene->SetSkyTimeOfDay(0.3f);
-	scene->SetLightAmbient(0.2f);
-	// scene->AddLightParallel(&sun);
-	sunPlacement.Translate(sunStartDirection);
+	//scene->SetLightAmbientBySky();
 
-	timeScale = 2.0f; // DEBUG - makes a day pass in 30 seconds instead of 15 minutes
+	scene->SetSkyShadowResolution(10000, 10000);
+
+	viewport->SetBloomOn();
+	viewport->SetBloomDepthDecay(1.0f);
+	viewport->SetBloomOff();
+	
+	timeScale = 20.0f; // DEBUG - makes a day pass in 30 seconds instead of 15 minutes
 }
 
 void LightingManager::Tick(float fTimeDelta)
 {
-
-	recalc = false;
 	float lightDelta = fTimeDelta * timeScale;
 	time += lightDelta;
+	
+	//ULDebug(std::to_string(time).c_str());
+
 	if (time > dayLength)
 	{
 		SetTime(time - dayLength);
@@ -33,43 +37,30 @@ void LightingManager::Tick(float fTimeDelta)
 	auto skyTime = 0.0f + time / (dayLength); // skytime is from 0.75(dawn) to 1.25(dusk)
 	scene->SetSkyTimeOfDay(skyTime);
 
-
-	if (time < duskTime)
+	if (time < duskStart || time > dawnEnd) // daytime
 	{
-		
-
-		if (time < dawnFade)
-		{
-			float dawnProgress = time / dawnFade;
-			CColor morning;
-			// fade from gold to warm white
-			morning.Interpol(CColor(1.0f, 1.0f, 0.3f), sunColor, dawnProgress);
-			// fade from black (completed at 
-			morning.Interpol(CColor(), morning, dawnProgress * 2);
-		}
-		else if (time < duskTime - duskFade)
-		{
-			sun.SetColor(sunColor);
-		}
-		else if (time > duskTime - duskFade)
-		{
-			// ramp strength down, fade color to red
-		}
-
-		if (recalc)
-		{
-			sunPlacement.Translate(sunStartDirection);
-			sunPlacement.RotateDelta(sunAxis, time * anglePerSecond);
-		}
-		else
-		{
-			sunPlacement.RotateDelta(sunAxis, lightDelta * anglePerSecond);
-		}
-		setSunDirection(&sunPlacement);
+		viewport->SetBloomOff();
 	}
-	else
+	else if (time >= dawnStart && time <= dawnEnd) // dawn
 	{
-		sun.SetColor(CColor(0.1f, 0.1f, 0.1f));
+		float dawnProgress = (time - dawnStart) / (dawnEnd - dawnStart);
+
+		CColor fadeColor;
+		// see https://www.wolframalpha.com/input/?i=y%28x%29+%3D+1+-+%28abs%28%28x-0.5%29*2%29%29%5E2 for a graphical representation
+		fadeColor.Interpol(CColor(), dawnAmbientColor, 1.f - pow(abs((dawnProgress - 0.5f)*2), 2));
+		scene->SetLightAmbient(fadeColor);
+	}
+	else if (time > duskEnd && time < dawnStart) // night
+	{
+		viewport->SetBloomOn();
+	}
+	else if (time >= duskStart && time <= duskEnd) // dusk
+	{
+		float dawnProgress = (time - duskStart) / (duskEnd - duskStart);
+
+		CColor fadeColor;
+		fadeColor.Interpol(CColor(), duskAmbientColor, 1.f - pow(abs((dawnProgress - 0.5f) * 2), 2));
+		scene->SetLightAmbient(fadeColor);
 	}
 }
 
@@ -85,13 +76,5 @@ void LightingManager::SetTime(float newTime)
 		newTime -= 900.f;
 	}
 	time = newTime;
-	recalc = true;
 	return;
-}
-
-void LightingManager::setSunDirection(CPlacement* p)
-{
-	CHVector direction = p->GetPos();
-	direction.w = 0.f;
-	sun.SetDirection(direction);
 }

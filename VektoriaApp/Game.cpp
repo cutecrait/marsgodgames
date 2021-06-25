@@ -45,7 +45,6 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	
 	// CAMERA & VIEWPORT-------------------------------------------------------
 	m_zv.InitFull(&m_zc);	//with adresse of camera bcoz viewport
-	m_zv.SetBloomOn();
 	m_zo.InitFull(&m_zi);
 	m_zi.Init("textures\\ENV.jpg");	//double slash
 	m_zc.Init(QUARTERPI); //field of view float or variable
@@ -80,7 +79,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 
 
 	// LIGHTING--------------------------------------
-	lightingManager.Init(&m_zs, &m_zpCamera);
+	lightingManager.Init(&m_zs, &m_zpCamera, &m_zv);
 
 	// OVERLAY-----------------------------------------
 	// texturen werden jetzt in UI erstellt. 
