@@ -16,7 +16,14 @@ public:
         Category = BuildingCategory::Industry;
 
         setModel(AssetManager::Models::RobotFactory);
-        this->setMaterial("textures\\RobotFactoryTex.png");
+
+        char* base = "textures\\RobotFactoryTex\\RobotFactoryTex_Base_Color.png";
+        char* glow = "textures\\RobotFactoryTex\\RobotFactoryTex_Emissive.png";
+        char* spec = "textures\\RobotFactoryTex\\RobotFactoryTex_Metallic.png";
+        char* height = "textures\\RobotFactoryTex\\RobotFactoryTex_Height.png";
+        char* bump = "textures\\RobotFactoryTex\\RobotFactoryTex_Roughness.png";
+
+        this->setMaterial(bump, base, glow, spec, height);
         this->getModel()->SetMaterial(this->getMaterial());
 
        setAudio(&CAudioManager::Instance().Local_RobotFactory);

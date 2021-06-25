@@ -64,6 +64,10 @@ void GameObject::setMaterial(char* matPfadB, char* matPfadD, char* matPfadG, cha
 	m_material.MakeTextureBump(matPfadB);
 	m_material.MakeTextureSpecular(matPfadS);
 
+	
+	m_material.SetTransparencyKind(eTransparencyKind_BinaryByChromaKey);
+	
+	m_material.SetSpecularTint(1.0);
 	m_material.SetGlowStrength(3.0f);
 }
 

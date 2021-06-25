@@ -24,7 +24,7 @@ public:
         this->setMaterial(bump, base, glow, spec, height, 3, 5, 5);
         this->getModel()->SetMaterial(this->getMaterial());
 
-        this->setAudio(&CAudioManager::Instance().Local_NuclearPowerPlant);
+        //this->setAudio(&CAudioManager::Instance().Local_NuclearPowerPlant);
     }
 
     Resources getBuildCost() {
