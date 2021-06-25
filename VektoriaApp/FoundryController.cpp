@@ -16,12 +16,15 @@ void FoundryController::Update(float delta)
 		timeSinceTick -= tickInterval;
 		for (vector<CGameObjectPlacement*>::iterator foundry = list.begin(); foundry != list.end(); ++foundry)
 		{
-			Foundry* gp = dynamic_cast<Foundry*>((*foundry)->getGameObject());
-
-			if (!gp->linkedGOP || !gp->linkedGOP->getBuildStatus())
+			if ((*foundry)->getBuildStatus())
 			{
-				// this call could be moved to a BG thread.
-				findMine(*foundry);
+				Foundry* gp = dynamic_cast<Foundry*>((*foundry)->getGameObject());
+
+				if (!gp->linkedGOP || !gp->linkedGOP->getBuildStatus())
+				{
+					// this call could be moved to a BG thread.
+					findMine(*foundry);
+				}
 			}
 		}
 	}
@@ -38,14 +41,14 @@ void FoundryController::findMine(CGameObjectPlacement* foundryGOP)
 
 	for (std::vector<CGameObjectPlacement*>::iterator mine = mines.begin(); mine != mines.end(); ++mine)
 	{
-		if ((*mine)->getBuildStatus() && dynamic_cast<Mine*>((*mine)->getGameObject())->linkedFoundry != nullptr)
+		if ((*mine)->getBuildStatus() && dynamic_cast<Mine*>((*mine)->getGameObject())->linkedFoundry == nullptr)
 		{
 			if ((*mine)->getGameObject())
 			{
 				float tX = (*mine)->GetPos().GetX();
 				float tZ = (*mine)->GetPos().GetZ();
 				float dist = pow(myX - tX, 2) + pow(myZ - tZ, 2);
-				if (dist > closestDistance)
+				if (dist < closestDistance)
 				{
 					closest = *mine;
 					closestDistance = dist;

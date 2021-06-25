@@ -1,6 +1,6 @@
 #include "AssetManager.h"
 
-ManagedGeo AssetManager::geos[17];
+ManagedGeo AssetManager::geos[18];
 string AssetManager::baseModelPath = "";
 CFileWavefront AssetManager::fileWavefront;
 bool AssetManager::ready = false;

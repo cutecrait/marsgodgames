@@ -25,7 +25,6 @@ public:
 		Apartment,
 		ControlCenter,
 		FoodFarm,
-		FoodPlant,
 		Foundry,
 		GravelPlant = 5,
 		Hospital,
@@ -38,7 +37,8 @@ public:
 		Well,
 		Robot = 14,
 		Barrack = 15,
-		Laboratory = 16
+		Laboratory = 16,
+		FoodPlant = 17
 	};
 
 	// string: folder path containing textures/, models/, ect. with trailing '\\'
@@ -46,7 +46,7 @@ public:
 	static CGeo* getModel(Models);
 
 	static bool ready;
-	static ManagedGeo geos[17];
+	static ManagedGeo geos[18];
 	static string baseModelPath;
 	static CFileWavefront fileWavefront;
 

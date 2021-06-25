@@ -18,12 +18,15 @@ void GravelPlantController::Update(float delta)
 		timeSinceTick -= tickInterval;
 		for (vector<CGameObjectPlacement*>::iterator gravelPlant = list.begin(); gravelPlant != list.end(); ++gravelPlant)
 		{
-			GravelPlant* gp = dynamic_cast<GravelPlant*>((*gravelPlant)->getGameObject());
-
-			if (!gp->linkedGOP || !gp->linkedGOP->getBuildStatus())
+			if ((*gravelPlant)->getBuildStatus())
 			{
-				// this call could be moved to a BG thread.
-				findMine(*gravelPlant);
+				GravelPlant* gp = dynamic_cast<GravelPlant*>((*gravelPlant)->getGameObject());
+
+				if (!gp->linkedGOP || !gp->linkedGOP->getBuildStatus())
+				{
+					// this call could be moved to a BG thread.
+					findMine(*gravelPlant);
+				}
 			}
 		}
 	}
@@ -40,7 +43,7 @@ void GravelPlantController::findMine(CGameObjectPlacement* gpGOP)
 
 	for (vector<CGameObjectPlacement*>::iterator mine = mines.begin(); mine != mines.end(); ++mine)
 	{
-		if ((*mine)->getBuildStatus() && dynamic_cast<Mine*>((*mine)->getGameObject())->linkedGravelPlant != nullptr)
+		if ((*mine)->getBuildStatus() && dynamic_cast<Mine*>((*mine)->getGameObject())->linkedGravelPlant == nullptr)
 		{
 			if ((*mine)->getGameObject())
 			{
