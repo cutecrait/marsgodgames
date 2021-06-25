@@ -77,6 +77,10 @@ void StartScreen::switchStartScreenOff()
 	m_startOverlay.SwitchOff();
 	m_newGame.SwitchOff();
 	m_loadGame.SwitchOff();
+
+	CAudioManager::Instance().Ambient_Title_Music.Stop();
+	CAudioManager::Instance().Ambient_Background_Music.Loop();
+
 }
 
 

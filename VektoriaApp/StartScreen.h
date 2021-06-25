@@ -5,6 +5,7 @@
 #include "Save.h"
 #include "Load.h"
 #include "UI.h"
+#include "CAudioManager.h"
 
 class StartScreen
 {
