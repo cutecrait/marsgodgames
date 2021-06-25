@@ -106,7 +106,6 @@
     <ClCompile Include="Mission.cpp">
       <Filter>LevelSystem\Level</Filter>
     </ClCompile>
-    <ClCompile Include="Apartment.cpp" />
     <ClCompile Include="testRobo.cpp" />
     <ClCompile Include="roboPopUp.cpp">
       <Filter>UI\popups</Filter>
@@ -129,6 +128,12 @@
     <ClCompile Include="wellPopup.cpp">
       <Filter>UI\popups</Filter>
     </ClCompile>
+    <ClCompile Include="FoundryController.cpp">
+      <Filter>Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="GravelPlantController.cpp">
+      <Filter>Buildings</Filter>
+    </ClCompile>
     <ClCompile Include="NuclearPopup.cpp">
       <Filter>UI\popups</Filter>
     </ClCompile>
@@ -146,6 +151,16 @@
     </ClCompile>
     <ClCompile Include="CheckPathDecision.cpp">
       <Filter>Robot\AI\Decision</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetManager.cpp" />
+    <ClCompile Include="BarrackPopUp.cpp">
+      <Filter>UI\popups</Filter>
+    </ClCompile>
+    <ClCompile Include="StartScreen.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="FoodPlantController.cpp">
+      <Filter>Buildings</Filter>
     </ClCompile>
     <ClCompile Include="Building.cpp" />
     <ClCompile Include="RobotBase.cpp">
@@ -344,6 +359,12 @@
     <ClInclude Include="wellPopup.h">
       <Filter>UI\popups</Filter>
     </ClInclude>
+    <ClInclude Include="FoundryController.h">
+      <Filter>Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="GravelPlantController.h">
+      <Filter>Buildings</Filter>
+    </ClInclude>
     <ClInclude Include="NuclearPopup.h">
       <Filter>UI\popups</Filter>
     </ClInclude>
@@ -375,6 +396,22 @@
     </ClInclude>
     <ClInclude Include="JobController.h">
       <Filter>Robot\JobSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetManager.h" />
+    <ClInclude Include="Barrack.h">
+      <Filter>Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="BarrackPopUp.h">
+      <Filter>UI\popups</Filter>
+    </ClInclude>
+    <ClInclude Include="StartScreen.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="FoodPlantController.h">
+      <Filter>Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="FoodPlant.h">
+      <Filter>Buildings</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

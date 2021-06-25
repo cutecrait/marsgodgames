@@ -1,0 +1,15 @@
+ControlCenter, 4, 4
+Launchpad, 4, 6
+RobotFactory, 7, 7
+Mine, 8, 4
+GavelPlant, 8, 5
+Foundry, 9, 4
+Well, 9, 8
+FoodFarm, 8, 8
+TreeFarm, 10, 8
+SolarPowerPlant, 8, 10
+RobotFactory, 10, 6
+Hospital, 6, 9
+Barrack, 5, 9
+Apartment, 4, 9
+Laboratory, 6, 10

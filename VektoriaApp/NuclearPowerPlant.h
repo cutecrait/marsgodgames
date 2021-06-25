@@ -12,11 +12,19 @@ public:
         howMuch = 240;
         Category = BuildingCategory::Industry;
 
-        setModel("models\\Kraftwerk.obj");
-        this->setMaterial("textures\\KraftwerkTex.png");
+        setModel(AssetManager::Models::NuclearPowerPlant);
+
+        char* base = "textures\\KraftwerkTex\\Base_ani.png";
+        char* glow = "textures\\KraftwerkTex\\Emissive_ani.png";
+        char* spec = "textures\\KraftwerkTex\\Ani\\Metallic_ani.tif";
+        char* height = "textures\\KraftwerkTex\\Ani\\Height_ani.tif";
+        char* bump = "textures\\KraftwerkTex\\Ani\\Roughness_ani.tif";
+
+
+        this->setMaterial(bump, base, glow, spec, height, 3, 5, 5);
         this->getModel()->SetMaterial(this->getMaterial());
 
-     //   this->setAudio(&CAudioManager::Instance().Local_NuclearPowerPlant);
+        this->setAudio(&CAudioManager::Instance().Local_NuclearPowerPlant);
     }
 
     Resources getBuildCost() {

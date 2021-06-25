@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+
 class testRobo : public GameObject
 {
 public:
@@ -12,5 +13,7 @@ public:
 		cost.Wood = 3;
 		return cost;
 	};
+
+	
 };
 

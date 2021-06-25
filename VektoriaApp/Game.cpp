@@ -22,20 +22,32 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	//m_zf.SetApiSound(eApiSound_DirectSound);
 	m_zf.Init(hwnd, procOS);
 	m_zr.AddFrame(&m_zf);
-	m_level1 = new LevelSystem::Level("ultra", 1000, 1);
-	m_level1->AddMission(new LevelSystem::Mission("Kaufe Roboterfabrik", typeid(RobotFactory).name(), 0, 1));
-	m_level1->AddMission(new LevelSystem::Mission("Kaufe drei Bauroboter", typeid(testRobo).name(), 0, 3));
+	m_level1 = new LevelSystem::Level("ultra", 1000,1);
+	m_level1->AddMission(new LevelSystem::Mission("Kaufe Roboterfabrik",typeid(RobotFactory).name(), 0, 1));
+	m_level1->AddMission(new LevelSystem::Mission("Kaufe drei Bauroboter",typeid(testRobo).name() , 0, 3));
 
-	m_level2 = new LevelSystem::Level("cool", 1000, 2);
-	m_level2->AddMission(new LevelSystem::Mission("Kaufe zwei Landwirtroboter", typeid(testRobo).name(), 0, 2));
-	m_level2->AddMission(new LevelSystem::Mission("Kaufe ein Apartment", typeid(Apartment).name(), 0, 1));
+	AssetManager::Init("");
 
-	m_level3 = new LevelSystem::Level("cool", 1000, 3);
+	m_level1 = new LevelSystem::Level("Prolog", 1000, 1);
+	m_level1->AddMission(new LevelSystem::Mission("Baue 2 Apartments",typeid(Apartment).name(), 0, 2));
+	m_level1->AddMission(new LevelSystem::Mission("Baue einen Brunnen",typeid(Well).name() , 0, 1));
+	m_level1->AddMission(new LevelSystem::Mission("Baue eine Mine", typeid(Mine).name(), 0, 1));
+
+	m_level2 = new LevelSystem::Level("Post-Prolog", 1000, 2);
+	m_level2->AddMission(new LevelSystem::Mission("Baue eine FoodFarm", typeid(FoodFarm).name(), 0, 1));
+	m_level2->AddMission(new LevelSystem::Mission("Baue 2 SPPs", typeid(SolarPowerPlant).name(), 0, 2));
+	m_level2->AddMission(new LevelSystem::Mission("Baue eine Foundry", typeid(Foundry).name(), 0, 1));
+	
+	m_level3 = new LevelSystem::Level("Advanced", 2000, 3);
+	m_level3->AddMission(new LevelSystem::Mission("Baue eine GravelPlant", typeid(GravelPlant).name(), 0, 1));
+	m_level3->AddMission(new LevelSystem::Mission("Baue ein Labor", typeid(Laboratory).name(), 0, 1));
+	m_level3->AddMission(new LevelSystem::Mission("Baue eine Rob-Fab.", typeid(RobotFactory).name(), 0, 1));
+
 
 	LevelSystem::LevelManager::Instance().AddLevel(m_level1);
 	LevelSystem::LevelManager::Instance().AddLevel(m_level2);
 	LevelSystem::LevelManager::Instance().AddLevel(m_level3);
-	//m_level1->AddMission(new LevelSystem::Mission("Kaufe einen Landwirtroboter",0, 200));
+	
 	// CAMERA & VIEWPORT-------------------------------------------------------
 	m_zv.InitFull(&m_zc);	//with adresse of camera bcoz viewport
 	m_zo.InitFull(&m_zi);
@@ -72,37 +84,40 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 
 
 	// LIGHTING--------------------------------------
-	lightingManager.Init(&m_zs, &m_zpCamera);
+	lightingManager.Init(&m_zs, &m_zpCamera, &m_zv);
 
 	// OVERLAY-----------------------------------------
 	// texturen werden jetzt in UI erstellt. 
 	// UI = menu, derManager = click-event.
-	if (m_ldgame.fileExists("Ressources.txt")) {
-		Player::Instance().initPlayer(m_ldgame.LoadPlayerStats()[0], m_ldgame.LoadPlayerStats()[1], m_ldgame.LoadPlayerStats()[2]);
+	if (m_ldgame.fileExists("PlayerDetails.txt")) {
+		m_ldgame.setPlayerDetails();
+		Player::Instance().initPlayer(m_ldgame.playerdets[0], m_ldgame.playerdets[1], m_ldgame.playerdets[2]);
+		
 	}
 	else {
 		Player::Instance().initPlayer(1000, 1000, 1000);
 	}
 	einsFont.LoadPreset("LucidaConsoleWhite");
 	einsFont.SetChromaKeyingOn(); //hiermit hat die font keinen hässlichen hintergrund
+
+	//StartScreen: LOADS CHECKPOINT ---------------------
+	m_startscr.InitStartScreen(&einCursor, &einsFont, &m_zv);
+
 	menu.InitMenu(&einCursor, &einsFont, &m_zv);
-	derManager.Init(&menu, &m_zs, &BuildingManager, &mapSquare);
+	derManager.Init(&menu, &m_zs, &CBuildingManager::Instance(), &mapSquare);
 	LevelSystem::LevelManager::Instance().GetCurrentLevel()->initLevel(&menu);
 	// MAP SQUARES---------------------------------------
+	CBuildingManager::Instance().Init(&m_zs);
 	MakeMapSquares(&m_zs);
-	BuildingManager.Init(&m_zs);
 
 	//LOAD TERRAIN---------------------------------------
 	m_zs.AddPlacement(m_ldgame.LoadTerrain());
 
-	//LOAD CHECKPOINT------------------------------------
-	for (int i = 0; i < m_ldgame.getObjCount(); i++)
-	{
-		m_zs.AddPlacement(m_ldgame.GetPlacements(i));
-	}
 
-	derManager.setBuildingGeos(BuildingManager.getBuildingGeos());
+	derManager.setBuildingGeos(CBuildingManager::Instance().getBuildingGeos());
 
+	foundryCtrl.Init();
+	gpCtrl.Init();
 }
 
 void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
@@ -113,18 +128,23 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 	CameraController.UpdateCameraMovement(fTimeDelta); //Aktualisiert die Kamerabewegung
 
 	// lighting
-	lightingManager.Tick(0);
-
+	lightingManager.Tick(fTimeDelta);
+	
 
 	derManager.Click(fTimeDelta, &einCursor, LevelSystem::LevelManager::Instance().GetCurrentLevel());
 
 	// UI-----------------------------------
 
+	if (m_startscr.update() == 1) {
+		menu.updatePlayer();
+	}
 
 	//derManager.makeBuilding(selectedPlace,&einCursor);
-
-
 	mapSquare.setLevel(&m_zdk);
+
+	// buildings
+	gpCtrl.Update(fTimeDelta);
+	foundryCtrl.Update(fTimeDelta);
 }
 
 void CGame::MakeMapSquares(CScene* m_zs)
@@ -177,4 +197,3 @@ void CGame::WindowReSize(int iNewWidth, int iNewHeight)
 	// Hier kannst Du dann die Aufl�sung des Viewports neu einstellen:
 	m_zf.ReSize(iNewWidth, iNewHeight);
 }
-

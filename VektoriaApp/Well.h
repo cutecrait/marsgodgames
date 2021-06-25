@@ -12,10 +12,19 @@ public:
         howMuch = 60;
         Category = BuildingCategory::Farming;
 
-        setModel("models\\monkey.obj");
-        // set material
+        setModel(AssetManager::Models::Well);
 
-        //setAudio(&CAudioManager::Instance().Local_Well);
+        char* base = "textures\\WassertankTex\\Base_ani.png";
+        char* glow = "textures\\WassertankTex\\Emissive_ani.png";
+        char* spec = "textures\\WassertankTex\\WassertankTex_Metallic.png";
+        char* height = "textures\\WassertankTex\\WassertankTex_Height.png";
+        char* bump = "textures\\WassertankTex\\WassertankTex_Roughness.png";
+
+
+        this->setMaterial(bump, base, glow, spec, height, 3, 5, 6);
+        this->getModel()->SetMaterial(this->getMaterial());
+
+        setAudio(&CAudioManager::Instance().Local_Well);
     }
 
     Resources getBuildCost() {

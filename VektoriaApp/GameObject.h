@@ -1,5 +1,6 @@
 #pragma once
 #include "Vektoria\root.h"
+#include "AssetManager.h"
 
 using namespace Vektoria;
 
@@ -66,9 +67,12 @@ public:
 
 	// Setzt die Geometrie
 	void setModel(char*);
+	void setModel(AssetManager::Models);
 
 	// Setzt die Textur
 	void setMaterial(char* );
+	void setMaterial(char*, char*, char*, char*, char*);
+	void setMaterial(char*, char*, char*, char*, char*, int, int, int);
 
 	void setAudio(CAudio*);
 

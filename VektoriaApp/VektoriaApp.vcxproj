@@ -152,7 +152,10 @@
     <ClInclude Include="Action.h" />
     <ClInclude Include="Apartment.h" />
     <ClInclude Include="ApsPopup.h" />
+    <ClInclude Include="AssetManager.h" />
     <ClInclude Include="AStarAlgorithm.h" />
+    <ClInclude Include="Barrack.h" />
+    <ClInclude Include="BarrackPopUp.h" />
     <ClInclude Include="BeispielForGameObject.h" />
     <ClInclude Include="Building.h" />
     <ClInclude Include="CAudioManager.h" />
@@ -168,12 +171,16 @@
     <ClInclude Include="FollowPathAction.h" />
     <ClInclude Include="FoodFarm.h" />
     <ClInclude Include="FoodFarmPopup.h" />
+    <ClInclude Include="FoodPlant.h" />
+    <ClInclude Include="FoodPlantController.h" />
     <ClInclude Include="Foundry.h" />
+    <ClInclude Include="FoundryController.h" />
     <ClInclude Include="FoundryPopup.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="CGameObjectPlacement.h" />
     <ClInclude Include="GravelPlant.h" />
+    <ClInclude Include="GravelPlantController.h" />
     <ClInclude Include="GuiButton.h" />
     <ClInclude Include="GuiElement.h" />
     <ClInclude Include="GuiImageColorPicker.h" />
@@ -195,6 +202,7 @@
     <ClInclude Include="JobController.h" />
     <ClInclude Include="SolarPopup.h" />
     <ClInclude Include="PathController.h" />
+    <ClInclude Include="StartScreen.h" />
     <ClInclude Include="testRobo.h" />
     <ClInclude Include="Well.h" />
     <ClInclude Include="TreeFarm.h" />
@@ -225,9 +233,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Action.cpp" />
-    <ClCompile Include="Apartment.cpp" />
     <ClCompile Include="ApsPopup.cpp" />
+    <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="AStarAlgorithm.cpp" />
+    <ClCompile Include="BarrackPopUp.cpp" />
     <ClCompile Include="BeispielForGameObject.cpp" />
     <ClCompile Include="Building.cpp" />
     <ClCompile Include="CAudioManager.cpp" />
@@ -241,9 +250,12 @@
     <ClCompile Include="FarmingRobot.cpp" />
     <ClCompile Include="FollowPathAction.cpp" />
     <ClCompile Include="FoodFarmPopup.cpp" />
+    <ClCompile Include="FoodPlantController.cpp" />
+    <ClCompile Include="FoundryController.cpp" />
     <ClCompile Include="FoundryPopup.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GravelPlantController.cpp" />
     <ClCompile Include="CheckPathDecision.cpp" />
     <ClCompile Include="IdleAction.cpp" />
     <ClCompile Include="LabPopup.cpp" />
@@ -272,6 +284,7 @@
     <ClCompile Include="JobController.cpp" />
     <ClCompile Include="Save.cpp" />
     <ClCompile Include="SolarPopup.cpp" />
+    <ClCompile Include="StartScreen.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateController.cpp" />
     <ClCompile Include="SteeringController.cpp" />

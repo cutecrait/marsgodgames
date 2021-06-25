@@ -1,4 +1,5 @@
 #pragma once
+#include <functional>
 #include "Vektoria/root.h"
 #include "CGameObjectPlacement.h"
 #include "CAudioManager.h"
@@ -6,6 +7,7 @@
 #include "Save.h"
 
 #include "Apartment.h"
+#include "Barrack.h"
 #include "ControlCenter.h"
 #include "FoodFarm.h"
 #include "Foundry.h"
@@ -19,15 +21,26 @@
 #include "SolarPowerPlant.h"
 #include "TreeFarm.h"
 #include "Well.h"
+#include "FoodPlant.h"
 #include "MapTile.h"
 
 using namespace Vektoria;
 
-const int TYP_LENGTH = 20;
+const int TYP_LENGTH = 17;
 
 class CBuildingManager
 {
 public:
+
+	/// <summary>
+	/// Singleton - gibt Instanz zurück
+	/// </summary>
+	/// <returns>Instanz</returns>
+	static CBuildingManager& Instance()
+	{
+		static CBuildingManager _instance;
+		return _instance;
+	};
 
 	CBuildingManager();
 	~CBuildingManager();
@@ -36,20 +49,23 @@ public:
 	// NOCH ZU ERWEITERN!!!
 	enum class Typ {
 		None = 0,
+		Barrack,
 		Apartment,
 		ControlCenter,
 		FoodFarm,
-		Foundry,
+		Foundry = 5,
 		GravelPlant,
 		Hospital,
 		Laboratory,
 		Launchpad,
-		Mine,
+		Mine = 10,
 		NuclearPowerPlant,
 		RobotFactory,
 		SolarPowerPlant,
 		TreeFarm,
-		Well};
+		Well = 15,
+		FoodPlant
+	};
 	
 	// Initialisierung des BuildingManagers
 	void Init(CScene*);
@@ -64,7 +80,14 @@ public:
 	void DecreaseNrOfBuildings(Typ&);
 
 	void AddNewBuilding(Typ, MapTile*);
-	CGameObjectPlacement* getClosestGameObject(Typ);
+	void AddNewBuilding(Typ, float x, float z);
+
+	vector<CGameObjectPlacement*> GetBuildingVector(Typ);
+
+	// DEPRECATED but i'll leave it here for now in case we need it later on
+	// only works for Foundry, is used to get closest Mine building with no linked Foundry
+	// will later work in the same way for FoodPlant / FoodFarm
+	CGameObjectPlacement* findClosestUnlinked(Building* me, Typ t_me, Typ target, function<bool(GameObject*)>);
 
 	CGeos* getBuildingGeos();
 
@@ -74,6 +97,7 @@ private:
 	CGeos BuildingGeos;
 
 	CGameObjectPlacement Apartments[50];
+	CGameObjectPlacement Barracks[50];
 	CGameObjectPlacement ControlCenters[1];
 	CGameObjectPlacement FoodFarms[20];
 	CGameObjectPlacement Foundrys[20];
@@ -87,6 +111,7 @@ private:
 	CGameObjectPlacement SolarPowerPlants[20];
 	CGameObjectPlacement TreeFarms[20];
 	CGameObjectPlacement Wells[30];
+	CGameObjectPlacement FoodPlants[20];
 
 	// Die Anzahl an Buildings, die schon gebaut wurde
 	int m_NrsOfBuildings[TYP_LENGTH];

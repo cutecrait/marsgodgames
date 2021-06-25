@@ -47,7 +47,8 @@ void UI::InitMaterial()
 	m_matsForSelect5[5].MakeTextureSprite("textures\\Menu_Button.png");
 
 	m_matStats.MakeTextureSprite("textures\\Player_Stat_Window.png");
-	m_matRes.MakeTextureSprite("textures\\Player_Res_Window.png");
+	m_matRes.MakeTextureSprite("textures\\Player_Res_Animated.png");
+	m_matRes.SetAni(3, 5, 8);
 
 	m_resMaterial.MakeTextureSprite("textures\\red_image.jpg");
 	m_matsteel.MakeTextureSprite("textures\\Tooltip_stahl_texture.png");
@@ -66,6 +67,7 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	updatePlayer();
 
 	m_roboPopUP.Init(cursor,&m_matStats,font);
+	m_barrackPopUp.Init(cursor, &m_matStats, font);
 	m_apsPopup.Init(cursor, &m_matStats, font);
 	m_CCpopup.Init(cursor, &m_matStats, font);
 	m_wellPopup.Init(cursor, &m_matStats, font);
@@ -106,17 +108,17 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	labelMaker(0, 3, selectLabel);
 
 	selectLabel.clear();
-	selectLabel.push_back(" Hotel"); selectLabel.push_back(" Einfamilienhaus"); selectLabel.push_back(" Mehrfamilienhaus"); selectLabel.push_back(" Villa");
+	selectLabel.push_back(" Baracke"); selectLabel.push_back(" Apartment"); selectLabel.push_back(" Labor"); selectLabel.push_back(" Hospital");
 	//m_specificSelect[1].makeInactiveMats(m_matsForSelect2);
 	m_specificSelect[1].Init(cursor, font, 4, CFloatRect(0.15, 0.3, 0.15, 0.6)); labelMaker(1, 4, selectLabel);
 
 	selectLabel.clear();
-	selectLabel.push_back(" Brunnen"); selectLabel.push_back(" Farm"); selectLabel.push_back(" Abwasserreinigung"); selectLabel.push_back(" Strom");
+	selectLabel.push_back(" Brunnen"); selectLabel.push_back(" FoodFarm"); selectLabel.push_back(" Solar"); selectLabel.push_back(" Nuklear");
 	//m_specificSelect[2].makeInactiveMats(m_matsForSelect3);
 	m_specificSelect[2].Init(cursor, font, 4, CFloatRect(0.15, 0.3, 0.15, 0.6)); labelMaker(2, 4, selectLabel);
 
 	selectLabel.clear();
-	selectLabel.push_back(" ControlCenter"); selectLabel.push_back(" anderes2"); selectLabel.push_back(" anderes3"); selectLabel.push_back(" anderes4"); selectLabel.push_back(" anderes5"); 
+	selectLabel.push_back(" ControlCenter"); selectLabel.push_back(" Foundry"); selectLabel.push_back(" Gravelplant"); selectLabel.push_back(" Mine"); selectLabel.push_back(" Treefarm"); 
 	//m_specificSelect[3].makeInactiveMats(m_matsForSelect4);
 	m_specificSelect[3].Init(cursor, font, 5, CFloatRect(0.15, 0.2, 0.15, 0.7)); labelMaker(3, 5, selectLabel);
 
@@ -150,6 +152,7 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	zv->AddOverlay(&m_statsBack);
 	zv->AddOverlay(&m_roboPopUP.m_main);
 	zv->AddOverlay(&m_apsPopup.m_main);
+	zv->AddOverlay(&m_barrackPopUp.m_main);
 	zv->AddOverlay(&m_CCpopup.m_main);
 	zv->AddOverlay(&m_wellPopup.m_main);
 	zv->AddOverlay(&m_FFPopup.m_main);
@@ -251,7 +254,10 @@ void UI::initRessource(CWritingFont* font) {
 	m_Ressources.AddWriting(&m_concreteMinusW);
 	m_Ressources.AddWriting(&m_woodMinusW);
 	m_Ressources.AddWriting(&m_steelMinusW);
-	
+	oldC = Player::Instance().getConcrete();
+	oldW = Player::Instance().getWood();
+	oldS = Player::Instance().getSteel();
+
 
 
 }
@@ -311,24 +317,30 @@ void UI::switchOnBuy(int res1, int res2, int res3) {
 
 
 void UI::updatePlayer() {
+	if (oldC != Player::Instance().getConcrete() || oldW != Player::Instance().getWood() || oldS != Player::Instance().getSteel()) {
+		m_concreteW.PrintInt(Player::Instance().getConcrete());
+		m_steelW.PrintInt(Player::Instance().getSteel());
+		m_woodW.PrintInt(Player::Instance().getWood());
 
-	m_concreteW.PrintInt(Player::Instance().getConcrete());
-	m_steelW.PrintInt(Player::Instance().getSteel());
-	m_woodW.PrintInt(Player::Instance().getWood());
-	std::string dumy;
-	dumy = std::to_string(Player::Instance().getConcretePM()) + "/min";
-	m_concretePM.PrintString(&dumy[0]);
-	dumy = std::to_string(Player::Instance().getSteelPM()) + "/min";
-	m_steelPM.PrintString(&dumy[0]);
-	dumy = std::to_string(Player::Instance().getWoodPM()) + "/min";
-	m_woodPM.PrintString(&dumy[0]);
+		std::string dumy;
+		dumy = std::to_string(Player::Instance().getConcretePM()) + "/min";
+		m_concretePM.PrintString(&dumy[0]);
+		dumy = std::to_string(Player::Instance().getSteelPM()) + "/min";
+		m_steelPM.PrintString(&dumy[0]);
+		dumy = std::to_string(Player::Instance().getWoodPM()) + "/min";
+		m_woodPM.PrintString(&dumy[0]);
 
-	m_woodW.SwitchOn();
-	m_concreteW.SwitchOn();
-	m_steelW.SwitchOn();
-	m_concreteMinusW.SwitchOff();
-	m_steelMinusW.SwitchOff();
-	m_woodMinusW.SwitchOff();
+		m_woodW.SwitchOn();
+		m_concreteW.SwitchOn();
+		m_steelW.SwitchOn();
+		m_concreteMinusW.SwitchOff();
+		m_steelMinusW.SwitchOff();
+		m_woodMinusW.SwitchOff();
+
+		oldC = Player::Instance().getConcrete();
+		oldW = Player::Instance().getWood();
+		oldS = Player::Instance().getSteel();
+	}
 }
 
 void UI::tooltip(std::string headline, int res1, int res2, int res3, CBuildingManager::Typ typ) {
@@ -338,8 +350,14 @@ void UI::tooltip(std::string headline, int res1, int res2, int res3, CBuildingMa
 	m_kosten3W.PrintInt(res3);
 	
 	switch (typ) {
+	case CBuildingManager::Typ::Barrack:
+		m_descriptionW1.PrintString("Wohnungen werden gebraucht, ");
+		m_descriptionW2.PrintString("um Bewohner anzusiedeln.");
+		m_descriptionW3.PrintString("Beim kauf werden der Siedlung");
+		m_descriptionW4.PrintString("Wohnungen hinzugefuegt.");
+		break;
 	case CBuildingManager::Typ::Apartment:
-		m_descriptionW1.PrintString("Wohnungen werden gebraucht ");
+		m_descriptionW1.PrintString("Wohnungen werden gebraucht, ");
 		m_descriptionW2.PrintString("um Bewohner anzusiedeln.");
 		m_descriptionW3.PrintString("Beim kauf werden der Siedlung");
 		m_descriptionW4.PrintString("Wohnungen hinzugefuegt.");
@@ -351,7 +369,7 @@ void UI::tooltip(std::string headline, int res1, int res2, int res3, CBuildingMa
 		m_descriptionW4.PrintString("wichtige Rohstoffe her.");
 		break;
 	case CBuildingManager::Typ::FoodFarm:
-		m_descriptionW1.PrintString("Essen wird gebraucht damit");
+		m_descriptionW1.PrintString("Essen wird gebraucht, damit");
 		m_descriptionW2.PrintString("Bewohner ueberleben koennen.");
 		m_descriptionW3.PrintString("Beim Kauf wird Nahrung");
 		m_descriptionW4.PrintString("der Siedlung hinzugefuegt");
@@ -394,12 +412,12 @@ void UI::tooltip(std::string headline, int res1, int res2, int res3, CBuildingMa
 		m_descriptionW4.PrintString("pro Minute Stahl.");
 		break;
 	case CBuildingManager::Typ::NuclearPowerPlant:
-		m_descriptionW1.PrintString("Strom wird gebraucht um");
+		m_descriptionW1.PrintString("Strom wird gebraucht, um");
 		m_descriptionW2.PrintString("Gebauede zuversorgen.");
 		m_descriptionW3.PrintString("Beim Kauf wird Strom");
 		m_descriptionW4.PrintString("der Siedlung hinzugefuegt.");
 	case CBuildingManager::Typ::SolarPowerPlant:
-		m_descriptionW1.PrintString("Strom wird gebraucht um");
+		m_descriptionW1.PrintString("Strom wird gebraucht, um");
 		m_descriptionW2.PrintString("Gebauede zuversorgen.");
 		m_descriptionW3.PrintString("Beim Kauf wird Strom");
 		m_descriptionW4.PrintString("der Siedlung hinzugefuegt.");
@@ -411,7 +429,7 @@ void UI::tooltip(std::string headline, int res1, int res2, int res3, CBuildingMa
 		m_descriptionW4.PrintString("pro Minute Holz.");
 		break;
 	case CBuildingManager::Typ::Well:
-		m_descriptionW1.PrintString("Wasser wird gebraucht um");
+		m_descriptionW1.PrintString("Wasser wird gebraucht, um");
 		m_descriptionW2.PrintString("Gebauede zuversorgen.");
 		m_descriptionW3.PrintString("Beim Kauf wird Wasser");
 		m_descriptionW4.PrintString("der Siedlung hinzugefuegt.");
@@ -648,6 +666,9 @@ popup* UI::getPopup(std::string type)
 	if (type == typeid(RobotFactory).name()) {
 		
 		return& m_roboPopUP;
+	}
+	if (type == typeid(Barrack).name()) {
+		return&m_barrackPopUp;
 	}
 	if (type == typeid(Apartment).name()) {
 		return&m_apsPopup;

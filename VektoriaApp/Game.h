@@ -31,7 +31,10 @@
 #include "UI.h"
 #include "Level.h"
 #include "Mission.h"
-
+#include "FoundryController.h"
+#include "GravelPlantController.h"
+#include "AssetManager.h"
+#include "StartScreen.h"
 #include "LevelManager.h"
 
 
@@ -48,7 +51,6 @@ public:
 	void Tick(float fTime, float fTimeDelta);													// Wird w�hrend der Laufzeit bei jedem Bildaufbau aufgerufen
 	void MakeMapSquares(CScene* m_zs);
 	void Fini();																				// Wird am Ende einmal aufgerufen
-
 	void WindowReSize(int iNewWidth, int iNewHeight);											// Wird immer dann aufgerufen, wenn der Benutzer die Fenstergr��e ver�ndert hat
 
 private:
@@ -65,10 +67,12 @@ private:
 	CImage m_zi;
 	CDeviceKeyboard m_zdk;
 	CDeviceMouse m_zdm;
+	
+	FoundryController foundryCtrl;
+	GravelPlantController gpCtrl;
 
 	//<Darius>
 	CCameraController CameraController;
-	CBuildingManager BuildingManager;
 	//</Darius>
 
 	//World Ground
@@ -98,6 +102,10 @@ private:
 
 	// Karo 
 	Load m_ldgame;
+
+
+	// Start-Screen
+	StartScreen m_startscr;
 };
 
 

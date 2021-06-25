@@ -34,9 +34,8 @@ void GameObject::TransformGeo()
 	}
 }
 
-
-
-void GameObject::setModel(char* modelpfad)
+//DEPRECATED - use setModel(AssetManager::Models) instead
+void GameObject::setModel(char* modelpfad) 
 {
 	m_model = m_modelPfad.LoadGeo(modelpfad, true);     // true; da die Texturen auf den Blender Modellen nicht richtig angezeigt werden
 	//m_model->GetChild()->SetName("GameObject");
@@ -45,9 +44,40 @@ void GameObject::setModel(char* modelpfad)
 	
 }
 
+void GameObject::setModel(AssetManager::Models model)
+{
+	CGeo* geo = AssetManager::getModel(model);
+	m_model = geo;
+	m_model->SetName("GameObject");
+}
+
 void GameObject::setMaterial(char* matPfad)
 {
 	m_material.MakeTextureSprite(matPfad);
+}
+
+void GameObject::setMaterial(char* matPfadB, char* matPfadD, char* matPfadG, char* matPfadS, char* matPfadH) // Texturierung mit Glow bei Nacht
+{
+	m_material.MakeTextureDiffuse(matPfadD);
+	m_material.MakeTextureGlow(matPfadG);
+	m_material.MakeTextureHeight(matPfadH);
+	m_material.MakeTextureBump(matPfadB);
+	m_material.MakeTextureSpecular(matPfadS);
+
+	m_material.SetGlowStrength(3.0f);
+}
+
+void GameObject::setMaterial(char* matPfadB, char* matPfadD, char* matPfadG, char* matPfadS, char* matPfadH, int spalt, int zeil, int fr) // Texturierung mit Glow und Animation
+{
+	m_material.MakeTextureDiffuse(matPfadD);
+	m_material.MakeTextureGlow(matPfadG);
+	//m_material.MakeTextureHeight(matPfadH);
+	//m_material.MakeTextureBump(matPfadB);
+	//m_material.MakeTextureSpecular(matPfadS);
+
+	m_material.SetTextureGlowWhite();
+	m_material.SetGlowStrength(3.0f);
+	m_material.SetAni(spalt, zeil, fr);
 }
 
 void GameObject::setAudio(CAudio* audio)

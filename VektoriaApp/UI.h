@@ -4,6 +4,7 @@
 #include "CBuildingManager.h"
 #include "RobotFactory.h"
 #include "Apartment.h"
+#include "Barrack.h"
 #include "ControlCenter.h"
 
 #include "FoodFarm.h"
@@ -136,6 +137,7 @@ public:
 
 
 	roboPopUp m_roboPopUP;
+	BarrackPopUp m_barrackPopUp;
 	ApsPopup m_apsPopup;
 	ControlCPopup m_CCpopup;
 	wellPopup m_wellPopup;
@@ -146,5 +148,8 @@ public:
 	CGuiButton m_missionen;
 	COverlay m_missionenBack;
 	CViewport* m_viewport;
+	int oldC = 0;
+	int oldW = 0;
+	int oldS = 0;
 };
 

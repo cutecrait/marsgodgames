@@ -12,7 +12,7 @@ public:
         howMuch = 80;
         Category = BuildingCategory::Industry;
 
-        setModel("models\\kraftwerk.obj");
+        setModel(AssetManager::Models::SolarPowerPlant);
         //this->getModel()->m_pmaterial->LoadPreset("Concrete");
     }
 

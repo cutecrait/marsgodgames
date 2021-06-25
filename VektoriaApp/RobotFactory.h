@@ -3,21 +3,20 @@
 #include "roboPopUp.h"
 #include "Player.h"
 #include "testRobo.h"
-#include "JobController.h"
-
 class RobotFactory :
 	public Building
 {
 public:
-	RobotFactory() {
-		PowerUse = 5;
-		WaterUse = 0;
-		NutrientUse = 0;
+    RobotFactory() {
+        PowerUse = 5;
+        WaterUse = 0;
+        NutrientUse = 0;
+        
+        Category = BuildingCategory::Industry;
 
-		Category = BuildingCategory::Industry;
-		setModel("models\\monkey.obj");
-		// set model
-		// set material
+        setModel(AssetManager::Models::RobotFactory);
+        this->setMaterial("textures\\RobotFactoryTex.png");
+        this->getModel()->SetMaterial(this->getMaterial());
 
 		setAudio(&CAudioManager::Instance().Local_RobotFactory);
 	}

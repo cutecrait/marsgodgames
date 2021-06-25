@@ -6,6 +6,8 @@ class FoodFarm :
     public Building
 {
 public:
+    GameObject* linkedPlant = nullptr;
+
     FoodFarm() {
         PowerUse = 5;
         WaterUse = 5;
@@ -14,8 +16,17 @@ public:
 
         Category = BuildingCategory::Farming;
 
-        setModel("models\\monkey.obj");
+        setModel(AssetManager::Models::FoodFarm);
         // set material
+        char* base = "textures\\FoodFarmTex\\FoodFarmTex_Base_Color.png";
+        char* glow = "textures\\FoodFarmTex\\FoodFarmTex_Emissive.png";
+        char* spec = "textures\\FoodFarmTex\\FoodFarmTex_Metallic.png";
+        char* height = "textures\\FoodFarmTex\\FoodFarmTex_Height.png";
+        char* bump = "textures\\FoodFarmTex\\FoodFarmTex_Roughness.png";
+
+
+        this->setMaterial(bump, base, glow, spec, height);
+        this->getModel()->SetMaterial(this->getMaterial());
     }
    
 

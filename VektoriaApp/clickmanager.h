@@ -64,7 +64,7 @@ private:
 	MapSquare* mapsquares;
 	CPlacement* targetPos;
 	UI* m_menu;
-	CBuildingManager::Typ dumyTyp;
+	CBuildingManager::Typ dumyTyp = CBuildingManager::Typ::None;
 	/*BeispielForGameObject MONKY;
 	BeispielForGameObject* Wohnung[20];*/
 
@@ -75,7 +75,8 @@ private:
 	bool saveable = true;
 	MapTile* pickedTile = nullptr;
 	MapTile* TileForAddNewBuilding = nullptr;
-	Building* onClickBuilding;
+	Building* BuildingForEffi;
+	CGameObjectPlacement* forEffi;
 	bool notInMenu = false;
 	CGeo* selectedGeo;
 	Building* selectedBuilding;

@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 
 #include "Vektoria\Root.h"
 #include "Node.h"

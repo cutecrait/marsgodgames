@@ -4,16 +4,16 @@
 #include "popup.h"
 
 enum class BuildingCategory {
-	None,
-	Living,
-	Farming,
-	Industry,
-	Robotics
+    None,
+    Living,
+    Farming,
+    Industry,
+    Robotics
 };
 
 
 class Building :
-	public GameObject
+    public GameObject
 {
 public:
 
@@ -27,6 +27,7 @@ public:
 	};
 
 	virtual Resources getBuildCost() = 0;
+	virtual void destroy() {}
 	virtual void OnClick() {}
 	virtual int decision() { return true; }
 	virtual void setPopup(popup*) {}
@@ -58,4 +59,3 @@ private:
 	/// </summary>
 	Vektoria::CHVector* _nodeOffset;
 };
-

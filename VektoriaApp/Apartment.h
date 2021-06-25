@@ -13,8 +13,17 @@ public:
         howMuch = 10;
         Category = BuildingCategory::Living;
 
-        setModel("models\\Kraftwerk.obj");
-        this->setMaterial("textures\\KraftwerkTex.png");
+        //setModel("models\\Apartment.obj");
+        setModel(AssetManager::Models::Apartment);
+
+        char* base = "textures\\ApartmentTex\\ApartmentTex_Base_Color.png";
+        char* glow = "textures\\ApartmentTex\\ApartmentTex_Emissive.png";
+        char* spec = "textures\\ApartmentTex\\ApartmentTex_Metallic.png";
+        char* height = "textures\\ApartmentTex\\ApartmentTex_Height.png";
+        char* bump = "textures\\ApartmentTex\\ApartmentTex_Roughness.png";
+
+
+        this->setMaterial(bump, base, glow, spec, height);
         this->getModel()->SetMaterial(this->getMaterial());
       
     }

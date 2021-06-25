@@ -6,7 +6,7 @@ using namespace Vektoria;
 class LightingManager
 {
 public:
-	void Init(CScene* scene, CPlacement* cameraPlacement);
+	void Init(CScene*, CPlacement*, CViewport*);
 	void Tick(float fTimeDelta);
 	// gets the time of day from 0 - 900
 	// 0 = break of dawn
@@ -18,15 +18,15 @@ public:
 
 private:
 	const bool debug = true;
-	bool recalc = false;
 	float time = 0.0f;
 	float timeScale = 1.0f;
-	const float duskTime = 600.f;
 	const float dayLength = 900.f;
-	const float dawnFade = 20.f;
-	const float duskFade = dawnFade;
-	const float anglePerSecond = -PI / duskTime;
+	const float dawnStart = 550.f;
+	const float dawnEnd = 750.f;
+	const float duskStart = 150.f;
+	const float duskEnd = 350.f;
 
+	CViewport* viewport;
 	CScene* scene;
 	CLightParallel nightLight;
 	CLightParallel sun;
@@ -35,7 +35,7 @@ private:
 	CHVector sunAxis = CHVector(1.0f, 0.0f, 1.0f, 0.0f);
 	CColor sunColor = CColor(1.0f, 0.9f, 0.9f);
 	CColor nightColor = CColor(0.5f, 0.3f, 0.8f);
-
-	void setSunDirection(CPlacement* p);
+	CColor dawnAmbientColor = CColor(0.2f, 0.15f, 0.1f);
+	CColor duskAmbientColor = CColor(0.15f, 0.07f, 0.2f);
 };
 

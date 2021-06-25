@@ -4,6 +4,7 @@
 #include "BeispielForGameObject.h"
 #include "Vektoria\Root.h"
 #include "Apartment.h"
+#include "Barrack.h"
 #include "Building.h"
 #include "ControlCenter.h"
 #include "FoodFarm.h"
@@ -18,6 +19,8 @@
 #include "SolarPowerPlant.h"
 #include "TreeFarm.h"
 #include "Well.h"
+#include "Player.h"
+#include "CBuildingManager.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -35,49 +38,26 @@ private:
 	CTerrain m_lterrain;
 	CGeoTerrains m_lcollisionterr;
 	
-	//GOs
-	BeispielForGameObject* beisforgamobj;
-	Apartment* apartment;
-	ControlCenter* controlcenter;
-	FoodFarm* foodfarm;
-	Foundry* foundry;
-	GravelPlant* gravelplant;
-	Hospital* hospital;
-	Laboratory* laboratory;
-	Launchpad* launchpad;
-	Mine* mine; 
-	NuclearPowerPlant* nuclearpowerplant;
-	RobotFactory* robotfactory;
-	SolarPowerPlant* solarpowerplant;
-	TreeFarm* treefarm;
-	Well* well;
-	GameObject* geo_arr[100];
-	
-	CPlacement* m_placements[100];
 	int pos_id;
-	float* pos_arr[100];
 	int obj_cnt;
-	GameObject* GetGeos(int i);
-	void SetGeos(GameObject* GO, int id);
-
 
 
 public:
     Load();
 	~Load();
+	void loadPlayerDetails();
 	void LoadPlacements(CScene scene); //erstellt Placements
 	void AttachGeos();
 	void getGoID();
 	bool fileExists(const char * file_name );
-	void setPosArray(float x, float y, float z);
-	void SetPlacement(float x, float z, GameObject*geo);
-	GameObject *getObj(std::string obj_name);
+	CBuildingManager::Typ getTyp(std::string obj_name);
+	void AddBuilding();
 	CPlacement *LoadTerrain();
-	CPlacement* TestCube();
-	CPlacement* GetPlacements(int i);
+	void setPlayerDetails();
 	void readPos();
 	int getObjCount();
 	int* LoadPlayerStats();
+	int playerdets[15];
 	
 	//Karo end
 };

@@ -1,9 +1,14 @@
 #pragma once
 #include "Building.h"
+#include "CGameObjectPlacement.h"
+
 class Mine :
     public Building
 {
 public:
+    GameObject* linkedFoundry = nullptr;
+    GameObject* linkedGravelPlant = nullptr;
+
     Mine() {
         PowerUse = 30;
         WaterUse = 2;
@@ -11,10 +16,12 @@ public:
 
         Category = BuildingCategory::Industry;
 
-        setModel("models\\monkey.obj");
+        setModel(AssetManager::Models::Mine);
         // set material
+        this->setMaterial("textures\\felstor\\Material.001_Base_Color.png");
+        this->getModel()->SetMaterial(this->getMaterial());
         setAudio(&CAudioManager::Instance().Local_Mine);
-    }
+    };
 
     Resources getBuildCost() {
         Resources cost;
@@ -22,5 +29,5 @@ public:
         cost.Concrete = 80;
         cost.Wood = 60;
         return cost;
-    }
+    };
 };
