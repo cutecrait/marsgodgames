@@ -25,6 +25,16 @@ void MapTile::setOwnMaterial()
 	
 }
 
+CPlacement* MapTile::GetNodePlacement()
+{
+	return _nodePlacement;
+}
+
+Pathfinding::Node* MapTile::GetNode()
+{
+	return _node;
+}
+
 void MapSquare::DeselectMapTile(MapTile* tile)
 {
 	if ((tile == NULL && lastSelected == NULL) || tile == lastSelected)
@@ -47,7 +57,6 @@ void MapSquare::setLevel(CDeviceKeyboard* m_zdk)
 {
 	if (m_zdk->KeyDown(DIK_1))
 	{
-
 		for (int i = 0; i < m_iPlacements; i++)
 		{
 			CHVector temp = m_applacement[i]->GetPos();
@@ -65,7 +74,7 @@ void MapSquare::setLevel(CDeviceKeyboard* m_zdk)
 		{
 			CHVector temp = m_applacement[i]->GetPos();
 
-			m_applacement[i]->SwitchOn();
+			m_applacement[i]->SwitchOn();			
 
 			if ((temp.m_fz < 2 || temp.m_fz > 15) || (temp.m_fx < 2 || temp.m_fx > 15))
 			{
@@ -98,6 +107,11 @@ MapTile::MapTile(float x, float y, float z, float size, MapSquare* map)
 	//MainGeo->m_pmaterial->Translate(CColor(0.6, 0.0, 0.0));
 	MainGeo->Center();
 	m_mapPointer = map;
+	
+	//Pathfinding Node
+	_nodePlacement = new CPlacement();
+	this->AddPlacement(_nodePlacement);
+	_node = new Pathfinding::Node(_nodePlacement);
 }
 
 MapSquare::MapSquare()

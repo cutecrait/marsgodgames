@@ -1,6 +1,8 @@
 #include "Game.h"
 #include "Player.h"
 #include "Apartment.h"
+#include "NodeController.h"
+
 CGame::CGame(void)
 {
 
@@ -20,14 +22,14 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	//m_zf.SetApiSound(eApiSound_DirectSound);
 	m_zf.Init(hwnd, procOS);
 	m_zr.AddFrame(&m_zf);
-	m_level1 = new LevelSystem::Level("ultra", 1000,1);
-	m_level1->AddMission(new LevelSystem::Mission("Kaufe Roboterfabrik",typeid(RobotFactory).name(), 0, 1));
-	m_level1->AddMission(new LevelSystem::Mission("Kaufe drei Bauroboter",typeid(testRobo).name() , 0, 3));
+	m_level1 = new LevelSystem::Level("ultra", 1000, 1);
+	m_level1->AddMission(new LevelSystem::Mission("Kaufe Roboterfabrik", typeid(RobotFactory).name(), 0, 1));
+	m_level1->AddMission(new LevelSystem::Mission("Kaufe drei Bauroboter", typeid(testRobo).name(), 0, 3));
 
-	m_level2 = new LevelSystem::Level("cool", 1000,2);
+	m_level2 = new LevelSystem::Level("cool", 1000, 2);
 	m_level2->AddMission(new LevelSystem::Mission("Kaufe zwei Landwirtroboter", typeid(testRobo).name(), 0, 2));
 	m_level2->AddMission(new LevelSystem::Mission("Kaufe ein Apartment", typeid(Apartment).name(), 0, 1));
-	
+
 	m_level3 = new LevelSystem::Level("cool", 1000, 3);
 
 	LevelSystem::LevelManager::Instance().AddLevel(m_level1);
@@ -42,11 +44,11 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_zs.AddPlacement(&m_zpCamera);
 	m_zpCamera.AddCamera(&m_zc);
 	m_zf.AddViewport(&m_zv);
-	
+
 	m_zpCamera.RotateX(-QUARTERPI); //45°-Winkel
 	m_zpCamera.RotateYDelta(PI + QUARTERPI);
 	m_zpCamera.TranslateDelta(0, 5.f, 0);
-	
+
 	//<Darius>
 	CameraController.AssignCameraPlacement(&m_zpCamera);
 	CameraController.AssignDeviceKeyboard(&m_zdk);
@@ -112,7 +114,7 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 
 	// lighting
 	lightingManager.Tick(0);
-	
+
 
 	derManager.Click(fTimeDelta, &einCursor, LevelSystem::LevelManager::Instance().GetCurrentLevel());
 
@@ -127,20 +129,40 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 
 void CGame::MakeMapSquares(CScene* m_zs)
 {
-	for (int iz = 0; iz < 18; iz++)
+	//TODO Klassenvariable???
+	const int xSize = 18;
+	const int zSize = 18;
+	const int offset = 4;
+	const int tileSize = 2;
+
+	MapTile* tiles[xSize] = {};
+
+	for (int iz = 0; iz < zSize; iz++)
 	{
-		for (int ix = 0; ix < 18; ix++)
+		for (int ix = 0; ix < xSize; ix++)
 		{
-			auto sqr = new MapTile(ix, 0.0, iz, 2, &mapSquare);
+			auto sqr = new MapTile(ix, 0.0, iz, tileSize, &mapSquare);
 			m_zs->AddPlacement(sqr);
 			mapSquare.Add(sqr);
 
+			//Pathfinding
+			Pathfinding::Node* n = sqr->GetNode();
+			//Verbinding zur vorherigen Reihe (Verbindung Nord Süd)
+			if (iz > 0)
+				tiles[ix]->GetNode()->AddTwoWayConnection(n, tileSize);
+			//Setzte Element in Reihe neu
+			tiles[ix] = sqr;
+			//Verbindung vorherige und aktuelle Kachel der Reihe (Verbindung Ost West)
+			if (ix - 1 > 0)
+				tiles[ix - 1]->GetNode()->AddTwoWayConnection(n, tileSize);
+
+			Pathfinding::NodeController::Instance().AddNode(n);
+
 			// Schalte alle Tiles aus, die nicht im ersten Quadrat enthalten sind
-			if ((iz < 4 || iz > 13) || (ix < 4 || ix > 13))
+			if ((iz < offset || iz > zSize - offset - 1) || (ix < offset || ix > xSize - offset - 1))
 				sqr->SwitchOff();
 		}
 	}
-
 }
 
 void CGame::Fini()

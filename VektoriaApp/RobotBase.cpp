@@ -4,18 +4,18 @@
 #include "CheckPathDecision.h"
 #include "NodeController.h"
 
-RobotBase::RobotBase(Pathfinding::Node* startingnode, float maximumvelocity, float maximumforce, float maximumrotation)
+RobotBase::RobotBase(Pathfinding::Node* startingnode, float maximumvelocity, float maximumforce, char* model, float scale)
 {
 	//Init
 	_placementRoot = new Vektoria::CPlacement();
-	_placementRoot->Translate(*(startingnode->GetPosVector()));
 	_rotationPlacement = new Vektoria::CPlacement();
 	_placementRoot->AddPlacement(_rotationPlacement);
 
+	SetNode(startingnode);
+
 	//Init SteeringController
 	_steeringController =
-		new Movement::SteeringController(_placementRoot, _rotationPlacement, maximumvelocity, maximumforce, maximumrotation);
-	_steeringController->SetCurrent(startingnode);
+		new Movement::SteeringController(_placementRoot, _rotationPlacement, maximumvelocity, maximumforce);
 
 	//Init PathController
 	_pathController = new Pathfinding::PathController();
@@ -41,14 +41,11 @@ RobotBase::RobotBase(Pathfinding::Node* startingnode, float maximumvelocity, flo
 	idleState->AddTransition(toAction);
 	_stateController->SetState(idleState);
 
-	//TODO Enable
 	//Model
-	setModel("models\\Rover.obj");
+	setModel(model);
 	_rotationPlacement->AddGeo(getModel());
-	_rotationPlacement->ScaleDelta(0.01);
+	_rotationPlacement->ScaleDelta(scale);
 
-	//test only - used cause loadtime while debug
-	//CreateMesh();
 }
 
 RobotBase::~RobotBase()
@@ -72,34 +69,17 @@ Vektoria::CPlacement* RobotBase::GetPlacement()
 	return _placementRoot;
 }
 
+void RobotBase::SetNode(Pathfinding::Node* node)
+{
+	if (node)
+		_placementRoot->Translate(*(node->GetPosVector()));
+
+	_steeringController->SetCurrent(node);
+}
+
 void RobotBase::SetPath(Pathfinding::Node* node, bool repeat)
 {
 	std::vector<Pathfinding::Node*> path =
 		Pathfinding::NodeController::Instance().GetPath(_steeringController->GetNodePosition(), node);
 	_pathController->SetPath(path, repeat);
-}
-
-void RobotBase::CreateMesh()
-{
-	//Init
-	float body_radius = 1.0f;
-
-	Vektoria::CGeoSphere* body = new Vektoria::CGeoSphere();
-	Vektoria::CPlacement* body_placement = new Vektoria::CPlacement;
-
-	Vektoria::CMaterial* body_material = new Vektoria::CMaterial();
-
-	body->Init(body_radius, NULL);
-
-	//Materials
-	body_material->MakeTextureDiffuse("textures\\black_image.jpg");
-	body_material->Translate(Vektoria::CColor(0.1f, 0.9f, 0.f));
-	body->SetMaterial(body_material);
-
-	//Geo
-	body_placement->AddGeo(body);
-
-	//Placement
-	body_placement->TranslateY(body_radius);
-	_placementRoot->AddPlacement(body_placement);
 }

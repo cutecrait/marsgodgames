@@ -7,8 +7,7 @@ namespace Movement
 		Vektoria::CPlacement* placement,
 		Vektoria::CPlacement* rotationplacement,
 		float maximumvelocity,
-		float maximumforce,
-		float maximumrotation)
+		float maximumforce)
 	{
 		_placement = placement;
 		_rotationPlacement = rotationplacement;
@@ -16,7 +15,6 @@ namespace Movement
 		_target = nullptr;
 		_maximumVelocity = maximumvelocity;
 		_maximumForce = maximumforce;
-		_maximumRotation = maximumrotation;
 		_velocity = new Vektoria::CHVector(0.f, 0.f, 0.f);
 	}
 

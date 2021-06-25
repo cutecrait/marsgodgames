@@ -242,13 +242,23 @@ void CBuildingManager::AddNewBuilding(Typ t, MapTile* targetTile)
 	gop->Translate(targetTile->GetPos());
 	targetTile->Free = false;
 
+	//Pfadfindung
+	//Translate Kachelknoten nach Gebäudeart (default = 0,0,0)
+	targetTile->GetNodePlacement()->Translate(*(newBuilding->GetNodeOffset()));
+	//Setze Kachelknoten als Ausgangsknoten (wenn RobotFactory gebaut)
+	if (t == Typ::RobotFactory)
+		JobSystem::JobController::Instance().AddFactory(targetTile->GetNode());
+	//Setze Kachelknoten als Zielknoten
+	else
+		JobSystem::JobController::Instance().AddTargetNode(targetTile->GetNode());
+
 	gop->SwitchOn();
 
 	IncreaseNrOfBuildings(t);
 	gop->setBuildStatus(true);
 
-	if(gop->getGameObject()->getAudio())
-	gop->m_paudios->m_apaudio[0]->Loop();
+	if (gop->getGameObject()->getAudio())
+		gop->m_paudios->m_apaudio[0]->Loop();
 
 	Save save;
 	save.fillPosAr(gop->getGameObject(), gop->GetPos().GetX(), gop->GetPos().GetZ());

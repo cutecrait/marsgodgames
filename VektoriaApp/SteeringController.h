@@ -15,8 +15,7 @@ namespace Movement
 			Vektoria::CPlacement* placement,
 			Vektoria::CPlacement* rotationplacement,
 			float maximumVelocity,
-			float maximumforce,
-			float maximumrotation);
+			float maximumforce);
 
 		void Update(float timedelta);
 
@@ -34,7 +33,6 @@ namespace Movement
 
 		float _maximumVelocity;
 		float _maximumForce;
-		float _maximumRotation;
 
 		Vektoria::CHVector* _velocity;
 

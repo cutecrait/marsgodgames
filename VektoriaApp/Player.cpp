@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "JobController.h"
 
 Player::Player()
 {
@@ -36,4 +37,26 @@ int Player::getZufriedenheit2()
 int Player::getZufriedenheit3()
 {
 	return 0;
+}
+
+void Player::AddFarmingRobot(int count)
+{
+	_farmingRobots += count;
+	JobSystem::JobController::Instance().ActivateFarmingRobot(count);
+}
+
+void Player::AddMiningRobot(int count)
+{
+	_miningRobots += count;
+	JobSystem::JobController::Instance().ActivateMiningRobot(count);
+}
+
+int Player::GetFarmingRobot()
+{
+	return _farmingRobots;
+}
+
+int Player::GetMiningRobot()
+{
+	return _miningRobots;
 }

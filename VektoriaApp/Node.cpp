@@ -13,6 +13,17 @@ namespace Pathfinding
 	{
 	}
 
+	void Node::AddConnection(Node* node, int cost)
+	{
+		AddConnection(new Connection(node, cost));
+	}
+
+	void Node::AddTwoWayConnection(Node* node, int cost)
+	{
+		AddConnection(new Connection(node, cost));
+		node->AddConnection(this, cost);
+	}
+
 	void Node::AddConnection(Connection* connection)
 	{
 		_connections.push_back(connection);

@@ -21,9 +21,6 @@
     <ClCompile Include="SteeringController.cpp">
       <Filter>Robot\Movement</Filter>
     </ClCompile>
-    <ClCompile Include="RobotBase.cpp">
-      <Filter>Robot</Filter>
-    </ClCompile>
     <ClCompile Include="StateController.cpp">
       <Filter>Robot\AI</Filter>
     </ClCompile>
@@ -150,6 +147,19 @@
     <ClCompile Include="CheckPathDecision.cpp">
       <Filter>Robot\AI\Decision</Filter>
     </ClCompile>
+    <ClCompile Include="Building.cpp" />
+    <ClCompile Include="RobotBase.cpp">
+      <Filter>Robot\RobotTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="FarmingRobot.cpp">
+      <Filter>Robot\RobotTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="MiningRobot.cpp">
+      <Filter>Robot\RobotTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="JobController.cpp">
+      <Filter>Robot\JobSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -172,9 +182,6 @@
     </ClInclude>
     <ClInclude Include="SteeringController.h">
       <Filter>Robot\Movement</Filter>
-    </ClInclude>
-    <ClInclude Include="RobotBase.h">
-      <Filter>Robot</Filter>
     </ClInclude>
     <ClInclude Include="StateController.h">
       <Filter>Robot\AI</Filter>
@@ -357,6 +364,18 @@
     <ClInclude Include="CheckPathDecision.h">
       <Filter>Robot\AI\Decision</Filter>
     </ClInclude>
+    <ClInclude Include="RobotBase.h">
+      <Filter>Robot\RobotTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="FarmingRobot.h">
+      <Filter>Robot\RobotTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="MiningRobot.h">
+      <Filter>Robot\RobotTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="JobController.h">
+      <Filter>Robot\JobSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VektoriaApp.rc" />
@@ -427,6 +446,12 @@
     </Filter>
     <Filter Include="UI\popups">
       <UniqueIdentifier>{d81b4f20-7616-4341-839a-4cda784b8c6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Robot\RobotTypes">
+      <UniqueIdentifier>{452faa25-3969-4ceb-80e3-cf4728d59129}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Robot\JobSystem">
+      <UniqueIdentifier>{d5245675-d85e-48aa-80a3-1764c0a09377}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

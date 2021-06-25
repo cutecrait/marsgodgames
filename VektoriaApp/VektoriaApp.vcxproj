@@ -164,6 +164,7 @@
     <ClInclude Include="ControlCPopup.h" />
     <ClInclude Include="CTerrain.h" />
     <ClInclude Include="Decision.h" />
+    <ClInclude Include="FarmingRobot.h" />
     <ClInclude Include="FollowPathAction.h" />
     <ClInclude Include="FoodFarm.h" />
     <ClInclude Include="FoodFarmPopup.h" />
@@ -186,10 +187,12 @@
     <ClInclude Include="LabPopup.h" />
     <ClInclude Include="Launchpad.h" />
     <ClInclude Include="Mine.h" />
+    <ClInclude Include="MiningRobot.h" />
     <ClInclude Include="NuclearPopup.h" />
     <ClInclude Include="popup.h" />
     <ClInclude Include="roboPopUp.h" />
     <ClInclude Include="RobotFactory.h" />
+    <ClInclude Include="JobController.h" />
     <ClInclude Include="SolarPopup.h" />
     <ClInclude Include="PathController.h" />
     <ClInclude Include="testRobo.h" />
@@ -226,6 +229,7 @@
     <ClCompile Include="ApsPopup.cpp" />
     <ClCompile Include="AStarAlgorithm.cpp" />
     <ClCompile Include="BeispielForGameObject.cpp" />
+    <ClCompile Include="Building.cpp" />
     <ClCompile Include="CAudioManager.cpp" />
     <ClCompile Include="CBuildingManager.cpp" />
     <ClCompile Include="CCameraController.cpp" />
@@ -234,6 +238,7 @@
     <ClCompile Include="ControlCPopup.cpp" />
     <ClCompile Include="CTerrain.cpp" />
     <ClCompile Include="Decision.cpp" />
+    <ClCompile Include="FarmingRobot.cpp" />
     <ClCompile Include="FollowPathAction.cpp" />
     <ClCompile Include="FoodFarmPopup.cpp" />
     <ClCompile Include="FoundryPopup.cpp" />
@@ -254,6 +259,7 @@
     <ClCompile Include="GuiSelect.cpp" />
     <ClCompile Include="GuiSlider.cpp" />
     <ClCompile Include="MapTile.cpp" />
+    <ClCompile Include="MiningRobot.cpp" />
     <ClCompile Include="Mission.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="NodeController.cpp" />
@@ -263,6 +269,7 @@
     <ClCompile Include="roboPopUp.cpp" />
     <ClCompile Include="RobotBase.cpp" />
     <ClCompile Include="PathController.cpp" />
+    <ClCompile Include="JobController.cpp" />
     <ClCompile Include="Save.cpp" />
     <ClCompile Include="SolarPopup.cpp" />
     <ClCompile Include="State.cpp" />
