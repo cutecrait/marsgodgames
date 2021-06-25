@@ -212,6 +212,7 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 		m_menu->m_missionenBack.SwitchOff();
 		
 	}
+	m_menu->updatePlayer();
 }
 
 

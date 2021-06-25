@@ -148,5 +148,8 @@ public:
 	CGuiButton m_missionen;
 	COverlay m_missionenBack;
 	CViewport* m_viewport;
+	int oldC = 0;
+	int oldW = 0;
+	int oldS = 0;
 };
 

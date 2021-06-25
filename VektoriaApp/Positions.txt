@@ -1,3 +1,2 @@
 ControlCenter, 4, 4
 Launchpad, 4, 6
-FoodFarm, 6, 5
