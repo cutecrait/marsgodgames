@@ -14,7 +14,14 @@ public:
 
         setModel(AssetManager::Models::ControlCenter);
         //setModel("models\\controlcenter.obj");
-        this->setMaterial("textures\\controlcenter\\base_color.png");
+
+        char* base = "textures\\controlcenter\\base_color.png";
+        char* glow = "textures\\controlcenter\\emissive.png";
+        char* spec = "textures\\controlcenter\\metallic.png";
+        char* height = "textures\\controlcenter\\height.png";
+        char* bump = "textures\\controlcenter\\Roughness.png";
+
+        this->setMaterial(bump, base, glow, spec, height);
         this->getModel()->SetMaterial(this->getMaterial());
         // set material
         
