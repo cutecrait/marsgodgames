@@ -1,4 +1,5 @@
 #pragma once
+
 class Player
 {
 public:
@@ -15,18 +16,22 @@ public:
 
 	void initPlayer(int, int, int);
 
-	void gainConcrete(int i) { concrete += i; }
+	void gainConcrete(int i) {concrete += i;}
 	void gainSteel(int i) { steel += i; }
 	void gainWood(int i) { wood += i; }
 	int getConcrete() { return concrete; }
 	int getSteel() { return steel; }
 	int getWood() { return wood; }
 
-	void setConcrete(int x) { concrete = 0; }
+	
+	void setConcrete(int x) {
+		concrete = 0;
+		
+	}
 	void setSteel(int x) { steel = 0; }
 	void setWood(int x) { wood = 0; }
 
-	void setConcretePM(int i) { concretePMinute += i; }
+	void setConcretePM(int i) { concretePMinute += i;}
 	void setSteelPM(int i) { steelPMinute += i; }
 	void setWoodPM(int i) { woodPMinute += i; }
 	int getConcretePM() { return concretePMinute; }

@@ -254,7 +254,10 @@ void UI::initRessource(CWritingFont* font) {
 	m_Ressources.AddWriting(&m_concreteMinusW);
 	m_Ressources.AddWriting(&m_woodMinusW);
 	m_Ressources.AddWriting(&m_steelMinusW);
-	
+	oldC = Player::Instance().getConcrete();
+	oldW = Player::Instance().getWood();
+	oldS = Player::Instance().getSteel();
+
 
 
 }
@@ -314,24 +317,30 @@ void UI::switchOnBuy(int res1, int res2, int res3) {
 
 
 void UI::updatePlayer() {
+	if (oldC != Player::Instance().getConcrete() || oldW != Player::Instance().getWood() || oldS != Player::Instance().getSteel()) {
+		m_concreteW.PrintInt(Player::Instance().getConcrete());
+		m_steelW.PrintInt(Player::Instance().getSteel());
+		m_woodW.PrintInt(Player::Instance().getWood());
 
-	m_concreteW.PrintInt(Player::Instance().getConcrete());
-	m_steelW.PrintInt(Player::Instance().getSteel());
-	m_woodW.PrintInt(Player::Instance().getWood());
-	std::string dumy;
-	dumy = std::to_string(Player::Instance().getConcretePM()) + "/min";
-	m_concretePM.PrintString(&dumy[0]);
-	dumy = std::to_string(Player::Instance().getSteelPM()) + "/min";
-	m_steelPM.PrintString(&dumy[0]);
-	dumy = std::to_string(Player::Instance().getWoodPM()) + "/min";
-	m_woodPM.PrintString(&dumy[0]);
+		std::string dumy;
+		dumy = std::to_string(Player::Instance().getConcretePM()) + "/min";
+		m_concretePM.PrintString(&dumy[0]);
+		dumy = std::to_string(Player::Instance().getSteelPM()) + "/min";
+		m_steelPM.PrintString(&dumy[0]);
+		dumy = std::to_string(Player::Instance().getWoodPM()) + "/min";
+		m_woodPM.PrintString(&dumy[0]);
 
-	m_woodW.SwitchOn();
-	m_concreteW.SwitchOn();
-	m_steelW.SwitchOn();
-	m_concreteMinusW.SwitchOff();
-	m_steelMinusW.SwitchOff();
-	m_woodMinusW.SwitchOff();
+		m_woodW.SwitchOn();
+		m_concreteW.SwitchOn();
+		m_steelW.SwitchOn();
+		m_concreteMinusW.SwitchOff();
+		m_steelMinusW.SwitchOff();
+		m_woodMinusW.SwitchOff();
+
+		oldC = Player::Instance().getConcrete();
+		oldW = Player::Instance().getWood();
+		oldS = Player::Instance().getSteel();
+	}
 }
 
 void UI::tooltip(std::string headline, int res1, int res2, int res3, CBuildingManager::Typ typ) {
