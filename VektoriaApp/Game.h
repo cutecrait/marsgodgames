@@ -52,7 +52,7 @@ public:
 	void MakeMapSquares(CScene* m_zs);
 	void Fini();																				// Wird am Ende einmal aufgerufen
 	void WindowReSize(int iNewWidth, int iNewHeight);											// Wird immer dann aufgerufen, wenn der Benutzer die Fenstergr��e ver�ndert hat
-
+	bool IWantToDIE = false;
 private:
     // Hier ist Platz f�r Deine Vektoriaobjekte:
 
@@ -102,7 +102,7 @@ private:
 
 	// Karo 
 	Load m_ldgame;
-
+	
 
 	// Start-Screen
 	StartScreen m_startscr;

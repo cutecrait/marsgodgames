@@ -138,6 +138,7 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 
 	if (m_startscr.update() == 1) {
 		menu.updatePlayer();
+		IWantToDIE = true;
 	}
 
 	//derManager.makeBuilding(selectedPlace,&einCursor);

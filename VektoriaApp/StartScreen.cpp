@@ -76,7 +76,7 @@ int StartScreen::update()
 		retval = 1;
 		LoadGame();
 		ULDebug("exit game");
-
+		
 		clickable = false;
 		return retval;
 	}
