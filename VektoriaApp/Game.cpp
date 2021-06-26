@@ -135,14 +135,17 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 	derManager.Click(fTimeDelta, &einCursor, LevelSystem::LevelManager::Instance().GetCurrentLevel());
 
 	// UI-----------------------------------
-
-	if (m_startscr.update() == 1) {
-		menu.updatePlayer();
-		
+	if (!ingame) {
+		int bla = m_startscr.update();
+		if (bla == 1) {
+			menu.updatePlayer();
+			ingame = true;
+		}
+		else if (bla == 2) {
+			IWantToDIE = true;
+		}
 	}
-	else if(m_startscr.update() == 2)
-		IWantToDIE = true;
-
+	
 	//derManager.makeBuilding(selectedPlace,&einCursor);
 	mapSquare.setLevel(&m_zdk);
 
