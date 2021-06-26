@@ -70,9 +70,9 @@ public:
 	void setModel(AssetManager::Models);
 
 	// Setzt die Textur
-	void setMaterial(char* );
-	void setMaterial(char*, char*, char*, char*, char*);
-	void setMaterial(char*, char*, char*, char*, char*, int, int, int);
+	void setMaterial(char*); //sprite only for testing
+	void setMaterial(char*, char*, char*, char*, char*); // with bump-, height-, glow-, & specular-map
+	void setMaterial(char*, char*, char*, char*, int, int, int); // with animation
 
 	void setAudio(CAudio*);
 

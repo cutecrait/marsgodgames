@@ -16,12 +16,12 @@ public:
 
         char* base = "textures\\WassertankTex\\Base_ani.png";
         char* glow = "textures\\WassertankTex\\Emissive_ani.png";
-        char* spec = "textures\\WassertankTex\\WassertankTex_Metallic.png";
-        char* height = "textures\\WassertankTex\\WassertankTex_Height.png";
-        char* bump = "textures\\WassertankTex\\WassertankTex_Roughness.png";
+        char* spec = "textures\\WassertankTex\\Metallic_ani.png";
+        char* bump = "textures\\WassertankTex\\Roughness_ani.png";
 
 
-        this->setMaterial(bump, base, glow, spec, height, 3, 5, 6);
+        this->setMaterial(base, bump, glow, spec, 3, 5, 6);
+        this->getModel()->SetMaterial(this->getMaterial());
         this->getModel()->SetMaterial(this->getMaterial());
 
         setAudio(&CAudioManager::Instance().Local_Well);

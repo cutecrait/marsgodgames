@@ -16,12 +16,11 @@ public:
 
         char* base = "textures\\LaboratoryTex\\Base_ani.png";
         char* glow = "textures\\LaboratoryTex\\Emissive_ani.png";
-        char* spec = "textures\\LaboratoryTex\\LabTex_Metallic.png";
-        char* height = "textures\\LaboratoryTex\\LabTex_Height.png";
-        char* bump = "textures\\LaboratoryTex\\LabTex_Roughness.png";
+        char* spec = "textures\\LaboratoryTex\\Metallic_ani.png";
+        char* bump = "textures\\LaboratoryTex\\Roughness_ani.png";
 
 
-        this->setMaterial(bump, base, glow, spec, height, 3, 5, 6);
+        this->setMaterial(base, bump, glow, spec, 3, 5, 6);
         this->getModel()->SetMaterial(this->getMaterial());
 
         setAudio(&CAudioManager::Instance().Local_Laboratory);
