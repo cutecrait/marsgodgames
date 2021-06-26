@@ -168,6 +168,7 @@
     <ClInclude Include="ControlCPopup.h" />
     <ClInclude Include="CTerrain.h" />
     <ClInclude Include="Decision.h" />
+    <ClInclude Include="TreeFarmController.h" />
     <ClInclude Include="WoodRobot.h" />
     <ClInclude Include="FollowPathAction.h" />
     <ClInclude Include="FoodFarm.h" />
@@ -247,6 +248,7 @@
     <ClCompile Include="ControlCPopup.cpp" />
     <ClCompile Include="CTerrain.cpp" />
     <ClCompile Include="Decision.cpp" />
+    <ClCompile Include="TreeFarmController.cpp" />
     <ClCompile Include="WoodRobot.cpp" />
     <ClCompile Include="FollowPathAction.cpp" />
     <ClCompile Include="FoodFarmPopup.cpp" />

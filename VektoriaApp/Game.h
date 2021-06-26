@@ -33,6 +33,7 @@
 #include "Mission.h"
 #include "FoundryController.h"
 #include "GravelPlantController.h"
+#include "TreeFarmController.h"
 #include "AssetManager.h"
 #include "StartScreen.h"
 #include "LevelManager.h"
@@ -70,6 +71,7 @@ private:
 	
 	FoundryController foundryCtrl;
 	GravelPlantController gpCtrl;
+	TreeFarmController tfCtrl;
 
 	//<Darius>
 	CCameraController CameraController;

@@ -5,7 +5,10 @@ class TreeFarm :
     public Building
 {
 public:
+    float efficiency = 1.f;
+
     TreeFarm() {
+
         PowerUse = 5;
         WaterUse = 3;
         NutrientUse = 1;

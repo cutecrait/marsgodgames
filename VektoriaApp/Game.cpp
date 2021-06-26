@@ -119,6 +119,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 
 	foundryCtrl.Init();
 	gpCtrl.Init();
+	tfCtrl.Init();
 }
 
 void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
@@ -152,6 +153,7 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 	// buildings
 	gpCtrl.Update(fTimeDelta);
 	foundryCtrl.Update(fTimeDelta);
+	tfCtrl.Update(fTimeDelta);
 	JobSystem::JobController::Instance().Update(fTimeDelta);
 }
 
