@@ -111,7 +111,7 @@ MapTile::MapTile(float x, float y, float z, float size, MapSquare* map)
 	//Pathfinding Node
 	_nodePlacement = new CPlacement();
 	this->AddPlacement(_nodePlacement);
-	_node = new Pathfinding::Node(_nodePlacement);
+	_node = new Pathfinding::Node(this);
 }
 
 MapSquare::MapSquare()

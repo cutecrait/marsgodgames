@@ -12,8 +12,8 @@ namespace AI
 
 	void FollowPathAction::Act()
 	{
-		Vektoria::CHVector _current = *_steeringController->GetPosition();
-		Vektoria::CHVector _target = *_pathController->GetCurrentNode()->GetPosVector();
+		Vektoria::CHVector _current = _steeringController->GetPosition();
+		Vektoria::CHVector _target = _pathController->GetCurrentNode()->GetPosVector();
 		Vektoria::CHVector v_dist = _target - _current;
 		float _dist = v_dist.Length();
 

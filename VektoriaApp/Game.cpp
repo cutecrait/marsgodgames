@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Apartment.h"
 #include "NodeController.h"
+#include "JobController.h"
 
 CGame::CGame(void)
 {
@@ -22,32 +23,32 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	//m_zf.SetApiSound(eApiSound_DirectSound);
 	m_zf.Init(hwnd, procOS);
 	m_zr.AddFrame(&m_zf);
-	m_level1 = new LevelSystem::Level("ultra", 1000,1);
-	m_level1->AddMission(new LevelSystem::Mission("Kaufe Roboterfabrik",typeid(RobotFactory).name(), 0, 1));
-	m_level1->AddMission(new LevelSystem::Mission("Kaufe drei Bauroboter",typeid(testRobo).name() , 0, 3));
+	m_level1 = new LevelSystem::Level("ultra", 1000, 1);
+	m_level1->AddMission(new LevelSystem::Mission(1, "Kaufe Roboterfabrik", typeid(RobotFactory).name(), 0, 1));
+	m_level1->AddMission(new LevelSystem::Mission(2, "Kaufe drei Bauroboter", typeid(testRobo).name(), 0, 3));
 
 	AssetManager::Init("");
 
 	m_level1 = new LevelSystem::Level("Prolog", 1000, 1);
-	m_level1->AddMission(new LevelSystem::Mission("Baue 2 Apartments",typeid(Apartment).name(), 0, 2));
-	m_level1->AddMission(new LevelSystem::Mission("Baue einen Brunnen",typeid(Well).name() , 0, 1));
-	m_level1->AddMission(new LevelSystem::Mission("Baue eine Mine", typeid(Mine).name(), 0, 1));
+	m_level1->AddMission(new LevelSystem::Mission(1, "Baue 2 Apartments", typeid(Apartment).name(), 0, 2));
+	m_level1->AddMission(new LevelSystem::Mission(2, "Baue einen Brunnen", typeid(Well).name(), 0, 1));
+	m_level1->AddMission(new LevelSystem::Mission(3, "Baue eine Mine", typeid(Mine).name(), 0, 1));
 
 	m_level2 = new LevelSystem::Level("Post-Prolog", 1000, 2);
-	m_level2->AddMission(new LevelSystem::Mission("Baue eine FoodFarm", typeid(FoodFarm).name(), 0, 1));
-	m_level2->AddMission(new LevelSystem::Mission("Baue 2 SPPs", typeid(SolarPowerPlant).name(), 0, 2));
-	m_level2->AddMission(new LevelSystem::Mission("Baue eine Foundry", typeid(Foundry).name(), 0, 1));
-	
+	m_level2->AddMission(new LevelSystem::Mission(1, "Baue eine FoodFarm", typeid(FoodFarm).name(), 0, 1));
+	m_level2->AddMission(new LevelSystem::Mission(2, "Baue 2 SPPs", typeid(SolarPowerPlant).name(), 0, 2));
+	m_level2->AddMission(new LevelSystem::Mission(3, "Baue eine Foundry", typeid(Foundry).name(), 0, 1));
+
 	m_level3 = new LevelSystem::Level("Advanced", 2000, 3);
-	m_level3->AddMission(new LevelSystem::Mission("Baue eine GravelPlant", typeid(GravelPlant).name(), 0, 1));
-	m_level3->AddMission(new LevelSystem::Mission("Baue ein Labor", typeid(Laboratory).name(), 0, 1));
-	m_level3->AddMission(new LevelSystem::Mission("Baue eine Rob-Fab.", typeid(RobotFactory).name(), 0, 1));
+	m_level3->AddMission(new LevelSystem::Mission(1, "Baue eine GravelPlant", typeid(GravelPlant).name(), 0, 1));
+	m_level3->AddMission(new LevelSystem::Mission(2, "Baue ein Labor", typeid(Laboratory).name(), 0, 1));
+	m_level3->AddMission(new LevelSystem::Mission(3, "Baue eine Rob-Fab.", typeid(RobotFactory).name(), 0, 1));
 
 
 	LevelSystem::LevelManager::Instance().AddLevel(m_level1);
 	LevelSystem::LevelManager::Instance().AddLevel(m_level2);
 	LevelSystem::LevelManager::Instance().AddLevel(m_level3);
-	
+
 	// CAMERA & VIEWPORT-------------------------------------------------------
 	m_zv.InitFull(&m_zc);	//with adresse of camera bcoz viewport
 	m_zo.InitFull(&m_zi);
@@ -92,7 +93,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	if (m_ldgame.fileExists("PlayerDetails.txt")) {
 		m_ldgame.setPlayerDetails();
 		Player::Instance().initPlayer(m_ldgame.playerdets[0], m_ldgame.playerdets[1], m_ldgame.playerdets[2]);
-		
+
 	}
 	else {
 		Player::Instance().initPlayer(1000, 1000, 1000);
@@ -113,6 +114,9 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	//LOAD TERRAIN---------------------------------------
 	m_zs.AddPlacement(m_ldgame.LoadTerrain());
 
+	CPlacement* robotplacement = new CPlacement();
+	JobSystem::JobController::Instance().InitRobots(robotplacement, 2);
+	m_zs.AddPlacement(robotplacement);
 
 	derManager.setBuildingGeos(CBuildingManager::Instance().getBuildingGeos());
 
@@ -129,7 +133,7 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 
 	// lighting
 	lightingManager.Tick(fTimeDelta);
-	
+
 
 	derManager.Click(fTimeDelta, &einCursor, LevelSystem::LevelManager::Instance().GetCurrentLevel());
 
@@ -145,6 +149,7 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 	// buildings
 	gpCtrl.Update(fTimeDelta);
 	foundryCtrl.Update(fTimeDelta);
+	JobSystem::JobController::Instance().Update(fTimeDelta);
 }
 
 void CGame::MakeMapSquares(CScene* m_zs)

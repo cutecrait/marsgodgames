@@ -33,11 +33,11 @@ namespace Pathfinding
 		void RemoveConnection(Connection* connection);
 		std::vector<Connection*> GetConnections();
 
-		Vektoria::CHVector* GetPosVector();
+		Vektoria::CHVector GetPosVector();
 
 	private:
 
-		Vektoria::CHVector* _posVector;
+		Vektoria::CPlacement* _pos;
 		std::vector<Connection*> _connections;
 
 	};

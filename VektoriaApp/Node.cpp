@@ -4,13 +4,9 @@
 
 namespace Pathfinding
 {
-	Node::Node(Vektoria::CHVector* vector)
+	Node::Node(Vektoria::CPlacement* position)
 	{
-		_posVector = vector;
-	}
-
-	Node::Node(Vektoria::CPlacement* position) : Node(&(position->GetPos()))
-	{
+		_pos = position;
 	}
 
 	void Node::AddConnection(Node* node, int cost)
@@ -52,8 +48,8 @@ namespace Pathfinding
 	{
 		return _connections;
 	}
-	Vektoria::CHVector* Node::GetPosVector()
+	Vektoria::CHVector Node::GetPosVector()
 	{
-		return _posVector;
+		return _pos->GetPos();
 	}
 }

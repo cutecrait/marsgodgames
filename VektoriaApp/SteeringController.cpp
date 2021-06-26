@@ -26,7 +26,7 @@ namespace Movement
 		Vektoria::CHVector currentPos = _placement->GetPos();
 
 		//Kraft
-		Vektoria::CHVector force = *_target->GetPosVector() - currentPos;
+		Vektoria::CHVector force = _target->GetPosVector() - currentPos;
 		force = force.Normal() * _maximumForce;
 
 		//Geschwindigkeit
@@ -43,12 +43,11 @@ namespace Movement
 		//TODO Funktioniert nur wenn in X Richtung bewegt? (1,0,0)
 		_rotationPlacement->RotateY(angleY);
 		_rotationPlacement->RotateYDelta(HALFPI);
-		_rotationPlacement->ScaleDelta(0.01);
 	}
 
-	Vektoria::CHVector* SteeringController::GetPosition()
+	Vektoria::CHVector SteeringController::GetPosition()
 	{
-		return &(_placement->GetPos());
+		return _placement->GetPos();
 	}
 
 	Pathfinding::Node* SteeringController::GetNodePosition()

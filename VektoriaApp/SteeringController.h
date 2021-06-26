@@ -18,7 +18,7 @@ namespace Movement
 
 		void Update(float timedelta);
 
-		Vektoria::CHVector* GetPosition();
+		Vektoria::CHVector GetPosition();
 		Pathfinding::Node* GetNodePosition();
 		void SetCurrent(Pathfinding::Node* current);
 		void SetTarget(Pathfinding::Node* target);

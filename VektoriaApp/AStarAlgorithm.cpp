@@ -160,9 +160,9 @@ namespace Pathfinding
 
 	float AStarAlgorithm::Distance(Node* node1, Node* node2)
 	{
-		Vektoria::CHVector* vec1 = node1->GetPosVector();
-		Vektoria::CHVector* vec2 = node2->GetPosVector();
-		float dist = vec1->Dist(*vec2);
+		Vektoria::CHVector vec1 = node1->GetPosVector();
+		Vektoria::CHVector vec2 = node2->GetPosVector();
+		float dist = vec1.Dist(vec2);
 		return dist;
 		//return std::abs(dist);
 	}

@@ -1,7 +1,8 @@
 #pragma once
 #include <vector>
-#include "FarmingRobot.h"
-#include "MiningRobot.h"
+#include "ConcreteRobot.h"
+#include "StoneRobot.h"
+#include "SteelRobot.h"
 #include "Vektoria\Root.h"
 
 namespace JobSystem
@@ -21,8 +22,11 @@ namespace JobSystem
 		};
 		void InitRobots(Vektoria::CPlacement* root, int count);
 
-		void ActivateFarmingRobot(int count = 1);
-		void ActivateMiningRobot(int count = 1);
+		void Update(float deltatime);
+
+		void ActivateConcreteRobot(int count = 1);
+		void ActivateStoneRobot(int count = 1);
+		void ActivateSteelRobot(int count = 1);
 
 		void AddFactory(Pathfinding::Node* node);
 		void AddTargetNode(Pathfinding::Node* node);
@@ -40,10 +44,12 @@ namespace JobSystem
 		std::vector<Pathfinding::Node*> _factoryNodes;
 		std::vector<Pathfinding::Node*> _targetNodes;
 
-		int _activeFarmingRobots;
-		std::vector<FarmingRobot*> _farmingRobots;
-		int _activeMiningRobots;
-		std::vector<MiningRobot*> _miningRobots;
+		int _activeConcreteRobots;
+		std::vector<ConcreteRobot*> _concreteRobots;
+		int _activeStoneRobots;
+		std::vector<StoneRobot*> _stoneRobots;
+		int _activeSteelRobots;
+		std::vector<SteelRobot*> _steelRobots;
 	};
 
 }

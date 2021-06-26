@@ -8,44 +8,77 @@ namespace JobSystem
 	{
 		srand(time(NULL));
 
-		_activeFarmingRobots = 0;
-		_activeMiningRobots = 0;
+		_activeConcreteRobots = 0;
+		_activeStoneRobots = 0;
+		_activeSteelRobots = 0;
 	}
 
 	void JobController::InitRobots(Vektoria::CPlacement* root, int count)
 	{
+		Vektoria::CPlacement* p;
 		for (int i = 0; i < count; i++)
 		{
-			FarmingRobot* farming = new FarmingRobot();
-			_farmingRobots.push_back(farming);
-			root->AddPlacement(farming->GetPlacement());
+			ConcreteRobot* concrete = new ConcreteRobot();
+			_concreteRobots.push_back(concrete);
+			p = concrete->GetPlacement();
+			p->Translate(0, 5 + i, 0);
+			root->AddPlacement(p);
 
-			MiningRobot* mining = new MiningRobot();
-			_miningRobots.push_back(new MiningRobot());
-			root->AddPlacement(mining->GetPlacement());
+			StoneRobot* stone = new StoneRobot();
+			_stoneRobots.push_back(stone);
+			p = stone->GetPlacement();
+			p->Translate(2, 5 + i, 0);
+			root->AddPlacement(p);
+
+			SteelRobot* steel = new SteelRobot();
+			_steelRobots.push_back(steel);
+			p = steel->GetPlacement();
+			p->Translate(4, 5 + i, 0);
+			root->AddPlacement(p);
 		}
 	}
 
-	void JobController::ActivateFarmingRobot(int count)
+	void JobController::Update(float deltatime)
 	{
-		for (int i = 0; i < count; i++)
-		{
-			RobotBase* robot = _farmingRobots[_activeFarmingRobots + i];
-			robot->SetNode(GetRandomFactory());
-			robot->SetPath(GetRandomTarget(), true);
-		}
-		_activeFarmingRobots += count;
+		for (int i = 0; i < _activeConcreteRobots; i++)
+			_concreteRobots[i]->Update(deltatime);
+		for (int i = 0; i < _activeStoneRobots; i++)
+			_stoneRobots[i]->Update(deltatime);
+		for (int i = 0; i < _activeSteelRobots; i++)
+			_steelRobots[i]->Update(deltatime);
 	}
 
-	void JobController::ActivateMiningRobot(int count)
+	void JobController::ActivateConcreteRobot(int count)
 	{
 		for (int i = 0; i < count; i++)
 		{
-			RobotBase* robot = _miningRobots[_activeMiningRobots + i];
+			RobotBase* robot = _concreteRobots[_activeConcreteRobots + i];
 			robot->SetNode(GetRandomFactory());
 			robot->SetPath(GetRandomTarget(), true);
 		}
-		_activeMiningRobots += count;
+		_activeConcreteRobots += count;
+	}
+
+	void JobController::ActivateStoneRobot(int count)
+	{
+		for (int i = 0; i < count; i++)
+		{
+			RobotBase* robot = _stoneRobots[_activeStoneRobots + i];
+			robot->SetNode(GetRandomFactory());
+			robot->SetPath(GetRandomTarget(), true);
+		}
+		_activeStoneRobots += count;
+	}
+
+	void JobController::ActivateSteelRobot(int count)
+	{
+		for (int i = 0; i < count; i++)
+		{
+			RobotBase* robot = _steelRobots[_activeSteelRobots + i];
+			robot->SetNode(GetRandomFactory());
+			robot->SetPath(GetRandomTarget(), true);
+		}
+		_activeSteelRobots += count;
 	}
 
 	void JobController::AddFactory(Pathfinding::Node* node)
@@ -67,7 +100,7 @@ namespace JobSystem
 	Pathfinding::Node* JobController::GetRandomTarget()
 	{
 		//TODO suspect to change
-		int i = rand() % (_targetNodes.size() + 1); //Bei einem Ziel: rand % 2 = 0 oder 1
+		int i = rand() % (_targetNodes.size()); //Bei einem Ziel: rand % 2 = 0 oder 1
 		return _targetNodes[i];
 	}
 }

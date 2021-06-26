@@ -38,8 +38,9 @@ protected:
 	/// <param name="maximumvelocity">maximale Geschwindigkeit</param>
 	/// <param name="maximumforce">maximale Kraft</param>
 	/// <param name="model">Model</param>
+	/// <param name="texture">Modeltextur</param>
 	/// <param name="scale">Modelgröße - Default = 1</param>
-	RobotBase(Pathfinding::Node* startingnode, float maximumvelocity, float maximumforce, char* model, float scale = 1);
+	RobotBase(Pathfinding::Node* startingnode, float maximumvelocity, float maximumforce, char* model, char* texture, float scale = 1);
 
 	Vektoria::CPlacement* _placementRoot;
 	Vektoria::CPlacement* _rotationPlacement;

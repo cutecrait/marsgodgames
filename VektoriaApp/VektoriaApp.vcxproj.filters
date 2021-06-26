@@ -162,18 +162,20 @@
     <ClCompile Include="FoodPlantController.cpp">
       <Filter>Buildings</Filter>
     </ClCompile>
-    <ClCompile Include="Building.cpp" />
     <ClCompile Include="RobotBase.cpp">
       <Filter>Robot\RobotTypes</Filter>
     </ClCompile>
-    <ClCompile Include="FarmingRobot.cpp">
+    <ClCompile Include="StoneRobot.cpp">
       <Filter>Robot\RobotTypes</Filter>
     </ClCompile>
-    <ClCompile Include="MiningRobot.cpp">
+    <ClCompile Include="SteelRobot.cpp">
       <Filter>Robot\RobotTypes</Filter>
     </ClCompile>
     <ClCompile Include="JobController.cpp">
       <Filter>Robot\JobSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="ConcreteRobot.cpp">
+      <Filter>Robot\RobotTypes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -388,10 +390,10 @@
     <ClInclude Include="RobotBase.h">
       <Filter>Robot\RobotTypes</Filter>
     </ClInclude>
-    <ClInclude Include="FarmingRobot.h">
+    <ClInclude Include="StoneRobot.h">
       <Filter>Robot\RobotTypes</Filter>
     </ClInclude>
-    <ClInclude Include="MiningRobot.h">
+    <ClInclude Include="SteelRobot.h">
       <Filter>Robot\RobotTypes</Filter>
     </ClInclude>
     <ClInclude Include="JobController.h">
@@ -412,6 +414,9 @@
     </ClInclude>
     <ClInclude Include="FoodPlant.h">
       <Filter>Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="ConcreteRobot.h">
+      <Filter>Robot\RobotTypes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -4,18 +4,18 @@
 #include "CheckPathDecision.h"
 #include "NodeController.h"
 
-RobotBase::RobotBase(Pathfinding::Node* startingnode, float maximumvelocity, float maximumforce, char* model, float scale)
+RobotBase::RobotBase(Pathfinding::Node* startingnode, float maximumvelocity, float maximumforce, char* model, char* texture, float scale)
 {
 	//Init
 	_placementRoot = new Vektoria::CPlacement();
 	_rotationPlacement = new Vektoria::CPlacement();
 	_placementRoot->AddPlacement(_rotationPlacement);
 
-	SetNode(startingnode);
-
 	//Init SteeringController
 	_steeringController =
 		new Movement::SteeringController(_placementRoot, _rotationPlacement, maximumvelocity, maximumforce);
+
+	SetNode(startingnode);
 
 	//Init PathController
 	_pathController = new Pathfinding::PathController();
@@ -43,6 +43,9 @@ RobotBase::RobotBase(Pathfinding::Node* startingnode, float maximumvelocity, flo
 
 	//Model
 	setModel(model);
+	setMaterial(texture);
+	getModel()->SetMaterial(getMaterial());
+
 	_rotationPlacement->AddGeo(getModel());
 	_rotationPlacement->ScaleDelta(scale);
 
@@ -59,9 +62,6 @@ void RobotBase::Update(float timeDelta)
 	_stateController->Update(timeDelta);
 	//Update Movement
 	_steeringController->Update(timeDelta);
-
-	//TODO Wann/Wie bekommt Robot seinen "Auftrag" für Pathfinding -> Neue Methode SetPath(vector<Node*>) in FollowPathAction? 
-	//-> Wann wird diese Aufgerufen -> JobSystem?
 }
 
 Vektoria::CPlacement* RobotBase::GetPlacement()
@@ -72,7 +72,7 @@ Vektoria::CPlacement* RobotBase::GetPlacement()
 void RobotBase::SetNode(Pathfinding::Node* node)
 {
 	if (node)
-		_placementRoot->Translate(*(node->GetPosVector()));
+		_placementRoot->Translate(node->GetPosVector());
 
 	_steeringController->SetCurrent(node);
 }

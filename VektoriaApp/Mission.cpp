@@ -2,8 +2,17 @@
 
 namespace LevelSystem
 {
-	Mission::Mission(std::string text, std::string type, int goal) : Mission(text, type, 0, goal)
+	Mission::Mission(int order, std::string text, std::string type, int goal) : Mission(order, text, type, 0, goal)
 	{
+	}
+
+	Mission::Mission(int order, std::string text, std::string type, int value, int goal)
+	{
+		_order = order;
+		_text = text;
+		_value = value;
+		_goal = goal;
+		_type = type;
 	}
 
 	void Mission::Add(int count)
@@ -16,12 +25,9 @@ namespace LevelSystem
 		return _value >= _goal;
 	}
 
-	Mission::Mission(std::string text, std::string type, int value, int goal)
+	int Mission::GetOrder()
 	{
-		_text = text;
-		_value = value;
-		_goal = goal;
-		_type = type;
+		return _order;
 	}
 
 	std::string Mission::GetText()

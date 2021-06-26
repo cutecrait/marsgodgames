@@ -64,10 +64,12 @@ public:
 	void setRobots(int x) { robots += x; }
 	int getRobots() { return robots; }
 
-	void AddFarmingRobot(int count = 1);
-	void AddMiningRobot(int count = 1);
-	int GetFarmingRobot();
-	int GetMiningRobot();
+	void AddConcreteRobot(int count = 1);
+	void AddStoneRobot(int count = 1);
+	void AddSteelRobot(int count = 1);
+	int GetConcreteRobot();
+	int GetStoneRobot();
+	int GetSteelRobot();
 
 	int getWohnung() { return WohnungKapa; }
 	void setWohnung(int i) { WohnungKapa += i; }
@@ -98,8 +100,9 @@ private:
 	int zufriedenheit3;
 
 	int robots;
-	int _farmingRobots = 0;
-	int _miningRobots = 0;
+	int _concreteRobots = 0;
+	int _stoneRobots = 0;
+	int _steelRobots = 0;
 
 	int WohnungKapa = 0;
 	int usedWohnungen;

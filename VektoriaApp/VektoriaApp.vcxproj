@@ -162,12 +162,13 @@
     <ClInclude Include="CBuildingManager.h" />
     <ClInclude Include="CCameraController.h" />
     <ClInclude Include="clickmanager.h" />
+    <ClInclude Include="ConcreteRobot.h" />
     <ClInclude Include="Connection.h" />
     <ClInclude Include="ControlCenter.h" />
     <ClInclude Include="ControlCPopup.h" />
     <ClInclude Include="CTerrain.h" />
     <ClInclude Include="Decision.h" />
-    <ClInclude Include="FarmingRobot.h" />
+    <ClInclude Include="StoneRobot.h" />
     <ClInclude Include="FollowPathAction.h" />
     <ClInclude Include="FoodFarm.h" />
     <ClInclude Include="FoodFarmPopup.h" />
@@ -194,7 +195,7 @@
     <ClInclude Include="LabPopup.h" />
     <ClInclude Include="Launchpad.h" />
     <ClInclude Include="Mine.h" />
-    <ClInclude Include="MiningRobot.h" />
+    <ClInclude Include="SteelRobot.h" />
     <ClInclude Include="NuclearPopup.h" />
     <ClInclude Include="popup.h" />
     <ClInclude Include="roboPopUp.h" />
@@ -242,11 +243,12 @@
     <ClCompile Include="CBuildingManager.cpp" />
     <ClCompile Include="CCameraController.cpp" />
     <ClCompile Include="clickmanager.cpp" />
+    <ClCompile Include="ConcreteRobot.cpp" />
     <ClCompile Include="Connection.cpp" />
     <ClCompile Include="ControlCPopup.cpp" />
     <ClCompile Include="CTerrain.cpp" />
     <ClCompile Include="Decision.cpp" />
-    <ClCompile Include="FarmingRobot.cpp" />
+    <ClCompile Include="StoneRobot.cpp" />
     <ClCompile Include="FollowPathAction.cpp" />
     <ClCompile Include="FoodFarmPopup.cpp" />
     <ClCompile Include="FoodPlantController.cpp" />
@@ -270,7 +272,7 @@
     <ClCompile Include="GuiSelect.cpp" />
     <ClCompile Include="GuiSlider.cpp" />
     <ClCompile Include="MapTile.cpp" />
-    <ClCompile Include="MiningRobot.cpp" />
+    <ClCompile Include="SteelRobot.cpp" />
     <ClCompile Include="Mission.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="NodeController.cpp" />

@@ -81,6 +81,10 @@ public:
 				if (onlyOneTime) {
 					if (enoughResource()) {
 						thepopup->m_main.SwitchOff();
+						
+						Player::Instance().AddConcreteRobot(resultArray[0]);
+						Player::Instance().AddStoneRobot(resultArray[1]);
+						Player::Instance().AddSteelRobot(resultArray[2]);
 
 						return 2;
 

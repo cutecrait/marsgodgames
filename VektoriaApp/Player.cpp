@@ -39,24 +39,35 @@ int Player::getZufriedenheit3()
 	return 0;
 }
 
-void Player::AddFarmingRobot(int count)
+void Player::AddConcreteRobot(int count)
 {
-	_farmingRobots += count;
-	JobSystem::JobController::Instance().ActivateFarmingRobot(count);
+	_concreteRobots += count;
+	JobSystem::JobController::Instance().ActivateConcreteRobot(count);
 }
 
-void Player::AddMiningRobot(int count)
+void Player::AddStoneRobot(int count)
 {
-	_miningRobots += count;
-	JobSystem::JobController::Instance().ActivateMiningRobot(count);
+	_stoneRobots += count;
+	JobSystem::JobController::Instance().ActivateStoneRobot(count);
 }
 
-int Player::GetFarmingRobot()
+void Player::AddSteelRobot(int count)
 {
-	return _farmingRobots;
+	_steelRobots += count;
+	JobSystem::JobController::Instance().ActivateSteelRobot(count);
 }
 
-int Player::GetMiningRobot()
+int Player::GetConcreteRobot()
 {
-	return _miningRobots;
+	return 0;
+}
+
+int Player::GetStoneRobot()
+{
+	return _stoneRobots;
+}
+
+int Player::GetSteelRobot()
+{
+	return _steelRobots;
 }
