@@ -14,7 +14,7 @@ bool AssetManager::Init(string baseAssetPath)
 	geos[(int)Models::FoodFarm].objPath = "\\FoodFarm.obj";
 	geos[(int)Models::FoodPlant].objPath = "\\Factory.obj";
 	geos[(int)Models::Foundry].objPath = "\\Foundry.obj";
-	geos[(int)Models::GravelPlant].objPath = "\\foerderband+stein.obj";
+	geos[(int)Models::GravelPlant].objPath = "\\Kieswerk.obj";
 	geos[(int)Models::Hospital].objPath = "\\Hospital.obj";
 	geos[(int)Models::Launchpad].objPath = "\\launchpad.obj";
 	geos[(int)Models::Mine].objPath = "\\felshaufen.obj";

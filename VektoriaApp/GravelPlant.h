@@ -22,9 +22,16 @@ public:
 
         setModel(AssetManager::Models::GravelPlant);
        // setModel("models\\foerderband+stein.obj");
-        this->setMaterial("textures\\foerderband\\base_color.png");
+
+        char* base = "textures\\GravelTex\\GravelTex_Base_Color.png";
+        char* glow = "textures\\GravelTex\\GravelTex_Emissive.png";
+        char* spec = "textures\\GravelTex\\GravelTex_Metallic.png";
+        char* height = "textures\\GravelTex\\GravelTex_Height.png";
+        char* bump = "textures\\GravelTex\\GravelTex_Roughness.png";
+
+
+        this->setMaterial(bump, base, glow, spec, height);
         this->getModel()->SetMaterial(this->getMaterial());
-        // set material
 
         setAudio(&CAudioManager::Instance().Local_GravelPlant);
     }
