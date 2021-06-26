@@ -20,8 +20,10 @@ namespace LevelSystem
 	void Level::UpdateMissions(std::string type, int count, UI* uiUpdate)
 	{
 		_missionsCompleted = 0;
+		bool welchesMissi[5] = { false,false,false,false,false };
+		int welcheMissi = 0;
 		std::set<Mission*>::iterator it;
-
+		
 		for (it = _missions.begin(); it != _missions.end(); it++) {
 			if ((*it)->GetType() == type) {
 				(*it)->Add(count);
@@ -29,10 +31,24 @@ namespace LevelSystem
 
 			if ((*it)->IsCompleted()) {
 				_missionsCompleted++; 
+				welchesMissi[welcheMissi] = true;
 			}
 			
+			welcheMissi++;
+			
 		}
-		uiUpdate->updateLevelUI(_missions.size(), _missionsCompleted, 0);
+
+		
+		uiUpdate->updateLevelUI(_missions.size(), _missionsCompleted,welchesMissi );
+					
+
+
+			
+			
+
+			
+		
+		
 	}
 
 	bool Level::IsCompleted()

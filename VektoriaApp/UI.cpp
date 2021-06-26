@@ -55,6 +55,8 @@ void UI::InitMaterial()
 	m_matconcrete.MakeTextureSprite("textures\\Tooltip_concrete_texture.png");
 	m_matwood.MakeTextureSprite("textures\\Tooltip_wood_texture.png");
 
+	m_greenMat.MakeTextureSprite("textures\\green_image.jpg");
+
 	m_descMaterial.MakeTextureSprite("textures\\all1.png");
 
 }
@@ -191,7 +193,7 @@ void UI::initRessource(CWritingFont* font) {
 
 	
 
-	m_concreteW.Init(CFloatRect(0.2,0.1,0.1, 0.8), 5, font);
+	m_concreteW.Init(CFloatRect(0.5, 0.1, 0.1, 0.8), 5, font);
 	m_concreteW.SetInnerOn();
 	m_concreteW.SetLayer(0.78);
 	m_concreteW.PrintInt(Player::Instance().getConcrete());
@@ -200,7 +202,7 @@ void UI::initRessource(CWritingFont* font) {
 
 
 
-	m_steelW.Init(CFloatRect(0.5, 0.1, 0.1, 0.8), 5, font);
+	m_steelW.Init(CFloatRect(0.2, 0.1, 0.1, 0.8), 5, font);
 	m_steelW.SetInnerOn();
 	m_steelW.SetLayer(0.78);
 	m_steelW.PrintInt(Player::Instance().getSteel());
@@ -214,12 +216,12 @@ void UI::initRessource(CWritingFont* font) {
 	m_woodW.PrintInt(Player::Instance().getWood());
 	m_woodW.SwitchOn();
 
-	m_concreteMinusW.Init(CFloatRect(0.2, 0.1, 0.1, 0.8), 5, &m_redFont);
+	m_concreteMinusW.Init(CFloatRect(0.5, 0.1, 0.1, 0.8), 5, &m_redFont);
 	m_concreteMinusW.SetInnerOn();
 	m_concreteMinusW.SetLayer(0.78);
 	m_concreteMinusW.SwitchOff();
 
-	m_steelMinusW.Init(CFloatRect(0.5, 0.1, 0.1, 0.8), 5, &m_redFont);
+	m_steelMinusW.Init(CFloatRect(0.2, 0.1, 0.1, 0.8), 5, &m_redFont);
 	m_steelMinusW.SetInnerOn();
 	m_steelMinusW.SetLayer(0.78);
 	
@@ -234,11 +236,11 @@ void UI::initRessource(CWritingFont* font) {
 	m_RessourcesPM.SetLayer(0.95);
 	m_RessourcesPM.SwitchOff();
 
-	m_concretePM.Init(CFloatRect(0.15, 0.1, 0.15, 0.8), 7, font);
+	m_concretePM.Init(CFloatRect(0.45, 0.1, 0.15, 0.8), 7, font);
 	m_concretePM.SetLayer(0.94);
 	m_concretePM.SetInnerOn();
 	
-	m_steelPM.Init(CFloatRect(0.45, 0.1, 0.15, 0.8), 7, font);
+	m_steelPM.Init(CFloatRect(0.15, 0.1, 0.15, 0.8), 7, font);
 	m_steelPM.SetInnerOn();
 	m_steelPM.SetLayer(0.94);
 
@@ -617,7 +619,7 @@ void UI::makeAMission(std::string bla, int missionNr)
 void UI::makeAllMissions(float missionAnzahl, int currentLevel,std::string m1, std::string m2 , std::string m3, std::string m4, std::string m5)
 {
 	std::string dummystring;
-	m_levelFortschritt.Init(&m_descMaterial, CFloatRect(0, 0, 0, 1));
+	m_levelFortschritt.Init(&m_greenMat, CFloatRect(0, 0, 0, 1));
 	dummystring = std::to_string(0) + "%";
 	levelFortschrittW.PrintString(&dummystring[0]);
 	dummystring = "Level: " + std::to_string(currentLevel);
@@ -644,14 +646,19 @@ void UI::makeAllMissions(float missionAnzahl, int currentLevel,std::string m1, s
 	
 }
 
-void UI::updateLevelUI(float anzahlMissGesamt, float anzahlAbgeschlossenerMiss, int welchesLevel) {
+void UI::updateLevelUI(float anzahlMissGesamt, float anzahlAbgeschlossenerMiss, bool array[5]) {
 	std::string dummy;
 	int dummyint = anzahlAbgeschlossenerMiss;
 	int dummyint1 = anzahlMissGesamt;
 	dummy = "Missionen: " +std::to_string(dummyint) +"/" +std::to_string(dummyint1);
 	m_missionen.SetLabel(&dummy[0]);
-	m_missiStatus[dummyint-1].SetMaterial(&m_descMaterial);
-	m_levelFortschritt.Init(&m_descMaterial, CFloatRect(0, 0, (1.0f / anzahlMissGesamt) * anzahlAbgeschlossenerMiss, 1));
+	for (int i = 0; i < 5; i++) {
+		if (array[i]) {
+			m_missiStatus[i].SetMaterial(&m_greenMat);
+		}
+	}
+	
+	m_levelFortschritt.Init(&m_greenMat, CFloatRect(0, 0, (1.0f / anzahlMissGesamt) * anzahlAbgeschlossenerMiss, 1));
 
 	//dummy = std::to_string((anzahlAbgeschlossenerMiss / anzahlMissGesamt) * 100) + "%";
 	dummyint = (anzahlAbgeschlossenerMiss / anzahlMissGesamt) * 100;

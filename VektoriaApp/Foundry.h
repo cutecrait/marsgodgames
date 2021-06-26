@@ -17,7 +17,7 @@ public:
 		PowerUse = 70;
 		WaterUse = 0;
 		NutrientUse = 0;
-
+		howMuch = 5;
 		Category = BuildingCategory::Industry;
 
 		setModel(AssetManager::Models::Foundry);
@@ -26,6 +26,9 @@ public:
         this->getModel()->SetMaterial(this->getMaterial());
 
 		setAudio(&CAudioManager::Instance().Local_Foundry);
+	}
+	void updatePlayer() override {
+		Player::Instance().setSteelPM(howMuch);
 	};
 
 	void Update(float time)

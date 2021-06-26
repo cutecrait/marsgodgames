@@ -47,7 +47,7 @@ public:
 	void updateWriting(std::string, CWriting*);
 	void makeAMission(std::string, int);
 	void makeAllMissions(float missionAnzahl,int currentLevel, std::string m1 = "", std::string m2= "", std::string m3 = "", std::string m4 = "", std::string m5 = "");
-	void updateLevelUI(float anzahlMissGesamt, float anzahlAbgeschlossenerMiss, int welchesLevel);
+	void updateLevelUI(float anzahlMissGesamt, float anzahlAbgeschlossenerMiss,  bool array[5] );
 	popup* getPopup(std::string );
 private:
 	CMaterial m_matsForSelectMain[5];
@@ -56,7 +56,7 @@ private:
 	CMaterial m_matsteel;
 	CMaterial m_matconcrete;
 	CMaterial m_matwood;
-
+	CMaterial m_greenMat;
 
 	CMaterial m_matsForSelect1[3];
 	CMaterial m_matsForSelect2[4];
