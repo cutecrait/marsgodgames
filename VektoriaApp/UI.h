@@ -68,8 +68,9 @@ private:
 	CMaterial m_matStats;
 	CMaterial m_matRes;
 	CGuiButton m_start;
+
 	CGuiSelect m_mainSelect;
-	CGuiSelect m_specificSelect[4];
+	CGuiSelect m_specificSelect[5];
 	CGuiButton m_statistic;
 	
 	
@@ -108,6 +109,7 @@ public:
 	COverlay m_resBack;
 	COverlay m_toolTipBackGround;
 
+	CGuiButton m_saveButton;
 
 	CGuiElement m_Ressources;
 	COverlay m_RessourcesPM;

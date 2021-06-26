@@ -66,20 +66,21 @@ void GameObject::setMaterial(char* matPfadB, char* matPfadD, char* matPfadG, cha
 
 	
 	m_material.SetTransparencyKind(eTransparencyKind_BinaryByChromaKey);
-	
+	m_material.SetTextureGlowWhite();
 	m_material.SetSpecularTint(1.0);
 	m_material.SetGlowStrength(3.0f);
 }
 
-void GameObject::setMaterial(char* matPfadB, char* matPfadD, char* matPfadG, char* matPfadS, char* matPfadH, int spalt, int zeil, int fr) // Texturierung mit Glow und Animation
+void GameObject::setMaterial(char* matPfadD, char* matPfadB, char* matPfadG, char* matPfadS, int spalt, int zeil, int fr) // Texturierung mit Glow und Animation
 {
 	m_material.MakeTextureDiffuse(matPfadD);
 	m_material.MakeTextureGlow(matPfadG);
-	//m_material.MakeTextureHeight(matPfadH);
-	//m_material.MakeTextureBump(matPfadB);
-	//m_material.MakeTextureSpecular(matPfadS);
+	m_material.MakeTextureBump(matPfadB);
+	m_material.MakeTextureSpecular(matPfadS);
 
+	m_material.SetTransparencyKind(eTransparencyKind_BinaryByChromaKey);
 	m_material.SetTextureGlowWhite();
+	m_material.SetSpecularTint(1.0f);
 	m_material.SetGlowStrength(3.0f);
 	m_material.SetAni(spalt, zeil, fr);
 }

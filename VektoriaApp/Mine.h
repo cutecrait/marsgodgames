@@ -18,7 +18,7 @@ public:
 
         setModel(AssetManager::Models::Mine);
         // set material
-        this->setMaterial("textures\\felstor\\Material.001_Base_Color.png");
+        this->setMaterial("textures\\mine\\Material.001_Base_Color.png");
         this->getModel()->SetMaterial(this->getMaterial());
         setAudio(&CAudioManager::Instance().Local_Mine);
     };

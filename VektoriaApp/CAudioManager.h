@@ -21,6 +21,7 @@ public:
 	void Init(CScene*);
 
 	//Alle Audio-Elemente sind public für einfacheren Zugriff; unschön, aber (eh) unausweichlich
+	CAudio Ambient_Title_Music;
 	CAudio Ambient_Background_Music;
 	CAudio Ambient_Building_Sound;
 	CAudio Ambient_Click_Sound;
