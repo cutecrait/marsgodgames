@@ -78,6 +78,9 @@ public:
 
 private:
 
+	/// <summary>
+	/// Konstruktor
+	/// </summary>
 	Player();
 
 	int concrete;

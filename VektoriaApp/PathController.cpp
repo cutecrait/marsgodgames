@@ -9,10 +9,6 @@ namespace Pathfinding
 		_repeat = false;
 	}
 
-	PathController::~PathController()
-	{
-	}
-
 	void PathController::NextNode()
 	{
 		_i++;

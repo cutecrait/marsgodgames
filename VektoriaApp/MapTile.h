@@ -22,16 +22,27 @@ public:
 	// Lege normale (unselektierte, etc.) Textur an
 	void setOwnMaterial();
 
+	/// <summary>
+	/// Gibt Knotenplacement zurück
+	/// </summary>
+	/// <returns>Placement</returns>
 	CPlacement* GetNodePlacement();
+	/// <summary>
+	/// Gibt Knoten zurück
+	/// </summary>
+	/// <returns>Knoten</returns>
 	Pathfinding::Node* GetNode();
 
 private:
 	MapSquare* m_mapPointer;
 	CMaterial* m_MaterialTile_Normal;
 
+	/// <summary>
+	/// Knotenplacement
+	/// </summary>
 	CPlacement* _nodePlacement;
 	/// <summary>
-	/// Pfadfindungsknoten der Kachel
+	/// Knoten
 	/// </summary>
 	Pathfinding::Node* _node;
 };

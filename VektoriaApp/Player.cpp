@@ -42,18 +42,21 @@ int Player::getZufriedenheit3()
 void Player::AddConcreteRobot(int count)
 {
 	_concreteRobots += count;
+	robots += count;
 	JobSystem::JobController::Instance().ActivateConcreteRobot(count);
 }
 
 void Player::AddStoneRobot(int count)
 {
 	_stoneRobots += count;
+	robots += count;
 	JobSystem::JobController::Instance().ActivateStoneRobot(count);
 }
 
 void Player::AddSteelRobot(int count)
 {
 	_steelRobots += count;
+	robots += count;
 	JobSystem::JobController::Instance().ActivateSteelRobot(count);
 }
 
