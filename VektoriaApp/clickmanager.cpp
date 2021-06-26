@@ -333,7 +333,7 @@ void clickmanager::uiDecision(CBuildingManager::Typ typ, std::string tooltipname
 
 			buildCost = toBeBuiltBuilding->getBuildCost();
 
-			m_menu->tooltip(tooltipname, buildCost.Concrete, buildCost.Steel, buildCost.Wood, typ);
+			m_menu->tooltip(tooltipname, buildCost.Steel, buildCost.Concrete, buildCost.Wood, typ);
 		}
 		else if (dumyTyp != typ) {
 			dumyTyp = typ;
@@ -347,7 +347,7 @@ void clickmanager::uiDecision(CBuildingManager::Typ typ, std::string tooltipname
 
 			buildCost = toBeBuiltBuilding->getBuildCost();
 
-			m_menu->tooltip(tooltipname, buildCost.Concrete, buildCost.Steel, buildCost.Wood, typ);
+			m_menu->tooltip(tooltipname, buildCost.Steel, buildCost.Concrete, buildCost.Wood, typ);
 
 		}
 	/*if (createToolTip(m_menu->getSpecificSelect(1)->GetActivePosition())) {

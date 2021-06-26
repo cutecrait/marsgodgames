@@ -138,7 +138,10 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 
 	if (m_startscr.update() == 1) {
 		menu.updatePlayer();
+		
 	}
+	else if(m_startscr.update() == 2)
+		IWantToDIE = true;
 
 	//derManager.makeBuilding(selectedPlace,&einCursor);
 	mapSquare.setLevel(&m_zdk);
