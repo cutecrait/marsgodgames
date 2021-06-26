@@ -99,7 +99,7 @@ private:
 	LevelSystem::Level* m_level2; 
 	LevelSystem::Level* m_level3;
 	//hendrik end
-
+	bool ingame = false;
 	// Karo 
 	Load m_ldgame;
 	
