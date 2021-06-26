@@ -128,7 +128,7 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	selectLabel.clear();
 	selectLabel.push_back(" noch eins"); selectLabel.push_back(" noch 2"); selectLabel.push_back(" noch dre"); 
 	//m_specificSelect[3].makeInactiveMats(m_matsForSelect4);
-	m_specificSelect[4].Init(cursor, font,3, CFloatRect(0.15, 0.2, 0.15, 0.7)); labelMaker(4, 3, selectLabel);
+	m_specificSelect[4].Init(cursor, font, 3, CFloatRect(0.15, 0.4, 0.15, 0.5)); labelMaker(4, 3, selectLabel);
 	m_mainSelect.SwitchOff();
 	m_specificSelect[0].SwitchOff(); m_specificSelect[1].SwitchOff(); m_specificSelect[2].SwitchOff(); m_specificSelect[3].SwitchOff();; m_specificSelect[4].SwitchOff();
 
@@ -378,16 +378,16 @@ void UI::tooltip(std::string headline, int res1, int res2, int res3, CBuildingMa
 	
 		break;
 	case CBuildingManager::Typ::Foundry:
-		m_descriptionW1.PrintString("");
-		m_descriptionW2.PrintString("");
-		m_descriptionW3.PrintString("");
-		m_descriptionW4.PrintString("");
+		m_descriptionW1.PrintString("Giesserei stellt fuer dich");
+		m_descriptionW2.PrintString("Eisen her. 10 pro Minute.");
+		m_descriptionW3.PrintString("Eine Miene wird benoetigt,");
+		m_descriptionW4.PrintString("damit die Giesserei arbeitet.");
 		break;
 	case CBuildingManager::Typ::GravelPlant:
-		m_descriptionW1.PrintString("");
-		m_descriptionW2.PrintString("");
-		m_descriptionW3.PrintString("");
-		m_descriptionW4.PrintString("");
+		m_descriptionW1.PrintString("Kieswerk stellt fuer dich");
+		m_descriptionW2.PrintString("Beton her. 10 pro Minute.");
+		m_descriptionW3.PrintString("Eine Miene wird benoetigt,");
+		m_descriptionW4.PrintString("damit das Kieswerk arbeitet.");
 		break;
 	case CBuildingManager::Typ::Hospital:
 		m_descriptionW1.PrintString("Krankheiten verbreiten sich");
@@ -396,22 +396,16 @@ void UI::tooltip(std::string headline, int res1, int res2, int res3, CBuildingMa
 		m_descriptionW4.PrintString("Optionen zur Bekaempfung.");
 		break;
 	case CBuildingManager::Typ::Laboratory:
-		m_descriptionW1.PrintString("bla");
-		m_descriptionW2.PrintString("blabla");
-		m_descriptionW3.PrintString("blablabla");
-		m_descriptionW4.PrintString("blablablabla");
+		m_descriptionW1.PrintString("Das Labor ermoeglicht dir zu");
+		m_descriptionW2.PrintString("forschen. Forschungen");
+		m_descriptionW3.PrintString("erhoehen die Effizienz von");
+		m_descriptionW4.PrintString("unterschiedlichen Gebaeuden.");
 		break;
 	case CBuildingManager::Typ::Launchpad:
 		m_descriptionW1.PrintString("");
 		m_descriptionW2.PrintString("");
 		m_descriptionW3.PrintString("");
 		m_descriptionW4.PrintString("");
-		break;
-	case CBuildingManager::Typ::Mine:
-		m_descriptionW1.PrintString("Stahl ist eine wichtige");
-		m_descriptionW2.PrintString("Ressource.");
-		m_descriptionW3.PrintString("Beim Kauf erhaelt man");
-		m_descriptionW4.PrintString("pro Minute Stahl.");
 		break;
 	case CBuildingManager::Typ::NuclearPowerPlant:
 		m_descriptionW1.PrintString("Strom wird gebraucht, um");
@@ -437,6 +431,19 @@ void UI::tooltip(std::string headline, int res1, int res2, int res3, CBuildingMa
 		m_descriptionW3.PrintString("Beim Kauf wird Wasser");
 		m_descriptionW4.PrintString("der Siedlung hinzugefuegt.");
 		break;
+	case CBuildingManager::Typ::Mine:
+		m_descriptionW1.PrintString("Die Miene wird gebraucht,");
+		m_descriptionW2.PrintString("um verschiedene Rohstoffe");
+		m_descriptionW3.PrintString("herstellen zu koennen.");
+		m_descriptionW4.PrintString("");
+		break;
+	/*case CBuildingManager::Typ::
+		m_descriptionW1.PrintString("");
+		m_descriptionW2.PrintString("");
+		m_descriptionW3.PrintString("");
+		m_descriptionW4.PrintString("");
+		break;*/
+
 	default:break;
 	}
 	
