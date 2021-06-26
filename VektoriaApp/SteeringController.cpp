@@ -7,7 +7,8 @@ namespace Movement
 		Vektoria::CPlacement* placement,
 		Vektoria::CPlacement* rotationplacement,
 		float maximumvelocity,
-		float maximumforce)
+		float maximumforce,
+		float scale)
 	{
 		_placement = placement;
 		_rotationPlacement = rotationplacement;
@@ -15,6 +16,7 @@ namespace Movement
 		_target = nullptr;
 		_maximumVelocity = maximumvelocity;
 		_maximumForce = maximumforce;
+		_scale = scale;
 		_velocity = new Vektoria::CHVector(0.f, 0.f, 0.f);
 	}
 
@@ -42,7 +44,11 @@ namespace Movement
 
 		//TODO Funktioniert nur wenn in X Richtung bewegt? (1,0,0)
 		_rotationPlacement->RotateY(angleY);
+		//Drehe 180 wenn in Z Richtung
+		if (Abs(_velocity->z) < Abs(_velocity->x))
+			_rotationPlacement->RotateYDelta(PI);
 		_rotationPlacement->RotateYDelta(HALFPI);
+		_rotationPlacement->ScaleDelta(_scale);
 	}
 
 	Vektoria::CHVector SteeringController::GetPosition()

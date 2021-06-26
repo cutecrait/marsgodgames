@@ -13,7 +13,7 @@ RobotBase::RobotBase(Pathfinding::Node* startingnode, float maximumvelocity, flo
 
 	//Init SteeringController
 	_steeringController =
-		new Movement::SteeringController(_placementRoot, _rotationPlacement, maximumvelocity, maximumforce);
+		new Movement::SteeringController(_placementRoot, _rotationPlacement, maximumvelocity, maximumforce, scale);
 
 	SetNode(startingnode);
 
