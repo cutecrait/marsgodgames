@@ -73,7 +73,7 @@ int StartScreen::update()
 		return retval;
 	}
 	else if (m_exitGame.IsClicked() && clickable) {
-		retval = 1;
+		retval = 2;
 		LoadGame();
 		ULDebug("exit game");
 		
