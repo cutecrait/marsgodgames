@@ -140,8 +140,8 @@ void CGame::Tick(float fTime, float fTimeDelta)	//ftime seit spielbeginn
 	mapSquare.setLevel(&m_zdk);
 
 	// buildings
-	//gpCtrl.Update(fTimeDelta);
-	//foundryCtrl.Update(fTimeDelta);
+	gpCtrl.Update(fTimeDelta);
+	foundryCtrl.Update(fTimeDelta);
 }
 
 void CGame::MakeMapSquares(CScene* m_zs)
