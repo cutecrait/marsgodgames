@@ -19,8 +19,5 @@ namespace AI
 		/// </summary>
 		virtual void Act() = 0;
 
-	protected:
-
-
 	};
 }

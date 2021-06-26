@@ -11,7 +11,8 @@ namespace AI
 		/// <summary>
 		/// Konstruktor
 		/// </summary>
-		/// <param name="duration">Verbindung zum PathController</param>
+		/// <param name="pathcontroller">Verbindung zum PathController</param>
+		/// <param name="haspathcomparer">Comparer, ob Pfad exsistiert</param>
 		CheckPathDecision(Pathfinding::PathController* pathcontroller, bool haspathcomparer = true);
 
 		/// <summary>
@@ -22,7 +23,13 @@ namespace AI
 
 	private:
 
+		/// <summary>
+		/// Verbindung zu PfadController
+		/// </summary>
 		Pathfinding::PathController* _pathController;
+		/// <summary>
+		/// Comparer, ob Pfad exsistiert
+		/// </summary>
 		bool _hasPathComparer;
 
 	};

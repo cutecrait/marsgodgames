@@ -51,11 +51,6 @@ RobotBase::RobotBase(Pathfinding::Node* startingnode, float maximumvelocity, flo
 
 }
 
-RobotBase::~RobotBase()
-{
-
-}
-
 void RobotBase::Update(float timeDelta)
 {
 	//Update AI

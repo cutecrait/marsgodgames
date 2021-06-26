@@ -15,7 +15,6 @@ namespace Pathfinding
 		/// Konstruktor
 		/// </summary>
 		PathController();
-		~PathController();
 
 		/// <summary>
 		/// Setzt nächsten Knoten (Bei Wiederholung: Setzt bei Erreichen des letzten Knoten auf ersten Knoten)

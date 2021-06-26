@@ -4,6 +4,9 @@
 
 namespace AI
 {
+	/// <summary>
+	/// Aktion für Idle
+	/// </summary>
 	class IdleAction :
 		public Action
 	{

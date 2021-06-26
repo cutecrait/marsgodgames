@@ -7,6 +7,9 @@
 
 namespace LevelSystem
 {
+	/// <summary>
+	/// Klasse zur Verwaltung von Missionen und Leveln
+	/// </summary>
 	class LevelManager
 	{
 	public:

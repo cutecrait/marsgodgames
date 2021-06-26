@@ -15,9 +15,6 @@
     <ClCompile Include="Transition.cpp">
       <Filter>Robot\AI\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="TimedDecision.cpp">
-      <Filter>Robot\AI\Decision</Filter>
-    </ClCompile>
     <ClCompile Include="SteeringController.cpp">
       <Filter>Robot\Movement</Filter>
     </ClCompile>
@@ -193,9 +190,6 @@
     </ClInclude>
     <ClInclude Include="Transition.h">
       <Filter>Robot\AI\Transition</Filter>
-    </ClInclude>
-    <ClInclude Include="TimedDecision.h">
-      <Filter>Robot\AI\Decision</Filter>
     </ClInclude>
     <ClInclude Include="SteeringController.h">
       <Filter>Robot\Movement</Filter>

@@ -79,11 +79,4 @@ namespace Movement
 			return value;
 		return -value;
 	}
-
-	float SteeringController::MapPI(float value)
-	{
-		if (value < PI)
-			return value;
-		return 2 * PI - value;
-	}
 }

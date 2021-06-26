@@ -7,15 +7,25 @@
 #include "PathController.h"
 #include "IPathSearchAlgorithm.h"
 
+/// <summary>
+/// Basis-Klasse für Roboter
+/// </summary>
 class RobotBase : GameObject
 {
 public:
 
 	//Konstuktor in protected -> Klasse abstrakt
-	~RobotBase();
 
+	/// <summary>
+	/// Aktualisiert Roboter
+	/// </summary>
+	/// <param name="timeDelta">TimeDelta</param>
 	void Update(float timeDelta);
 
+	/// <summary>
+	/// Gibt Placement zurück
+	/// </summary>
+	/// <returns>Placement</returns>
 	Vektoria::CPlacement* GetPlacement();
 
 	/// <summary>
@@ -42,10 +52,25 @@ protected:
 	/// <param name="scale">Modelgröße - Default = 1</param>
 	RobotBase(Pathfinding::Node* startingnode, float maximumvelocity, float maximumforce, char* model, char* texture, float scale = 1);
 
+	/// <summary>
+	/// Placement
+	/// </summary>
 	Vektoria::CPlacement* _placementRoot;
+	/// <summary>
+	/// Rotationsplacement für Model
+	/// </summary>
 	Vektoria::CPlacement* _rotationPlacement;
+	/// <summary>
+	/// AI-Klasse
+	/// </summary>
 	AI::StateController* _stateController;
+	/// <summary>
+	/// Steuerungsklasse
+	/// </summary>
 	Movement::SteeringController* _steeringController;
+	/// <summary>
+	/// Pfadfindungsklasse
+	/// </summary>
 	Pathfinding::PathController* _pathController;
 
 };
