@@ -291,24 +291,12 @@ void CBuildingManager::AddNewBuilding(Typ t, MapTile* targetTile)
 void CBuildingManager::AddNewBuilding(Typ t, float x, float z)
 {
 
-	CAudioManager::Instance().Ambient_Building_Sound.Start();
 
 	CGameObjectPlacement* gop = lookForGameObject(t);
 	if (!gop)
 		return;
 
 	Building* newBuilding = (Building*)gop->getGameObject();
-
-	Player* p = &Player::Instance();
-	GameObject::Resources cost = newBuilding->getBuildCost();
-
-	p->gainConcrete(-cost.Concrete);
-	p->gainSteel(-cost.Steel);
-	p->gainWood(-cost.Wood);
-	p->useFood(newBuilding->NutrientUse);
-	p->usePower(newBuilding->PowerUse);
-	p->useWater(newBuilding->WaterUse);
-	newBuilding->updatePlayer();
 
 	gop->Translate(x, 0, z);
 	//targetTile->Free = false;
