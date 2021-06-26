@@ -65,11 +65,14 @@ public:
 	int getRobots() { return robots; }
 
 	void AddConcreteRobot(int count = 1);
-	void AddStoneRobot(int count = 1);
+	void AddWoodRobot(int count = 1);
 	void AddSteelRobot(int count = 1);
 	int GetConcreteRobot();
-	int GetStoneRobot();
+	int GetConcreteRobotEfficiency();
+	int GetWoodRobot();
+	int GetWoodRobotEfficiency();
 	int GetSteelRobot();
+	int GetSteelRobotEfficiency();
 
 	int getWohnung() { return WohnungKapa; }
 	void setWohnung(int i) { WohnungKapa += i; }
@@ -104,8 +107,11 @@ private:
 
 	int robots;
 	int _concreteRobots = 0;
-	int _stoneRobots = 0;
+	int _woodRobots = 0;
 	int _steelRobots = 0;
+	int _concreteRobotEfficiency = 2;
+	int _woodRobotEfficiency = 2;
+	int _steelRobotEfficiency = 2;
 
 	int WohnungKapa = 0;
 	int usedWohnungen;

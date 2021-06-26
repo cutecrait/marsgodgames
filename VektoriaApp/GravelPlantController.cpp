@@ -29,7 +29,9 @@ void GravelPlantController::Update(float delta)
 				}
 				else
 				{
-					int value = static_cast<int>(std::round(10 * gp->efficiency));
+					//+ RobotEffizienz
+					int value = static_cast<int>(std::round((10 * gp->efficiency) +
+						(Player::Instance().GetConcreteRobotEfficiency() * Player::Instance().GetConcreteRobot())));
 					Player::Instance().gainConcrete(value);
 				}
 			}

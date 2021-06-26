@@ -2,9 +2,9 @@
 #include "RobotBase.h"
 
 /// <summary>
-/// Klasse von Roboter Typ Stone
+/// Klasse von Roboter Typ Wood
 /// </summary>
-class StoneRobot : public RobotBase
+class WoodRobot : public RobotBase
 {
 public:
 
@@ -12,7 +12,7 @@ public:
 	/// Konstruktor
 	/// </summary>
 	/// <param name="startingnode">Startknoten</param>
-	StoneRobot(Pathfinding::Node* startingnode = nullptr);
+	WoodRobot(Pathfinding::Node* startingnode = nullptr);
 
 };
 

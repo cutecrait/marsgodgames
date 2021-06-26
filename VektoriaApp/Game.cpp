@@ -112,7 +112,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_zs.AddPlacement(m_ldgame.LoadTerrain());
 
 	CPlacement* robotplacement = new CPlacement();
-	JobSystem::JobController::Instance().InitRobots(robotplacement, 2);
+	JobSystem::JobController::Instance().InitRobots(robotplacement, 5);
 	m_zs.AddPlacement(robotplacement);
 
 	derManager.setBuildingGeos(CBuildingManager::Instance().getBuildingGeos());

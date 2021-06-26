@@ -27,7 +27,8 @@ void FoundryController::Update(float delta)
 				}
 				else
 				{
-					int value = static_cast<int>(std::round(10 * f->efficiency));
+					int value = static_cast<int>(std::round(10 * f->efficiency) +
+						(Player::Instance().GetSteelRobotEfficiency() * Player::Instance().GetSteelRobot()));
 					Player::Instance().gainSteel(value);
 				}
 			}

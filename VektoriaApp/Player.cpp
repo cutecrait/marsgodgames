@@ -46,11 +46,11 @@ void Player::AddConcreteRobot(int count)
 	JobSystem::JobController::Instance().ActivateConcreteRobot(count);
 }
 
-void Player::AddStoneRobot(int count)
+void Player::AddWoodRobot(int count)
 {
-	_stoneRobots += count;
+	_woodRobots += count;
 	robots += count;
-	JobSystem::JobController::Instance().ActivateStoneRobot(count);
+	JobSystem::JobController::Instance().ActivateWoodRobot(count);
 }
 
 void Player::AddSteelRobot(int count)
@@ -65,12 +65,27 @@ int Player::GetConcreteRobot()
 	return 0;
 }
 
-int Player::GetStoneRobot()
+int Player::GetConcreteRobotEfficiency()
 {
-	return _stoneRobots;
+	return _concreteRobotEfficiency;
+}
+
+int Player::GetWoodRobot()
+{
+	return _woodRobots;
+}
+
+int Player::GetWoodRobotEfficiency()
+{
+	return _woodRobotEfficiency;
 }
 
 int Player::GetSteelRobot()
 {
 	return _steelRobots;
+}
+
+int Player::GetSteelRobotEfficiency()
+{
+	return _steelRobotEfficiency;
 }

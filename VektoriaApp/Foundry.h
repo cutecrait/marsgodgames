@@ -38,7 +38,8 @@ public:
 		{
 			timeSinceTick -= tickTime;
 
-			int value = static_cast<int>(std::round(10 * efficiency));
+			int value = static_cast<int>(std::round(10 * efficiency) +
+				(Player::Instance().GetSteelRobotEfficiency() * Player::Instance().GetSteelRobot()));
 			Player::Instance().gainSteel(value);
 		}
 	};

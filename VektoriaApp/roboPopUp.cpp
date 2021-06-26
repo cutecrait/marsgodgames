@@ -31,7 +31,7 @@ void roboPopUp::Init(CDeviceCursor* cursor,CMaterial* mat1, CWritingFont* font1)
 	m_robo1.SetInnerOn();
 	//welcher robo
 	m_robo1W.Init(CFloatRect(0.1, 0.1, 0.45, 0.8), 25, font1); //0.45 kann man größer machen dementscprechend bei robo1addw und robo1add den ersten wert erhöhen
-	m_robo1W.PrintString("Bauroboter kaufen: ");
+	m_robo1W.PrintString("Stahlroboter kaufen: ");
 	m_robo1W.SetInnerOn();
 	m_robo1W.SwitchOn();
 	m_robo1W.SetLayer(0.88);
@@ -56,7 +56,7 @@ void roboPopUp::Init(CDeviceCursor* cursor,CMaterial* mat1, CWritingFont* font1)
 	m_robo2.SetInnerOn();
 
 	m_robo2W.Init(CFloatRect(0.1, 0.1, 0.45, 0.8), 25, font1);
-	m_robo2W.PrintString("Landwirtroboter kaufen: ");
+	m_robo2W.PrintString("Betonroboter kaufen: ");
 	m_robo2W.SetInnerOn();
 	m_robo2W.SwitchOn();
 	m_robo2W.SetLayer(0.88);
@@ -79,7 +79,7 @@ void roboPopUp::Init(CDeviceCursor* cursor,CMaterial* mat1, CWritingFont* font1)
 	m_robo3.SetInnerOn();
 
 	m_robo3W.Init(CFloatRect(0.1, 0.1, 0.45, 0.8), 25, font1);
-	m_robo3W.PrintString("andere Roboter kaufen: ");
+	m_robo3W.PrintString("Holzroboter kaufen: ");
 	m_robo3W.SetInnerOn();
 	m_robo3W.SwitchOn();
 	m_robo3W.SetLayer(0.88);

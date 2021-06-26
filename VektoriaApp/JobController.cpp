@@ -9,7 +9,7 @@ namespace JobSystem
 		srand(time(NULL));
 
 		_activeConcreteRobots = 0;
-		_activeStoneRobots = 0;
+		_activeWoodRobots = 0;
 		_activeSteelRobots = 0;
 	}
 
@@ -21,19 +21,19 @@ namespace JobSystem
 			ConcreteRobot* concrete = new ConcreteRobot();
 			_concreteRobots.push_back(concrete);
 			p = concrete->GetPlacement();
-			p->Translate(0, 5 + i, 0);
+			p->Translate(0, -5 - i, 0);
 			root->AddPlacement(p);
 
-			StoneRobot* stone = new StoneRobot();
-			_stoneRobots.push_back(stone);
-			p = stone->GetPlacement();
-			p->Translate(2, 5 + i, 0);
+			WoodRobot* wood = new WoodRobot();
+			_woodRobots.push_back(wood);
+			p = wood->GetPlacement();
+			p->Translate(2, -5 - i, 0);
 			root->AddPlacement(p);
 
 			SteelRobot* steel = new SteelRobot();
 			_steelRobots.push_back(steel);
 			p = steel->GetPlacement();
-			p->Translate(4, 5 + i, 0);
+			p->Translate(4, -5 - i, 0);
 			root->AddPlacement(p);
 		}
 	}
@@ -42,8 +42,8 @@ namespace JobSystem
 	{
 		for (int i = 0; i < _activeConcreteRobots; i++)
 			_concreteRobots[i]->Update(deltatime);
-		for (int i = 0; i < _activeStoneRobots; i++)
-			_stoneRobots[i]->Update(deltatime);
+		for (int i = 0; i < _activeWoodRobots; i++)
+			_woodRobots[i]->Update(deltatime);
 		for (int i = 0; i < _activeSteelRobots; i++)
 			_steelRobots[i]->Update(deltatime);
 	}
@@ -59,15 +59,15 @@ namespace JobSystem
 		_activeConcreteRobots += count;
 	}
 
-	void JobController::ActivateStoneRobot(int count)
+	void JobController::ActivateWoodRobot(int count)
 	{
 		for (int i = 0; i < count; i++)
 		{
-			RobotBase* robot = _stoneRobots[_activeStoneRobots + i];
+			RobotBase* robot = _woodRobots[_activeWoodRobots + i];
 			robot->SetNode(GetRandomFactory());
 			robot->SetPath(GetRandomTarget(), true);
 		}
-		_activeStoneRobots += count;
+		_activeWoodRobots += count;
 	}
 
 	void JobController::ActivateSteelRobot(int count)

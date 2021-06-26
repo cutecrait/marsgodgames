@@ -7,50 +7,41 @@ class RobotFactory :
 	public Building
 {
 public:
-    RobotFactory() {
-        PowerUse = 5;
-        WaterUse = 0;
-        NutrientUse = 0;
-        
-        Category = BuildingCategory::Industry;
+	RobotFactory() {
+		PowerUse = 5;
+		WaterUse = 0;
+		NutrientUse = 0;
 
-        setModel(AssetManager::Models::RobotFactory);
+		Category = BuildingCategory::Industry;
 
-        char* base = "textures\\RobotFactoryTex\\RobotFactoryTex_Base_Color.png";
-        char* glow = "textures\\RobotFactoryTex\\RobotFactoryTex_Emissive.png";
-        char* spec = "textures\\RobotFactoryTex\\RobotFactoryTex_Metallic.png";
-        char* height = "textures\\RobotFactoryTex\\RobotFactoryTex_Height.png";
-        char* bump = "textures\\RobotFactoryTex\\RobotFactoryTex_Roughness.png";
+		setModel(AssetManager::Models::RobotFactory);
 
-        this->setMaterial(bump, base, glow, spec, height);
-        this->getModel()->SetMaterial(this->getMaterial());
+		char* base = "textures\\RobotFactoryTex\\RobotFactoryTex_Base_Color.png";
+		char* glow = "textures\\RobotFactoryTex\\RobotFactoryTex_Emissive.png";
+		char* spec = "textures\\RobotFactoryTex\\RobotFactoryTex_Metallic.png";
+		char* height = "textures\\RobotFactoryTex\\RobotFactoryTex_Height.png";
+		char* bump = "textures\\RobotFactoryTex\\RobotFactoryTex_Roughness.png";
+
+		this->setMaterial(bump, base, glow, spec, height);
+		this->getModel()->SetMaterial(this->getMaterial());
 
 		setAudio(&CAudioManager::Instance().Local_RobotFactory);
 	}
 
 	void OnClick() override {
 
-		robo1 = 0;
-		robo2 = 0;
-		robo3 = 0;
-		steel_robo1 = 10;
-		wood_robo1 = 5;
-		stone_robo1 = 3;
-		steel_robo2 = 20;
-		wood_robo2 = 3;
-		stone_robo2 = 0;
-		steel_robo3 = 15;
-		wood_robo3 = 5;
-		stone_robo3 = 10;
-		kostenWood = 0;
-		kostenSteel = 0;
-		kostenConcrete = 0;
+		_steelRobotCount = 0;
+		_concreteRobotCount = 0;
+		_woodRobotCount = 0;
+		_woodCost = 0;
+		_steelCost = 0;
+		_concreteCost = 0;
 		onlyOneTime = true;
 		erstesMal = false;
 		thepopup->m_main.SwitchOn();
-		thepopup->m_robo1AddW.PrintInt(robo1);
-		thepopup->m_robo2AddW.PrintInt(robo2);
-		thepopup->m_robo3AddW.PrintInt(robo3);
+		thepopup->m_robo1AddW.PrintInt(_steelRobotCount);
+		thepopup->m_robo2AddW.PrintInt(_concreteRobotCount);
+		thepopup->m_robo3AddW.PrintInt(_woodRobotCount);
 		resultArray[0] = 0;
 		resultArray[1] = 0;
 		resultArray[2] = 0;
@@ -58,21 +49,21 @@ public:
 	int decision() override {
 		calculateCost();
 		if (thepopup->m_robo1Add.IsClicked()) {
-			robo1++;
-			thepopup->m_robo1AddW.PrintInt(robo1);
-			resultArray[0] = robo1;
+			_steelRobotCount++;
+			thepopup->m_robo1AddW.PrintInt(_steelRobotCount);
+			resultArray[0] = _steelRobotCount;
 			return 4;
 		}
 		if (thepopup->m_robo2Add.IsClicked()) {
-			robo2++;
-			thepopup->m_robo2AddW.PrintInt(robo2);
-			resultArray[1] = robo2;
+			_concreteRobotCount++;
+			thepopup->m_robo2AddW.PrintInt(_concreteRobotCount);
+			resultArray[1] = _concreteRobotCount;
 			return 4;
 		}
 		if (thepopup->m_robo3Add.IsClicked()) {
-			robo3++;
-			thepopup->m_robo3AddW.PrintInt(robo3);
-			resultArray[2] = robo3;
+			_woodRobotCount++;
+			thepopup->m_robo3AddW.PrintInt(_woodRobotCount);
+			resultArray[2] = _woodRobotCount;
 			return 4;
 		}
 
@@ -81,13 +72,12 @@ public:
 				if (onlyOneTime) {
 					if (enoughResource()) {
 						thepopup->m_main.SwitchOff();
-						
-						Player::Instance().AddConcreteRobot(resultArray[0]);
-						Player::Instance().AddStoneRobot(resultArray[1]);
-						Player::Instance().AddSteelRobot(resultArray[2]);
+
+						Player::Instance().AddSteelRobot(resultArray[0]);
+						Player::Instance().AddConcreteRobot(resultArray[1]);
+						Player::Instance().AddWoodRobot(resultArray[2]);
 
 						return 2;
-
 					}
 				}
 			}
@@ -133,28 +123,29 @@ public:
 
 
 
-	void calculateCost() {
+	void calculateCost()
+	{
+		//TODO robot buildcost als static in RobotBase (funktioniert nicht? -> RobotBase::getBuildCost())
+		Resources res{ 15,15,15 };
+		int count = _steelRobotCount + _concreteRobotCount + _woodRobotCount;
 
-		kostenSteel = Robo1.getRessources().Steel * robo1 + steel_robo2 * robo2 + steel_robo3 * robo3;
-		thepopup->kosten1W.PrintInt(kostenSteel);
-		kostenWood = Robo1.getRessources().Wood * robo1 + wood_robo2 * robo2 + wood_robo3 * robo3;
-		thepopup->kosten2W.PrintInt(kostenWood);
-		kostenConcrete = Robo1.getRessources().Concrete * robo1 + stone_robo2 * robo2 + stone_robo3 * robo3;
-		thepopup->kosten3W.PrintInt(kostenConcrete);
+		_steelCost = res.Steel * count;
+		_concreteCost = res.Concrete * count;
+		_woodCost = res.Wood * count;
 
-
+		thepopup->kosten1W.PrintInt(_steelCost);
+		thepopup->kosten2W.PrintInt(_concreteCost);
+		thepopup->kosten3W.PrintInt(_woodCost);
 	}
-	//hier drin wird dann playerstats geupdated.
-	//hier drin wird dann erstelle robos evtl gemacht?
 
 	bool enoughResource() {
-		if (kostenConcrete <= Player::Instance().getConcrete() &&
-			kostenSteel <= Player::Instance().getSteel() &&
-			kostenWood <= Player::Instance().getWood()) {
+		if (_concreteCost <= Player::Instance().getConcrete() &&
+			_steelCost <= Player::Instance().getSteel() &&
+			_woodCost <= Player::Instance().getWood()) {
 			onlyOneTime = false;
-			Player::Instance().gainConcrete(-kostenConcrete);
-			Player::Instance().gainSteel(-kostenSteel);
-			Player::Instance().gainWood(-kostenWood);
+			Player::Instance().gainConcrete(-_concreteCost);
+			Player::Instance().gainSteel(-_steelCost);
+			Player::Instance().gainWood(-_woodCost);
 			return true;
 		}
 
@@ -173,22 +164,12 @@ public:
 
 private:
 
-	testRobo Robo1;
-	int robo1 = 0;
-	int robo2 = 0;
-	int robo3 = 0;
-	int steel_robo1 = 10;
-	int wood_robo1 = 5;
-	int stone_robo1 = 3;
-	int steel_robo2 = 20;
-	int wood_robo2 = 3;
-	int stone_robo2 = 0;
-	int steel_robo3 = 15;
-	int wood_robo3 = 5;
-	int stone_robo3 = 10;
-	int kostenWood = 0;
-	int kostenSteel = 0;
-	int kostenConcrete = 0;
+	int _steelRobotCount = 0;
+	int _concreteRobotCount = 0;
+	int _woodRobotCount = 0;
+	int _woodCost = 0;
+	int _steelCost = 0;
+	int _concreteCost = 0;
 	bool onlyOneTime = true;
 	roboPopUp* thepopup = NULL;
 

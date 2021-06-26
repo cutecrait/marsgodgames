@@ -162,7 +162,7 @@
     <ClCompile Include="RobotBase.cpp">
       <Filter>Robot\RobotTypes</Filter>
     </ClCompile>
-    <ClCompile Include="StoneRobot.cpp">
+    <ClCompile Include="WoodRobot.cpp">
       <Filter>Robot\RobotTypes</Filter>
     </ClCompile>
     <ClCompile Include="SteelRobot.cpp">
@@ -384,7 +384,7 @@
     <ClInclude Include="RobotBase.h">
       <Filter>Robot\RobotTypes</Filter>
     </ClInclude>
-    <ClInclude Include="StoneRobot.h">
+    <ClInclude Include="WoodRobot.h">
       <Filter>Robot\RobotTypes</Filter>
     </ClInclude>
     <ClInclude Include="SteelRobot.h">

@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include "ConcreteRobot.h"
-#include "StoneRobot.h"
+#include "WoodRobot.h"
 #include "SteelRobot.h"
 #include "Vektoria\Root.h"
 
@@ -43,10 +43,10 @@ namespace JobSystem
 		/// <param name="count">Anzahl - Default: 1</param>
 		void ActivateConcreteRobot(int count = 1);
 		/// <summary>
-		/// Aktiviert Roboter von Typ Stone
+		/// Aktiviert Roboter von Typ Wood
 		/// </summary>
 		/// <param name="count">Anzahl - Default: 1</param>
-		void ActivateStoneRobot(int count = 1);
+		void ActivateWoodRobot(int count = 1);
 		/// <summary>
 		/// Aktiviert Roboter von Typ Steel
 		/// </summary>
@@ -100,13 +100,13 @@ namespace JobSystem
 		/// </summary>
 		std::vector<ConcreteRobot*> _concreteRobots;
 		/// <summary>
-		/// Anzahl aktive Roboter von Typ Stone
+		/// Anzahl aktive Roboter von Typ Wood
 		/// </summary>
-		int _activeStoneRobots;
+		int _activeWoodRobots;
 		/// <summary>
-		/// Liste aller Roboter von Typ Stone
+		/// Liste aller Roboter von Typ Wood
 		/// </summary>
-		std::vector<StoneRobot*> _stoneRobots;
+		std::vector<WoodRobot*> _woodRobots;
 		/// <summary>
 		/// Anzahl aktive Roboter von Typ Steel
 		/// </summary>
