@@ -93,14 +93,15 @@ namespace JobSystem
 
 	Pathfinding::Node* JobController::GetRandomFactory()
 	{
-		int i = rand() % (_factoryNodes.size()); //Bei 2: rand % 2 = 0 oder 1
+		//TODO suspect to change
+		int i = rand() % (_factoryNodes.size()); //Bei 1: immer 0; Bei 2: rand % 2 = 0 oder 1
 		return _factoryNodes[i];
 	}
 
 	Pathfinding::Node* JobController::GetRandomTarget()
 	{
 		//TODO suspect to change
-		int i = rand() % (_targetNodes.size()); //Bei einem Ziel: rand % 2 = 0 oder 1
+		int i = rand() % (_targetNodes.size()); //Bei 1: immer 0; Bei 2: rand % 2 = 0 oder 1
 		return _targetNodes[i];
 	}
 }
