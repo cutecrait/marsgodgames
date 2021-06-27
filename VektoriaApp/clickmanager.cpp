@@ -331,6 +331,8 @@ void clickmanager::uiDecision(CBuildingManager::Typ typ, std::string tooltipname
 		if (dumyTyp == CBuildingManager::Typ::None) {
 			dumyTyp = typ;
 			toBeBuildObject = BuildingManager->lookForGameObject(typ);
+			if (toBeBuildObject == NULL)
+				return;
 
 			toBeBuiltBuilding = dynamic_cast<Building*>(toBeBuildObject->getGameObject());
 
@@ -345,6 +347,8 @@ void clickmanager::uiDecision(CBuildingManager::Typ typ, std::string tooltipname
 				isclicked = false;
 			}
 			toBeBuildObject = BuildingManager->lookForGameObject(typ);
+			if (toBeBuildObject == NULL)
+				return;
 
 			toBeBuiltBuilding = dynamic_cast<Building*>(toBeBuildObject->getGameObject());
 
@@ -366,7 +370,11 @@ void clickmanager::uiDecision(CBuildingManager::Typ typ, std::string tooltipname
 	if (targetPos) {
 		if (!isclicked)
 		{
-			toBeBuildObject->SwitchOn();
+			if (toBeBuildObject != NULL)
+				toBeBuildObject->SwitchOn();
+
+			else return;
+			
 			m_menu->m_confirm.SwitchOn();
 			m_menu->m_cancel.SwitchOn();
 			m_menu->switchOnBuy(buildCost.Concrete, buildCost.Steel, buildCost.Wood);
@@ -374,6 +382,7 @@ void clickmanager::uiDecision(CBuildingManager::Typ typ, std::string tooltipname
 			isclicked = true;
 		}
 		if (cursor->ButtonPressedLeft()) {
+			if(toBeBuildObject)
 			toBeBuildObject->Translate(targetPos->GetPos());
 		}
 	}
