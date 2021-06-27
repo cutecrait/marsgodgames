@@ -59,10 +59,10 @@ private:
 	CMaterial m_greenMat;
 
 	CMaterial m_matsForSelect1[3];
-	CMaterial m_matsForSelect2[4];
-	CMaterial m_matsForSelect3[4];
-	CMaterial m_matsForSelect4[5];
-	CMaterial m_matsForSelect5[6];
+	CMaterial m_matsForSelect2[2];
+	CMaterial m_matsForSelect3[5];
+	CMaterial m_matsForSelect4[2];
+	CMaterial m_matsForSelect5[3];
 	CMaterial m_material;
 	CWritingFont m_redFont;
 	CMaterial m_matStats;

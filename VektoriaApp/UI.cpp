@@ -22,29 +22,33 @@ void UI::InitMaterial()
 	m_matsForSelect1[0].MakeTextureSprite("textures\\Menu_Button.png");
 	m_matsForSelect1[1].MakeTextureSprite("textures\\Menu_Button.png");
 	m_matsForSelect1[2].MakeTextureSprite("textures\\Menu_Button.png");
+	//m_matsForSelect1[3].MakeTextureSprite("textures\\Menu_Button.png");
+	//m_matsForSelect1[4].MakeTextureSprite("textures\\Menu_Button.png");
 
 	m_matsForSelect2[0].MakeTextureSprite("textures\\Menu_Button.png");
 	m_matsForSelect2[1].MakeTextureSprite("textures\\Menu_Button.png");
-	m_matsForSelect2[2].MakeTextureSprite("textures\\Menu_Button.png");
-	m_matsForSelect2[3].MakeTextureSprite("textures\\Menu_Button.png");
+	//m_matsForSelect2[2].MakeTextureSprite("textures\\Menu_Button.png");
+	//m_matsForSelect2[3].MakeTextureSprite("textures\\Menu_Button.png");
+	//m_matsForSelect2[4].MakeTextureSprite("textures\\Menu_Button.png");
 
 	m_matsForSelect3[0].MakeTextureSprite("textures\\Menu_Button.png");
 	m_matsForSelect3[1].MakeTextureSprite("textures\\Menu_Button.png");
 	m_matsForSelect3[2].MakeTextureSprite("textures\\Menu_Button.png");
 	m_matsForSelect3[3].MakeTextureSprite("textures\\Menu_Button.png");
+	m_matsForSelect3[4].MakeTextureSprite("textures\\Menu_Button.png");
 
 	m_matsForSelect4[0].MakeTextureSprite("textures\\Menu_Button.png");
 	m_matsForSelect4[1].MakeTextureSprite("textures\\Menu_Button.png");
-	m_matsForSelect4[2].MakeTextureSprite("textures\\Menu_Button.png");
-	m_matsForSelect4[3].MakeTextureSprite("textures\\Menu_Button.png");
-	m_matsForSelect4[4].MakeTextureSprite("textures\\Menu_Button.png");
+	//m_matsForSelect4[2].MakeTextureSprite("textures\\Menu_Button.png");
+	//m_matsForSelect4[3].MakeTextureSprite("textures\\Menu_Button.png");
+	//m_matsForSelect4[4].MakeTextureSprite("textures\\Menu_Button.png");
 
 	m_matsForSelect5[0].MakeTextureSprite("textures\\Menu_Button.png");
 	m_matsForSelect5[1].MakeTextureSprite("textures\\Menu_Button.png");
 	m_matsForSelect5[2].MakeTextureSprite("textures\\Menu_Button.png");
-	m_matsForSelect5[3].MakeTextureSprite("textures\\Menu_Button.png");
-	m_matsForSelect5[4].MakeTextureSprite("textures\\Menu_Button.png");
-	m_matsForSelect5[5].MakeTextureSprite("textures\\Menu_Button.png");
+	//m_matsForSelect5[3].MakeTextureSprite("textures\\Menu_Button.png");
+	//m_matsForSelect5[4].MakeTextureSprite("textures\\Menu_Button.png");
+
 
 	m_matStats.MakeTextureSprite("textures\\Player_Stat_Window.png");
 	m_matRes.MakeTextureSprite("textures\\Player_Res_Animated.png");
@@ -96,39 +100,37 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 
 	m_mainSelect.Init(cursor, font, 5, CFloatRect(0.0f, 0.2f, 0.15, 0.7));
 
-	m_mainSelect.AddOption(" Fabriken");
-	m_mainSelect.AddOption(" Wohnen");
-	m_mainSelect.AddOption(" Verpflegung");
-	m_mainSelect.AddOption(" Was anderes");
-	m_mainSelect.AddOption(" nicht save");
+	m_mainSelect.AddOption(" Bauen");
+	m_mainSelect.AddOption(" Leben");
+	m_mainSelect.AddOption(" Versorgung");
+	m_mainSelect.AddOption(" Ressourcen");
+	m_mainSelect.AddOption(" Planen");
 	std::vector <std::string> selectLabel;
 
-	selectLabel.push_back(" Roboterfabrik"); selectLabel.push_back(" Labor"); selectLabel.push_back(" Kiesfabrik");
+	selectLabel.push_back(" Robofabrik"); selectLabel.push_back(" Giesserei"); selectLabel.push_back(" Kiesfabrik");
 	//m_specificSelect[0].makeInactiveMats(m_matsForSelect1);
-	m_specificSelect[0].Init(cursor, font, 3, CFloatRect(0.15, 0.4, 0.15, 0.5));
-
-	labelMaker(0, 3, selectLabel);
+	m_specificSelect[0].Init(cursor, font, 3, CFloatRect(0.15, 0.4, 0.15, 0.5)); labelMaker(0, 3, selectLabel);
 
 	selectLabel.clear();
-	selectLabel.push_back(" Baracke"); selectLabel.push_back(" Apartment"); selectLabel.push_back(" Labor"); selectLabel.push_back(" Hospital");
+	selectLabel.push_back(" Baracke"); selectLabel.push_back(" Apartment");
 	//m_specificSelect[1].makeInactiveMats(m_matsForSelect2);
-	m_specificSelect[1].Init(cursor, font, 4, CFloatRect(0.15, 0.3, 0.15, 0.6)); labelMaker(1, 4, selectLabel);
+	m_specificSelect[1].Init(cursor, font, 2, CFloatRect(0.15, 0.3, 0.15, 0.6)); labelMaker(1, 2, selectLabel);
 
 	selectLabel.clear();
-	selectLabel.push_back(" Brunnen"); selectLabel.push_back(" FoodFarm"); selectLabel.push_back(" Solar"); selectLabel.push_back(" Nuklear"); selectLabel.push_back(" Sauerstoff");
+	selectLabel.push_back(" Wasser"); selectLabel.push_back(" Gewaechshaus"); selectLabel.push_back(" Solar"); selectLabel.push_back(" Nuklear"); selectLabel.push_back(" Sauerstoff");
 	//m_specificSelect[2].makeInactiveMats(m_matsForSelect3);
 	m_specificSelect[2].Init(cursor, font, 5, CFloatRect(0.15, 0.3, 0.15, 0.6)); labelMaker(2, 5, selectLabel);
 
 	selectLabel.clear();
-	selectLabel.push_back(" ControlCenter"); selectLabel.push_back(" Foundry"); selectLabel.push_back(" Gravelplant"); selectLabel.push_back(" Mine"); selectLabel.push_back(" Treefarm"); 
+	selectLabel.push_back(" Mine"); selectLabel.push_back(" Baumschule");
 	//m_specificSelect[3].makeInactiveMats(m_matsForSelect4);
-	m_specificSelect[3].Init(cursor, font, 5, CFloatRect(0.15, 0.2, 0.15, 0.7)); labelMaker(3, 5, selectLabel);
-
+	m_specificSelect[3].Init(cursor, font, 2, CFloatRect(0.15, 0.2, 0.15, 0.7)); labelMaker(3, 2, selectLabel);
 
 	selectLabel.clear();
-	selectLabel.push_back(" noch eins"); selectLabel.push_back(" noch 2"); selectLabel.push_back(" noch dre"); 
+	selectLabel.push_back(" ControlCenter"); selectLabel.push_back(" Labor"); selectLabel.push_back(" Hospital");
 	//m_specificSelect[3].makeInactiveMats(m_matsForSelect4);
 	m_specificSelect[4].Init(cursor, font, 3, CFloatRect(0.15, 0.4, 0.15, 0.5)); labelMaker(4, 3, selectLabel);
+
 	m_mainSelect.SwitchOff();
 	m_specificSelect[0].SwitchOff(); m_specificSelect[1].SwitchOff(); m_specificSelect[2].SwitchOff(); m_specificSelect[3].SwitchOff();; m_specificSelect[4].SwitchOff();
 

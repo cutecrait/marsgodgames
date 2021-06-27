@@ -108,20 +108,21 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 	// und die funktion void updatePlayer() override {Player::Instance().setirgendwas()} wenn das gebäude irgendwie in den statistiken eine auswirkung hat.
 	switch (m_menu->getMainSelect()->GetActivePosition())
 	{
-	case 0://fabriken
+	case 0: // Bauen
 		switch (m_menu->getSpecificSelect(0)->GetActivePosition())
 		{
 		case 0:
 			uiDecision(CBuildingManager::Typ::RobotFactory, "Robofabrik", cursor);
 			break;
 		case 1:
-			uiDecision(CBuildingManager::Typ::Laboratory, "Labor", cursor);
+			uiDecision(CBuildingManager::Typ::Foundry, "Giesserei", cursor);
 			break;
 		case 2:
+			uiDecision(CBuildingManager::Typ::GravelPlant, "Kieswerk", cursor);
 			break;
 		default:break;
 		}
-	case 1:
+	case 1: // Leben
 		switch (m_menu->getSpecificSelect(1)->GetActivePosition()) 
 		{
 		case 0: //das  "Apartment" ist für die überschrift im tooltip
@@ -131,59 +132,62 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 		case 1:
 			uiDecision(CBuildingManager::Typ::Apartment, "Apartment", cursor);
 			break;
+		/*
 		case 2:
 			uiDecision(CBuildingManager::Typ::Laboratory, "Labor", cursor);
 			break;
 		case 3:
 			uiDecision(CBuildingManager::Typ::Hospital, "Krankenhaus", cursor);
 			break;
+		*/
+		default:break;
 		}
-	case 2:
+	case 2: // Versorgung
 		switch (m_menu->getSpecificSelect(2)->GetActivePosition())
 		{
 		case 0:
-			uiDecision(CBuildingManager::Typ::Well, "Brunnen", cursor);
+			uiDecision(CBuildingManager::Typ::Well, "Wasser", cursor);
 			break;
 		case 1:
-			uiDecision(CBuildingManager::Typ::FoodFarm, "Foodfarm", cursor);
+			uiDecision(CBuildingManager::Typ::FoodFarm, "Gewaechshaus", cursor);
 			break;
 		case 2:
-			uiDecision(CBuildingManager::Typ::SolarPowerPlant, "Solaranlage", cursor);
+			uiDecision(CBuildingManager::Typ::SolarPowerPlant, "Solar", cursor);
 			break;
 		case 3:
-			uiDecision(CBuildingManager::Typ::NuclearPowerPlant, "Nuklearzelle", cursor);
+			uiDecision(CBuildingManager::Typ::NuclearPowerPlant, "Nuklear", cursor);
 			break;
 		case 4:
-			uiDecision(CBuildingManager::Typ::OxygenTank, "Sauerstofftank", cursor);
+			uiDecision(CBuildingManager::Typ::OxygenTank, "Sauerstoff", cursor);
 			break;
 		default:break;
 		}
 
-	case 3:
+	case 3: // Ressourcen
 		switch (m_menu->getSpecificSelect(3)->GetActivePosition())
+		{
+		case 0:
+			uiDecision(CBuildingManager::Typ::Mine, "Mine", cursor);
+			break;
+		case 1:
+			uiDecision(CBuildingManager::Typ::TreeFarm, "Baumschule", cursor);
+			break;
+		default:break;
+		}
+	case 4: // Planen
+		switch (m_menu->getSpecificSelect(4)->GetActivePosition())
 		{
 		case 0:
 			uiDecision(CBuildingManager::Typ::ControlCenter, "ControlCenter", cursor);
 			break;
 		case 1:
-			uiDecision(CBuildingManager::Typ::Foundry, "Foundy", cursor);
+			uiDecision(CBuildingManager::Typ::Laboratory, "Labor", cursor);
 			break;
-			
 		case 2:
-			uiDecision(CBuildingManager::Typ::GravelPlant, "Gravelplant", cursor);
+			uiDecision(CBuildingManager::Typ::Hospital, "Hospital", cursor);
 			break;
-		case 3:
-			uiDecision(CBuildingManager::Typ::Mine, "Mine", cursor);
-			break;
-		case 4:
-			uiDecision(CBuildingManager::Typ::TreeFarm, "Baumzucht", cursor);
-			break;
-		default:break;
+		default: break;
 		}
-	case 4:
-		break;
-
-	default: break;
 	}
 
 	
