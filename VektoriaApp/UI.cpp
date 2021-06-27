@@ -106,30 +106,31 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	m_mainSelect.AddOption(" Ressourcen");
 	m_mainSelect.AddOption(" Planen");
 	std::vector <std::string> selectLabel;
-
+	//faängt 0.4 and 0.5 hoch
+	//
 	selectLabel.push_back(" Robofabrik"); selectLabel.push_back(" Giesserei"); selectLabel.push_back(" Kiesfabrik");
 	//m_specificSelect[0].makeInactiveMats(m_matsForSelect1);
-	m_specificSelect[0].Init(cursor, font, 3, CFloatRect(0.15, 0.4, 0.15, 0.5)); labelMaker(0, 3, selectLabel);
+	m_specificSelect[0].Init(cursor, font, 3, CFloatRect(0.15, 0.5, 0.15, 0.4)); labelMaker(0, 3, selectLabel);
 
 	selectLabel.clear();
 	selectLabel.push_back(" Baracke"); selectLabel.push_back(" Apartment");
 	//m_specificSelect[1].makeInactiveMats(m_matsForSelect2);
-	m_specificSelect[1].Init(cursor, font, 2, CFloatRect(0.15, 0.3, 0.15, 0.6)); labelMaker(1, 2, selectLabel);
+	m_specificSelect[1].Init(cursor, font, 2, CFloatRect(0.15, 0.6, 0.15, 0.3)); labelMaker(1, 2, selectLabel);
 
 	selectLabel.clear();
 	selectLabel.push_back(" Wasser"); selectLabel.push_back(" Gewaechshaus"); selectLabel.push_back(" Solar"); selectLabel.push_back(" Nuklear"); selectLabel.push_back(" Sauerstoff");
 	//m_specificSelect[2].makeInactiveMats(m_matsForSelect3);
-	m_specificSelect[2].Init(cursor, font, 5, CFloatRect(0.15, 0.3, 0.15, 0.6)); labelMaker(2, 5, selectLabel);
+	m_specificSelect[2].Init(cursor, font, 5, CFloatRect(0.15, 0.2, 0.15, 0.7)); labelMaker(2, 5, selectLabel);
 
 	selectLabel.clear();
 	selectLabel.push_back(" Mine"); selectLabel.push_back(" Baumschule");
 	//m_specificSelect[3].makeInactiveMats(m_matsForSelect4);
-	m_specificSelect[3].Init(cursor, font, 2, CFloatRect(0.15, 0.2, 0.15, 0.7)); labelMaker(3, 2, selectLabel);
+	m_specificSelect[3].Init(cursor, font, 2, CFloatRect(0.15, 0.6, 0.15, 0.3)); labelMaker(3, 2, selectLabel);
 
 	selectLabel.clear();
 	selectLabel.push_back(" ControlCenter"); selectLabel.push_back(" Labor"); selectLabel.push_back(" Hospital");
 	//m_specificSelect[3].makeInactiveMats(m_matsForSelect4);
-	m_specificSelect[4].Init(cursor, font, 3, CFloatRect(0.15, 0.4, 0.15, 0.5)); labelMaker(4, 3, selectLabel);
+	m_specificSelect[4].Init(cursor, font, 3, CFloatRect(0.15, 0.5, 0.15, 0.4)); labelMaker(4, 3, selectLabel);
 
 	m_mainSelect.SwitchOff();
 	m_specificSelect[0].SwitchOff(); m_specificSelect[1].SwitchOff(); m_specificSelect[2].SwitchOff(); m_specificSelect[3].SwitchOff();; m_specificSelect[4].SwitchOff();
