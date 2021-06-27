@@ -153,6 +153,9 @@ void clickmanager::Click(float ftimedelta,  CDeviceCursor* cursor, LevelSystem::
 		case 3:
 			uiDecision(CBuildingManager::Typ::NuclearPowerPlant, "Nuklearzelle", cursor);
 			break;
+		case 4:
+			uiDecision(CBuildingManager::Typ::OxygenTank, "Sauerstofftank", cursor);
+			break;
 		default:break;
 		}
 

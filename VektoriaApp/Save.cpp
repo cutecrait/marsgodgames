@@ -106,10 +106,16 @@ std::string Save::getObjName(GameObject *GO)
 		objName = "Well";
 		//ULDebug(objName.c_str());
 	}
+	else if (dynamic_cast<OxygenTank*>(GO))
+	{
+		objName = "OxygenTank";
+		//ULDebug(objName.c_str());
+	}
 	else {
 		ULDebug("Failure: Object Name not found.");
 		objName = "Fail";
 	}
+	
 	return objName;
 }
 

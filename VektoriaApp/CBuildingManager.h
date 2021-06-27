@@ -22,6 +22,7 @@
 #include "TreeFarm.h"
 #include "Well.h"
 #include "FoodPlant.h"
+#include "OxygenTank.h"
 #include "MapTile.h"
 
 using namespace Vektoria;
@@ -64,7 +65,8 @@ public:
 		SolarPowerPlant,
 		TreeFarm,
 		Well = 15,
-		FoodPlant
+		FoodPlant,
+		OxygenTank
 	};
 	
 	// Initialisierung des BuildingManagers
@@ -112,6 +114,7 @@ private:
 	CGameObjectPlacement TreeFarms[20];
 	CGameObjectPlacement Wells[30];
 	CGameObjectPlacement FoodPlants[20];
+	CGameObjectPlacement OxygenTanks[20];
 
 	// Die Anzahl an Buildings, die schon gebaut wurde
 	int m_NrsOfBuildings[TYP_LENGTH];

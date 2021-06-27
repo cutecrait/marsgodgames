@@ -418,6 +418,9 @@
     <ClInclude Include="TreeFarmController.h">
       <Filter>Buildings</Filter>
     </ClInclude>
+    <ClInclude Include="OxygenTank.h">
+      <Filter>Buildings</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VektoriaApp.rc" />

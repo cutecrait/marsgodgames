@@ -115,9 +115,9 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	m_specificSelect[1].Init(cursor, font, 4, CFloatRect(0.15, 0.3, 0.15, 0.6)); labelMaker(1, 4, selectLabel);
 
 	selectLabel.clear();
-	selectLabel.push_back(" Brunnen"); selectLabel.push_back(" FoodFarm"); selectLabel.push_back(" Solar"); selectLabel.push_back(" Nuklear");
+	selectLabel.push_back(" Brunnen"); selectLabel.push_back(" FoodFarm"); selectLabel.push_back(" Solar"); selectLabel.push_back(" Nuklear"); selectLabel.push_back(" Sauerstoff");
 	//m_specificSelect[2].makeInactiveMats(m_matsForSelect3);
-	m_specificSelect[2].Init(cursor, font, 4, CFloatRect(0.15, 0.3, 0.15, 0.6)); labelMaker(2, 4, selectLabel);
+	m_specificSelect[2].Init(cursor, font, 5, CFloatRect(0.15, 0.3, 0.15, 0.6)); labelMaker(2, 5, selectLabel);
 
 	selectLabel.clear();
 	selectLabel.push_back(" ControlCenter"); selectLabel.push_back(" Foundry"); selectLabel.push_back(" Gravelplant"); selectLabel.push_back(" Mine"); selectLabel.push_back(" Treefarm"); 
@@ -427,7 +427,7 @@ void UI::tooltip(std::string headline, int res1, int res2, int res3, CBuildingMa
 		break;
 	case CBuildingManager::Typ::Well:
 		m_descriptionW1.PrintString("Wasser wird gebraucht, um");
-		m_descriptionW2.PrintString("Gebauede zuversorgen.");
+		m_descriptionW2.PrintString("Gebauede zu versorgen.");
 		m_descriptionW3.PrintString("Beim Kauf wird Wasser");
 		m_descriptionW4.PrintString("der Siedlung hinzugefuegt.");
 		break;
@@ -437,6 +437,12 @@ void UI::tooltip(std::string headline, int res1, int res2, int res3, CBuildingMa
 		m_descriptionW3.PrintString("herstellen zu koennen.");
 		m_descriptionW4.PrintString("");
 		break;
+	case CBuildingManager::Typ::OxygenTank:
+			m_descriptionW1.PrintString("Der Sauerstofftank wird");
+			m_descriptionW2.PrintString("gebraucht um Menschen");
+			m_descriptionW3.PrintString("und Tiere mit Sauerstoff");
+			m_descriptionW4.PrintString("versorgen zu koennen");
+			break;
 	/*case CBuildingManager::Typ::
 		m_descriptionW1.PrintString("");
 		m_descriptionW2.PrintString("");

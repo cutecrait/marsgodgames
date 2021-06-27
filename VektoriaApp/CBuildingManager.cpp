@@ -25,6 +25,7 @@ CBuildingManager::CBuildingManager()
 	m_MaxBuildings[(int)Typ::TreeFarm] = 20;
 	m_MaxBuildings[(int)Typ::Well] = 30;
 	m_MaxBuildings[(int)Typ::FoodPlant] = 20;
+	m_MaxBuildings[(int)Typ::OxygenTank] = 20;
 }
 
 CBuildingManager::~CBuildingManager()
@@ -200,6 +201,17 @@ void CBuildingManager::Init(CScene* scene)
 		if (i == 0)
 		{
 			BuildingGeos.Add(FoodPlants[i].getGameObject()->getModel());
+		}
+	}
+
+	for (int i = 0; i < size(OxygenTanks); i++) {
+		OxygenTanks[i].setGameObject(new OxygenTank);
+		OxygenTanks[i].Init(typeid(OxygenTank).name());
+		OxygenTanks[i].getGameObject()->TransformGeo();
+		m_zs->AddPlacement(&OxygenTanks[i]);
+		if (i == 0)
+		{
+			BuildingGeos.Add(OxygenTanks[i].getGameObject()->getModel());
 		}
 	}
 }
@@ -430,6 +442,9 @@ CGameObjectPlacement* CBuildingManager::getBuildingList(Typ typ)
 		break;
 	case CBuildingManager::Typ::FoodPlant:
 		return FoodPlants;
+		break;
+	case CBuildingManager::Typ::OxygenTank:
+		return OxygenTanks;
 		break;
 	default:
 		break;

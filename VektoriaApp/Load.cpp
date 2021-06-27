@@ -121,7 +121,11 @@ CBuildingManager::Typ Load::getTyp(std::string obj_name)
 
 		return typ;
 	}
-	
+	else if (obj_name == std::string("OxygenTank")) {
+		typ = CBuildingManager::Typ::OxygenTank;
+
+		return typ;
+	}
 }
 
 void Load::AddBuilding()

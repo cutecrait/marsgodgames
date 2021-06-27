@@ -168,6 +168,7 @@
     <ClInclude Include="ControlCPopup.h" />
     <ClInclude Include="CTerrain.h" />
     <ClInclude Include="Decision.h" />
+    <ClInclude Include="OxygenTank.h" />
     <ClInclude Include="TreeFarmController.h" />
     <ClInclude Include="WoodRobot.h" />
     <ClInclude Include="FollowPathAction.h" />

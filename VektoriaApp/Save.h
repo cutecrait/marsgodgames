@@ -20,6 +20,7 @@
 #include "SolarPowerPlant.h"
 #include "TreeFarm.h"
 #include "Well.h"
+#include "OxygenTank.h"
 #include "Player.h"
 #include <map>
 #include <iostream>

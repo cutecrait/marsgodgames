@@ -53,7 +53,7 @@ void GameObject::setModel(AssetManager::Models model)
 
 void GameObject::setMaterial(char* matPfad)
 {
-	m_material.MakeTextureSprite(matPfad);
+	m_material.MakeTextureDiffuse(matPfad);
 }
 
 void GameObject::setMaterial(char* matPfadB, char* matPfadD, char* matPfadG, char* matPfadS, char* matPfadH) // Texturierung mit Glow bei Nacht

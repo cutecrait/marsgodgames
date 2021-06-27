@@ -26,6 +26,7 @@ bool AssetManager::Init(string baseAssetPath)
 	geos[(int)Models::Robot].objPath = "\\roboter.obj";
 	geos[(int)Models::Barrack].objPath = "\\Baracke.obj";
 	geos[(int)Models::Laboratory].objPath = "\\Laboratory.obj";
+	geos[(int)Models::OxygenTank].objPath = "\\Sauerstofftank.obj";
 
 	ready = true;
 	return true;

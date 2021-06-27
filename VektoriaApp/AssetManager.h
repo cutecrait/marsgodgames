@@ -38,7 +38,8 @@ public:
 		Robot = 14,
 		Barrack = 15,
 		Laboratory = 16,
-		FoodPlant = 17
+		FoodPlant = 17,
+		OxygenTank = 18
 	};
 
 	// string: folder path containing textures/, models/, ect. with trailing '\\'

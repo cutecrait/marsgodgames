@@ -14,7 +14,13 @@ public:
 
         setModel(AssetManager::Models::SolarPowerPlant);
 
-        this->setMaterial("textures\\solarfarm\\Material.001_Base_Color.png");
+        char* base = "textures\\solarfarm\\Material001_Base_Color.png";
+        char* glow = "textures\\solarfarm\\SolarFarmTex_Emissive.png";
+        char* spec = "textures\\solarfarm\\SolarFarmTex_Metallic.png";
+        char* height = "textures\\solarfarm\\SolarFarmTex.png";
+        char* bump = "textures\\solarfarm\\SolarFarmTex_Roughness.png";
+
+        this->setMaterial(bump, base, glow, spec, height);
         this->getModel()->SetMaterial(this->getMaterial());
         //this->getModel()->m_pmaterial->LoadPreset("Concrete");
     }

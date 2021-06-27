@@ -18,14 +18,13 @@ public:
 
         setModel(AssetManager::Models::FoodFarm);
         // set material
-        char* base = "textures\\FoodFarmTex\\FoodFarmTex_Base_Color.png";
-        char* glow = "textures\\FoodFarmTex\\FoodFarmTex_Emissive.png";
-        char* spec = "textures\\FoodFarmTex\\FoodFarmTex_Metallic.png";
-        char* height = "textures\\FoodFarmTex\\FoodFarmTex_Height.png";
-        char* bump = "textures\\FoodFarmTex\\FoodFarmTex_Roughness.png";
+        char* base = "textures\\FoodFarmTex\\Base_ani.png";
+        char* glow = "textures\\FoodFarmTex\\Emissive_ani.png";
+        char* spec = "textures\\FoodFarmTex\\Metallic_ani.png";
+        char* bump = "textures\\FoodFarmTex\\Roughness_ani.png";
 
 
-        this->setMaterial(bump, base, glow, spec, height);
+        this->setMaterial(base, bump, glow, spec, 3, 5, 7);
         this->getModel()->SetMaterial(this->getMaterial());
     }
    
