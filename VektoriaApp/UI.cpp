@@ -71,11 +71,13 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	InitMaterial();
 	InitToolTip();
 	updatePlayer();
+	m_redFont.LoadPreset("LucidaConsoleRed");
+	m_redFont.SetChromaKeyingOn();
 
 	m_roboPopUP.Init(cursor,&m_matStats,font);
 	m_barrackPopUp.Init(cursor, &m_matStats, font);
 	m_apsPopup.Init(cursor, &m_matStats, font);
-	m_CCpopup.Init(cursor, &m_matStats, font);
+	m_CCpopup.Init(cursor, &m_matStats, font, &m_redFont);
 	m_wellPopup.Init(cursor, &m_matStats, font);
 	m_FFPopup.Init(cursor, &m_matStats, font);
 	m_nuclearPopup.Init(cursor, &m_matStats, font);
@@ -89,8 +91,7 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	m_resBack.SetLayer(0.98);*/
 	m_Ressources.Init(cursor, font, CFloatRect(0.5, 0, 0.4, 0.1));
 	m_RessourcesPM.Init(&m_matRes, CFloatRect(0.5,0.1,0.4,0.1));
-	m_redFont.LoadPreset("LucidaConsoleRed");
-	m_redFont.SetChromaKeyingOn();
+	
 	
 
 	

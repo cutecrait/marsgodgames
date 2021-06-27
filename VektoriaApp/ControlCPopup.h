@@ -7,7 +7,7 @@ class ControlCPopup :
 public:
     ControlCPopup();
     ~ControlCPopup();
-    void Init(CDeviceCursor* cursor, CMaterial* mat1, CWritingFont* font1);
+    void Init(CDeviceCursor* cursor, CMaterial* mat1, CWritingFont* font1,CWritingFont*);
     void updatePopup();
 
 private:
@@ -26,8 +26,8 @@ private:
     COverlay m_roboter;
     CGuiElement m_roboterW;
     CWriting m_roboterInsgesamt;
-    
-
+    CWritingFont* m_redFont;
+    CWritingFont* font;
     COverlay m_wasser;
     CGuiElement m_wasserW;
     CWriting m_wasserInsgesamt;

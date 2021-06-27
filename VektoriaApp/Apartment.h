@@ -10,7 +10,7 @@ public:
         PowerUse = 1;
         WaterUse = 1;
         NutrientUse = 4;
-        howMuch = 10;
+        howMuch = 20;
         Category = BuildingCategory::Living;
 
         //setModel("models\\Apartment.obj");

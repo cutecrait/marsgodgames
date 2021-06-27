@@ -12,7 +12,7 @@ public:
         PowerUse = 5;
         WaterUse = 3;
         NutrientUse = 1;
-
+        howMuch = 10;
         Category = BuildingCategory::Farming;
 
         setModel(AssetManager::Models::TreeFarm);
@@ -33,7 +33,9 @@ public:
         this->getModel()->SetMaterial(this->getMaterial());
         // set material
     }
-
+    void updatePlayer() override {
+        Player::Instance().setWoodPM(howMuch);
+    };
     Resources getBuildCost() {
         Resources cost;
         cost.Steel = 20;

@@ -8,10 +8,11 @@ ControlCPopup::~ControlCPopup()
 {
 }
 
-void ControlCPopup::Init(CDeviceCursor* cursor, CMaterial* mat1, CWritingFont* font1)
+void ControlCPopup::Init(CDeviceCursor* cursor, CMaterial* mat1, CWritingFont* font1,CWritingFont* redFont)
 {
 	init(mat1,cursor, font1);
-
+	m_redFont = redFont;
+	font = font1;
 	m_headlineW.PrintString("ControlCenter");
 
 	m_wohnungen.Init(mat1, CFloatRect(0, 0.2, 1, 0.15));
@@ -172,6 +173,33 @@ void ControlCPopup::Init(CDeviceCursor* cursor, CMaterial* mat1, CWritingFont* f
 
 void ControlCPopup::updatePopup()
 {
+
+	if (Player::Instance().getUsedWohnungen() > Player::Instance().getWohnung()) {
+		//m_wohnungenInsgesamt.Init(CFloatRect(0.47, 0.1, 0.3, 0.8), 10, &m_redFont);
+		m_wohnungenInsgesamt.SetFont(m_redFont);
+	}
+	else 
+		m_wohnungenInsgesamt.SetFont(font);
+
+	if (Player::Instance().getUsePower() > Player::Instance().getPower()) {
+		//m_stromInsgesamt.Init(CFloatRect(0.47, 0.1, 0.3, 0.8), 10, &m_redFont);
+		m_stromInsgesamt.SetFont(m_redFont);
+	}
+	else
+		m_stromInsgesamt.SetFont(font);
+
+	if (Player::Instance().getUseWater() > Player::Instance().getWater()) {
+		m_wasserInsgesamt.SetFont(m_redFont);
+	}
+	else
+		m_wasserInsgesamt.SetFont(font);
+
+	if (Player::Instance().getUseFood() > Player::Instance().getFood()) {
+		m_foodInsgesamt.SetFont(m_redFont);
+	}
+	else
+		m_foodInsgesamt.SetFont(font);
+
 	std::string dummystring;
 	dummystring = std::to_string(Player::Instance().getUsedWohnungen()) + "/" + std::to_string(Player::Instance().getWohnung());
 	m_wohnungenInsgesamt.PrintString(&dummystring[0]);
@@ -189,5 +217,5 @@ void ControlCPopup::updatePopup()
 
 	m_roboterInsgesamt.PrintInt(Player::Instance().getRobots());
 
-
+	
 }

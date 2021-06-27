@@ -42,7 +42,7 @@ public:
 
     void updatePlayer() override {
 
-        Player::Instance().setFood(howMuch);
+        Player::Instance().setPower(howMuch);
 
     }
     void setPopup(popup* einPopup) override {
