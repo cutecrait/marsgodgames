@@ -93,13 +93,13 @@ private:
 	int steelPMinute;
 	int woodPMinute;
 
-	int water;
-	int power;
-	int food;
+	int water = 0;
+	int power= 0;
+	int food= 0;
 
-	int usedWater;
-	int usedPower;
-	int usedFood;
+	int usedWater = 0;
+	int usedPower = 0;
+	int usedFood  = 0;
 
 	int zufriedenheit1;
 	int zufriedenheit2;

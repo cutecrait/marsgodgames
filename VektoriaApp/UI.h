@@ -73,7 +73,7 @@ private:
 	CGuiSelect m_specificSelect[5];
 	CGuiButton m_statistic;
 	
-	
+	CWritingFont m_whiteFont;
 
 	COverlay m_headline;
 	CWriting m_headlineW;

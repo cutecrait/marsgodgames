@@ -17,7 +17,7 @@ public:
 		PowerUse = 70;
 		WaterUse = 0;
 		NutrientUse = 0;
-		howMuch = 5;
+		howMuch = 10;
 		Category = BuildingCategory::Industry;
 
 		setModel(AssetManager::Models::Foundry);

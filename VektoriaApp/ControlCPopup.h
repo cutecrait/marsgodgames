@@ -27,7 +27,7 @@ private:
     CGuiElement m_roboterW;
     CWriting m_roboterInsgesamt;
     CWritingFont* m_redFont;
-    CWritingFont* font;
+    CWritingFont font;
     COverlay m_wasser;
     CGuiElement m_wasserW;
     CWriting m_wasserInsgesamt;
