@@ -52,7 +52,7 @@ void ControlCPopup::Init(CDeviceCursor* cursor, CMaterial* mat1, CWritingFont* f
 	m_StromW.Init(cursor, font1, CFloatRect(0.05, 0.1, 0.4, 0.8),22);
 	m_StromW.SetInnerOn();
 	m_StromW.SetLayer(0.97);
-	m_StromW.SetLabel("Strom zurverfuegung: ");
+	m_StromW.SetLabel("Strom zur Verfuegung: ");
 
 	m_stromInsgesamt.Init(CFloatRect(0.47, 0.1, 0.3, 0.8), 10, font1);
 	m_stromInsgesamt.SetInnerOn();
@@ -78,7 +78,7 @@ void ControlCPopup::Init(CDeviceCursor* cursor, CMaterial* mat1, CWritingFont* f
 	m_wasserW.Init(cursor, font1, CFloatRect(0.05, 0.1, 0.4, 0.8),22);
 	m_wasserW.SetInnerOn();
 	m_wasserW.SetLayer(0.97);
-	m_wasserW.SetLabel("Wasser zurverfuegung: ");
+	m_wasserW.SetLabel("Wasser zur Verfuegung: ");
 
 	m_wasserInsgesamt.Init(CFloatRect(0.47, 0.1, 0.3, 0.8), 10, font1);
 	m_wasserInsgesamt.SetInnerOn();
@@ -104,7 +104,7 @@ void ControlCPopup::Init(CDeviceCursor* cursor, CMaterial* mat1, CWritingFont* f
 	m_foodW.Init(cursor, font1, CFloatRect(0.05, 0.1, 0.4, 0.8), 25);
 	m_foodW.SetInnerOn();
 	m_foodW.SetLayer(0.97);
-	m_foodW.SetLabel("Nahrung zurverfuegung: ");
+	m_foodW.SetLabel("Nahrung zur Verfuegung: ");
 
 	m_foodInsgesamt.Init(CFloatRect(0.47, 0.1, 0.3, 0.8), 10, font1);
 	m_foodInsgesamt.SetInnerOn();

@@ -91,7 +91,7 @@ void LabPopup::Init(CDeviceCursor* cursor, CMaterial* mat1, CWritingFont* font,C
 	m_forschungenW1.Init(CFloatRect(0.1, 0.1, 0.8, 0.1), 32, font);
 	m_forschungenW1.SetLayer(0.69);
 	m_forschungenW1.SetInnerOn();
-	m_forschungenW1.PrintString("minen forschung erhoeht");
+	m_forschungenW1.PrintString("Minen forschung erhoeht");
 
 	m_forschungenW2.Init(CFloatRect(0.1, 0.25, 0.8, 0.1), 23, font);
 	m_forschungenW2.SetLayer(0.69);

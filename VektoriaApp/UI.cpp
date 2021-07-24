@@ -120,7 +120,7 @@ void UI::InitMenu(CDeviceCursor* cursor, CWritingFont* font, CViewport* zv)
 	m_specificSelect[1].Init(cursor, font, 2, CFloatRect(0.15, 0.6, 0.15, 0.3)); labelMaker(1, 2, selectLabel);
 
 	selectLabel.clear();
-	selectLabel.push_back(" Wasser"); selectLabel.push_back(" Gewaechshaus"); selectLabel.push_back(" Solar"); selectLabel.push_back(" Nuklear"); selectLabel.push_back(" Sauerstoff");
+	selectLabel.push_back(" Brunnen"); selectLabel.push_back(" Gewaechshaus"); selectLabel.push_back(" Solar"); selectLabel.push_back(" Nuklear"); selectLabel.push_back(" Sauerstoff");
 	//m_specificSelect[2].makeInactiveMats(m_matsForSelect3);
 	m_specificSelect[2].Init(cursor, font, 5, CFloatRect(0.15, 0.2, 0.15, 0.7)); labelMaker(2, 5, selectLabel);
 
